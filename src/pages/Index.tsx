@@ -1,13 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { HelmetProvider } from 'react-helmet-async';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import Brands from '@/components/Brands';
+import Services from '@/components/Services';
+import Products from '@/components/Products';
+import AppSection from '@/components/AppSection';
+import Blog from '@/components/Blog';
+import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <HelmetProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <SEO />
+          <div className="min-h-screen bg-background">
+            <Navbar />
+            <main>
+              <Hero />
+              <Brands />
+              <Services />
+              <Products />
+              <AppSection />
+              <Blog />
+            </main>
+            <Footer />
+          </div>
+        </LanguageProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 };
 
