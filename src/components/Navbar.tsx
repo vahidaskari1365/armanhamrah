@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { useState } from 'react';
+import logo from '@/assets/logo.jpeg';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
@@ -32,12 +33,11 @@ const Navbar = () => {
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">آ</span>
-            </div>
-            <span className="text-xl font-bold text-foreground hidden sm:block">
-              {language === 'fa' ? 'آرمان همراه' : 'Arman Hamrah'}
-            </span>
+            <img 
+              src={logo} 
+              alt="آرمان همراه ارتباطات آریا" 
+              className="h-12 w-auto object-contain"
+            />
           </motion.a>
 
           {/* Desktop Nav */}

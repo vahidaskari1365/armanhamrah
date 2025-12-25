@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Instagram, MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import logo from '@/assets/logo.jpeg';
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -30,17 +31,11 @@ const Footer = () => {
             className="lg:col-span-2"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-2xl">آ</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground">
-                  {language === 'fa' ? 'آرمان همراه' : 'Arman Hamrah'}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {language === 'fa' ? 'ارتباطات آریا' : 'Aria Communications'}
-                </p>
-              </div>
+              <img 
+                src={logo} 
+                alt="آرمان همراه ارتباطات آریا" 
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md">
               {t('footer.description')}
