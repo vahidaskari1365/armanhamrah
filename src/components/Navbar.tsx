@@ -1,22 +1,24 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo.jpeg';
 
 const Navbar = () => {
-  const { t, language, toggleLanguage } = useLanguage();
+  const { t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { key: 'nav.home', href: '#home' },
-    { key: 'nav.warranty', href: '#guarantee' },
-    { key: 'nav.products', href: '#products' },
-    { key: 'nav.export', href: '#export' },
-    { key: 'nav.blog', href: '#blog' },
-    { key: 'nav.contact', href: '#contact' },
+    { key: 'nav.home', href: '/' },
+    { key: 'nav.warranty', href: '/warranty' },
+    { key: 'nav.products', href: '/products' },
+    { key: 'nav.export', href: '/export' },
+    { key: 'nav.blog', href: '/blog' },
+    { key: 'nav.contact', href: '/contact' },
   ];
 
   return (
@@ -29,29 +31,33 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.02 }}
-          >
-            <img 
-              src={logo} 
-              alt="آرمان همراه ارتباطات آریا" 
-              className="h-12 w-auto object-contain"
-            />
-          </motion.a>
+          <motion.div whileHover={{ scale: 1.02 }}>
+            <Link to="/" className="flex items-center gap-3">
+              <div className="p-1 rounded-lg bg-card">
+                <img 
+                  src={logo} 
+                  alt="آرمان همراه ارتباطات آریا" 
+                  className="h-10 w-auto object-contain rounded"
+                />
+              </div>
+            </Link>
+          </motion.div>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
-              <motion.a
-                key={item.key}
-                href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-                whileHover={{ y: -2 }}
-              >
-                {t(item.key)}
-              </motion.a>
+              <motion.div key={item.key} whileHover={{ y: -2 }}>
+                <Link
+                  to={item.href}
+                  className={`font-medium transition-colors ${
+                    location.pathname === item.href
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-primary'
+                  }`}
+                >
+                  {t(item.key)}
+                </Link>
+              </motion.div>
             ))}
           </div>
 
@@ -65,16 +71,6 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-
-            {/* Language Toggle */}
-            <motion.button
-              onClick={toggleLanguage}
-              className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Globe size={20} />
             </motion.button>
 
             {/* My Arman Button */}
@@ -110,14 +106,18 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.key}
-                  href={item.href}
+                  to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-muted-foreground hover:text-primary transition-colors font-medium py-2"
+                  className={`font-medium py-2 transition-colors ${
+                    location.pathname === item.href
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-primary'
+                  }`}
                 >
                   {t(item.key)}
-                </a>
+                </Link>
               ))}
               <a
                 href="https://my.armanhamrah.com/"
