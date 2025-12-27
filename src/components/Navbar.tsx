@@ -12,8 +12,9 @@ const Navbar = () => {
 
   const navItems = [
     { key: 'nav.home', href: '#home' },
-    { key: 'nav.warranty', href: '#services' },
+    { key: 'nav.warranty', href: '#guarantee' },
     { key: 'nav.products', href: '#products' },
+    { key: 'nav.export', href: '#export' },
     { key: 'nav.blog', href: '#blog' },
     { key: 'nav.contact', href: '#contact' },
   ];
