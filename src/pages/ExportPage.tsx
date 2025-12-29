@@ -60,6 +60,57 @@ const countries = [
   { name: 'کویت', flag: '🇰🇼' },
 ];
 
+const exportProducts = [
+  {
+    name: 'اپل آیفون 15 پرو مکس',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro%20Max/apple-iphone-15-promax.webp',
+    brand: 'Apple',
+    category: 'موبایل',
+  },
+  {
+    name: 'اپل آیفون 15 پرو',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro/apple-iphone-15-pro.webp',
+    brand: 'Apple',
+    category: 'موبایل',
+  },
+  {
+    name: 'اپل آیفون 15',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015/apple-iphone-15.webp',
+    brand: 'Apple',
+    category: 'موبایل',
+  },
+  {
+    name: 'اپل واچ اولترا 2',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Ultra%202/watch-ultra-2.webp',
+    brand: 'Apple',
+    category: 'ساعت هوشمند',
+  },
+  {
+    name: 'اپل واچ سری 9',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Series%209/apple-watch-9.webp',
+    brand: 'Apple',
+    category: 'ساعت هوشمند',
+  },
+  {
+    name: 'سامسونگ گلکسی Z فولد 4',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Z%20Fold4/samsung-galaxy-zfold4-1.webp',
+    brand: 'Samsung',
+    category: 'موبایل',
+  },
+  {
+    name: 'سامسونگ گلکسی واچ 5 پرو',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5%20Pro/galaxy-watch5-pro-1.webp',
+    brand: 'Samsung',
+    category: 'ساعت هوشمند',
+  },
+  {
+    name: 'سامسونگ گلکسی واچ 5',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5/samsung-galaxy-watch-5.webp',
+    brand: 'Samsung',
+    category: 'ساعت هوشمند',
+  },
+];
+
 const ExportPage = () => {
   return (
     <HelmetProvider>
@@ -159,6 +210,52 @@ const ExportPage = () => {
                         </div>
                         <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
                         <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Export Products */}
+              <section className="section-padding">
+                <div className="container-custom">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-4">محصولات صادراتی</h2>
+                    <p className="text-muted-foreground">محصولات با کیفیت و اورجینال برای صادرات</p>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-4" />
+                  </motion.div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {exportProducts.map((product, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        whileHover={{ y: -10 }}
+                        className="card-premium text-center group"
+                      >
+                        <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
+                          <motion.img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-32 object-contain group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                            {product.brand}
+                          </span>
+                        </div>
+                        <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
+                        <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {product.name}
+                        </h3>
                       </motion.div>
                     ))}
                   </div>
