@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
-import heroBg from '@/assets/hero-bg.jpg';
+import heroBg from '@/assets/hero-phones.jpg';
 
 const Hero = () => {
   const { t, language } = useLanguage();

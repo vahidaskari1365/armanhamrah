@@ -33,13 +33,11 @@ const Navbar = () => {
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.02 }}>
             <Link to="/" className="flex items-center gap-3">
-              <div className="p-1 rounded-lg bg-card">
-                <img 
-                  src={logo} 
-                  alt="آرمان همراه ارتباطات آریا" 
-                  className="h-10 w-auto object-contain rounded"
-                />
-              </div>
+              <img 
+                src={logo} 
+                alt="آرمان همراه ارتباطات آریا" 
+                className="h-10 w-auto object-contain rounded"
+              />
             </Link>
           </motion.div>
 

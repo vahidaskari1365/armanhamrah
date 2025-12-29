@@ -9,6 +9,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 
 const products = [
+  // Apple Products
   {
     name: 'اپل واچ اولترا 2',
     image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Ultra%202/watch-ultra-2.webp',
@@ -46,42 +47,58 @@ const products = [
   },
   {
     name: 'اپل آیفون 15',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Plus/apple-iphone-15-plus.webp',
+    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015/apple-iphone-15.webp',
     link: 'https://www.armanhamrah.com/product.php?p=18',
     category: 'موبایل',
     brand: 'Apple',
   },
+  // Samsung Products
   {
-    name: 'سامسونگ گلکسی S23 اولترا',
-    image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400',
-    link: 'https://www.armanhamrah.com/products.php',
+    name: 'سامسونگ گلکسی Z فولد 4',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Z%20Fold4/samsung-galaxy-zfold4-1.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=17',
     category: 'موبایل',
     brand: 'Samsung',
   },
   {
-    name: 'شیائومی 13 پرو',
-    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400',
-    link: 'https://www.armanhamrah.com/products.php',
+    name: 'سامسونگ گلکسی A04e',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04e/samsung-galaxy-A04E-1.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=16',
     category: 'موبایل',
-    brand: 'Xiaomi',
+    brand: 'Samsung',
   },
   {
-    name: 'سونی ایکسپریا 1 V',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400',
-    link: 'https://www.armanhamrah.com/products.php',
+    name: 'سامسونگ گلکسی A04s',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04s/samsung-galaxy-A04S-1.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=15',
     category: 'موبایل',
-    brand: 'Sony',
+    brand: 'Samsung',
   },
   {
-    name: 'هارمن کاردن اسپیکر',
-    image: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400',
-    link: 'https://www.armanhamrah.com/products.php',
-    category: 'صوتی',
-    brand: 'Harman Kardon',
+    name: 'سامسونگ گلکسی A04',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04/samsung-galaxy-A04-1.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=14',
+    category: 'موبایل',
+    brand: 'Samsung',
+  },
+  {
+    name: 'سامسونگ گلکسی واچ 5 پرو',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5%20Pro/galaxy-watch5-pro-1.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=13',
+    category: 'ساعت هوشمند',
+    brand: 'Samsung',
+  },
+  {
+    name: 'سامسونگ گلکسی واچ 5',
+    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5/samsung-galaxy-watch-5.webp',
+    link: 'https://www.armanhamrah.com/product.php?p=12',
+    category: 'ساعت هوشمند',
+    brand: 'Samsung',
   },
 ];
 
-const brands = ['همه', 'Apple', 'Samsung', 'Xiaomi', 'Sony', 'Harman Kardon'];
+const brands = ['همه', 'Apple', 'Samsung'];
+const categories = ['همه', 'موبایل', 'ساعت هوشمند'];
 
 const ProductsPage = () => {
   return (
@@ -90,7 +107,7 @@ const ProductsPage = () => {
         <LanguageProvider>
           <SEO 
             title="محصولات | آرمان همراه ارتباطات آریا"
-            description="مشاهده تمامی محصولات اپل، سامسونگ، شیائومی، سونی و هارمن کاردن با گارانتی آرمان همراه"
+            description="مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند"
           />
           <div className="min-h-screen bg-background" dir="rtl">
             <Navbar />
@@ -121,6 +138,7 @@ const ProductsPage = () => {
               <section className="py-8 border-b border-border bg-card/50">
                 <div className="container-custom">
                   <div className="flex flex-wrap gap-3">
+                    <span className="text-sm font-medium text-muted-foreground ml-4">برند:</span>
                     {brands.map((brand, index) => (
                       <motion.button
                         key={brand}
@@ -134,6 +152,22 @@ const ProductsPage = () => {
                         }`}
                       >
                         {brand}
+                      </motion.button>
+                    ))}
+                    <span className="text-sm font-medium text-muted-foreground mr-8 ml-4">دسته‌بندی:</span>
+                    {categories.map((category, index) => (
+                      <motion.button
+                        key={category}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: (brands.length + index) * 0.1 }}
+                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                          index === 0
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
+                        }`}
+                      >
+                        {category}
                       </motion.button>
                     ))}
                   </div>
