@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const brands = [
-  { name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp' },
-  { name: 'Samsung', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp' },
-  { name: 'Xiaomi', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp' },
-  { name: 'Sony', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp' },
-  { name: 'Harman Kardon', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp' },
+  { name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp', filter: 'Apple' },
+  { name: 'Samsung', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp', filter: 'Samsung' },
+  { name: 'Xiaomi', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp', filter: 'Xiaomi' },
+  { name: 'Sony', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp', filter: 'Sony' },
+  { name: 'Harman Kardon', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp', filter: 'Harman Kardon' },
 ];
 
 const Brands = () => {
@@ -37,13 +38,17 @@ const Brands = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.1 }}
-              className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500"
             >
-              <img
-                src={brand.logo}
-                alt={brand.name}
-                className="h-12 md:h-16 w-auto object-contain"
-              />
+              <Link
+                to={`/products?brand=${encodeURIComponent(brand.filter)}`}
+                className="block grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-pointer"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              </Link>
             </motion.div>
           ))}
         </div>

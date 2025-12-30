@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Instagram, MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { Instagram, MessageCircle, Phone, Mail, MapPin, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.jpeg';
 
@@ -17,7 +17,8 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com/armanhamrah', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/armanholdingco/', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/arman-corp-a443813a2/', label: 'LinkedIn' },
     { icon: MessageCircle, href: 'https://t.me/armanhamrah', label: 'Telegram' },
   ];
 
@@ -31,7 +32,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2"
+            className="lg:col-span-1"
           >
             <div className="flex items-center gap-3 mb-6">
               <img 
@@ -40,8 +41,11 @@ const Footer = () => {
                 className="h-14 w-auto object-contain rounded"
               />
             </div>
-            <p className="text-muted-foreground leading-relaxed max-w-md">
-              شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا اکنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              {language === 'fa' 
+                ? 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا اکنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.'
+                : 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2014.'
+              }
             </p>
           </motion.div>
 
@@ -67,36 +71,75 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Contact */}
+          {/* Service Center Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-bold text-foreground mb-6">{t('footer.contact')}</h4>
+            <h4 className="text-lg font-bold text-foreground mb-6">
+              {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-muted-foreground">
-                <Phone size={18} className="text-primary" />
-                <div className="flex flex-col">
-                  <span dir="ltr">021-91009009</span>
-                  <span dir="ltr">021-91008080</span>
+                <Phone size={18} className="text-primary flex-shrink-0" />
+                <span dir="ltr">021-58798</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
+                <div className="text-sm">
+                  <span>
+                    {language === 'fa' 
+                      ? 'تهران، خیابان مطهری، سلیمان خاطر، نبش بانک ملت، ساختمان امیر اتابک، ط۲، واحد ۲۰۴'
+                      : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 204'
+                    }
+                  </span>
+                  <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
+                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} ۱۵۷۵۹۴۵۳۳۵
+                  </p>
                 </div>
               </li>
+            </ul>
+          </motion.div>
+
+          {/* Headquarters Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h4 className="text-lg font-bold text-foreground mb-6">
+              {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
+            </h4>
+            <ul className="space-y-4">
               <li className="flex items-center gap-3 text-muted-foreground">
-                <Mail size={18} className="text-primary" />
+                <Phone size={18} className="text-primary flex-shrink-0" />
+                <span dir="ltr">021-88321030-2</span>
+              </li>
+              <li className="flex items-center gap-3 text-muted-foreground">
+                <Mail size={18} className="text-primary flex-shrink-0" />
                 <span>info@armanhamrah.com</span>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
-                <span>
-                  تهران، خیابان ولیعصر، بالاتر از میدان ولیعصر، برج آرمان همراه، طبقه ۵
-                </span>
+                <div className="text-sm">
+                  <span>
+                    {language === 'fa' 
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
+                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
+                    }
+                  </span>
+                  <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
+                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} 1575945341
+                  </p>
+                </div>
               </li>
             </ul>
 
             {/* Social Links */}
-            <div className="mt-8">
+            <div className="mt-6">
               <h5 className="text-sm font-semibold text-foreground mb-4">{t('footer.followUs')}</h5>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
@@ -118,7 +161,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} آرمان همراه ارتباطات آریا. تمامی حقوق محفوظ است.
+            © {new Date().getFullYear()} {language === 'fa' ? 'آرمان همراه ارتباطات آریا. تمامی حقوق محفوظ است.' : 'Arman Hamrah Aria Communications. All rights reserved.'}
           </p>
         </div>
       </div>

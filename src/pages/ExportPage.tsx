@@ -60,54 +60,42 @@ const countries = [
   { name: 'کویت', flag: '🇰🇼' },
 ];
 
+// Export Products from export.armanhamrah.com
 const exportProducts = [
   {
-    name: 'اپل آیفون 15 پرو مکس',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro%20Max/apple-iphone-15-promax.webp',
-    brand: 'Apple',
-    category: 'موبایل',
+    name: 'آهن و فولاد',
+    nameEn: 'Iron and Steel',
+    image: 'https://export.armanhamrah.com/uploads/products/iron.webp',
+    category: 'فلزات',
+    categoryEn: 'Metals',
   },
   {
-    name: 'اپل آیفون 15 پرو',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro/apple-iphone-15-pro.webp',
-    brand: 'Apple',
-    category: 'موبایل',
+    name: 'مفتول مسی',
+    nameEn: 'Copper Rod',
+    image: 'https://export.armanhamrah.com/uploads/products/copper-rod.webp',
+    category: 'فلزات',
+    categoryEn: 'Metals',
   },
   {
-    name: 'اپل آیفون 15',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015/apple-iphone-15.webp',
-    brand: 'Apple',
-    category: 'موبایل',
+    name: 'قیر',
+    nameEn: 'Bitumen',
+    image: 'https://export.armanhamrah.com/uploads/products/bitumen.webp',
+    category: 'پتروشیمی',
+    categoryEn: 'Petrochemical',
   },
   {
-    name: 'اپل واچ اولترا 2',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Ultra%202/watch-ultra-2.webp',
-    brand: 'Apple',
-    category: 'ساعت هوشمند',
+    name: 'روغن',
+    nameEn: 'Oil',
+    image: 'https://export.armanhamrah.com/uploads/products/oil.webp',
+    category: 'پتروشیمی',
+    categoryEn: 'Petrochemical',
   },
   {
-    name: 'اپل واچ سری 9',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Series%209/apple-watch-9.webp',
-    brand: 'Apple',
-    category: 'ساعت هوشمند',
-  },
-  {
-    name: 'سامسونگ گلکسی Z فولد 4',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Z%20Fold4/samsung-galaxy-zfold4-1.webp',
-    brand: 'Samsung',
-    category: 'موبایل',
-  },
-  {
-    name: 'سامسونگ گلکسی واچ 5 پرو',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5%20Pro/galaxy-watch5-pro-1.webp',
-    brand: 'Samsung',
-    category: 'ساعت هوشمند',
-  },
-  {
-    name: 'سامسونگ گلکسی واچ 5',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5/samsung-galaxy-watch-5.webp',
-    brand: 'Samsung',
-    category: 'ساعت هوشمند',
+    name: 'نخ',
+    nameEn: 'Thread',
+    image: 'https://export.armanhamrah.com/uploads/products/thread.webp',
+    category: 'نساجی',
+    categoryEn: 'Textile',
   },
 ];
 
@@ -249,10 +237,10 @@ const ExportPage = () => {
                             className="w-full h-32 object-contain group-hover:scale-110 transition-transform duration-500"
                           />
                           <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                            {product.brand}
+                            {product.category}
                           </span>
                         </div>
-                        <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
+                        <span className="text-xs text-muted-foreground block mb-2">{product.categoryEn}</span>
                         <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           {product.name}
                         </h3>
