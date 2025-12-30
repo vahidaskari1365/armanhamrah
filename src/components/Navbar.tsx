@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo.jpeg';
 
 const Navbar = () => {
-  const { t } = useLanguage();
+  const { t, language, toggleLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -61,6 +61,17 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
+            {/* Language Toggle */}
+            <motion.button
+              onClick={toggleLanguage}
+              className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              title={language === 'fa' ? 'English' : 'فارسی'}
+            >
+              <span className="text-xs font-bold">{language === 'fa' ? 'EN' : 'FA'}</span>
+            </motion.button>
+
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}

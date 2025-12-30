@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import ChatWidget from '@/components/ChatWidget';
 
 const products = [
   // Apple Products
@@ -97,8 +99,167 @@ const products = [
   },
 ];
 
-const brands = ['همه', 'Apple', 'Samsung'];
+const brandsList = ['همه', 'Apple', 'Samsung'];
 const categories = ['همه', 'موبایل', 'ساعت هوشمند'];
+
+const ProductsPageContent = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { language } = useLanguage();
+  const [selectedBrand, setSelectedBrand] = useState<string>('همه');
+  const [selectedCategory, setSelectedCategory] = useState<string>('همه');
+
+  useEffect(() => {
+    const brandParam = searchParams.get('brand');
+    if (brandParam) {
+      setSelectedBrand(brandParam);
+    }
+  }, [searchParams]);
+
+  const filteredProducts = products.filter((product) => {
+    const brandMatch = selectedBrand === 'همه' || product.brand === selectedBrand;
+    const categoryMatch = selectedCategory === 'همه' || product.category === selectedCategory;
+    return brandMatch && categoryMatch;
+  });
+
+  const handleBrandClick = (brand: string) => {
+    setSelectedBrand(brand);
+    if (brand === 'همه') {
+      searchParams.delete('brand');
+    } else {
+      searchParams.set('brand', brand);
+    }
+    setSearchParams(searchParams);
+  };
+
+  return (
+    <div className="min-h-screen bg-background" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+      <Navbar />
+      <main className="pt-24">
+        {/* Hero */}
+        <section className="bg-gradient-hero py-16">
+          <div className="container-custom">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
+                <ArrowRight size={20} />
+                {language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Back to Home'}
+              </Link>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {language === 'fa' ? 'محصولات' : 'Products'}
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                {language === 'fa' 
+                  ? 'تمامی محصولات با گارانتی معتبر آرمان همراه ارتباطات آریا عرضه می‌شوند'
+                  : 'All products come with valid Arman Hamrah warranty'
+                }
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Brands Filter */}
+        <section className="py-8 border-b border-border bg-card/50">
+          <div className="container-custom">
+            <div className="flex flex-wrap gap-3">
+              <span className="text-sm font-medium text-muted-foreground ml-4">
+                {language === 'fa' ? 'برند:' : 'Brand:'}
+              </span>
+              {brandsList.map((brand, index) => (
+                <motion.button
+                  key={brand}
+                  onClick={() => handleBrandClick(brand)}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                    selectedBrand === brand
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
+                  }`}
+                >
+                  {brand === 'همه' && language === 'en' ? 'All' : brand}
+                </motion.button>
+              ))}
+              <span className="text-sm font-medium text-muted-foreground mr-8 ml-4">
+                {language === 'fa' ? 'دسته‌بندی:' : 'Category:'}
+              </span>
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: (brandsList.length + index) * 0.1 }}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                    selectedCategory === category
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
+                  }`}
+                >
+                  {category === 'همه' && language === 'en' ? 'All' : 
+                   category === 'موبایل' && language === 'en' ? 'Mobile' :
+                   category === 'ساعت هوشمند' && language === 'en' ? 'Smartwatch' : category}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Products Grid */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {filteredProducts.map((product, index) => (
+                <motion.a
+                  key={index}
+                  href={product.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  whileHover={{ y: -10 }}
+                  className="card-premium text-center group"
+                >
+                  <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
+                    <motion.img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                      {product.brand}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
+                  <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {product.name}
+                  </h3>
+                  <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
+                    {language === 'fa' ? 'مشاهده' : 'View'}
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+
+            {filteredProducts.length === 0 && (
+              <div className="text-center py-16">
+                <p className="text-muted-foreground text-lg">
+                  {language === 'fa' ? 'محصولی یافت نشد' : 'No products found'}
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <ChatWidget />
+    </div>
+  );
+};
 
 const ProductsPage = () => {
   return (
@@ -109,112 +270,7 @@ const ProductsPage = () => {
             title="محصولات | آرمان همراه ارتباطات آریا"
             description="مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
-            <Navbar />
-            <main className="pt-24">
-              {/* Hero */}
-              <section className="bg-gradient-hero py-16">
-                <div className="container-custom">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
-                      <ArrowRight size={20} />
-                      بازگشت به صفحه اصلی
-                    </Link>
-                    <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      محصولات
-                    </h1>
-                    <p className="text-lg text-muted-foreground max-w-2xl">
-                      تمامی محصولات با گارانتی معتبر آرمان همراه ارتباطات آریا عرضه می‌شوند
-                    </p>
-                  </motion.div>
-                </div>
-              </section>
-
-              {/* Brands Filter */}
-              <section className="py-8 border-b border-border bg-card/50">
-                <div className="container-custom">
-                  <div className="flex flex-wrap gap-3">
-                    <span className="text-sm font-medium text-muted-foreground ml-4">برند:</span>
-                    {brands.map((brand, index) => (
-                      <motion.button
-                        key={brand}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                          index === 0
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
-                        }`}
-                      >
-                        {brand}
-                      </motion.button>
-                    ))}
-                    <span className="text-sm font-medium text-muted-foreground mr-8 ml-4">دسته‌بندی:</span>
-                    {categories.map((category, index) => (
-                      <motion.button
-                        key={category}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: (brands.length + index) * 0.1 }}
-                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                          index === 0
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
-                        }`}
-                      >
-                        {category}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-              </section>
-
-              {/* Products Grid */}
-              <section className="section-padding">
-                <div className="container-custom">
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                    {products.map((product, index) => (
-                      <motion.a
-                        key={index}
-                        href={product.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                        whileHover={{ y: -10 }}
-                        className="card-premium text-center group"
-                      >
-                        <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
-                          <motion.img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                            {product.brand}
-                          </span>
-                        </div>
-                        <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
-                        <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                          {product.name}
-                        </h3>
-                        <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
-                          مشاهده
-                        </span>
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </section>
-            </main>
-            <Footer />
-          </div>
+          <ProductsPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>
