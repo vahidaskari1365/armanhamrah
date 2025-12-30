@@ -13,6 +13,7 @@ import Blog from '@/components/Blog';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
+import Subsidiaries from '@/components/Subsidiaries';
 
 const Index = () => {
   return (
@@ -31,6 +32,7 @@ const Index = () => {
               <Guarantee />
               <AppSection />
               <Blog />
+              <Subsidiaries />
             </main>
             <Footer />
             <ChatWidget />
