@@ -17,6 +17,7 @@ const Navbar = () => {
     { key: 'nav.warranty', href: '/warranty' },
     { key: 'nav.products', href: '/products' },
     { key: 'nav.export', href: '/export' },
+    { key: 'nav.cooperation', href: '/cooperation' },
     { key: 'nav.blog', href: '/blog' },
     { key: 'nav.contact', href: '/contact' },
   ];
@@ -82,7 +83,7 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
 
-            {/* My Arman Button */}
+            {/* Register Button */}
             <motion.a
               href="https://my.armanhamrah.com/"
               target="_blank"

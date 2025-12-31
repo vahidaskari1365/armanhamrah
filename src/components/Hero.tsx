@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
-import heroBg from '@/assets/hero-phones.jpg';
+import heroBg from '@/assets/hero-phones-new.jpg';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -13,7 +13,8 @@ const Hero = () => {
         <img
           src={heroBg}
           alt="Hero Background"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
+          style={{ objectPosition: 'center center' }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
       </div>

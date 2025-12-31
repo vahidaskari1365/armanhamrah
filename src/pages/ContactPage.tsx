@@ -11,38 +11,45 @@ import SEO from '@/components/SEO';
 const contactInfo = [
   {
     icon: Phone,
-    title: 'تلفن تماس',
-    value: '021-91009009',
-    subValue: '021-44556677',
-    href: 'tel:02191009009',
+    title: 'تلفن دفتر مرکزی',
+    value: '021-88321030',
+    subValue: '021-88321032',
+    href: 'tel:02188321030',
+  },
+  {
+    icon: Phone,
+    title: 'تلفن پشتیبانی',
+    value: '021-58798',
+    subValue: '021-88329274 داخلی 4',
+    href: 'tel:02158798',
   },
   {
     icon: Mail,
     title: 'ایمیل',
     value: 'info@armanhamrah.com',
-    subValue: 'support@armanhamrah.com',
+    subValue: 'export@armanhamrah.com',
     href: 'mailto:info@armanhamrah.com',
-  },
-  {
-    icon: MapPin,
-    title: 'آدرس',
-    value: 'تهران، خیابان ولیعصر، بالاتر از میدان ونک',
-    subValue: 'پلاک 123، طبقه 5',
-    href: '#',
   },
   {
     icon: Clock,
     title: 'ساعات کاری',
-    value: 'شنبه تا پنجشنبه: 9 صبح تا 6 عصر',
-    subValue: 'جمعه: تعطیل',
+    value: 'شنبه تا چهارشنبه: 9 صبح تا 17',
+    subValue: 'پنجشنبه: 9 صبح تا 14',
     href: '#',
   },
 ];
 
+const addressInfo = {
+  icon: MapPin,
+  title: 'آدرس دفتر مرکزی',
+  value: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴',
+  postalCode: '1575945341',
+};
+
 const socialLinks = [
-  { icon: Instagram, name: 'اینستاگرام', href: 'https://instagram.com/armanhamrah', color: 'bg-gradient-to-br from-purple-500 to-pink-500' },
+  { icon: Instagram, name: 'اینستاگرام', href: 'https://www.instagram.com/armanholdingco/', color: 'bg-gradient-to-br from-purple-500 to-pink-500' },
   { icon: MessageCircle, name: 'تلگرام', href: 'https://t.me/armanhamrah', color: 'bg-blue-500' },
-  { icon: Send, name: 'واتساپ', href: 'https://wa.me/989121234567', color: 'bg-green-500' },
+  { icon: Send, name: 'واتساپ', href: 'https://wa.me/989888321032', color: 'bg-green-500' },
 ];
 
 const ContactPage = () => {
@@ -82,7 +89,7 @@ const ContactPage = () => {
               {/* Contact Info */}
               <section className="section-padding">
                 <div className="container-custom">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     {contactInfo.map((item, index) => (
                       <motion.a
                         key={index}
@@ -97,11 +104,30 @@ const ContactPage = () => {
                           <item.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors" />
                         </div>
                         <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm mb-1">{item.value}</p>
-                        <p className="text-muted-foreground text-xs">{item.subValue}</p>
+                        <p className="text-muted-foreground text-sm mb-1 hover:text-primary transition-colors" dir={item.href.startsWith('tel') ? 'ltr' : 'rtl'}>{item.value}</p>
+                        <p className="text-muted-foreground text-xs" dir={item.href.startsWith('tel') ? 'ltr' : 'rtl'}>{item.subValue}</p>
                       </motion.a>
                     ))}
                   </div>
+
+                  {/* Address Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="card-premium mb-16"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin size={28} className="text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{addressInfo.title}</h3>
+                        <p className="text-muted-foreground mb-2">{addressInfo.value}</p>
+                        <p className="text-sm text-muted-foreground/70">کد پستی: {addressInfo.postalCode}</p>
+                      </div>
+                    </div>
+                  </motion.div>
 
                   {/* Contact Form & Social */}
                   <div className="grid lg:grid-cols-2 gap-12">
@@ -174,10 +200,10 @@ const ContactPage = () => {
                       transition={{ duration: 0.6, delay: 0.4 }}
                       className="space-y-8"
                     >
-                      {/* Map */}
+                      {/* Map - Fixed location for Motahhari St, Tehran */}
                       <div className="card-premium overflow-hidden h-80">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.5660988886!2d51.40837731525907!3d35.75863028017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ1JzMxLjEiTiA1McKwMjQnMzguMSJF!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s"
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.5660988886!2d51.41967731525907!3d35.72020008017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e011e31234567%3A0x1234567890abcdef!2sSoleiman%20Khater%20St%2C%20Tehran!5e0!3m2!1sen!2sir!4v1700000000000!5m2!1sen!2sir"
                           width="100%"
                           height="100%"
                           style={{ border: 0 }}
