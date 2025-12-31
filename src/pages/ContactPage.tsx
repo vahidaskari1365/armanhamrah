@@ -12,30 +12,34 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'تلفن دفتر مرکزی',
-    value: '021-88321030',
-    subValue: '021-88321032',
-    href: 'tel:02188321030',
+    phones: [
+      { number: '021-88321030', href: 'tel:02188321030' },
+      { number: '021-88321032', href: 'tel:02188321032' },
+    ],
   },
   {
     icon: Phone,
     title: 'تلفن پشتیبانی',
-    value: '021-58798',
-    subValue: '021-88329274 داخلی 4',
-    href: 'tel:02158798',
+    phones: [
+      { number: '021-58798', href: 'tel:02158798' },
+      { number: '021-88329274 داخلی 4', href: 'tel:02188329274' },
+    ],
   },
   {
     icon: Mail,
     title: 'ایمیل',
-    value: 'info@armanhamrah.com',
-    subValue: 'export@armanhamrah.com',
-    href: 'mailto:info@armanhamrah.com',
+    phones: [
+      { number: 'info@armanhamrah.com', href: 'mailto:info@armanhamrah.com' },
+      { number: 'export@armanhamrah.com', href: 'mailto:export@armanhamrah.com' },
+    ],
   },
   {
     icon: Clock,
     title: 'ساعات کاری',
-    value: 'شنبه تا چهارشنبه: 9 صبح تا 17',
-    subValue: 'پنجشنبه: 9 صبح تا 14',
-    href: '#',
+    phones: [
+      { number: 'شنبه تا چهارشنبه: 9 صبح تا 17', href: '#' },
+      { number: 'پنجشنبه: 9 صبح تا 14', href: '#' },
+    ],
   },
 ];
 
@@ -91,9 +95,8 @@ const ContactPage = () => {
                 <div className="container-custom">
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     {contactInfo.map((item, index) => (
-                      <motion.a
+                      <motion.div
                         key={index}
-                        href={item.href}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -103,10 +106,20 @@ const ContactPage = () => {
                         <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
                           <item.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm mb-1 hover:text-primary transition-colors" dir={item.href.startsWith('tel') ? 'ltr' : 'rtl'}>{item.value}</p>
-                        <p className="text-muted-foreground text-xs" dir={item.href.startsWith('tel') ? 'ltr' : 'rtl'}>{item.subValue}</p>
-                      </motion.a>
+                        <h3 className="text-lg font-bold text-foreground mb-3">{item.title}</h3>
+                        <div className="space-y-2">
+                          {item.phones.map((phone, phoneIndex) => (
+                            <a
+                              key={phoneIndex}
+                              href={phone.href}
+                              className="block text-muted-foreground text-sm hover:text-primary transition-colors"
+                              dir={phone.href.startsWith('tel') ? 'ltr' : 'rtl'}
+                            >
+                              {phone.number}
+                            </a>
+                          ))}
+                        </div>
+                      </motion.div>
                     ))}
                   </div>
 
@@ -200,10 +213,10 @@ const ContactPage = () => {
                       transition={{ duration: 0.6, delay: 0.4 }}
                       className="space-y-8"
                     >
-                      {/* Map - Fixed location for Motahhari St, Tehran */}
+                      {/* Map - Soleiman Khater St, Motahari St, Tehran */}
                       <div className="card-premium overflow-hidden h-80">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.5660988886!2d51.41967731525907!3d35.72020008017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e011e31234567%3A0x1234567890abcdef!2sSoleiman%20Khater%20St%2C%20Tehran!5e0!3m2!1sen!2sir!4v1700000000000!5m2!1sen!2sir"
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9!2d51.4196!3d35.7202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00f1b1b1b1b1%3A0x1234567890123456!2z2K7bjNin2KjYp9mGINiz2YTbjNmF2KfZhiDYrtin2LfYsdiMINiq2YfYsdin2YY!5e0!3m2!1sfa!2sir!4v1700000000000!5m2!1sfa!2sir"
                           width="100%"
                           height="100%"
                           style={{ border: 0 }}
