@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, XCircle, Shield, Clock, Headphones, FileText } from 'lucide-react';
+import { ArrowRight, CheckCircle2, XCircle, Shield, Clock, Headphones, FileText, Smartphone, Award, Wrench, Users } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -26,6 +26,8 @@ const exceptions = [
   'تعمیر توسط افراد غیرمجاز',
   'استفاده از نرم‌افزارهای غیرمجاز',
   'خرابی ناشی از حوادث طبیعی',
+  'آسیب ناشی از استفاده نادرست',
+  'خرابی باتری در اثر شارژ غیراستاندارد',
 ];
 
 const benefits = [
@@ -49,6 +51,37 @@ const benefits = [
     title: 'پیگیری آنلاین',
     description: 'امکان پیگیری وضعیت گارانتی از طریق آرمان من',
   },
+];
+
+const services = [
+  {
+    icon: Smartphone,
+    title: 'تعمیر تخصصی',
+    description: 'تعمیر تخصصی انواع گوشی‌های هوشمند توسط کارشناسان مجرب',
+  },
+  {
+    icon: Award,
+    title: 'قطعات اصلی',
+    description: 'استفاده از قطعات اصلی و با کیفیت در تمامی تعمیرات',
+  },
+  {
+    icon: Wrench,
+    title: 'خدمات متنوع',
+    description: 'ارائه خدمات نرم‌افزاری، سخت‌افزاری و تعویض قطعات',
+  },
+  {
+    icon: Users,
+    title: 'تیم متخصص',
+    description: 'تیمی از متخصصین با تجربه در حوزه تعمیرات موبایل',
+  },
+];
+
+const brands = [
+  { name: 'اپل', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp' },
+  { name: 'سامسونگ', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp' },
+  { name: 'شیائومی', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp' },
+  { name: 'سونی', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp' },
+  { name: 'هارمن کاردن', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp' },
 ];
 
 const WarrantyPage = () => {
@@ -76,24 +109,71 @@ const WarrantyPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      شرایط گارانتی ۱۸ ماهه
+                      هوشمندترین گارانتی و خدمات پس از فروش در ایران
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      شرکت آرمان همراه ارتباطات آریا با افتخار گارانتی ۱۸ ماهه برای محصولات خود ارائه می‌دهد
+                      شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان
                     </p>
                   </motion.div>
                 </div>
               </section>
 
-              {/* Benefits */}
+              {/* Brands */}
               <section className="section-padding bg-gradient-premium">
                 <div className="container-custom">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-4">برندهای تحت پوشش گارانتی</h2>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
+                  </motion.div>
+
+                  <div className="flex flex-wrap justify-center gap-8 items-center">
+                    {brands.map((brand, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="bg-card p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                      >
+                        <img
+                          src={brand.logo}
+                          alt={brand.name}
+                          className="h-12 object-contain filter dark:invert"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Benefits */}
+              <section className="section-padding">
+                <div className="container-custom">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-4">مزایای گارانتی آرمان همراه</h2>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
+                  </motion.div>
+
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {benefits.map((benefit, index) => (
                       <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className="card-premium text-center group"
                       >
@@ -102,6 +182,41 @@ const WarrantyPage = () => {
                         </div>
                         <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
                         <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Services */}
+              <section className="section-padding bg-gradient-premium">
+                <div className="container-custom">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-4">خدمات ما</h2>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {services.map((service, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="card-premium text-center group"
+                      >
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-gold">
+                          <service.icon size={28} className="text-primary-foreground" />
+                        </div>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
+                        <p className="text-muted-foreground text-sm">{service.description}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -173,8 +288,68 @@ const WarrantyPage = () => {
                 </div>
               </section>
 
-              {/* CTA */}
+              {/* Arman Man Section */}
               <section className="section-padding bg-gradient-premium">
+                <div className="container-custom">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <h2 className="text-3xl font-bold text-foreground mb-6">
+                        خدمات پس از فروش در دستان شما
+                      </h2>
+                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                        شما عزیزان و همراهان آرمان همراه ارتباطات آریا با نصب اپلیکیشن آرمان من و یا استفاده از نسخه وب اپلیکیشن برای iOS از خدمات ما به صورت آنلاین بهره‌مند شوید.
+                      </p>
+                      <ul className="space-y-3 mb-8">
+                        <li className="flex items-center gap-3 text-muted-foreground">
+                          <CheckCircle2 size={20} className="text-primary" />
+                          ثبت و پیگیری درخواست تعمیر
+                        </li>
+                        <li className="flex items-center gap-3 text-muted-foreground">
+                          <CheckCircle2 size={20} className="text-primary" />
+                          مشاهده وضعیت گارانتی محصول
+                        </li>
+                        <li className="flex items-center gap-3 text-muted-foreground">
+                          <CheckCircle2 size={20} className="text-primary" />
+                          دسترسی به تاریخچه تعمیرات
+                        </li>
+                        <li className="flex items-center gap-3 text-muted-foreground">
+                          <CheckCircle2 size={20} className="text-primary" />
+                          ارتباط مستقیم با پشتیبانی
+                        </li>
+                      </ul>
+                      <a
+                        href="https://my.armanhamrah.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-gold inline-block"
+                      >
+                        ورود به آرمان من
+                      </a>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative"
+                    >
+                      <img
+                        src="https://www.armanhamrah.com/uploads/my-arman.webp"
+                        alt="آرمان من"
+                        className="rounded-2xl shadow-2xl w-full"
+                      />
+                    </motion.div>
+                  </div>
+                </div>
+              </section>
+
+              {/* CTA */}
+              <section className="section-padding">
                 <div className="container-custom">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -190,14 +365,22 @@ const WarrantyPage = () => {
                     <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
                       برای ثبت محصول و پیگیری وضعیت گارانتی خود، وارد سامانه آرمان من شوید
                     </p>
-                    <a
-                      href="https://my.armanhamrah.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
-                    >
-                      ورود به آرمان من
-                    </a>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a
+                        href="https://my.armanhamrah.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
+                      >
+                        ورود به آرمان من
+                      </a>
+                      <Link
+                        to="/contact"
+                        className="inline-block bg-background/20 text-primary-foreground border-2 border-primary-foreground/30 px-8 py-4 rounded-xl font-bold hover:bg-background/30 transition-colors"
+                      >
+                        تماس با پشتیبانی
+                      </Link>
+                    </div>
                   </motion.div>
                 </div>
               </section>

@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin } from 'lucide-react';
+import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, MessageCircle, Mail, Phone } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -11,102 +12,153 @@ import SEO from '@/components/SEO';
 const features = [
   {
     icon: Globe,
-    title: 'صادرات بین‌المللی',
-    description: 'صادرات محصولات الکترونیکی به کشورهای منطقه خلیج فارس، آسیای میانه و کشورهای همسایه',
+    title: 'International Export',
+    titleFa: 'صادرات بین‌المللی',
+    description: 'Exporting products to Middle East, Central Asia and neighboring countries',
+    descriptionFa: 'صادرات محصولات به کشورهای منطقه خلیج فارس، آسیای میانه و کشورهای همسایه',
   },
   {
     icon: Truck,
-    title: 'حمل و نقل امن',
-    description: 'ارسال ایمن کالا با بیمه کامل و ردیابی آنلاین محموله در تمام مراحل',
+    title: 'Safe Transportation',
+    titleFa: 'حمل و نقل امن',
+    description: 'Safe shipping with full insurance and online tracking at all stages',
+    descriptionFa: 'ارسال ایمن کالا با بیمه کامل و ردیابی آنلاین محموله در تمام مراحل',
   },
   {
     icon: Shield,
-    title: 'محصولات اورجینال',
-    description: 'تضمین اصالت کالا با گارانتی معتبر بین‌المللی و سرتیفیکیت اصالت',
+    title: 'Original Products',
+    titleFa: 'محصولات اورجینال',
+    description: 'Guarantee of product authenticity with valid international warranty',
+    descriptionFa: 'تضمین اصالت کالا با گارانتی معتبر بین‌المللی و سرتیفیکیت اصالت',
   },
   {
     icon: FileCheck,
-    title: 'مستندات کامل',
-    description: 'تهیه کلیه مدارک گمرکی، اسناد صادراتی و مجوزهای لازم',
+    title: 'Complete Documentation',
+    titleFa: 'مستندات کامل',
+    description: 'Preparation of all customs documents and export permits',
+    descriptionFa: 'تهیه کلیه مدارک گمرکی، اسناد صادراتی و مجوزهای لازم',
   },
 ];
 
 const services = [
   {
     icon: Package,
-    title: 'بسته‌بندی صادراتی',
-    description: 'بسته‌بندی استاندارد و حرفه‌ای مطابق با استانداردهای بین‌المللی برای حفاظت کامل محصولات در طول حمل و نقل',
+    title: 'Export Packaging',
+    titleFa: 'بسته‌بندی صادراتی',
+    description: 'Standard and professional packaging according to international standards',
+    descriptionFa: 'بسته‌بندی استاندارد و حرفه‌ای مطابق با استانداردهای بین‌المللی',
   },
   {
     icon: BadgeCheck,
-    title: 'ترخیص گمرکی',
-    description: 'انجام کلیه امور گمرکی و ترخیص کالا در مبدا و مقصد با سرعت و دقت بالا توسط تیم متخصص',
+    title: 'Customs Clearance',
+    titleFa: 'ترخیص گمرکی',
+    description: 'All customs affairs and cargo clearance at origin and destination',
+    descriptionFa: 'انجام کلیه امور گمرکی و ترخیص کالا در مبدا و مقصد',
   },
   {
     icon: Handshake,
-    title: 'تضمین کیفیت',
-    description: 'بازرسی و کنترل کیفیت تمامی محصولات قبل از ارسال و صدور گواهی کیفیت معتبر',
+    title: 'Quality Guarantee',
+    titleFa: 'تضمین کیفیت',
+    description: 'Inspection and quality control of all products before shipment',
+    descriptionFa: 'بازرسی و کنترل کیفیت تمامی محصولات قبل از ارسال',
   },
 ];
 
 const countries = [
-  { name: 'امارات متحده عربی', flag: '🇦🇪' },
-  { name: 'عراق', flag: '🇮🇶' },
-  { name: 'افغانستان', flag: '🇦🇫' },
-  { name: 'ترکمنستان', flag: '🇹🇲' },
-  { name: 'آذربایجان', flag: '🇦🇿' },
-  { name: 'ارمنستان', flag: '🇦🇲' },
-  { name: 'قطر', flag: '🇶🇦' },
-  { name: 'کویت', flag: '🇰🇼' },
+  { name: 'امارات', nameEn: 'UAE', flag: '🇦🇪' },
+  { name: 'عراق', nameEn: 'Iraq', flag: '🇮🇶' },
+  { name: 'افغانستان', nameEn: 'Afghanistan', flag: '🇦🇫' },
+  { name: 'ترکمنستان', nameEn: 'Turkmenistan', flag: '🇹🇲' },
+  { name: 'آذربایجان', nameEn: 'Azerbaijan', flag: '🇦🇿' },
+  { name: 'ارمنستان', nameEn: 'Armenia', flag: '🇦🇲' },
+  { name: 'قطر', nameEn: 'Qatar', flag: '🇶🇦' },
+  { name: 'کویت', nameEn: 'Kuwait', flag: '🇰🇼' },
 ];
 
-// Export Products from export.armanhamrah.com
+// Export Products with detailed specifications
 const exportProducts = [
   {
+    id: 'iron-steel',
     name: 'آهن و فولاد',
     nameEn: 'Iron and Steel',
     image: 'https://export.armanhamrah.com/uploads/products/iron.webp',
     category: 'فلزات',
     categoryEn: 'Metals',
+    description: 'The best and highest quality Iron And Steel in the IRAN market.',
+    descriptionFa: 'بهترین و با کیفیت‌ترین آهن و فولاد در بازار ایران',
+    hasSpecs: false,
   },
   {
+    id: 'copper-rod',
     name: 'مفتول مسی',
     nameEn: 'Copper Rod',
     image: 'https://export.armanhamrah.com/uploads/products/copper-rod.webp',
     category: 'فلزات',
     categoryEn: 'Metals',
+    description: 'The best and highest quality Copper Rod in the IRAN market.',
+    descriptionFa: 'بهترین و با کیفیت‌ترین مفتول مسی در بازار ایران',
+    hasSpecs: true,
+    specs: [
+      { label: 'Material', value: 'Cu-ETP (C11040)' },
+      { label: 'Cu+Ag', value: '≥ 99.90%' },
+      { label: 'Oxygen', value: '100-650 ppm' },
+      { label: 'Elongation', value: '≥30%' },
+      { label: 'Electrical Conductivity', value: '≥100% IACS' },
+    ],
   },
   {
+    id: 'bitumen',
     name: 'قیر',
     nameEn: 'Bitumen',
     image: 'https://export.armanhamrah.com/uploads/products/bitumen.webp',
     category: 'پتروشیمی',
     categoryEn: 'Petrochemical',
+    description: 'The best and highest quality bitumen in the IRAN market.',
+    descriptionFa: 'بهترین و با کیفیت‌ترین قیر در بازار ایران',
+    hasSpecs: true,
+    grades: ['60/70', 'VG10', 'VG20', 'VG30', 'VG40'],
+    specs: [
+      { label: 'Penetration @25°C', value: '60-70 (0.1mm)' },
+      { label: 'Softening Point', value: '46-56°C' },
+      { label: 'Ductility @25°C', value: '100 Min cm' },
+      { label: 'Flash Point', value: '250 Min °C' },
+      { label: 'Solubility in CS2', value: '99.0 Min %' },
+    ],
   },
   {
+    id: 'oil',
     name: 'روغن',
     nameEn: 'Oil',
     image: 'https://export.armanhamrah.com/uploads/products/oil.webp',
     category: 'پتروشیمی',
     categoryEn: 'Petrochemical',
+    description: 'The best and highest quality Oil in the IRAN market.',
+    descriptionFa: 'بهترین و با کیفیت‌ترین روغن در بازار ایران',
+    hasSpecs: false,
   },
   {
+    id: 'thread',
     name: 'نخ',
     nameEn: 'Thread',
     image: 'https://export.armanhamrah.com/uploads/products/thread.webp',
     category: 'نساجی',
     categoryEn: 'Textile',
+    description: 'The best and highest quality Thread in the IRAN market.',
+    descriptionFa: 'بهترین و با کیفیت‌ترین نخ در بازار ایران',
+    hasSpecs: false,
   },
 ];
 
 const ExportPage = () => {
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+
   return (
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
           <SEO 
-            title="صادرات | آرمان همراه ارتباطات آریا"
-            description="خدمات صادرات محصولات الکترونیکی به کشورهای منطقه با بسته‌بندی استاندارد و ترخیص گمرکی"
+            title="صادرات | Arman Export - Best Solution for importing goods from IRAN"
+            description="خدمات صادرات محصولات به کشورهای منطقه - آهن و فولاد، مفتول مسی، قیر، روغن و نخ"
           />
           <div className="min-h-screen bg-background" dir="rtl">
             <Navbar />
@@ -124,10 +176,13 @@ const ExportPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      صادرات
+                      Arman Export
                     </h1>
+                    <p className="text-xl text-primary font-medium mb-4" dir="ltr">
+                      Best Solution for importing goods from IRAN
+                    </p>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      شرکت آرمان همراه ارتباطات آریا با سابقه درخشان در حوزه واردات و توزیع محصولات الکترونیکی، خدمات صادرات حرفه‌ای به کشورهای منطقه ارائه می‌دهد.
+                      با بیش از ۹ سال تجربه، شرکت آرمان در واردات و صادرات کالاهای اساسی و تخصصی در بخش‌های مختلف از جمله فناوری اطلاعات، مواد غذایی، پوشاک، نفت، فلزات و مصالح ساختمانی فعالیت موفقی داشته است.
                     </p>
                   </motion.div>
                 </div>
@@ -160,8 +215,91 @@ const ExportPage = () => {
                         <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
                           <feature.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
-                        <p className="text-muted-foreground text-sm">{feature.description}</p>
+                        <h3 className="text-lg font-bold text-foreground mb-2">{feature.titleFa}</h3>
+                        <p className="text-sm text-primary/80 mb-2" dir="ltr">{feature.title}</p>
+                        <p className="text-muted-foreground text-sm">{feature.descriptionFa}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Products */}
+              <section className="section-padding">
+                <div className="container-custom">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                  >
+                    <h2 className="text-3xl font-bold text-foreground mb-4">محصولات صادراتی</h2>
+                    <p className="text-xl text-primary" dir="ltr">Our Products</p>
+                    <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-4" />
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {exportProducts.map((product, index) => (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="card-premium group cursor-pointer"
+                        onClick={() => setSelectedProduct(selectedProduct === product.id ? null : product.id)}
+                      >
+                        <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-6">
+                          <motion.img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <span className="absolute top-3 right-3 text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">
+                            {product.category}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground mb-2">{product.name}</h3>
+                        <p className="text-primary mb-3" dir="ltr">{product.nameEn}</p>
+                        <p className="text-muted-foreground text-sm mb-4">{product.descriptionFa}</p>
+                        
+                        {product.hasSpecs && selectedProduct === product.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="border-t border-border pt-4 mt-4"
+                          >
+                            {product.grades && (
+                              <div className="mb-4">
+                                <p className="text-sm font-medium text-foreground mb-2">Available Grades:</p>
+                                <div className="flex flex-wrap gap-2">
+                                  {product.grades.map((grade) => (
+                                    <span key={grade} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                                      {grade}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                            <p className="text-sm font-medium text-foreground mb-2">Specifications:</p>
+                            <div className="space-y-2">
+                              {product.specs?.map((spec, i) => (
+                                <div key={i} className="flex justify-between text-sm">
+                                  <span className="text-muted-foreground">{spec.label}</span>
+                                  <span className="text-foreground font-medium" dir="ltr">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                        
+                        {product.hasSpecs && (
+                          <button className="text-primary text-sm hover:underline mt-2">
+                            {selectedProduct === product.id ? 'بستن جزئیات' : 'مشاهده مشخصات فنی'}
+                          </button>
+                        )}
                       </motion.div>
                     ))}
                   </div>
@@ -169,7 +307,7 @@ const ExportPage = () => {
               </section>
 
               {/* Services */}
-              <section className="section-padding">
+              <section className="section-padding bg-gradient-premium">
                 <div className="container-custom">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -196,56 +334,46 @@ const ExportPage = () => {
                         <div className="w-14 h-14 mb-6 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-gold">
                           <service.icon size={24} className="text-primary-foreground" />
                         </div>
-                        <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                        <h3 className="text-xl font-bold text-foreground mb-2">{service.titleFa}</h3>
+                        <p className="text-primary text-sm mb-3" dir="ltr">{service.title}</p>
+                        <p className="text-muted-foreground leading-relaxed">{service.descriptionFa}</p>
                       </motion.div>
                     ))}
                   </div>
                 </div>
               </section>
 
-              {/* Export Products */}
+              {/* Our Goal */}
               <section className="section-padding">
                 <div className="container-custom">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
-                  >
-                    <h2 className="text-3xl font-bold text-foreground mb-4">محصولات صادراتی</h2>
-                    <p className="text-muted-foreground">محصولات با کیفیت و اورجینال برای صادرات</p>
-                    <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-4" />
-                  </motion.div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {exportProducts.map((product, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                        whileHover={{ y: -10 }}
-                        className="card-premium text-center group"
-                      >
-                        <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
-                          <motion.img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-32 object-contain group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                            {product.category}
-                          </span>
-                        </div>
-                        <span className="text-xs text-muted-foreground block mb-2">{product.categoryEn}</span>
-                        <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {product.name}
-                        </h3>
-                      </motion.div>
-                    ))}
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <h2 className="text-3xl font-bold text-foreground mb-4">هدف ما</h2>
+                      <p className="text-xl text-primary mb-4" dir="ltr">More Connections</p>
+                      <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                        با بیش از ۹ سال تجربه، شرکت آرمان با موفقیت در واردات و صادرات کالاهای اساسی و تخصصی در بخش‌های مختلف از جمله فناوری اطلاعات، مواد غذایی، پوشاک، نفت، فلزات و مصالح ساختمانی فعالیت داشته است. هدف شرکت ایجاد ارتباطات تجاری گسترده در سراسر جهان است.
+                      </p>
+                      <p className="text-muted-foreground leading-relaxed" dir="ltr">
+                        With over 9 years of experience, Arman Company has successfully engaged in importing and exporting basic and specialized goods in various sectors including IT, food, clothing, petroleum, metals, and construction materials. The company's purpose is to establish extensive business connections worldwide.
+                      </p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <img
+                        src="https://export.armanhamrah.com/uploads/goals.webp"
+                        alt="Our Goal"
+                        className="rounded-2xl shadow-2xl w-full"
+                      />
+                    </motion.div>
                   </div>
                 </div>
               </section>
@@ -274,18 +402,136 @@ const ExportPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: index * 0.05 }}
                         whileHover={{ scale: 1.05 }}
-                        className="card-premium text-center flex items-center justify-center gap-3"
+                        className="card-premium text-center flex flex-col items-center justify-center gap-2"
                       >
-                        <span className="text-3xl">{country.flag}</span>
+                        <span className="text-4xl">{country.flag}</span>
                         <span className="font-medium text-foreground">{country.name}</span>
+                        <span className="text-sm text-muted-foreground" dir="ltr">{country.nameEn}</span>
                       </motion.div>
                     ))}
                   </div>
                 </div>
               </section>
 
-              {/* CTA */}
+              {/* Contact Section */}
               <section className="section-padding">
+                <div className="container-custom">
+                  <div className="grid lg:grid-cols-2 gap-12">
+                    {/* Contact Info */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <h2 className="text-3xl font-bold text-foreground mb-6">تماس با ما</h2>
+                      <p className="text-xl text-primary mb-8" dir="ltr">For More Information Contact Our Specialist</p>
+                      
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center flex-shrink-0">
+                            <MessageCircle size={24} className="text-white" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground mb-1">WhatsApp</p>
+                            <a href="https://wa.me/9888321032" className="text-muted-foreground hover:text-primary" dir="ltr">+98 88321032</a>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <Mail size={24} className="text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground mb-1">Email</p>
+                            <a href="mailto:export@armanhamrah.com" className="text-muted-foreground hover:text-primary" dir="ltr">export@armanhamrah.com</a>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <Phone size={24} className="text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground mb-1">Phone</p>
+                            <a href="tel:02188321032" className="text-muted-foreground hover:text-primary" dir="ltr">+98 21 88321032</a>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <MapPin size={24} className="text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground mb-1">Address</p>
+                            <p className="text-muted-foreground text-sm" dir="ltr">
+                              Unit 304, 3rd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Contact Form */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="card-premium"
+                    >
+                      <h3 className="text-2xl font-bold text-foreground mb-6">Contact Form</h3>
+                      <form className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
+                          <input
+                            type="text"
+                            className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Your full name"
+                            dir="ltr"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">Company Name</label>
+                          <input
+                            type="text"
+                            className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Your company name"
+                            dir="ltr"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                          <input
+                            type="email"
+                            className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                            placeholder="your@email.com"
+                            dir="ltr"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">Your Message</label>
+                          <textarea
+                            rows={4}
+                            className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
+                            placeholder="How can we help you?"
+                            dir="ltr"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="w-full btn-gold py-4 text-lg"
+                        >
+                          Send Message
+                        </button>
+                      </form>
+                    </motion.div>
+                  </div>
+                </div>
+              </section>
+
+              {/* CTA */}
+              <section className="section-padding bg-gradient-premium">
                 <div className="container-custom">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -294,16 +540,29 @@ const ExportPage = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center card-premium bg-gradient-gold p-12"
                   >
-                    <MapPin size={48} className="mx-auto mb-6 text-primary-foreground" />
+                    <Globe size={48} className="mx-auto mb-6 text-primary-foreground" />
                     <h2 className="text-2xl font-bold text-primary-foreground mb-4">
-                      برای اطلاعات بیشتر در مورد خدمات صادراتی با ما تماس بگیرید
+                      Start Your Business With Us
                     </h2>
-                    <Link
-                      to="/contact"
-                      className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity mt-4"
-                    >
-                      تماس با ما
-                    </Link>
+                    <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
+                      Our commercial experts are always striving to enhance convenience for your business.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a
+                        href="https://wa.me/9888321032"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
+                      >
+                        Start Conversation
+                      </a>
+                      <Link
+                        to="/contact"
+                        className="inline-block bg-background/20 text-primary-foreground border-2 border-primary-foreground/30 px-8 py-4 rounded-xl font-bold hover:bg-background/30 transition-colors"
+                      >
+                        تماس با ما
+                      </Link>
+                    </div>
                   </motion.div>
                 </div>
               </section>
