@@ -6,7 +6,6 @@ import Hero from '@/components/Hero';
 import Brands from '@/components/Brands';
 import Services from '@/components/Services';
 import Products from '@/components/Products';
-import Export from '@/components/Export';
 import Guarantee from '@/components/Guarantee';
 import AppSection from '@/components/AppSection';
 import Blog from '@/components/Blog';
@@ -28,8 +27,6 @@ const Index = () => {
               <Brands />
               <Services />
               <Products />
-              <Export />
-              <Guarantee />
               <AppSection />
               <Blog />
               <Subsidiaries />

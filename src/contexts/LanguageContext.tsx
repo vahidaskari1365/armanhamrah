@@ -20,14 +20,15 @@ const translations = {
     'nav.representatives': 'نمایندگان',
     'nav.blog': 'بلاگ و آموزش',
     'nav.contact': 'تماس با ما',
-    'nav.myArman': 'آرمان من',
+    'nav.myArman': 'ثبت نام',
+    'nav.cooperation': 'همکاری با ما',
     
     // Hero
     'hero.title': 'هوشمندترین گارانتی و خدمات',
     'hero.subtitle': 'پس از فروش در ایران',
-    'hero.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا اکنون با بهترین تجربه در ارائه خدمات به مشتریان',
+    'hero.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان',
     'hero.cta': 'خدمات ما',
-    'hero.cta2': 'ورود به آرمان من',
+    'hero.cta2': 'ثبت نام',
     
     // Brands
     'brands.title': 'برندهای تحت پوشش',
@@ -103,14 +104,15 @@ const translations = {
     'nav.representatives': 'Representatives',
     'nav.blog': 'Blog & Training',
     'nav.contact': 'Contact Us',
-    'nav.myArman': 'My Arman',
+    'nav.myArman': 'Register',
+    'nav.cooperation': 'Cooperation',
     
     // Hero
     'hero.title': 'The Smartest Warranty & Services',
     'hero.subtitle': 'After-Sales in Iran',
     'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2014',
     'hero.cta': 'Our Services',
-    'hero.cta2': 'Login to My Arman',
+    'hero.cta2': 'Register',
     
     // Brands
     'brands.title': 'Covered Brands',

@@ -43,7 +43,7 @@ const Footer = () => {
             </div>
             <p className="text-muted-foreground leading-relaxed text-sm">
               {language === 'fa' 
-                ? 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا اکنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.'
+                ? 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.'
                 : 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2014.'
               }
             </p>
@@ -82,9 +82,12 @@ const Footer = () => {
               {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-muted-foreground">
-                <Phone size={18} className="text-primary flex-shrink-0" />
-                <span dir="ltr">021-58798</span>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <a href="tel:02158798" dir="ltr" className="block hover:text-primary transition-colors">021-58798</a>
+                  <a href="tel:02188329274" dir="ltr" className="block hover:text-primary transition-colors">021-88329274 {language === 'fa' ? 'داخلی ۴' : 'Ext. 4'}</a>
+                </div>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />

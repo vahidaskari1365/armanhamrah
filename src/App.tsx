@@ -10,6 +10,7 @@ import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
+import CooperationPage from "./pages/CooperationPage";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/export" element={<ExportPage />} />
           <Route path="/warranty" element={<WarrantyPage />} />
+          <Route path="/cooperation" element={<CooperationPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
