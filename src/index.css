@@ -40,15 +40,20 @@
 
     --radius: 0rem;
 
-    --gold: 38 92% 50%;
-    --gold-light: 40 95% 60%;
-    --gold-dark: 35 90% 40%;
+    --gold: 20 95% 50%;
+    --gold-light: 25 100% 60%;
+    --gold-dark: 15 90% 40%;
+    --fire: 15 100% 55%;
+    --fire-light: 25 100% 65%;
+    --fire-dark: 10 95% 45%;
 
-    --gradient-gold: linear-gradient(135deg, hsl(38, 92%, 50%), hsl(45, 95%, 60%));
+    --gradient-gold: linear-gradient(135deg, hsl(15, 100%, 55%), hsl(30, 100%, 60%));
+    --gradient-fire: linear-gradient(135deg, hsl(10, 100%, 50%), hsl(25, 100%, 60%), hsl(40, 95%, 55%));
     --gradient-premium: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 98%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 99%) 50%, hsl(0, 0%, 97%) 100%);
 
-    --shadow-gold: 0 4px 30px -5px hsl(38 92% 50% / 0.25);
+    --shadow-gold: 0 4px 30px -5px hsl(20 95% 50% / 0.25);
+    --shadow-fire: 0 4px 40px -5px hsl(15 100% 55% / 0.4);
     --shadow-elegant: 0 25px 50px -12px hsl(0 0% 0% / 0.1);
     --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.05);
 
@@ -110,11 +115,13 @@
     --input: 0 0% 100%;
     --ring: 0 0% 100%;
 
-    --gradient-gold: linear-gradient(135deg, hsl(38, 92%, 50%), hsl(45, 90%, 55%));
+    --gradient-gold: linear-gradient(135deg, hsl(15, 100%, 55%), hsl(30, 100%, 60%));
+    --gradient-fire: linear-gradient(135deg, hsl(10, 100%, 50%), hsl(25, 100%, 60%), hsl(40, 95%, 55%));
     --gradient-premium: linear-gradient(180deg, hsl(220, 20%, 8%) 0%, hsl(220, 18%, 12%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(220, 20%, 4%) 0%, hsl(220, 18%, 8%) 50%, hsl(225, 20%, 10%) 100%);
 
-    --shadow-gold: 0 4px 40px -5px hsl(38 92% 50% / 0.35);
+    --shadow-gold: 0 4px 40px -5px hsl(20 95% 50% / 0.35);
+    --shadow-fire: 0 4px 50px -5px hsl(15 100% 55% / 0.5);
     --shadow-elegant: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
     --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
 
@@ -218,7 +225,7 @@
 
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 40px -5px hsl(38 92% 50% / 0.4);
+    box-shadow: 0 8px 40px -5px hsl(15 100% 55% / 0.5);
   }
 
   .btn-outline-gold {
@@ -274,7 +281,7 @@
 
 .animate-shimmer {
   animation: shimmer 3s linear infinite;
-  background: linear-gradient(90deg, transparent, hsl(38 92% 50% / 0.3), transparent);
+  background: linear-gradient(90deg, transparent, hsl(15 100% 55% / 0.3), transparent);
   background-size: 1000px 100%;
 }
 
