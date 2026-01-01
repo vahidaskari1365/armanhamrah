@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
-import armanFireLogo from '@/assets/arman-fire-logo.jpg';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -15,35 +14,34 @@ const Hero = () => {
           src={heroBg}
           alt="Hero Background"
           className="w-full h-full object-cover object-center"
-          style={{ objectPosition: 'center center' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
       </div>
 
-      {/* Decorative Elements */}
+      {/* Fire Glow Effects */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{ background: 'var(--gradient-gold)' }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-30"
+          style={{ background: 'var(--gradient-fire)' }}
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
-            duration: 8,
+            duration: 4,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-15"
-          style={{ background: 'var(--gradient-gold)' }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-25"
+          style={{ background: 'var(--gradient-fire)' }}
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.15, 0.25, 0.15],
+            opacity: [0.2, 0.35, 0.2],
           }}
           transition={{
-            duration: 10,
+            duration: 5,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -52,19 +50,6 @@ const Hero = () => {
 
       <div className="container-custom relative z-10 pt-32 pb-20">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Fire Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.1 }}
-            className="mb-8"
-          >
-            <img 
-              src={armanFireLogo} 
-              alt="آرمان همراه ارتباطات" 
-              className="w-full max-w-lg mx-auto rounded-lg"
-            />
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
