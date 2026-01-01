@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
+import armanFireLogo from '@/assets/arman-fire-logo.jpg';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -51,10 +52,24 @@ const Hero = () => {
 
       <div className="container-custom relative z-10 pt-32 pb-20">
         <div className="text-center max-w-4xl mx-auto">
+          {/* Fire Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.1 }}
+            className="mb-8"
+          >
+            <img 
+              src={armanFireLogo} 
+              alt="آرمان همراه ارتباطات" 
+              className="w-full max-w-lg mx-auto rounded-lg"
+            />
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
               <span className="text-gradient-gold">{t('hero.title')}</span>
@@ -67,7 +82,7 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             {t('hero.description')}
