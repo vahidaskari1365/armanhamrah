@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
-import heroBg from '@/assets/hero-bg.jpg';
+import heroBg from '@/assets/hero-phones.jpg';
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -48,8 +48,8 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container-custom relative z-10 pt-80 md:pt-96 lg:pt-[28rem] pb-20 px-4 md:px-8">
-        <div className="text-right max-w-4xl mr-auto ml-0 md:mr-16 lg:mr-24">
+      <div className="container-custom relative z-10 pt-32 md:pt-40 lg:pt-48 pb-20 px-4 md:px-8">
+        <div className="text-center max-w-4xl mx-auto">
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -68,7 +68,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-gray-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] mb-12 max-w-2xl mr-0 ml-auto md:ml-0 leading-relaxed"
+            className="text-lg md:text-xl text-gray-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             {t('hero.description')}
           </motion.p>
@@ -77,7 +77,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-end"
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.a
               href="#services"

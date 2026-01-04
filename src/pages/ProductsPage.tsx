@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
+import radicalLogo from '@/assets/radical-logo.jpeg';
 
 const products = [
   // Apple Products
@@ -132,9 +133,17 @@ const ProductsPageContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-background relative" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+      {/* Background Logo */}
+      <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
+        <img 
+          src={radicalLogo} 
+          alt="" 
+          className="w-[80%] max-w-4xl opacity-5 dark:opacity-10"
+        />
+      </div>
       <Navbar />
-      <main className="pt-24">
+      <main className="pt-24 relative z-10">
         {/* Hero */}
         <section className="bg-gradient-hero py-16">
           <div className="container-custom">
