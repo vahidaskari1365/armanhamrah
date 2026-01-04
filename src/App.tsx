@@ -11,6 +11,8 @@ import ContactPage from "./pages/ContactPage";
 import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
 import CooperationPage from "./pages/CooperationPage";
+import AdminAuth from "./pages/AdminAuth";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/export" element={<ExportPage />} />
           <Route path="/warranty" element={<WarrantyPage />} />
           <Route path="/cooperation" element={<CooperationPage />} />
+          <Route path="/admin/auth" element={<AdminAuth />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
