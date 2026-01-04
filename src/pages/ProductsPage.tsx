@@ -139,7 +139,7 @@ const ProductsPageContent = () => {
         <img 
           src={radicalLogo} 
           alt="" 
-          className="w-[80%] max-w-4xl opacity-5 dark:opacity-10"
+          className="w-[90%] max-w-5xl opacity-15 dark:opacity-20"
         />
       </div>
       <Navbar />
