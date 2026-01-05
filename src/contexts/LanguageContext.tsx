@@ -78,11 +78,9 @@ const translations = {
     'app.description': 'شما عزیزان و همراهان آرمان همراه ارتباطات آریا با نصب اپلیکیشن آرمان من و یا استفاده از نسخه وب اپلیکیشن برای iOS از خدمات ما به صورت آنلاین بهره مند شوید.',
     'app.cta': 'ورود به آرمان من',
     
-    // Blog
-    'blog.title': 'آخرین مطالب',
-    'blog.readMore': 'ادامه مطلب',
-    'blog.readTime': 'زمان مطالعه',
-    'blog.minutes': 'دقیقه',
+    // Representatives
+    'representatives.title': 'نمایندگان فروش',
+    'representatives.subtitle': 'شبکه گسترده نمایندگان آرمان همراه در سراسر ایران',
     
     // Footer
     'footer.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا، ارائه دهنده خدمات گارانتی و پس از فروش برای برندهای معتبر جهانی',
@@ -162,11 +160,9 @@ const translations = {
     'app.description': 'Dear customers of Arman Hamrah Aria Communications, enjoy our online services by installing the My Arman app or using the web version for iOS.',
     'app.cta': 'Login to My Arman',
     
-    // Blog
-    'blog.title': 'Latest Articles',
-    'blog.readMore': 'Read More',
-    'blog.readTime': 'Read Time',
-    'blog.minutes': 'min',
+    // Representatives
+    'representatives.title': 'Sales Representatives',
+    'representatives.subtitle': 'Our extensive network across Iran',
     
     // Footer
     'footer.description': 'Arman Hamrah Aria Communications Warranty Company, providing warranty and after-sales services for prestigious global brands',

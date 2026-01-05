@@ -7,8 +7,7 @@ import Brands from '@/components/Brands';
 import Services from '@/components/Services';
 import Products from '@/components/Products';
 import Guarantee from '@/components/Guarantee';
-import AppSection from '@/components/AppSection';
-import Blog from '@/components/Blog';
+import Representatives from '@/components/Representatives';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
@@ -27,8 +26,7 @@ const Index = () => {
               <Brands />
               <Services />
               <Products />
-              <AppSection />
-              <Blog />
+              <Representatives />
               <Subsidiaries />
             </main>
             <Footer />
