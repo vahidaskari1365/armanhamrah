@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { 
-  LogOut, Settings, Package, FileText, Palette, 
-  Plus, Trash2, Edit, Save, X 
+  LogOut, Package, FileText, Palette, 
+  Plus, Trash2, Edit, Save, X, Upload, Image as ImageIcon
 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 
@@ -38,8 +39,61 @@ const AdminDashboard = () => {
     category: '',
     brand: '',
   });
+  const [uploading, setUploading] = useState(false);
+  const [editUploading, setEditUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const editFileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+    const filePath = `products/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('products')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      toast({
+        title: 'خطا',
+        description: 'خطا در آپلود تصویر',
+        variant: 'destructive',
+      });
+      return null;
+    }
+
+    const { data } = supabase.storage
+      .from('products')
+      .getPublicUrl(filePath);
+
+    return data.publicUrl;
+  };
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const url = await uploadImage(file);
+    if (url) {
+      setNewProduct({ ...newProduct, image_url: url });
+    }
+    setUploading(false);
+  };
+
+  const handleEditFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editingProduct) return;
+
+    setEditUploading(true);
+    const url = await uploadImage(file);
+    if (url) {
+      setEditingProduct({ ...editingProduct, image_url: url });
+    }
+    setEditUploading(false);
+  };
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -289,13 +343,42 @@ const AdminDashboard = () => {
                     />
                   </div>
                   <div>
-                    <Label>لینک تصویر *</Label>
-                    <Input
-                      value={newProduct.image_url}
-                      onChange={(e) => setNewProduct({ ...newProduct, image_url: e.target.value })}
-                      placeholder="https://..."
-                      dir="ltr"
-                    />
+                    <Label>تصویر محصول *</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        value={newProduct.image_url}
+                        onChange={(e) => setNewProduct({ ...newProduct, image_url: e.target.value })}
+                        placeholder="آدرس تصویر یا آپلود کنید"
+                        dir="ltr"
+                        className="flex-1"
+                      />
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFileSelect}
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploading}
+                      >
+                        {uploading ? (
+                          <span className="animate-spin">⏳</span>
+                        ) : (
+                          <Upload className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
+                    {newProduct.image_url && (
+                      <img
+                        src={newProduct.image_url}
+                        alt="Preview"
+                        className="mt-2 w-20 h-20 object-contain rounded border border-border"
+                      />
+                    )}
                   </div>
                   <div>
                     <Label>لینک محصول *</Label>
@@ -324,7 +407,7 @@ const AdminDashboard = () => {
                     />
                   </div>
                 </div>
-                <Button onClick={handleAddProduct} className="mt-4 btn-gold">
+                <Button onClick={handleAddProduct} className="mt-4 btn-gold" disabled={uploading}>
                   <Plus className="w-4 h-4 ml-2" />
                   افزودن
                 </Button>
@@ -337,50 +420,126 @@ const AdminDashboard = () => {
                   {products.map((product) => (
                     <div
                       key={product.id}
-                      className="flex items-center gap-4 p-4 bg-secondary/30 rounded-lg"
+                      className={`p-4 rounded-lg border ${product.is_active ? 'bg-secondary/30 border-border' : 'bg-muted/50 border-destructive/30'}`}
                     >
-                      <img
-                        src={product.image_url}
-                        alt={product.name_fa}
-                        className="w-16 h-16 object-contain rounded"
-                      />
                       {editingProduct?.id === product.id ? (
-                        <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-2">
-                          <Input
-                            value={editingProduct.name_fa}
-                            onChange={(e) =>
-                              setEditingProduct({ ...editingProduct, name_fa: e.target.value })
-                            }
-                          />
-                          <Input
-                            value={editingProduct.brand}
-                            onChange={(e) =>
-                              setEditingProduct({ ...editingProduct, brand: e.target.value })
-                            }
-                          />
-                          <Input
-                            value={editingProduct.category}
-                            onChange={(e) =>
-                              setEditingProduct({ ...editingProduct, category: e.target.value })
-                            }
-                          />
-                          <div className="flex gap-2">
-                            <Button size="sm" onClick={handleUpdateProduct}>
-                              <Save className="w-4 h-4" />
+                        <div className="space-y-4">
+                          <div className="flex items-start gap-4">
+                            <div className="relative">
+                              <img
+                                src={editingProduct.image_url}
+                                alt={editingProduct.name_fa}
+                                className="w-24 h-24 object-contain rounded border border-border"
+                              />
+                              <input
+                                ref={editFileInputRef}
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={handleEditFileSelect}
+                              />
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="secondary"
+                                className="absolute -bottom-2 -right-2"
+                                onClick={() => editFileInputRef.current?.click()}
+                                disabled={editUploading}
+                              >
+                                {editUploading ? '⏳' : <ImageIcon className="w-3 h-3" />}
+                              </Button>
+                            </div>
+                            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                              <div>
+                                <Label className="text-xs">نام فارسی</Label>
+                                <Input
+                                  value={editingProduct.name_fa}
+                                  onChange={(e) =>
+                                    setEditingProduct({ ...editingProduct, name_fa: e.target.value })
+                                  }
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-xs">نام انگلیسی</Label>
+                                <Input
+                                  value={editingProduct.name_en || ''}
+                                  onChange={(e) =>
+                                    setEditingProduct({ ...editingProduct, name_en: e.target.value })
+                                  }
+                                  dir="ltr"
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-xs">برند</Label>
+                                <Input
+                                  value={editingProduct.brand}
+                                  onChange={(e) =>
+                                    setEditingProduct({ ...editingProduct, brand: e.target.value })
+                                  }
+                                  dir="ltr"
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-xs">دسته‌بندی</Label>
+                                <Input
+                                  value={editingProduct.category}
+                                  onChange={(e) =>
+                                    setEditingProduct({ ...editingProduct, category: e.target.value })
+                                  }
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-xs">لینک</Label>
+                                <Input
+                                  value={editingProduct.link}
+                                  onChange={(e) =>
+                                    setEditingProduct({ ...editingProduct, link: e.target.value })
+                                  }
+                                  dir="ltr"
+                                />
+                              </div>
+                              <div className="flex items-center gap-2 pt-5">
+                                <Switch
+                                  checked={editingProduct.is_active}
+                                  onCheckedChange={(checked) =>
+                                    setEditingProduct({ ...editingProduct, is_active: checked })
+                                  }
+                                />
+                                <Label className="text-xs">فعال</Label>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex justify-end gap-2">
+                            <Button size="sm" onClick={handleUpdateProduct} className="btn-gold">
+                              <Save className="w-4 h-4 ml-1" />
+                              ذخیره
                             </Button>
                             <Button
                               size="sm"
                               variant="ghost"
                               onClick={() => setEditingProduct(null)}
                             >
-                              <X className="w-4 h-4" />
+                              <X className="w-4 h-4 ml-1" />
+                              انصراف
                             </Button>
                           </div>
                         </div>
                       ) : (
-                        <>
+                        <div className="flex items-center gap-4">
+                          <img
+                            src={product.image_url}
+                            alt={product.name_fa}
+                            className="w-16 h-16 object-contain rounded"
+                          />
                           <div className="flex-1">
-                            <p className="font-medium">{product.name_fa}</p>
+                            <div className="flex items-center gap-2">
+                              <p className="font-medium">{product.name_fa}</p>
+                              {!product.is_active && (
+                                <span className="text-xs bg-destructive/20 text-destructive px-2 py-0.5 rounded">
+                                  غیرفعال
+                                </span>
+                              )}
+                            </div>
                             <p className="text-sm text-muted-foreground">
                               {product.brand} - {product.category}
                             </p>
@@ -396,13 +555,13 @@ const AdminDashboard = () => {
                             <Button
                               size="sm"
                               variant="ghost"
-                              className="text-destructive"
+                              className="text-destructive hover:text-destructive"
                               onClick={() => handleDeleteProduct(product.id)}
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>
                           </div>
-                        </>
+                        </div>
                       )}
                     </div>
                   ))}

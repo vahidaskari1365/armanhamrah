@@ -13,6 +13,7 @@ import WarrantyPage from "./pages/WarrantyPage";
 import CooperationPage from "./pages/CooperationPage";
 import AdminAuth from "./pages/AdminAuth";
 import AdminDashboard from "./pages/AdminDashboard";
+import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/cooperation" element={<CooperationPage />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
