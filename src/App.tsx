@@ -10,7 +10,7 @@ import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
-import CooperationPage from "./pages/CooperationPage";
+import RepresentativesPage from "./pages/RepresentativesPage";
 import AdminAuth from "./pages/AdminAuth";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProfilePage from "./pages/ProfilePage";
@@ -30,7 +30,7 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/export" element={<ExportPage />} />
           <Route path="/warranty" element={<WarrantyPage />} />
-          <Route path="/cooperation" element={<CooperationPage />} />
+          <Route path="/representatives" element={<RepresentativesPage />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profile" element={<ProfilePage />} />

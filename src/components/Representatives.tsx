@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Phone, Store } from 'lucide-react';
+import { MapPin, Phone, Store, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const representatives = [
   {
@@ -31,69 +32,6 @@ const representatives = [
     phone: '041-36600150',
     address: 'تبریز اتوبان پاسداران میدان فهمیده مجتمع تجاری لاله پارک،طبقه منفی یک فروشگاه سامسونگ'
   },
-  {
-    name: 'فروشگاه ایران زمین',
-    province: 'اصفهان',
-    city: 'اصفهان',
-    phone: '031-32214031',
-    address: 'اصفهان خیابان فردوسی ،روبه روی بانک صادرات فروشگاه ایران زمین'
-  },
-  {
-    name: 'فروشگاه هایپرفون',
-    province: 'فارس',
-    city: 'شیراز',
-    phone: '071-36290217',
-    address: 'شیراز-خیابان عفیف آباد روبه روی کوچه 1 فروشگاه هایپرفون'
-  },
-  {
-    name: 'فروشگاه کنسل',
-    province: 'مازندران',
-    city: 'قائم شهر',
-    phone: '011-42231256',
-    address: 'قائم شهر خیابان امام خمینی پاساژ نسیم پلاک43 طبقه همکف آقای گرائلی'
-  },
-  {
-    name: 'شرکت فنی مهندسی نانو',
-    province: 'بوشهر',
-    city: 'بوشهر',
-    phone: '077-33320708',
-    address: 'بوشهر بلوار بهشت صادق روبروی بانک سپه طبقه همکف آقای عبدالرضا کارگر'
-  },
-  {
-    name: 'آل دیجیتال',
-    province: 'کرمان',
-    city: 'کرمان',
-    phone: '034-32231911',
-    address: 'کرمان خیابان فردوسی نبش وحشی بافقی فروشگاه آل دیجیتال'
-  },
-  {
-    name: 'موبایل آوا',
-    province: 'آذربایجان غربی',
-    city: 'ارومیه',
-    phone: '044-3469061',
-    address: 'ارومیه خیابان مدرس نبش کوچه 20متری نوذری آقای نوید قدرتی'
-  },
-  {
-    name: 'گروه فنی سپهر پویا',
-    province: 'البرز',
-    city: 'کرج',
-    phone: '026-32233652',
-    address: 'کرج میدان کرج خیابان شهید دکتر بهشتی کوچه هما پاساژ کمالی گروه فنی سپهرپویا'
-  },
-  {
-    name: 'فروشگاه موبایل حافظ',
-    province: 'مرکزی',
-    city: 'اراک',
-    phone: '086-42222522',
-    address: 'ساوه خیابان امام پاساژ رضا طبقه همکف پلاک 60 فروشگاه موبایل حافظ'
-  },
-  {
-    name: 'آقای حامد صمدی',
-    province: 'خراسان رضوی',
-    city: 'مشهد',
-    phone: '0915-5099431',
-    address: 'مشهد احمدآباد نبش خیابان بهشت مجتمع موبایل مشهد طبقه اول اداری واحد4'
-  }
 ];
 
 const Representatives = () => {
@@ -120,7 +58,7 @@ const Representatives = () => {
           <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-4" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {representatives.map((rep, index) => (
             <motion.div
               key={index}
@@ -156,12 +94,29 @@ const Representatives = () => {
                 </a>
                 <div className="flex items-start gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span className="leading-relaxed">{rep.address}</span>
+                  <span className="leading-relaxed line-clamp-2">{rep.address}</span>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* View All Link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-10"
+        >
+          <Link
+            to="/representatives"
+            className="inline-flex items-center gap-2 btn-gold px-8 py-4 text-lg"
+          >
+            {language === 'fa' ? 'مشاهده همه نمایندگان' : 'View All Representatives'}
+            {language === 'fa' ? <ArrowLeft className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />}
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
