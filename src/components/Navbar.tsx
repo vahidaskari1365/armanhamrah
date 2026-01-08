@@ -4,7 +4,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/arman-logo.jpeg';
+import logo from '@/assets/arman-aria-logo.png';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
