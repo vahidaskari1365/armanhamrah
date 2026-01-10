@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Shield, Smartphone, ShoppingBag } from 'lucide-react';
+import { Shield, Store, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
@@ -15,11 +15,12 @@ const Services = () => {
       gradient: 'from-amber-500 to-orange-600',
     },
     {
-      icon: Smartphone,
-      titleKey: 'services.myarman.title',
-      descKey: 'services.myarman.desc',
-      link: 'https://my.armanhamrah.com/',
+      icon: Store,
+      titleKey: 'services.representatives.title',
+      descKey: 'services.representatives.desc',
+      link: '/representatives',
       gradient: 'from-amber-400 to-yellow-500',
+      isInternal: true,
     },
     {
       icon: ShoppingBag,

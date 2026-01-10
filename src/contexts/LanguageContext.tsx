@@ -37,8 +37,8 @@ const translations = {
     'services.title': 'خدمات ما',
     'services.warranty.title': 'گارانتی آرمان همراه',
     'services.warranty.desc': 'گارانتی معتبر برای محصولات اپل، سامسونگ، شیائومی و سونی',
-    'services.myarman.title': 'آرمان من',
-    'services.myarman.desc': 'مدیریت آنلاین گارانتی و پیگیری وضعیت دستگاه',
+    'services.representatives.title': 'نمایندگان',
+    'services.representatives.desc': 'شبکه گسترده نمایندگان آرمان همراه در سراسر ایران',
     'services.shop.title': 'فروشگاه',
     'services.shop.desc': 'خرید محصولات اصل با گارانتی معتبر',
     
@@ -119,8 +119,8 @@ const translations = {
     'services.title': 'Our Services',
     'services.warranty.title': 'Arman Warranty',
     'services.warranty.desc': 'Valid warranty for Apple, Samsung, Xiaomi and Sony products',
-    'services.myarman.title': 'My Arman',
-    'services.myarman.desc': 'Online warranty management and device status tracking',
+    'services.representatives.title': 'Representatives',
+    'services.representatives.desc': 'Our extensive network of representatives across Iran',
     'services.shop.title': 'Shop',
     'services.shop.desc': 'Buy original products with valid warranty',
     
