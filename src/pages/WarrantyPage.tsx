@@ -288,66 +288,6 @@ const WarrantyPage = () => {
                 </div>
               </section>
 
-              {/* Arman Man Section */}
-              <section className="section-padding bg-gradient-premium">
-                <div className="container-custom">
-                  <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <motion.div
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <h2 className="text-3xl font-bold text-foreground mb-6">
-                        خدمات پس از فروش در دستان شما
-                      </h2>
-                      <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                        شما عزیزان و همراهان آرمان همراه ارتباطات آریا با نصب اپلیکیشن آرمان من و یا استفاده از نسخه وب اپلیکیشن برای iOS از خدمات ما به صورت آنلاین بهره‌مند شوید.
-                      </p>
-                      <ul className="space-y-3 mb-8">
-                        <li className="flex items-center gap-3 text-muted-foreground">
-                          <CheckCircle2 size={20} className="text-primary" />
-                          ثبت و پیگیری درخواست تعمیر
-                        </li>
-                        <li className="flex items-center gap-3 text-muted-foreground">
-                          <CheckCircle2 size={20} className="text-primary" />
-                          مشاهده وضعیت گارانتی محصول
-                        </li>
-                        <li className="flex items-center gap-3 text-muted-foreground">
-                          <CheckCircle2 size={20} className="text-primary" />
-                          دسترسی به تاریخچه تعمیرات
-                        </li>
-                        <li className="flex items-center gap-3 text-muted-foreground">
-                          <CheckCircle2 size={20} className="text-primary" />
-                          ارتباط مستقیم با پشتیبانی
-                        </li>
-                      </ul>
-                      <a
-                        href="https://my.armanhamrah.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-gold inline-block"
-                      >
-                        ورود به آرمان من
-                      </a>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, x: 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6 }}
-                      className="relative"
-                    >
-                      <img
-                        src="https://www.armanhamrah.com/uploads/my-arman.webp"
-                        alt="آرمان من"
-                        className="rounded-2xl shadow-2xl w-full"
-                      />
-                    </motion.div>
-                  </div>
-                </div>
-              </section>
-
               {/* CTA */}
               <section className="section-padding">
                 <div className="container-custom">
