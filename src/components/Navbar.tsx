@@ -84,16 +84,14 @@ const Navbar = () => {
             </motion.button>
 
             {/* Register Button */}
-            <motion.a
-              href="https://my.armanhamrah.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex btn-gold text-sm px-6 py-3"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.myArman')}
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/auth"
+                className="hidden sm:flex btn-gold text-sm px-6 py-3"
+              >
+                {t('nav.myArman')}
+              </Link>
+            </motion.div>
 
             {/* Mobile Menu Button */}
             <motion.button
@@ -129,14 +127,13 @@ const Navbar = () => {
                   {t(item.key)}
                 </Link>
               ))}
-              <a
-                href="https://my.armanhamrah.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/auth"
+                onClick={() => setIsOpen(false)}
                 className="btn-gold text-sm px-6 py-3 text-center"
               >
                 {t('nav.myArman')}
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
