@@ -12,6 +12,7 @@ import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
 import RepresentativesPage from "./pages/RepresentativesPage";
 import AdminAuth from "./pages/AdminAuth";
+import AuthPage from "./pages/AuthPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/export" element={<ExportPage />} />
           <Route path="/warranty" element={<WarrantyPage />} />
           <Route path="/representatives" element={<RepresentativesPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profile" element={<ProfilePage />} />
