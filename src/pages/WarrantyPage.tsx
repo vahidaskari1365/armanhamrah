@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const warrantyConditions = [
   'رعایت شرایط استفاده از محصول طبق دفترچه راهنما',
@@ -93,7 +94,7 @@ const WarrantyPage = () => {
             title="گارانتی آرمان همراه | شرایط گارانتی ۱۸ ماهه"
             description="شرایط گارانتی ۱۸ ماهه آرمان همراه ارتباطات آریا برای محصولات اپل، سامسونگ، شیائومی و سونی"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -305,18 +306,10 @@ const WarrantyPage = () => {
                     <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
                       برای ثبت محصول و پیگیری وضعیت گارانتی خود، وارد سامانه آرمان من شوید
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <a
-                        href="https://my.armanhamrah.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
-                      >
-                        ورود به آرمان من
-                      </a>
+                    <div className="flex justify-center">
                       <Link
                         to="/contact"
-                        className="inline-block bg-background/20 text-primary-foreground border-2 border-primary-foreground/30 px-8 py-4 rounded-xl font-bold hover:bg-background/30 transition-colors"
+                        className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
                       >
                         تماس با پشتیبانی
                       </Link>

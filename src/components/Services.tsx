@@ -11,8 +11,9 @@ const Services = () => {
       icon: Shield,
       titleKey: 'services.warranty.title',
       descKey: 'services.warranty.desc',
-      link: 'https://www.armanhamrah.com/guarantee.php',
+      link: '/warranty',
       gradient: 'from-amber-500 to-orange-600',
+      isInternal: true,
     },
     {
       icon: Store,

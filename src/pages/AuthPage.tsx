@@ -12,6 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { z } from 'zod';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const authSchema = z.object({
   email: z.string().trim().email({ message: "ایمیل معتبر نیست" }).max(255),
@@ -145,7 +146,7 @@ const AuthPageContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+    <div className="page-background bg-background flex items-center justify-center p-4" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir={language === 'fa' ? 'rtl' : 'ltr'}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

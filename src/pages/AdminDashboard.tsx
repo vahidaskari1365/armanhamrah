@@ -15,6 +15,7 @@ import {
   Users, Settings, Home, Phone, Mail, MapPin
 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
+import pageBg from '@/assets/page-bg.jpeg';
 
 interface Product {
   id: string;
@@ -372,7 +373,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       {/* Header */}
       <header className="border-b border-border bg-card sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">

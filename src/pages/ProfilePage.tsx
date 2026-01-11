@@ -13,6 +13,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { HelmetProvider } from 'react-helmet-async';
+import pageBg from '@/assets/page-bg.jpeg';
 
 interface Profile {
   first_name: string | null;
@@ -123,7 +124,7 @@ const ProfileContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       <Navbar />
       <main className="container mx-auto px-4 py-24">
         <motion.div

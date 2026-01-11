@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, Lock, Mail, User, Phone, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const AdminAuth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -132,7 +133,7 @@ const AdminAuth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4" dir="rtl">
+    <div className="page-background bg-background flex items-center justify-center p-4" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

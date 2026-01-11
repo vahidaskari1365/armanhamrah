@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const contactInfo = [
   {
@@ -65,7 +66,7 @@ const ContactPage = () => {
             title="تماس با ما | آرمان همراه ارتباطات آریا"
             description="راه‌های ارتباط با شرکت آرمان همراه ارتباطات آریا - تلفن، ایمیل، آدرس و شبکه‌های اجتماعی"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
