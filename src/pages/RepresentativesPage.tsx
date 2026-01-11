@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const representatives = [
   {
@@ -176,7 +177,7 @@ const RepresentativesPage = () => {
             title="نمایندگان | آرمان همراه ارتباطات آریا"
             description="لیست نمایندگان فروش و شرایط همکاری با شرکت آرمان همراه ارتباطات آریا در سراسر ایران"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}

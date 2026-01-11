@@ -213,6 +213,27 @@
     background: hsl(220 20% 6% / 0.8);
     border: 1px solid hsl(var(--border) / 0.3);
   }
+
+  .page-background {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .page-background::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--page-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+  }
+
+  .dark .page-background::before {
+    opacity: 0.05;
+  }
 }
 
 @layer components {

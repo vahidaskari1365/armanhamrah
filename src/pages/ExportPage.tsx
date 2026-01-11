@@ -8,6 +8,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const features = [
   {
@@ -160,7 +161,7 @@ const ExportPage = () => {
             title="صادرات | Arman Export - Best Solution for importing goods from IRAN"
             description="خدمات صادرات محصولات به کشورهای منطقه - آهن و فولاد، مفتول مسی، قیر، روغن و نخ"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}

@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
 import Subsidiaries from '@/components/Subsidiaries';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const Index = () => {
   return (
@@ -19,7 +20,7 @@ const Index = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO />
-          <div className="min-h-screen bg-background">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
             <Navbar />
             <main>
               <Hero />

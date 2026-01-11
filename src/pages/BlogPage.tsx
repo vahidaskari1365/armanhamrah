@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const blogPosts = [
   {
@@ -67,7 +68,7 @@ const BlogPage = () => {
             title="بلاگ و آموزش | آرمان همراه ارتباطات آریا"
             description="آخرین مقالات و آموزش‌های تکنولوژی، راهنمای خرید و اخبار محصولات"
           />
-          <div className="min-h-screen bg-background" dir="rtl">
+          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
