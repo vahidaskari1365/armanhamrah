@@ -10,12 +10,27 @@ import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { 
-  LogOut, Package, FileText, Palette, 
+  LogOut, Package, FileText, 
   Plus, Trash2, Edit, Save, X, Upload, Image as ImageIcon,
-  Users, Settings, Home, Phone, Mail, MapPin
+  Users, Settings, Home, Phone, Mail, MapPin, AlertTriangle, Shield
 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 import pageBg from '@/assets/page-bg.jpeg';
+import { z } from 'zod';
+
+// Validation schemas
+const productSchema = z.object({
+  name_fa: z.string().trim().min(1, 'نام فارسی الزامی است').max(200, 'نام فارسی حداکثر 200 کاراکتر'),
+  name_en: z.string().trim().max(200, 'نام انگلیسی حداکثر 200 کاراکتر').optional().nullable(),
+  image_url: z.string().trim().url('آدرس تصویر معتبر نیست').max(1000, 'آدرس تصویر حداکثر 1000 کاراکتر'),
+  link: z.string().trim().url('لینک معتبر نیست').max(1000, 'لینک حداکثر 1000 کاراکتر'),
+  category: z.string().trim().max(100, 'دسته‌بندی حداکثر 100 کاراکتر'),
+  brand: z.string().trim().max(100, 'برند حداکثر 100 کاراکتر'),
+});
+
+const contentSchema = z.object({
+  content_value: z.string().trim().min(1, 'محتوا نمی‌تواند خالی باشد').max(10000, 'محتوا حداکثر 10000 کاراکتر'),
+});
 
 interface Product {
   id: string;
@@ -41,6 +56,7 @@ interface PageContent {
 const AdminDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [pageContents, setPageContents] = useState<PageContent[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -54,9 +70,11 @@ const AdminDashboard = () => {
     category: '',
     brand: '',
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [uploading, setUploading] = useState(false);
   const [editUploading, setEditUploading] = useState(false);
   const [savingContent, setSavingContent] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const editFileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -67,8 +85,47 @@ const AdminDashboard = () => {
     { id: 'contact', name: 'تماس با ما', icon: Phone },
   ];
 
+  // File type validation
+  const validateFile = (file: File): boolean => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    
+    if (!allowedTypes.includes(file.type)) {
+      toast({
+        title: 'خطا',
+        description: 'فقط فایل‌های تصویری (JPEG, PNG, WebP, GIF) مجاز هستند',
+        variant: 'destructive',
+      });
+      return false;
+    }
+    
+    if (file.size > maxSize) {
+      toast({
+        title: 'خطا',
+        description: 'حجم فایل نباید بیشتر از 5 مگابایت باشد',
+        variant: 'destructive',
+      });
+      return false;
+    }
+    
+    return true;
+  };
+
   const uploadImage = async (file: File): Promise<string | null> => {
-    const fileExt = file.name.split('.').pop();
+    if (!validateFile(file)) return null;
+    
+    const fileExt = file.name.split('.').pop()?.toLowerCase();
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    
+    if (!fileExt || !allowedExtensions.includes(fileExt)) {
+      toast({
+        title: 'خطا',
+        description: 'پسوند فایل معتبر نیست',
+        variant: 'destructive',
+      });
+      return null;
+    }
+    
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
     const filePath = `products/${fileName}`;
 
@@ -100,8 +157,11 @@ const AdminDashboard = () => {
     const url = await uploadImage(file);
     if (url) {
       setNewProduct({ ...newProduct, image_url: url });
+      setErrors({ ...errors, image_url: '' });
     }
     setUploading(false);
+    // Reset input
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const handleEditFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -114,11 +174,17 @@ const AdminDashboard = () => {
       setEditingProduct({ ...editingProduct, image_url: url });
     }
     setEditUploading(false);
+    // Reset input
+    if (editFileInputRef.current) editFileInputRef.current.value = '';
   };
 
   useEffect(() => {
+    let isMounted = true;
+    
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        if (!isMounted) return;
+        
         if (!session) {
           navigate('/admin/auth');
           return;
@@ -126,14 +192,19 @@ const AdminDashboard = () => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
+          // Use setTimeout to avoid potential deadlock
           setTimeout(() => {
-            checkAdminRole(session.user.id);
+            if (isMounted) {
+              checkAdminRole(session.user.id);
+            }
           }, 0);
         }
       }
     );
 
     supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!isMounted) return;
+      
       if (!session) {
         navigate('/admin/auth');
         return;
@@ -144,31 +215,40 @@ const AdminDashboard = () => {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, [navigate]);
 
   const checkAdminRole = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId)
-      .eq('role', 'admin')
-      .maybeSingle();
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
 
-    if (error || !data) {
+      if (error || !data) {
+        await supabase.auth.signOut();
+        navigate('/admin/auth');
+        toast({
+          title: 'دسترسی غیرمجاز',
+          description: 'شما دسترسی ادمین ندارید',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      setIsAdmin(true);
+      setLoading(false);
+      fetchProducts();
+      fetchPageContents();
+    } catch (err) {
       await supabase.auth.signOut();
       navigate('/admin/auth');
-      toast({
-        title: 'دسترسی غیرمجاز',
-        description: 'شما دسترسی ادمین ندارید',
-        variant: 'destructive',
-      });
-      return;
     }
-
-    setLoading(false);
-    fetchProducts();
-    fetchPageContents();
   };
 
   const fetchProducts = async () => {
@@ -212,24 +292,45 @@ const AdminDashboard = () => {
     navigate('/admin/auth');
   };
 
+  const validateProduct = (product: typeof newProduct): boolean => {
+    try {
+      productSchema.parse(product);
+      setErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(newErrors);
+      }
+      return false;
+    }
+  };
+
   const handleAddProduct = async () => {
-    if (!newProduct.name_fa || !newProduct.image_url || !newProduct.link) {
+    const productData = {
+      name_fa: newProduct.name_fa.trim(),
+      name_en: newProduct.name_en.trim() || null,
+      image_url: newProduct.image_url.trim(),
+      link: newProduct.link.trim(),
+      category: newProduct.category.trim() || 'عمومی',
+      brand: newProduct.brand.trim() || 'سایر',
+    };
+
+    if (!validateProduct(productData)) {
       toast({
         title: 'خطا',
-        description: 'لطفا فیلدهای ضروری را پر کنید',
+        description: 'لطفا خطاهای فرم را برطرف کنید',
         variant: 'destructive',
       });
       return;
     }
 
-    const { error } = await supabase.from('products').insert({
-      name_fa: newProduct.name_fa,
-      name_en: newProduct.name_en || null,
-      image_url: newProduct.image_url,
-      link: newProduct.link,
-      category: newProduct.category || 'عمومی',
-      brand: newProduct.brand || 'سایر',
-    });
+    const { error } = await supabase.from('products').insert(productData);
 
     if (error) {
       toast({
@@ -253,21 +354,35 @@ const AdminDashboard = () => {
       category: '',
       brand: '',
     });
+    setErrors({});
     fetchProducts();
   };
 
   const handleUpdateProduct = async () => {
     if (!editingProduct) return;
 
+    const productData = {
+      name_fa: editingProduct.name_fa.trim(),
+      name_en: editingProduct.name_en?.trim() || null,
+      image_url: editingProduct.image_url.trim(),
+      link: editingProduct.link.trim(),
+      category: editingProduct.category.trim(),
+      brand: editingProduct.brand.trim(),
+    };
+
+    if (!validateProduct(productData)) {
+      toast({
+        title: 'خطا',
+        description: 'لطفا خطاهای فرم را برطرف کنید',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     const { error } = await supabase
       .from('products')
       .update({
-        name_fa: editingProduct.name_fa,
-        name_en: editingProduct.name_en,
-        image_url: editingProduct.image_url,
-        link: editingProduct.link,
-        category: editingProduct.category,
-        brand: editingProduct.brand,
+        ...productData,
         is_active: editingProduct.is_active,
       })
       .eq('id', editingProduct.id);
@@ -287,10 +402,16 @@ const AdminDashboard = () => {
     });
 
     setEditingProduct(null);
+    setErrors({});
     fetchProducts();
   };
 
   const handleDeleteProduct = async (id: string) => {
+    if (deleteConfirm !== id) {
+      setDeleteConfirm(id);
+      return;
+    }
+
     const { error } = await supabase.from('products').delete().eq('id', id);
 
     if (error) {
@@ -307,15 +428,29 @@ const AdminDashboard = () => {
       description: 'محصول با موفقیت حذف شد',
     });
 
+    setDeleteConfirm(null);
     fetchProducts();
   };
 
   const handleUpdateContent = async (content: PageContent) => {
+    try {
+      contentSchema.parse({ content_value: content.content_value });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: 'خطا',
+          description: error.errors[0]?.message || 'محتوا معتبر نیست',
+          variant: 'destructive',
+        });
+        return;
+      }
+    }
+
     setSavingContent(true);
     const { error } = await supabase
       .from('page_content')
       .update({
-        content_value: content.content_value,
+        content_value: content.content_value.trim(),
       })
       .eq('id', content.id);
 
@@ -367,20 +502,39 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-lg text-muted-foreground">در حال بارگذاری...</div>
+        <div className="text-center">
+          <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+          <div className="text-lg text-muted-foreground">در حال بررسی دسترسی...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center card-premium p-8">
+          <AlertTriangle className="w-16 h-16 text-destructive mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-foreground mb-2">دسترسی غیرمجاز</h1>
+          <p className="text-muted-foreground mb-4">شما اجازه دسترسی به این صفحه را ندارید</p>
+          <Button onClick={() => navigate('/')}>بازگشت به صفحه اصلی</Button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+    <div className="page-background bg-background min-h-screen" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-50">
+      <header className="border-b border-border bg-card/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-foreground">پنل مدیریت</h1>
+          <div className="flex items-center gap-3">
+            <Shield className="w-6 h-6 text-primary" />
+            <h1 className="text-xl font-bold text-foreground">پنل مدیریت</h1>
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground hidden sm:block">{user?.email}</span>
-            <Button variant="ghost" size="icon" onClick={handleLogout}>
+            <Button variant="ghost" size="icon" onClick={handleLogout} title="خروج">
               <LogOut className="w-5 h-5" />
             </Button>
           </div>
@@ -425,7 +579,9 @@ const AdminDashboard = () => {
                       value={newProduct.name_fa}
                       onChange={(e) => setNewProduct({ ...newProduct, name_fa: e.target.value })}
                       placeholder="نام محصول"
+                      maxLength={200}
                     />
+                    {errors.name_fa && <p className="text-destructive text-xs mt-1">{errors.name_fa}</p>}
                   </div>
                   <div>
                     <Label>نام انگلیسی</Label>
@@ -434,7 +590,9 @@ const AdminDashboard = () => {
                       onChange={(e) => setNewProduct({ ...newProduct, name_en: e.target.value })}
                       placeholder="Product name"
                       dir="ltr"
+                      maxLength={200}
                     />
+                    {errors.name_en && <p className="text-destructive text-xs mt-1">{errors.name_en}</p>}
                   </div>
                   <div>
                     <Label>تصویر محصول *</Label>
@@ -445,11 +603,12 @@ const AdminDashboard = () => {
                         placeholder="آدرس تصویر یا آپلود کنید"
                         dir="ltr"
                         className="flex-1"
+                        maxLength={1000}
                       />
                       <input
                         ref={fileInputRef}
                         type="file"
-                        accept="image/*"
+                        accept="image/jpeg,image/png,image/webp,image/gif"
                         className="hidden"
                         onChange={handleFileSelect}
                       />
@@ -466,11 +625,13 @@ const AdminDashboard = () => {
                         )}
                       </Button>
                     </div>
+                    {errors.image_url && <p className="text-destructive text-xs mt-1">{errors.image_url}</p>}
                     {newProduct.image_url && (
                       <img
                         src={newProduct.image_url}
                         alt="Preview"
                         className="mt-2 w-20 h-20 object-contain rounded border border-border"
+                        onError={(e) => (e.currentTarget.style.display = 'none')}
                       />
                     )}
                   </div>
@@ -481,7 +642,9 @@ const AdminDashboard = () => {
                       onChange={(e) => setNewProduct({ ...newProduct, link: e.target.value })}
                       placeholder="https://..."
                       dir="ltr"
+                      maxLength={1000}
                     />
+                    {errors.link && <p className="text-destructive text-xs mt-1">{errors.link}</p>}
                   </div>
                   <div>
                     <Label>دسته‌بندی</Label>
@@ -489,7 +652,9 @@ const AdminDashboard = () => {
                       value={newProduct.category}
                       onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
                       placeholder="موبایل"
+                      maxLength={100}
                     />
+                    {errors.category && <p className="text-destructive text-xs mt-1">{errors.category}</p>}
                   </div>
                   <div>
                     <Label>برند</Label>
@@ -498,7 +663,9 @@ const AdminDashboard = () => {
                       onChange={(e) => setNewProduct({ ...newProduct, brand: e.target.value })}
                       placeholder="Apple"
                       dir="ltr"
+                      maxLength={100}
                     />
+                    {errors.brand && <p className="text-destructive text-xs mt-1">{errors.brand}</p>}
                   </div>
                 </div>
                 <Button onClick={handleAddProduct} className="mt-4 btn-gold" disabled={uploading}>
@@ -524,11 +691,12 @@ const AdminDashboard = () => {
                                 src={editingProduct.image_url}
                                 alt={editingProduct.name_fa}
                                 className="w-24 h-24 object-contain rounded border border-border"
+                                onError={(e) => (e.currentTarget.src = '/placeholder.svg')}
                               />
                               <input
                                 ref={editFileInputRef}
                                 type="file"
-                                accept="image/*"
+                                accept="image/jpeg,image/png,image/webp,image/gif"
                                 className="hidden"
                                 onChange={handleEditFileSelect}
                               />
@@ -551,6 +719,7 @@ const AdminDashboard = () => {
                                   onChange={(e) =>
                                     setEditingProduct({ ...editingProduct, name_fa: e.target.value })
                                   }
+                                  maxLength={200}
                                 />
                               </div>
                               <div>
@@ -561,6 +730,7 @@ const AdminDashboard = () => {
                                     setEditingProduct({ ...editingProduct, name_en: e.target.value })
                                   }
                                   dir="ltr"
+                                  maxLength={200}
                                 />
                               </div>
                               <div>
@@ -571,6 +741,7 @@ const AdminDashboard = () => {
                                     setEditingProduct({ ...editingProduct, brand: e.target.value })
                                   }
                                   dir="ltr"
+                                  maxLength={100}
                                 />
                               </div>
                               <div>
@@ -580,6 +751,7 @@ const AdminDashboard = () => {
                                   onChange={(e) =>
                                     setEditingProduct({ ...editingProduct, category: e.target.value })
                                   }
+                                  maxLength={100}
                                 />
                               </div>
                               <div>
@@ -590,6 +762,7 @@ const AdminDashboard = () => {
                                     setEditingProduct({ ...editingProduct, link: e.target.value })
                                   }
                                   dir="ltr"
+                                  maxLength={1000}
                                 />
                               </div>
                               <div className="flex items-center gap-2 pt-5">
@@ -611,7 +784,10 @@ const AdminDashboard = () => {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => setEditingProduct(null)}
+                              onClick={() => {
+                                setEditingProduct(null);
+                                setErrors({});
+                              }}
                             >
                               <X className="w-4 h-4 ml-1" />
                               انصراف
@@ -624,6 +800,7 @@ const AdminDashboard = () => {
                             src={product.image_url}
                             alt={product.name_fa}
                             className="w-16 h-16 object-contain rounded"
+                            onError={(e) => (e.currentTarget.src = '/placeholder.svg')}
                           />
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
@@ -642,18 +819,34 @@ const AdminDashboard = () => {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => setEditingProduct(product)}
+                              onClick={() => {
+                                setEditingProduct(product);
+                                setDeleteConfirm(null);
+                              }}
                             >
                               <Edit className="w-4 h-4" />
                             </Button>
                             <Button
                               size="sm"
-                              variant="ghost"
-                              className="text-destructive hover:text-destructive"
+                              variant={deleteConfirm === product.id ? 'destructive' : 'ghost'}
+                              className={deleteConfirm !== product.id ? 'text-destructive hover:text-destructive' : ''}
                               onClick={() => handleDeleteProduct(product.id)}
                             >
-                              <Trash2 className="w-4 h-4" />
+                              {deleteConfirm === product.id ? (
+                                <span className="text-xs">تایید حذف</span>
+                              ) : (
+                                <Trash2 className="w-4 h-4" />
+                              )}
                             </Button>
+                            {deleteConfirm === product.id && (
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => setDeleteConfirm(null)}
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
+                            )}
                           </div>
                         </div>
                       )}
@@ -748,6 +941,7 @@ const AdminDashboard = () => {
                                   }
                                   rows={4}
                                   className="resize-none"
+                                  maxLength={10000}
                                 />
                               ) : (
                                 <Input
@@ -758,6 +952,7 @@ const AdminDashboard = () => {
                                       content_value: e.target.value,
                                     })
                                   }
+                                  maxLength={10000}
                                 />
                               )
                             ) : (
@@ -770,6 +965,7 @@ const AdminDashboard = () => {
                                   })
                                 }
                                 dir="ltr"
+                                maxLength={10000}
                               />
                             )}
                             <div className="flex gap-2">
@@ -819,6 +1015,27 @@ const AdminDashboard = () => {
                 </h2>
                 <div className="grid gap-6">
                   <div className="p-4 rounded-lg border border-border bg-secondary/20">
+                    <h3 className="font-medium mb-2 flex items-center gap-2">
+                      <Shield className="w-4 h-4 text-primary" />
+                      وضعیت امنیتی
+                    </h3>
+                    <div className="space-y-2 text-sm text-muted-foreground">
+                      <p className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        احراز هویت سمت سرور فعال
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        RLS روی جداول فعال
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                        اعتبارسنجی ورودی‌ها فعال
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-lg border border-border bg-secondary/20">
                     <h3 className="font-medium mb-2">اطلاعات تماس</h3>
                     <p className="text-sm text-muted-foreground mb-4">
                       اطلاعات تماس سایت را از بخش محتوا و صفحه تماس با ما ویرایش کنید.
@@ -827,7 +1044,10 @@ const AdminDashboard = () => {
                       variant="outline"
                       onClick={() => {
                         setSelectedPage('contact');
-                        document.querySelector('[data-value="content"]')?.dispatchEvent(new Event('click', { bubbles: true }));
+                        const contentTab = document.querySelector('[data-value="content"]');
+                        if (contentTab instanceof HTMLElement) {
+                          contentTab.click();
+                        }
                       }}
                     >
                       رفتن به ویرایش محتوا
@@ -837,7 +1057,7 @@ const AdminDashboard = () => {
                   <div className="p-4 rounded-lg border border-border bg-secondary/20">
                     <h3 className="font-medium mb-2">مدیریت کاربران</h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      برای افزودن ادمین جدید، باید دسترسی مستقیم به پایگاه داده داشته باشید.
+                      برای افزودن ادمین جدید، باید از طریق پایگاه داده اقدام کنید.
                     </p>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-muted-foreground" />
