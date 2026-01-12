@@ -145,7 +145,7 @@ const ProductsPageContent = () => {
       <Navbar />
       <main className="pt-24 relative z-10">
         {/* Hero */}
-        <section className="bg-gradient-hero py-16">
+        <section className="py-16">
           <div className="container-custom">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -170,7 +170,7 @@ const ProductsPageContent = () => {
         </section>
 
         {/* Brands Filter */}
-        <section className="py-8 border-b border-border bg-card/50">
+        <section className="py-8 border-b border-border">
           <div className="container-custom">
             <div className="flex flex-wrap gap-3">
               <span className="text-sm font-medium text-muted-foreground ml-4">
