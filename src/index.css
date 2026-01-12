@@ -217,7 +217,6 @@
   .page-background {
     position: relative;
     min-height: 100vh;
-    background-color: hsl(var(--background));
   }
 
   .page-background::before {
@@ -232,7 +231,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.12;
+    opacity: 0.25;
     pointer-events: none;
   }
 
@@ -242,7 +241,13 @@
   }
 
   .dark .page-background::before {
-    opacity: 0.06;
+    opacity: 0.15;
+  }
+
+  /* Make gradient sections transparent so background shows through */
+  .page-background .bg-gradient-hero,
+  .page-background .bg-gradient-premium {
+    background: transparent !important;
   }
 }
 
