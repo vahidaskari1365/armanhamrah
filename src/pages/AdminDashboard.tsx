@@ -12,11 +12,19 @@ import { useToast } from '@/hooks/use-toast';
 import { 
   LogOut, Package, FileText, 
   Plus, Trash2, Edit, Save, X, Upload, Image as ImageIcon,
-  Users, Settings, Home, Phone, Mail, MapPin, AlertTriangle, Shield
+  Users, Settings, Home, Phone, Mail, MapPin, AlertTriangle, Shield,
+  UserPlus, Key, Check, Globe, MessageSquare
 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 import pageBg from '@/assets/page-bg.jpeg';
 import { z } from 'zod';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Validation schemas
 const productSchema = z.object({
@@ -30,6 +38,20 @@ const productSchema = z.object({
 
 const contentSchema = z.object({
   content_value: z.string().trim().min(1, 'محتوا نمی‌تواند خالی باشد').max(10000, 'محتوا حداکثر 10000 کاراکتر'),
+});
+
+const newUserSchema = z.object({
+  email: z.string().trim().email('ایمیل معتبر نیست').max(255),
+  password: z.string().min(6, 'رمز عبور حداقل 6 کاراکتر'),
+  first_name: z.string().trim().min(1, 'نام الزامی است').max(100),
+  last_name: z.string().trim().max(100).optional(),
+  role: z.enum(['admin', 'editor']),
+});
+
+const settingSchema = z.object({
+  key: z.string().trim().min(1, 'کلید الزامی است').max(100),
+  value: z.string().trim().min(1, 'مقدار الزامی است').max(1000),
+  category: z.string().trim().max(50),
 });
 
 interface Product {
@@ -53,14 +75,33 @@ interface PageContent {
   content_type: string | null;
 }
 
+interface SiteSetting {
+  id: string;
+  key: string;
+  value: string;
+  category: string;
+}
+
+interface UserWithRole {
+  id: string;
+  email: string;
+  first_name: string | null;
+  last_name: string | null;
+  role: string;
+  created_at: string;
+}
+
 const AdminDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [pageContents, setPageContents] = useState<PageContent[]>([]);
+  const [siteSettings, setSiteSettings] = useState<SiteSetting[]>([]);
+  const [users, setUsers] = useState<UserWithRole[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [editingContent, setEditingContent] = useState<PageContent | null>(null);
+  const [editingSetting, setEditingSetting] = useState<SiteSetting | null>(null);
   const [selectedPage, setSelectedPage] = useState('home');
   const [newProduct, setNewProduct] = useState({
     name_fa: '',
@@ -70,11 +111,25 @@ const AdminDashboard = () => {
     category: '',
     brand: '',
   });
+  const [newUser, setNewUser] = useState({
+    email: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    role: 'editor' as 'admin' | 'editor',
+  });
+  const [newSetting, setNewSetting] = useState({
+    key: '',
+    value: '',
+    category: 'general',
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [uploading, setUploading] = useState(false);
   const [editUploading, setEditUploading] = useState(false);
   const [savingContent, setSavingContent] = useState(false);
+  const [creatingUser, setCreatingUser] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState('products');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const editFileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -83,6 +138,12 @@ const AdminDashboard = () => {
   const pages = [
     { id: 'home', name: 'صفحه اصلی', icon: Home },
     { id: 'contact', name: 'تماس با ما', icon: Phone },
+  ];
+
+  const settingCategories = [
+    { id: 'general', name: 'عمومی', icon: Globe },
+    { id: 'contact', name: 'اطلاعات تماس', icon: Phone },
+    { id: 'social', name: 'شبکه‌های اجتماعی', icon: MessageSquare },
   ];
 
   // File type validation
@@ -160,7 +221,6 @@ const AdminDashboard = () => {
       setErrors({ ...errors, image_url: '' });
     }
     setUploading(false);
-    // Reset input
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -174,7 +234,6 @@ const AdminDashboard = () => {
       setEditingProduct({ ...editingProduct, image_url: url });
     }
     setEditUploading(false);
-    // Reset input
     if (editFileInputRef.current) editFileInputRef.current.value = '';
   };
 
@@ -192,7 +251,6 @@ const AdminDashboard = () => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Use setTimeout to avoid potential deadlock
           setTimeout(() => {
             if (isMounted) {
               checkAdminRole(session.user.id);
@@ -243,12 +301,20 @@ const AdminDashboard = () => {
 
       setIsAdmin(true);
       setLoading(false);
-      fetchProducts();
-      fetchPageContents();
+      fetchAllData();
     } catch (err) {
       await supabase.auth.signOut();
       navigate('/admin/auth');
     }
+  };
+
+  const fetchAllData = async () => {
+    await Promise.all([
+      fetchProducts(),
+      fetchPageContents(),
+      fetchSiteSettings(),
+      fetchUsers(),
+    ]);
   };
 
   const fetchProducts = async () => {
@@ -257,16 +323,9 @@ const AdminDashboard = () => {
       .select('*')
       .order('display_order', { ascending: true });
 
-    if (error) {
-      toast({
-        title: 'خطا',
-        description: 'خطا در دریافت محصولات',
-        variant: 'destructive',
-      });
-      return;
+    if (!error && data) {
+      setProducts(data);
     }
-
-    setProducts(data || []);
   };
 
   const fetchPageContents = async () => {
@@ -275,16 +334,46 @@ const AdminDashboard = () => {
       .select('*')
       .order('page', { ascending: true });
 
-    if (error) {
-      toast({
-        title: 'خطا',
-        description: 'خطا در دریافت محتوا',
-        variant: 'destructive',
-      });
-      return;
+    if (!error && data) {
+      setPageContents(data);
     }
+  };
 
-    setPageContents(data || []);
+  const fetchSiteSettings = async () => {
+    const { data, error } = await supabase
+      .from('site_settings')
+      .select('*')
+      .order('category', { ascending: true });
+
+    if (!error && data) {
+      setSiteSettings(data);
+    }
+  };
+
+  const fetchUsers = async () => {
+    const { data: rolesData, error: rolesError } = await supabase
+      .from('user_roles')
+      .select('user_id, role, created_at');
+
+    if (rolesError || !rolesData) return;
+
+    const { data: profilesData } = await supabase
+      .from('profiles')
+      .select('user_id, first_name, last_name');
+
+    const usersWithRoles: UserWithRole[] = rolesData.map((role) => {
+      const profile = profilesData?.find(p => p.user_id === role.user_id);
+      return {
+        id: role.user_id,
+        email: '',
+        first_name: profile?.first_name || null,
+        last_name: profile?.last_name || null,
+        role: role.role,
+        created_at: role.created_at || '',
+      };
+    });
+
+    setUsers(usersWithRoles);
   };
 
   const handleLogout = async () => {
@@ -322,11 +411,6 @@ const AdminDashboard = () => {
     };
 
     if (!validateProduct(productData)) {
-      toast({
-        title: 'خطا',
-        description: 'لطفا خطاهای فرم را برطرف کنید',
-        variant: 'destructive',
-      });
       return;
     }
 
@@ -341,19 +425,8 @@ const AdminDashboard = () => {
       return;
     }
 
-    toast({
-      title: 'موفق',
-      description: 'محصول با موفقیت اضافه شد',
-    });
-
-    setNewProduct({
-      name_fa: '',
-      name_en: '',
-      image_url: '',
-      link: '',
-      category: '',
-      brand: '',
-    });
+    toast({ title: 'موفق', description: 'محصول با موفقیت اضافه شد' });
+    setNewProduct({ name_fa: '', name_en: '', image_url: '', link: '', category: '', brand: '' });
     setErrors({});
     fetchProducts();
   };
@@ -371,36 +444,20 @@ const AdminDashboard = () => {
     };
 
     if (!validateProduct(productData)) {
-      toast({
-        title: 'خطا',
-        description: 'لطفا خطاهای فرم را برطرف کنید',
-        variant: 'destructive',
-      });
       return;
     }
 
     const { error } = await supabase
       .from('products')
-      .update({
-        ...productData,
-        is_active: editingProduct.is_active,
-      })
+      .update({ ...productData, is_active: editingProduct.is_active })
       .eq('id', editingProduct.id);
 
     if (error) {
-      toast({
-        title: 'خطا',
-        description: 'خطا در ویرایش محصول',
-        variant: 'destructive',
-      });
+      toast({ title: 'خطا', description: 'خطا در ویرایش محصول', variant: 'destructive' });
       return;
     }
 
-    toast({
-      title: 'موفق',
-      description: 'محصول با موفقیت ویرایش شد',
-    });
-
+    toast({ title: 'موفق', description: 'محصول با موفقیت ویرایش شد' });
     setEditingProduct(null);
     setErrors({});
     fetchProducts();
@@ -415,19 +472,11 @@ const AdminDashboard = () => {
     const { error } = await supabase.from('products').delete().eq('id', id);
 
     if (error) {
-      toast({
-        title: 'خطا',
-        description: 'خطا در حذف محصول',
-        variant: 'destructive',
-      });
+      toast({ title: 'خطا', description: 'خطا در حذف محصول', variant: 'destructive' });
       return;
     }
 
-    toast({
-      title: 'موفق',
-      description: 'محصول با موفقیت حذف شد',
-    });
-
+    toast({ title: 'موفق', description: 'محصول با موفقیت حذف شد' });
     setDeleteConfirm(null);
     fetchProducts();
   };
@@ -449,29 +498,178 @@ const AdminDashboard = () => {
     setSavingContent(true);
     const { error } = await supabase
       .from('page_content')
-      .update({
-        content_value: content.content_value.trim(),
-      })
+      .update({ content_value: content.content_value.trim() })
       .eq('id', content.id);
 
     if (error) {
-      toast({
-        title: 'خطا',
-        description: 'خطا در ذخیره محتوا',
-        variant: 'destructive',
-      });
+      toast({ title: 'خطا', description: 'خطا در ذخیره محتوا', variant: 'destructive' });
       setSavingContent(false);
       return;
     }
 
-    toast({
-      title: 'موفق',
-      description: 'محتوا با موفقیت ذخیره شد',
-    });
-
+    toast({ title: 'موفق', description: 'محتوا با موفقیت ذخیره شد' });
     setEditingContent(null);
     setSavingContent(false);
     fetchPageContents();
+  };
+
+  const handleCreateUser = async () => {
+    setErrors({});
+    
+    try {
+      newUserSchema.parse(newUser);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(newErrors);
+        return;
+      }
+    }
+
+    setCreatingUser(true);
+
+    try {
+      // Create user using Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: newUser.email.trim(),
+        password: newUser.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin`,
+          data: {
+            first_name: newUser.first_name.trim(),
+            last_name: newUser.last_name.trim(),
+          },
+        },
+      });
+
+      if (authError) throw authError;
+
+      if (authData.user) {
+        // Add role
+        const { error: roleError } = await supabase
+          .from('user_roles')
+          .insert({
+            user_id: authData.user.id,
+            role: newUser.role,
+          });
+
+        if (roleError) throw roleError;
+      }
+
+      toast({ title: 'موفق', description: 'کاربر با موفقیت ایجاد شد' });
+      setNewUser({ email: '', password: '', first_name: '', last_name: '', role: 'editor' });
+      fetchUsers();
+    } catch (error: any) {
+      let message = 'خطا در ایجاد کاربر';
+      if (error.message?.includes('already registered')) {
+        message = 'این ایمیل قبلا ثبت شده است';
+      }
+      toast({ title: 'خطا', description: message, variant: 'destructive' });
+    } finally {
+      setCreatingUser(false);
+    }
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    if (userId === user?.id) {
+      toast({ title: 'خطا', description: 'نمی‌توانید خودتان را حذف کنید', variant: 'destructive' });
+      return;
+    }
+
+    if (deleteConfirm !== userId) {
+      setDeleteConfirm(userId);
+      return;
+    }
+
+    const { error } = await supabase.from('user_roles').delete().eq('user_id', userId);
+
+    if (error) {
+      toast({ title: 'خطا', description: 'خطا در حذف نقش کاربر', variant: 'destructive' });
+      return;
+    }
+
+    toast({ title: 'موفق', description: 'نقش کاربر با موفقیت حذف شد' });
+    setDeleteConfirm(null);
+    fetchUsers();
+  };
+
+  const handleAddSetting = async () => {
+    setErrors({});
+    
+    try {
+      settingSchema.parse(newSetting);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[`setting_${err.path[0]}`] = err.message;
+          }
+        });
+        setErrors(newErrors);
+        return;
+      }
+    }
+
+    const { error } = await supabase.from('site_settings').insert({
+      key: newSetting.key.trim(),
+      value: newSetting.value.trim(),
+      category: newSetting.category,
+    });
+
+    if (error) {
+      toast({ title: 'خطا', description: 'خطا در افزودن تنظیم', variant: 'destructive' });
+      return;
+    }
+
+    toast({ title: 'موفق', description: 'تنظیم با موفقیت اضافه شد' });
+    setNewSetting({ key: '', value: '', category: 'general' });
+    fetchSiteSettings();
+  };
+
+  const handleUpdateSetting = async () => {
+    if (!editingSetting) return;
+
+    const { error } = await supabase
+      .from('site_settings')
+      .update({
+        key: editingSetting.key.trim(),
+        value: editingSetting.value.trim(),
+        category: editingSetting.category,
+      })
+      .eq('id', editingSetting.id);
+
+    if (error) {
+      toast({ title: 'خطا', description: 'خطا در ویرایش تنظیم', variant: 'destructive' });
+      return;
+    }
+
+    toast({ title: 'موفق', description: 'تنظیم با موفقیت ویرایش شد' });
+    setEditingSetting(null);
+    fetchSiteSettings();
+  };
+
+  const handleDeleteSetting = async (id: string) => {
+    if (deleteConfirm !== id) {
+      setDeleteConfirm(id);
+      return;
+    }
+
+    const { error } = await supabase.from('site_settings').delete().eq('id', id);
+
+    if (error) {
+      toast({ title: 'خطا', description: 'خطا در حذف تنظیم', variant: 'destructive' });
+      return;
+    }
+
+    toast({ title: 'موفق', description: 'تنظیم با موفقیت حذف شد' });
+    setDeleteConfirm(null);
+    fetchSiteSettings();
   };
 
   const filteredContents = pageContents.filter(c => c.page === selectedPage);
@@ -543,8 +741,8 @@ const AdminDashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="products" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="products" className="flex items-center gap-2">
               <Package className="w-4 h-4" />
               <span className="hidden sm:inline">محصولات</span>
@@ -552,6 +750,10 @@ const AdminDashboard = () => {
             <TabsTrigger value="content" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
               <span className="hidden sm:inline">محتوا</span>
+            </TabsTrigger>
+            <TabsTrigger value="users" className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              <span className="hidden sm:inline">کاربران</span>
             </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="w-4 h-4" />
@@ -592,7 +794,6 @@ const AdminDashboard = () => {
                       dir="ltr"
                       maxLength={200}
                     />
-                    {errors.name_en && <p className="text-destructive text-xs mt-1">{errors.name_en}</p>}
                   </div>
                   <div>
                     <Label>تصویر محصول *</Label>
@@ -618,11 +819,7 @@ const AdminDashboard = () => {
                         onClick={() => fileInputRef.current?.click()}
                         disabled={uploading}
                       >
-                        {uploading ? (
-                          <span className="animate-spin">⏳</span>
-                        ) : (
-                          <Upload className="w-4 h-4" />
-                        )}
+                        {uploading ? '⏳' : <Upload className="w-4 h-4" />}
                       </Button>
                     </div>
                     {errors.image_url && <p className="text-destructive text-xs mt-1">{errors.image_url}</p>}
@@ -654,7 +851,6 @@ const AdminDashboard = () => {
                       placeholder="موبایل"
                       maxLength={100}
                     />
-                    {errors.category && <p className="text-destructive text-xs mt-1">{errors.category}</p>}
                   </div>
                   <div>
                     <Label>برند</Label>
@@ -665,7 +861,6 @@ const AdminDashboard = () => {
                       dir="ltr"
                       maxLength={100}
                     />
-                    {errors.brand && <p className="text-destructive text-xs mt-1">{errors.brand}</p>}
                   </div>
                 </div>
                 <Button onClick={handleAddProduct} className="mt-4 btn-gold" disabled={uploading}>
@@ -716,9 +911,7 @@ const AdminDashboard = () => {
                                 <Label className="text-xs">نام فارسی</Label>
                                 <Input
                                   value={editingProduct.name_fa}
-                                  onChange={(e) =>
-                                    setEditingProduct({ ...editingProduct, name_fa: e.target.value })
-                                  }
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, name_fa: e.target.value })}
                                   maxLength={200}
                                 />
                               </div>
@@ -726,9 +919,7 @@ const AdminDashboard = () => {
                                 <Label className="text-xs">نام انگلیسی</Label>
                                 <Input
                                   value={editingProduct.name_en || ''}
-                                  onChange={(e) =>
-                                    setEditingProduct({ ...editingProduct, name_en: e.target.value })
-                                  }
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, name_en: e.target.value })}
                                   dir="ltr"
                                   maxLength={200}
                                 />
@@ -737,9 +928,7 @@ const AdminDashboard = () => {
                                 <Label className="text-xs">برند</Label>
                                 <Input
                                   value={editingProduct.brand}
-                                  onChange={(e) =>
-                                    setEditingProduct({ ...editingProduct, brand: e.target.value })
-                                  }
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, brand: e.target.value })}
                                   dir="ltr"
                                   maxLength={100}
                                 />
@@ -748,9 +937,7 @@ const AdminDashboard = () => {
                                 <Label className="text-xs">دسته‌بندی</Label>
                                 <Input
                                   value={editingProduct.category}
-                                  onChange={(e) =>
-                                    setEditingProduct({ ...editingProduct, category: e.target.value })
-                                  }
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
                                   maxLength={100}
                                 />
                               </div>
@@ -758,9 +945,7 @@ const AdminDashboard = () => {
                                 <Label className="text-xs">لینک</Label>
                                 <Input
                                   value={editingProduct.link}
-                                  onChange={(e) =>
-                                    setEditingProduct({ ...editingProduct, link: e.target.value })
-                                  }
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, link: e.target.value })}
                                   dir="ltr"
                                   maxLength={1000}
                                 />
@@ -768,9 +953,7 @@ const AdminDashboard = () => {
                               <div className="flex items-center gap-2 pt-5">
                                 <Switch
                                   checked={editingProduct.is_active}
-                                  onCheckedChange={(checked) =>
-                                    setEditingProduct({ ...editingProduct, is_active: checked })
-                                  }
+                                  onCheckedChange={(checked) => setEditingProduct({ ...editingProduct, is_active: checked })}
                                 />
                                 <Label className="text-xs">فعال</Label>
                               </div>
@@ -781,14 +964,7 @@ const AdminDashboard = () => {
                               <Save className="w-4 h-4 ml-1" />
                               ذخیره
                             </Button>
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => {
-                                setEditingProduct(null);
-                                setErrors({});
-                              }}
-                            >
+                            <Button size="sm" variant="ghost" onClick={() => { setEditingProduct(null); setErrors({}); }}>
                               <X className="w-4 h-4 ml-1" />
                               انصراف
                             </Button>
@@ -806,24 +982,13 @@ const AdminDashboard = () => {
                             <div className="flex items-center gap-2">
                               <p className="font-medium">{product.name_fa}</p>
                               {!product.is_active && (
-                                <span className="text-xs bg-destructive/20 text-destructive px-2 py-0.5 rounded">
-                                  غیرفعال
-                                </span>
+                                <span className="text-xs bg-destructive/20 text-destructive px-2 py-0.5 rounded">غیرفعال</span>
                               )}
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {product.brand} - {product.category}
-                            </p>
+                            <p className="text-sm text-muted-foreground">{product.brand} - {product.category}</p>
                           </div>
                           <div className="flex gap-2">
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => {
-                                setEditingProduct(product);
-                                setDeleteConfirm(null);
-                              }}
-                            >
+                            <Button size="sm" variant="ghost" onClick={() => { setEditingProduct(product); setDeleteConfirm(null); }}>
                               <Edit className="w-4 h-4" />
                             </Button>
                             <Button
@@ -832,18 +997,10 @@ const AdminDashboard = () => {
                               className={deleteConfirm !== product.id ? 'text-destructive hover:text-destructive' : ''}
                               onClick={() => handleDeleteProduct(product.id)}
                             >
-                              {deleteConfirm === product.id ? (
-                                <span className="text-xs">تایید حذف</span>
-                              ) : (
-                                <Trash2 className="w-4 h-4" />
-                              )}
+                              {deleteConfirm === product.id ? <span className="text-xs">تایید حذف</span> : <Trash2 className="w-4 h-4" />}
                             </Button>
                             {deleteConfirm === product.id && (
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                onClick={() => setDeleteConfirm(null)}
-                              >
+                              <Button size="sm" variant="ghost" onClick={() => setDeleteConfirm(null)}>
                                 <X className="w-4 h-4" />
                               </Button>
                             )}
@@ -854,9 +1011,7 @@ const AdminDashboard = () => {
                   ))}
 
                   {products.length === 0 && (
-                    <p className="text-center text-muted-foreground py-8">
-                      هیچ محصولی وجود ندارد
-                    </p>
+                    <p className="text-center text-muted-foreground py-8">هیچ محصولی وجود ندارد</p>
                   )}
                 </div>
               </div>
@@ -902,26 +1057,15 @@ const AdminDashboard = () => {
                 ) : (
                   <div className="space-y-6">
                     {filteredContents.map((content) => (
-                      <div
-                        key={content.id}
-                        className="p-4 rounded-lg border border-border bg-secondary/20"
-                      >
+                      <div key={content.id} className="p-4 rounded-lg border border-border bg-secondary/20">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
                             {getContentIcon(content.content_key)}
-                            <Label className="font-medium">
-                              {getContentLabel(content.content_key)}
-                            </Label>
-                            <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">
-                              {content.section}
-                            </span>
+                            <Label className="font-medium">{getContentLabel(content.content_key)}</Label>
+                            <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">{content.section}</span>
                           </div>
                           {editingContent?.id !== content.id && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => setEditingContent(content)}
-                            >
+                            <Button size="sm" variant="ghost" onClick={() => setEditingContent(content)}>
                               <Edit className="w-4 h-4" />
                             </Button>
                           )}
@@ -929,74 +1073,166 @@ const AdminDashboard = () => {
                         
                         {editingContent?.id === content.id ? (
                           <div className="space-y-3">
-                            {content.content_type === 'text' || !content.content_type ? (
-                              content.content_value.length > 100 ? (
-                                <Textarea
-                                  value={editingContent.content_value}
-                                  onChange={(e) =>
-                                    setEditingContent({
-                                      ...editingContent,
-                                      content_value: e.target.value,
-                                    })
-                                  }
-                                  rows={4}
-                                  className="resize-none"
-                                  maxLength={10000}
-                                />
-                              ) : (
-                                <Input
-                                  value={editingContent.content_value}
-                                  onChange={(e) =>
-                                    setEditingContent({
-                                      ...editingContent,
-                                      content_value: e.target.value,
-                                    })
-                                  }
-                                  maxLength={10000}
-                                />
-                              )
+                            {content.content_value.length > 100 ? (
+                              <Textarea
+                                value={editingContent.content_value}
+                                onChange={(e) => setEditingContent({ ...editingContent, content_value: e.target.value })}
+                                rows={4}
+                                className="resize-none"
+                                maxLength={10000}
+                              />
                             ) : (
                               <Input
                                 value={editingContent.content_value}
-                                onChange={(e) =>
-                                  setEditingContent({
-                                    ...editingContent,
-                                    content_value: e.target.value,
-                                  })
-                                }
-                                dir="ltr"
+                                onChange={(e) => setEditingContent({ ...editingContent, content_value: e.target.value })}
                                 maxLength={10000}
                               />
                             )}
                             <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                onClick={() => handleUpdateContent(editingContent)}
-                                disabled={savingContent}
-                                className="btn-gold"
-                              >
+                              <Button size="sm" onClick={() => handleUpdateContent(editingContent)} disabled={savingContent} className="btn-gold">
                                 <Save className="w-4 h-4 ml-1" />
                                 {savingContent ? 'در حال ذخیره...' : 'ذخیره'}
                               </Button>
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                onClick={() => setEditingContent(null)}
-                              >
+                              <Button size="sm" variant="ghost" onClick={() => setEditingContent(null)}>
                                 <X className="w-4 h-4 ml-1" />
                                 انصراف
                               </Button>
                             </div>
                           </div>
                         ) : (
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {content.content_value}
-                          </p>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{content.content_value}</p>
                         )}
                       </div>
                     ))}
                   </div>
                 )}
+              </div>
+            </motion.div>
+          </TabsContent>
+
+          {/* Users Tab */}
+          <TabsContent value="users">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-6"
+            >
+              {/* Add User Form */}
+              <div className="card-premium p-6">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <UserPlus className="w-5 h-5" />
+                  افزودن کاربر جدید
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div>
+                    <Label>ایمیل *</Label>
+                    <Input
+                      type="email"
+                      value={newUser.email}
+                      onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                      placeholder="email@example.com"
+                      dir="ltr"
+                      maxLength={255}
+                    />
+                    {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
+                  </div>
+                  <div>
+                    <Label>رمز عبور *</Label>
+                    <Input
+                      type="password"
+                      value={newUser.password}
+                      onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                      placeholder="حداقل 6 کاراکتر"
+                      dir="ltr"
+                    />
+                    {errors.password && <p className="text-destructive text-xs mt-1">{errors.password}</p>}
+                  </div>
+                  <div>
+                    <Label>نام *</Label>
+                    <Input
+                      value={newUser.first_name}
+                      onChange={(e) => setNewUser({ ...newUser, first_name: e.target.value })}
+                      placeholder="نام"
+                      maxLength={100}
+                    />
+                    {errors.first_name && <p className="text-destructive text-xs mt-1">{errors.first_name}</p>}
+                  </div>
+                  <div>
+                    <Label>نام خانوادگی</Label>
+                    <Input
+                      value={newUser.last_name}
+                      onChange={(e) => setNewUser({ ...newUser, last_name: e.target.value })}
+                      placeholder="نام خانوادگی"
+                      maxLength={100}
+                    />
+                  </div>
+                  <div>
+                    <Label>نقش *</Label>
+                    <Select value={newUser.role} onValueChange={(value: 'admin' | 'editor') => setNewUser({ ...newUser, role: value })}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="admin">ادمین</SelectItem>
+                        <SelectItem value="editor">ویرایشگر</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Button onClick={handleCreateUser} className="mt-4 btn-gold" disabled={creatingUser}>
+                  <UserPlus className="w-4 h-4 ml-2" />
+                  {creatingUser ? 'در حال ایجاد...' : 'ایجاد کاربر'}
+                </Button>
+              </div>
+
+              {/* Users List */}
+              <div className="card-premium p-6">
+                <h2 className="text-lg font-semibold mb-4">لیست کاربران ({users.length})</h2>
+                <div className="space-y-4">
+                  {users.map((u) => (
+                    <div key={u.id} className="p-4 rounded-lg border border-border bg-secondary/20 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <Users className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">
+                            {u.first_name || u.last_name ? `${u.first_name || ''} ${u.last_name || ''}`.trim() : 'بدون نام'}
+                          </p>
+                          <p className="text-sm text-muted-foreground flex items-center gap-2">
+                            <span className={`px-2 py-0.5 rounded text-xs ${u.role === 'admin' ? 'bg-primary/20 text-primary' : 'bg-muted'}`}>
+                              {u.role === 'admin' ? 'ادمین' : 'ویرایشگر'}
+                            </span>
+                            {u.id === user?.id && <span className="text-xs text-green-600">(شما)</span>}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        {u.id !== user?.id && (
+                          <>
+                            <Button
+                              size="sm"
+                              variant={deleteConfirm === u.id ? 'destructive' : 'ghost'}
+                              className={deleteConfirm !== u.id ? 'text-destructive hover:text-destructive' : ''}
+                              onClick={() => handleDeleteUser(u.id)}
+                            >
+                              {deleteConfirm === u.id ? <span className="text-xs">تایید حذف</span> : <Trash2 className="w-4 h-4" />}
+                            </Button>
+                            {deleteConfirm === u.id && (
+                              <Button size="sm" variant="ghost" onClick={() => setDeleteConfirm(null)}>
+                                <X className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {users.length === 0 && (
+                    <p className="text-center text-muted-foreground py-8">هیچ کاربری وجود ندارد</p>
+                  )}
+                </div>
               </div>
             </motion.div>
           </TabsContent>
@@ -1008,63 +1244,183 @@ const AdminDashboard = () => {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-6"
             >
+              {/* Security Status */}
               <div className="card-premium p-6">
                 <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Settings className="w-5 h-5" />
-                  تنظیمات سایت
+                  <Shield className="w-5 h-5" />
+                  وضعیت امنیتی
                 </h2>
-                <div className="grid gap-6">
-                  <div className="p-4 rounded-lg border border-border bg-secondary/20">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-primary" />
-                      وضعیت امنیتی
-                    </h3>
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <p className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        احراز هویت سمت سرور فعال
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        RLS روی جداول فعال
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        اعتبارسنجی ورودی‌ها فعال
-                      </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 rounded-lg border border-green-500/30 bg-green-500/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Check className="w-5 h-5 text-green-500" />
+                      <span className="font-medium">احراز هویت سمت سرور</span>
                     </div>
+                    <p className="text-sm text-muted-foreground">فعال</p>
                   </div>
-
-                  <div className="p-4 rounded-lg border border-border bg-secondary/20">
-                    <h3 className="font-medium mb-2">اطلاعات تماس</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      اطلاعات تماس سایت را از بخش محتوا و صفحه تماس با ما ویرایش کنید.
-                    </p>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setSelectedPage('contact');
-                        const contentTab = document.querySelector('[data-value="content"]');
-                        if (contentTab instanceof HTMLElement) {
-                          contentTab.click();
-                        }
-                      }}
-                    >
-                      رفتن به ویرایش محتوا
-                    </Button>
-                  </div>
-
-                  <div className="p-4 rounded-lg border border-border bg-secondary/20">
-                    <h3 className="font-medium mb-2">مدیریت کاربران</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      برای افزودن ادمین جدید، باید از طریق پایگاه داده اقدام کنید.
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">ادمین فعلی: {user?.email}</span>
+                  <div className="p-4 rounded-lg border border-green-500/30 bg-green-500/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Check className="w-5 h-5 text-green-500" />
+                      <span className="font-medium">RLS روی جداول</span>
                     </div>
+                    <p className="text-sm text-muted-foreground">فعال</p>
+                  </div>
+                  <div className="p-4 rounded-lg border border-green-500/30 bg-green-500/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Check className="w-5 h-5 text-green-500" />
+                      <span className="font-medium">اعتبارسنجی ورودی‌ها</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">فعال</p>
                   </div>
                 </div>
+              </div>
+
+              {/* Add Setting Form */}
+              <div className="card-premium p-6">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <Plus className="w-5 h-5" />
+                  افزودن تنظیم جدید
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <Label>کلید *</Label>
+                    <Input
+                      value={newSetting.key}
+                      onChange={(e) => setNewSetting({ ...newSetting, key: e.target.value })}
+                      placeholder="مثال: phone_main"
+                      dir="ltr"
+                      maxLength={100}
+                    />
+                    {errors.setting_key && <p className="text-destructive text-xs mt-1">{errors.setting_key}</p>}
+                  </div>
+                  <div>
+                    <Label>مقدار *</Label>
+                    <Input
+                      value={newSetting.value}
+                      onChange={(e) => setNewSetting({ ...newSetting, value: e.target.value })}
+                      placeholder="مقدار تنظیم"
+                      maxLength={1000}
+                    />
+                    {errors.setting_value && <p className="text-destructive text-xs mt-1">{errors.setting_value}</p>}
+                  </div>
+                  <div>
+                    <Label>دسته‌بندی</Label>
+                    <Select value={newSetting.category} onValueChange={(value) => setNewSetting({ ...newSetting, category: value })}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {settingCategories.map((cat) => (
+                          <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Button onClick={handleAddSetting} className="mt-4 btn-gold">
+                  <Plus className="w-4 h-4 ml-2" />
+                  افزودن
+                </Button>
+              </div>
+
+              {/* Settings List */}
+              <div className="card-premium p-6">
+                <h2 className="text-lg font-semibold mb-4">تنظیمات سایت ({siteSettings.length})</h2>
+                
+                {settingCategories.map((category) => {
+                  const categorySettings = siteSettings.filter(s => s.category === category.id);
+                  if (categorySettings.length === 0) return null;
+                  
+                  return (
+                    <div key={category.id} className="mb-6">
+                      <h3 className="text-md font-medium mb-3 flex items-center gap-2 text-muted-foreground">
+                        <category.icon className="w-4 h-4" />
+                        {category.name}
+                      </h3>
+                      <div className="space-y-3">
+                        {categorySettings.map((setting) => (
+                          <div key={setting.id} className="p-4 rounded-lg border border-border bg-secondary/20">
+                            {editingSetting?.id === setting.id ? (
+                              <div className="space-y-3">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                  <div>
+                                    <Label className="text-xs">کلید</Label>
+                                    <Input
+                                      value={editingSetting.key}
+                                      onChange={(e) => setEditingSetting({ ...editingSetting, key: e.target.value })}
+                                      dir="ltr"
+                                      maxLength={100}
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label className="text-xs">مقدار</Label>
+                                    <Input
+                                      value={editingSetting.value}
+                                      onChange={(e) => setEditingSetting({ ...editingSetting, value: e.target.value })}
+                                      maxLength={1000}
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label className="text-xs">دسته‌بندی</Label>
+                                    <Select value={editingSetting.category} onValueChange={(value) => setEditingSetting({ ...editingSetting, category: value })}>
+                                      <SelectTrigger>
+                                        <SelectValue />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        {settingCategories.map((cat) => (
+                                          <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                </div>
+                                <div className="flex gap-2">
+                                  <Button size="sm" onClick={handleUpdateSetting} className="btn-gold">
+                                    <Save className="w-4 h-4 ml-1" />
+                                    ذخیره
+                                  </Button>
+                                  <Button size="sm" variant="ghost" onClick={() => setEditingSetting(null)}>
+                                    <X className="w-4 h-4 ml-1" />
+                                    انصراف
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="font-medium text-sm" dir="ltr">{setting.key}</p>
+                                  <p className="text-muted-foreground">{setting.value}</p>
+                                </div>
+                                <div className="flex gap-2">
+                                  <Button size="sm" variant="ghost" onClick={() => { setEditingSetting(setting); setDeleteConfirm(null); }}>
+                                    <Edit className="w-4 h-4" />
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant={deleteConfirm === setting.id ? 'destructive' : 'ghost'}
+                                    className={deleteConfirm !== setting.id ? 'text-destructive hover:text-destructive' : ''}
+                                    onClick={() => handleDeleteSetting(setting.id)}
+                                  >
+                                    {deleteConfirm === setting.id ? <span className="text-xs">تایید</span> : <Trash2 className="w-4 h-4" />}
+                                  </Button>
+                                  {deleteConfirm === setting.id && (
+                                    <Button size="sm" variant="ghost" onClick={() => setDeleteConfirm(null)}>
+                                      <X className="w-4 h-4" />
+                                    </Button>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {siteSettings.length === 0 && (
+                  <p className="text-center text-muted-foreground py-8">هیچ تنظیمی وجود ندارد</p>
+                )}
               </div>
             </motion.div>
           </TabsContent>
