@@ -8,11 +8,13 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const contactInfo = [
   {
     icon: Phone,
     title: 'تلفن دفتر مرکزی',
+    contentKey: 'phone-office',
     phones: [
       { number: '021-88321030', href: 'tel:02188321030' },
       { number: '021-88321032', href: 'tel:02188321032' },
@@ -21,6 +23,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'تلفن پشتیبانی',
+    contentKey: 'phone-support',
     phones: [
       { number: '021-58798', href: 'tel:02158798' },
       { number: '021-88329274 داخلی 4', href: 'tel:02188329274' },
@@ -29,6 +32,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'ایمیل',
+    contentKey: 'email',
     phones: [
       { number: 'info@armanhamrah.com', href: 'mailto:info@armanhamrah.com' },
       { number: 'export@armanhamrah.com', href: 'mailto:export@armanhamrah.com' },
@@ -37,6 +41,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: 'ساعات کاری',
+    contentKey: 'hours',
     phones: [
       { number: 'شنبه تا چهارشنبه: 9 صبح تا 17', href: '#' },
       { number: 'پنجشنبه: 9 صبح تا 14', href: '#' },
@@ -66,7 +71,7 @@ const ContactPage = () => {
             title="تماس با ما | آرمان همراه ارتباطات آریا"
             description="راه‌های ارتباط با شرکت آرمان همراه ارتباطات آریا - تلفن، ایمیل، آدرس و شبکه‌های اجتماعی"
           />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -82,10 +87,23 @@ const ContactPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      تماس با ما
+                      <EditableText
+                        contentKey="contact-title"
+                        page="contact"
+                        section="hero"
+                        defaultValue="تماس با ما"
+                        as="span"
+                      />
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      ما آماده پاسخگویی به سوالات شما هستیم. از هر طریقی که راحت‌تر هستید با ما در ارتباط باشید.
+                      <EditableText
+                        contentKey="contact-description"
+                        page="contact"
+                        section="hero"
+                        defaultValue="ما آماده پاسخگویی به سوالات شما هستیم. از هر طریقی که راحت‌تر هستید با ما در ارتباط باشید."
+                        as="span"
+                        multiline
+                      />
                     </p>
                   </motion.div>
                 </div>

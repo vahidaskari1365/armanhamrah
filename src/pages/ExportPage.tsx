@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const features = [
   {
@@ -161,7 +162,7 @@ const ExportPage = () => {
             title="صادرات | Arman Export - Best Solution for importing goods from IRAN"
             description="خدمات صادرات محصولات به کشورهای منطقه - آهن و فولاد، مفتول مسی، قیر، روغن و نخ"
           />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -177,13 +178,32 @@ const ExportPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      Arman Export
+                      <EditableText
+                        contentKey="export-title"
+                        page="export"
+                        section="hero"
+                        defaultValue="Arman Export"
+                        as="span"
+                      />
                     </h1>
                     <p className="text-xl text-primary font-medium mb-4" dir="ltr">
-                      Best Solution for importing goods from IRAN
+                      <EditableText
+                        contentKey="export-subtitle"
+                        page="export"
+                        section="hero"
+                        defaultValue="Best Solution for importing goods from IRAN"
+                        as="span"
+                      />
                     </p>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      با بیش از ۹ سال تجربه، شرکت آرمان در واردات و صادرات کالاهای اساسی و تخصصی در بخش‌های مختلف از جمله فناوری اطلاعات، مواد غذایی، پوشاک، نفت، فلزات و مصالح ساختمانی فعالیت موفقی داشته است.
+                      <EditableText
+                        contentKey="export-description"
+                        page="export"
+                        section="hero"
+                        defaultValue="با بیش از ۹ سال تجربه، شرکت آرمان در واردات و صادرات کالاهای اساسی و تخصصی در بخش‌های مختلف از جمله فناوری اطلاعات، مواد غذایی، پوشاک، نفت، فلزات و مصالح ساختمانی فعالیت موفقی داشته است."
+                        as="span"
+                        multiline
+                      />
                     </p>
                   </motion.div>
                 </div>
