@@ -1,20 +1,35 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAdmin } from '@/contexts/AdminContext';
 import { ArrowDown } from 'lucide-react';
 import heroBg from '@/assets/hero-phones.jpg';
+import EditableText from '@/components/admin/EditableText';
+import EditableImage from '@/components/admin/EditableImage';
 
 const Hero = () => {
   const { t, language } = useLanguage();
+  const { isEditMode } = useAdmin();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="Hero Background"
-          className="w-full h-full object-cover object-center"
-        />
+        {isEditMode ? (
+          <EditableImage
+            contentKey="hero-background"
+            page="home"
+            section="hero"
+            defaultSrc={heroBg}
+            alt="Hero Background"
+            className="w-full h-full object-cover object-center"
+          />
+        ) : (
+          <img
+            src={heroBg}
+            alt="Hero Background"
+            className="w-full h-full object-cover object-center"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
       </div>
 
@@ -57,21 +72,42 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-              <span className="text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">{t('hero.title')}</span>
+              <EditableText
+                contentKey="hero-title"
+                page="home"
+                section="hero"
+                defaultValue={t('hero.title')}
+                as="span"
+                className="text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+              />
             </h1>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-orange-400 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-8">
-              {t('hero.subtitle')}
+              <EditableText
+                contentKey="hero-subtitle"
+                page="home"
+                section="hero"
+                defaultValue={t('hero.subtitle')}
+                as="span"
+                className="text-orange-400"
+              />
             </h2>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg md:text-xl text-gray-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            {t('hero.description')}
-          </motion.p>
+            <EditableText
+              contentKey="hero-description"
+              page="home"
+              section="hero"
+              defaultValue={t('hero.description')}
+              as="p"
+              multiline
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

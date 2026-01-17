@@ -249,6 +249,21 @@
   .page-background .bg-gradient-premium {
     background: transparent !important;
   }
+
+  /* Admin toolbar offset */
+  .admin-toolbar-offset {
+    padding-top: 0;
+    transition: padding-top 0.3s ease;
+  }
+}
+
+/* Admin toolbar offset when present */
+body.has-admin-toolbar .admin-toolbar-offset {
+  padding-top: 48px;
+}
+
+body.has-admin-toolbar .fixed.top-0:not([class*="z-[100]"]) {
+  top: 48px;
 }
 
 @layer components {

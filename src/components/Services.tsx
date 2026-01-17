@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Shield, Store, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import EditableText from '@/components/admin/EditableText';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -11,6 +12,7 @@ const Services = () => {
       icon: Shield,
       titleKey: 'services.warranty.title',
       descKey: 'services.warranty.desc',
+      contentKey: 'warranty',
       link: '/warranty',
       gradient: 'from-amber-500 to-orange-600',
       isInternal: true,
@@ -19,6 +21,7 @@ const Services = () => {
       icon: Store,
       titleKey: 'services.representatives.title',
       descKey: 'services.representatives.desc',
+      contentKey: 'representatives',
       link: '/representatives',
       gradient: 'from-amber-400 to-yellow-500',
       isInternal: true,
@@ -27,6 +30,7 @@ const Services = () => {
       icon: ShoppingBag,
       titleKey: 'services.shop.title',
       descKey: 'services.shop.desc',
+      contentKey: 'shop',
       link: '/products',
       gradient: 'from-orange-500 to-red-500',
       isInternal: true,
@@ -44,7 +48,13 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('services.title')}
+            <EditableText
+              contentKey="services-title"
+              page="home"
+              section="services"
+              defaultValue={t('services.title')}
+              as="span"
+            />
           </h2>
           <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
         </motion.div>
@@ -68,10 +78,23 @@ const Services = () => {
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {t(service.titleKey)}
+                    <EditableText
+                      contentKey={`${service.contentKey}-title`}
+                      page="home"
+                      section="services"
+                      defaultValue={t(service.titleKey)}
+                      as="span"
+                    />
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    {t(service.descKey)}
+                    <EditableText
+                      contentKey={`${service.contentKey}-desc`}
+                      page="home"
+                      section="services"
+                      defaultValue={t(service.descKey)}
+                      as="span"
+                      multiline
+                    />
                   </p>
                 </Link>
               ) : (
@@ -85,10 +108,23 @@ const Services = () => {
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {t(service.titleKey)}
+                    <EditableText
+                      contentKey={`${service.contentKey}-title`}
+                      page="home"
+                      section="services"
+                      defaultValue={t(service.titleKey)}
+                      as="span"
+                    />
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    {t(service.descKey)}
+                    <EditableText
+                      contentKey={`${service.contentKey}-desc`}
+                      page="home"
+                      section="services"
+                      defaultValue={t(service.descKey)}
+                      as="span"
+                      multiline
+                    />
                   </p>
                 </a>
               )}
