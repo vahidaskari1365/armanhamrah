@@ -20,7 +20,7 @@ const Index = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
             <Navbar />
             <main>
               <Hero />

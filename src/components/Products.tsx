@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import EditableText from '@/components/admin/EditableText';
 
 const products = [
   {
@@ -43,7 +44,13 @@ const Products = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('products.title')}
+            <EditableText
+              contentKey="products-title"
+              page="home"
+              section="products"
+              defaultValue={t('products.title')}
+              as="span"
+            />
           </h2>
           <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
         </motion.div>

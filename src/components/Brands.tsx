@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
+import EditableText from '@/components/admin/EditableText';
 
 const brands = [
   { name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp', filter: 'Apple' },
@@ -24,7 +25,13 @@ const Brands = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('brands.title')}
+            <EditableText
+              contentKey="brands-title"
+              page="home"
+              section="brands"
+              defaultValue={t('brands.title')}
+              as="span"
+            />
           </h2>
           <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
         </motion.div>

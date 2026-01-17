@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AdminProvider } from "@/contexts/AdminContext";
+import AdminToolbar from "@/components/admin/AdminToolbar";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProductsPage from "./pages/ProductsPage";
@@ -21,24 +23,27 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/export" element={<ExportPage />} />
-          <Route path="/warranty" element={<WarrantyPage />} />
-          <Route path="/representatives" element={<RepresentativesPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/admin/auth" element={<AdminAuth />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AdminProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AdminToolbar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/export" element={<ExportPage />} />
+            <Route path="/warranty" element={<WarrantyPage />} />
+            <Route path="/representatives" element={<RepresentativesPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/admin/auth" element={<AdminAuth />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AdminProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
