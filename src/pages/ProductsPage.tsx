@@ -10,6 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
 import radicalLogo from '@/assets/radical-logo.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const products = [
   // Apple Products
@@ -133,7 +134,7 @@ const ProductsPageContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-background relative admin-toolbar-offset" dir={language === 'fa' ? 'rtl' : 'ltr'}>
       {/* Background Logo */}
       <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
         <img 
@@ -157,13 +158,26 @@ const ProductsPageContent = () => {
                 {language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Back to Home'}
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                {language === 'fa' ? 'محصولات' : 'Products'}
+                <EditableText
+                  contentKey="products-page-title"
+                  page="products"
+                  section="hero"
+                  defaultValue={language === 'fa' ? 'محصولات' : 'Products'}
+                  as="span"
+                />
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                {language === 'fa' 
-                  ? 'تمامی محصولات با گارانتی معتبر آرمان همراه ارتباطات آریا عرضه می‌شوند'
-                  : 'All products come with valid Arman Hamrah warranty'
-                }
+                <EditableText
+                  contentKey="products-page-description"
+                  page="products"
+                  section="hero"
+                  defaultValue={language === 'fa' 
+                    ? 'تمامی محصولات با گارانتی معتبر آرمان همراه ارتباطات آریا عرضه می‌شوند'
+                    : 'All products come with valid Arman Hamrah warranty'
+                  }
+                  as="span"
+                  multiline
+                />
               </p>
             </motion.div>
           </div>

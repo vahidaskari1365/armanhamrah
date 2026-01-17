@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const blogPosts = [
   {
@@ -68,7 +69,7 @@ const BlogPage = () => {
             title="بلاگ و آموزش | آرمان همراه ارتباطات آریا"
             description="آخرین مقالات و آموزش‌های تکنولوژی، راهنمای خرید و اخبار محصولات"
           />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -84,10 +85,23 @@ const BlogPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      بلاگ و آموزش
+                      <EditableText
+                        contentKey="blog-title"
+                        page="blog"
+                        section="hero"
+                        defaultValue="بلاگ و آموزش"
+                        as="span"
+                      />
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      آخرین مقالات، اخبار تکنولوژی و راهنمای خرید محصولات
+                      <EditableText
+                        contentKey="blog-description"
+                        page="blog"
+                        section="hero"
+                        defaultValue="آخرین مقالات، اخبار تکنولوژی و راهنمای خرید محصولات"
+                        as="span"
+                        multiline
+                      />
                     </p>
                   </motion.div>
                 </div>

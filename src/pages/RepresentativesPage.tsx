@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const representatives = [
   {
@@ -177,7 +178,7 @@ const RepresentativesPage = () => {
             title="نمایندگان | آرمان همراه ارتباطات آریا"
             description="لیست نمایندگان فروش و شرایط همکاری با شرکت آرمان همراه ارتباطات آریا در سراسر ایران"
           />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -193,10 +194,23 @@ const RepresentativesPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      نمایندگان فروش
+                      <EditableText
+                        contentKey="representatives-title"
+                        page="representatives"
+                        section="hero"
+                        defaultValue="نمایندگان فروش"
+                        as="span"
+                      />
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      شبکه گسترده نمایندگان آرمان همراه در سراسر ایران آماده خدمت‌رسانی به شما عزیزان است
+                      <EditableText
+                        contentKey="representatives-description"
+                        page="representatives"
+                        section="hero"
+                        defaultValue="شبکه گسترده نمایندگان آرمان همراه در سراسر ایران آماده خدمت‌رسانی به شما عزیزان است"
+                        as="span"
+                        multiline
+                      />
                     </p>
                   </motion.div>
                 </div>

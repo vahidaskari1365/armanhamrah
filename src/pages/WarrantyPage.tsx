@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const warrantyConditions = [
   'رعایت شرایط استفاده از محصول طبق دفترچه راهنما',
@@ -36,21 +37,25 @@ const benefits = [
     icon: Shield,
     title: 'گارانتی ۱۸ ماهه',
     description: 'پوشش گارانتی کامل برای ۱۸ ماه از تاریخ خرید',
+    contentKey: 'benefit-warranty',
   },
   {
     icon: Headphones,
     title: 'پشتیبانی ۲۴/۷',
     description: 'پشتیبانی آنلاین و تلفنی در تمام ساعات',
+    contentKey: 'benefit-support',
   },
   {
     icon: Clock,
     title: 'تعمیر سریع',
     description: 'تعمیر و تحویل دستگاه در کوتاه‌ترین زمان',
+    contentKey: 'benefit-repair',
   },
   {
     icon: FileText,
     title: 'پیگیری آنلاین',
     description: 'امکان پیگیری وضعیت گارانتی از طریق آرمان من',
+    contentKey: 'benefit-tracking',
   },
 ];
 
@@ -59,21 +64,25 @@ const services = [
     icon: Smartphone,
     title: 'تعمیر تخصصی',
     description: 'تعمیر تخصصی انواع گوشی‌های هوشمند توسط کارشناسان مجرب',
+    contentKey: 'service-repair',
   },
   {
     icon: Award,
     title: 'قطعات اصلی',
     description: 'استفاده از قطعات اصلی و با کیفیت در تمامی تعمیرات',
+    contentKey: 'service-parts',
   },
   {
     icon: Wrench,
     title: 'خدمات متنوع',
     description: 'ارائه خدمات نرم‌افزاری، سخت‌افزاری و تعویض قطعات',
+    contentKey: 'service-variety',
   },
   {
     icon: Users,
     title: 'تیم متخصص',
     description: 'تیمی از متخصصین با تجربه در حوزه تعمیرات موبایل',
+    contentKey: 'service-team',
   },
 ];
 
@@ -94,7 +103,7 @@ const WarrantyPage = () => {
             title="گارانتی آرمان همراه | شرایط گارانتی ۱۸ ماهه"
             description="شرایط گارانتی ۱۸ ماهه آرمان همراه ارتباطات آریا برای محصولات اپل، سامسونگ، شیائومی و سونی"
           />
-          <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
+          <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
             <Navbar />
             <main className="pt-24">
               {/* Hero */}
@@ -110,10 +119,23 @@ const WarrantyPage = () => {
                       بازگشت به صفحه اصلی
                     </Link>
                     <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                      هوشمندترین گارانتی و خدمات پس از فروش در ایران
+                      <EditableText
+                        contentKey="warranty-title"
+                        page="warranty"
+                        section="hero"
+                        defaultValue="هوشمندترین گارانتی و خدمات پس از فروش در ایران"
+                        as="span"
+                      />
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-2xl">
-                      شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان
+                      <EditableText
+                        contentKey="warranty-description"
+                        page="warranty"
+                        section="hero"
+                        defaultValue="شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان"
+                        as="span"
+                        multiline
+                      />
                     </p>
                   </motion.div>
                 </div>
@@ -181,8 +203,24 @@ const WarrantyPage = () => {
                         <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors">
                           <benefit.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
-                        <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                        <h3 className="text-lg font-bold text-foreground mb-2">
+                          <EditableText
+                            contentKey={`${benefit.contentKey}-title`}
+                            page="warranty"
+                            section="benefits"
+                            defaultValue={benefit.title}
+                            as="span"
+                          />
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          <EditableText
+                            contentKey={`${benefit.contentKey}-desc`}
+                            page="warranty"
+                            section="benefits"
+                            defaultValue={benefit.description}
+                            as="span"
+                          />
+                        </p>
                       </motion.div>
                     ))}
                   </div>
@@ -216,8 +254,24 @@ const WarrantyPage = () => {
                         <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-gold">
                           <service.icon size={28} className="text-primary-foreground" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
-                        <p className="text-muted-foreground text-sm">{service.description}</p>
+                        <h3 className="text-lg font-bold text-foreground mb-2">
+                          <EditableText
+                            contentKey={`${service.contentKey}-title`}
+                            page="warranty"
+                            section="services"
+                            defaultValue={service.title}
+                            as="span"
+                          />
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          <EditableText
+                            contentKey={`${service.contentKey}-desc`}
+                            page="warranty"
+                            section="services"
+                            defaultValue={service.description}
+                            as="span"
+                          />
+                        </p>
                       </motion.div>
                     ))}
                   </div>
