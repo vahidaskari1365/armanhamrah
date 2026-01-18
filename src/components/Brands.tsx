@@ -2,17 +2,20 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 import EditableText from '@/components/admin/EditableText';
+import EditableImage from '@/components/admin/EditableImage';
+import { useAdmin } from '@/contexts/AdminContext';
 
-const brands = [
-  { name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp', filter: 'Apple' },
-  { name: 'Samsung', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp', filter: 'Samsung' },
-  { name: 'Xiaomi', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp', filter: 'Xiaomi' },
-  { name: 'Sony', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp', filter: 'Sony' },
-  { name: 'Harman Kardon', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp', filter: 'Harman Kardon' },
+const defaultBrands = [
+  { id: 1, name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp', filter: 'Apple' },
+  { id: 2, name: 'Samsung', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp', filter: 'Samsung' },
+  { id: 3, name: 'Xiaomi', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp', filter: 'Xiaomi' },
+  { id: 4, name: 'Sony', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp', filter: 'Sony' },
+  { id: 5, name: 'Harman Kardon', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp', filter: 'Harman Kardon' },
 ];
 
 const Brands = () => {
   const { t } = useLanguage();
+  const { isEditMode } = useAdmin();
 
   return (
     <section id="brands" className="section-padding bg-gradient-premium">
@@ -37,9 +40,9 @@ const Brands = () => {
         </motion.div>
 
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-          {brands.map((brand, index) => (
+          {defaultBrands.map((brand, index) => (
             <motion.div
-              key={brand.name}
+              key={brand.id}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -50,11 +53,22 @@ const Brands = () => {
                 to={`/products?brand=${encodeURIComponent(brand.filter)}`}
                 className="block grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-pointer"
               >
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="h-12 md:h-16 w-auto object-contain"
-                />
+                {isEditMode ? (
+                  <EditableImage
+                    contentKey={`brand-logo-${brand.id}`}
+                    page="home"
+                    section="brands"
+                    defaultSrc={brand.logo}
+                    alt={brand.name}
+                    className="h-12 md:h-16 w-auto object-contain"
+                  />
+                ) : (
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="h-12 md:h-16 w-auto object-contain"
+                  />
+                )}
               </Link>
             </motion.div>
           ))}

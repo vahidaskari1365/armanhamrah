@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAdmin } from '@/contexts/AdminContext';
 import { Smartphone, ArrowLeft, ArrowRight } from 'lucide-react';
+import EditableText from '@/components/admin/EditableText';
 
 const AppSection = () => {
   const { t, language } = useLanguage();
+  const { isEditMode } = useAdmin();
   const Arrow = language === 'fa' ? ArrowLeft : ArrowRight;
 
   return (
@@ -19,10 +22,21 @@ const AppSection = () => {
             className={language === 'fa' ? 'lg:order-2' : 'lg:order-1'}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              {t('app.title')}
+              <EditableText
+                contentKey="app-title"
+                page="home"
+                section="app"
+                defaultValue={t('app.title')}
+              />
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              {t('app.description')}
+              <EditableText
+                contentKey="app-description"
+                page="home"
+                section="app"
+                defaultValue={t('app.description')}
+                multiline
+              />
             </p>
             <motion.a
               href="https://my.armanhamrah.com/"
@@ -32,7 +46,12 @@ const AppSection = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {t('app.cta')}
+              <EditableText
+                contentKey="app-cta"
+                page="home"
+                section="app"
+                defaultValue={t('app.cta')}
+              />
               <Arrow size={20} />
             </motion.a>
           </motion.div>
