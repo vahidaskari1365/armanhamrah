@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Shield, CheckCircle, AlertTriangle, Info } from 'lucide-react';
+import EditableText from '@/components/admin/EditableText';
 
 const Guarantee = () => {
   const { t, language } = useLanguage();
@@ -82,11 +83,22 @@ const Guarantee = () => {
             <Shield className="w-10 h-10 text-primary-foreground" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('guarantee.title')}
+            <EditableText
+              contentKey="guarantee-title"
+              page="home"
+              section="guarantee"
+              defaultValue={t('guarantee.title')}
+            />
           </h2>
           <div className="w-24 h-1 mx-auto rounded-full bg-primary mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            {t('guarantee.subtitle')}
+            <EditableText
+              contentKey="guarantee-subtitle"
+              page="home"
+              section="guarantee"
+              defaultValue={t('guarantee.subtitle')}
+              multiline
+            />
           </p>
         </motion.div>
 
