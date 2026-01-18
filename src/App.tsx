@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider } from "@/contexts/AdminContext";
 import AdminToolbar from "@/components/admin/AdminToolbar";
+import { usePageTracking } from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProductsPage from "./pages/ProductsPage";
@@ -20,6 +21,12 @@ import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
+// Component to handle page tracking inside BrowserRouter
+const PageTracker = ({ children }: { children: React.ReactNode }) => {
+  usePageTracking();
+  return <>{children}</>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -27,21 +34,23 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AdminToolbar />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/export" element={<ExportPage />} />
-            <Route path="/warranty" element={<WarrantyPage />} />
-            <Route path="/representatives" element={<RepresentativesPage />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/admin/auth" element={<AdminAuth />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <PageTracker>
+            <AdminToolbar />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/export" element={<ExportPage />} />
+              <Route path="/warranty" element={<WarrantyPage />} />
+              <Route path="/representatives" element={<RepresentativesPage />} />
+              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/admin/auth" element={<AdminAuth />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageTracker>
         </BrowserRouter>
       </AdminProvider>
     </TooltipProvider>

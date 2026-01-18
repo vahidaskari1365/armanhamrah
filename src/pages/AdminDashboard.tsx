@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { Package, FileText, Users, Settings, AlertTriangle } from 'lucide-react';
+import { Package, FileText, Users, Settings, AlertTriangle, BarChart3 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 import pageBg from '@/assets/page-bg.jpeg';
 
@@ -13,6 +13,7 @@ import ProductsTab from '@/components/admin/ProductsTab';
 import ContentTab from '@/components/admin/ContentTab';
 import UsersTab from '@/components/admin/UsersTab';
 import SettingsTab from '@/components/admin/SettingsTab';
+import AnalyticsTab from '@/components/admin/AnalyticsTab';
 
 interface Product {
   id: string;
@@ -59,7 +60,7 @@ const AdminDashboard = () => {
   const [pageContents, setPageContents] = useState<PageContent[]>([]);
   const [siteSettings, setSiteSettings] = useState<SiteSetting[]>([]);
   const [users, setUsers] = useState<UserWithRole[]>([]);
-  const [activeTab, setActiveTab] = useState('products');
+  const [activeTab, setActiveTab] = useState('analytics');
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -237,7 +238,11 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsTrigger value="analytics" className="flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" />
+              <span className="hidden sm:inline">آمار</span>
+            </TabsTrigger>
             <TabsTrigger value="products" className="flex items-center gap-2">
               <Package className="w-4 h-4" />
               <span className="hidden sm:inline">محصولات</span>
@@ -255,6 +260,10 @@ const AdminDashboard = () => {
               <span className="hidden sm:inline">تنظیمات</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="analytics">
+            <AnalyticsTab />
+          </TabsContent>
 
           <TabsContent value="products">
             <ProductsTab products={products} onRefresh={fetchProducts} />
