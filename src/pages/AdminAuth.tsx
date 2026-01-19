@@ -22,16 +22,17 @@ const AdminAuth = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (session?.user) {
-          // Check if user has admin role
-          setTimeout(async () => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        // Check if user has admin role
+        setTimeout(() => {
+          void (async () => {
             const { data: roleData } = await supabase
               .from('user_roles')
               .select('role')
@@ -42,13 +43,47 @@ const AdminAuth = () => {
             if (roleData) {
               navigate('/admin');
             }
-          }, 0);
-        }
+          })();
+        }, 0);
       }
-    );
+    });
 
     return () => subscription.unsubscribe();
   }, [navigate]);
+
+  const handleSendReset = async () => {
+    setResetLoading(true);
+    setErrors({});
+
+    try {
+      z.object({
+        email: z.string().trim().email('ایمیل معتبر نیست').max(255, 'ایمیل حداکثر 255 کاراکتر'),
+      }).parse({ email: email.trim() });
+
+      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+        redirectTo: `${window.location.origin}/admin/reset-password`,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: 'ارسال شد',
+        description: 'لینک بازیابی رمز عبور به ایمیل شما ارسال شد',
+      });
+    } catch (error: any) {
+      const message = error?.message?.includes('rate limit')
+        ? 'تعداد درخواست‌ها زیاد است، کمی بعد دوباره تلاش کنید'
+        : 'ارسال لینک بازیابی ناموفق بود';
+
+      toast({
+        title: 'خطا',
+        description: message,
+        variant: 'destructive',
+      });
+    } finally {
+      setResetLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -203,6 +238,15 @@ const AdminAuth = () => {
             >
               {loading ? 'در حال ورود...' : 'ورود'}
             </Button>
+
+            <button
+              type="button"
+              onClick={handleSendReset}
+              disabled={resetLoading || !email.trim()}
+              className="w-full text-xs text-muted-foreground hover:text-primary transition-colors disabled:opacity-50"
+            >
+              {resetLoading ? 'در حال ارسال لینک بازیابی...' : 'فراموشی رمز عبور'}
+            </button>
           </form>
 
           <div className="mt-6 text-center">
