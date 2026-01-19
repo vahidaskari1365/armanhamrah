@@ -40,12 +40,32 @@ const AdminResetPassword = () => {
       setHasSession(!!session?.user);
     });
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Support newer recovery links that use "?code=..." (PKCE)
+    void (async () => {
+      const url = new URL(window.location.href);
+      const code = url.searchParams.get('code');
+
+      if (code) {
+        const { error } = await supabase.auth.exchangeCodeForSession(code);
+        // Remove code from URL to avoid re-exchanging on refresh
+        url.searchParams.delete('code');
+        window.history.replaceState({}, document.title, url.toString());
+
+        if (error) {
+          toast({
+            title: 'خطا',
+            description: 'لینک بازیابی معتبر نیست یا منقضی شده است؛ دوباره درخواست دهید',
+            variant: 'destructive',
+          });
+        }
+      }
+
+      const { data: { session } } = await supabase.auth.getSession();
       setHasSession(!!session?.user);
-    });
+    })();
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [toast]);
 
   const sendResetLink = async () => {
     setLoading(true);
