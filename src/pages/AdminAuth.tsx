@@ -148,11 +148,17 @@ const AdminAuth = () => {
       } else if (error.message?.includes('Email not confirmed')) {
         message = 'ایمیل تایید نشده است';
       }
+
+      const debug = new URLSearchParams(window.location.search).has('debug');
+
       toast({
         title: 'خطا',
-        description: message,
+        description: debug ? `${message} (${error?.message ?? 'unknown'})` : message,
         variant: 'destructive',
       });
+
+      // Helpful for us to debug via console snapshot
+      console.error('Admin login error:', error);
     } finally {
       setLoading(false);
     }
