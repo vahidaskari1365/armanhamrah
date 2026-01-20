@@ -132,13 +132,17 @@ const AdminResetPassword = () => {
           if (err.path[0]) newErrors[err.path[0] as string] = err.message;
         });
         setErrors(newErrors);
-      } else {
-        toast({
-          title: 'خطا',
-          description: 'تغییر رمز عبور ناموفق بود',
-          variant: 'destructive',
-        });
+        return;
       }
+
+      const debug = new URLSearchParams(window.location.search).has('debug');
+      toast({
+        title: 'خطا',
+        description: debug
+          ? `تغییر رمز عبور ناموفق بود: ${error?.message ?? 'unknown'}`
+          : 'تغییر رمز عبور ناموفق بود',
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
