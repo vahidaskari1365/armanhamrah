@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider } from "@/contexts/AdminContext";
 import AdminToolbar from "@/components/admin/AdminToolbar";
+import AdminEditSidebar from "@/components/admin/AdminEditSidebar";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import AuthRecoveryRedirect from "@/components/AuthRecoveryRedirect";
 import Index from "./pages/Index";
@@ -39,6 +40,7 @@ const App = () => (
             <PageTracker>
               <AuthRecoveryRedirect />
               <AdminToolbar />
+              <AdminEditSidebar />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/products" element={<ProductsPage />} />
