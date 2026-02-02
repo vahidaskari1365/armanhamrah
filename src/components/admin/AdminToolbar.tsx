@@ -260,9 +260,12 @@ const AdminToolbar = () => {
               exit={{ height: 0, opacity: 0 }}
               className="bg-orange-500/10 border-t border-orange-500/20 overflow-hidden"
             >
-              <div className="container mx-auto px-4 py-1.5 flex items-center justify-center gap-2 text-xs text-orange-400">
-                <PanelRight className="w-3 h-3" />
-                <span>حالت ویرایش فعال است - روی متن‌ها و تصاویر کلیک کنید تا ویرایش شوند</span>
+              <div className="container mx-auto px-4 py-2 flex items-center justify-center gap-3 text-sm text-orange-400">
+                <div className="flex items-center gap-2 bg-orange-500/20 px-3 py-1 rounded-full">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                  <span className="font-medium">حالت ویرایش فعال</span>
+                </div>
+                <span className="text-orange-300">👆 روی هر متن یا تصویر کلیک کنید تا ویرایش شود</span>
               </div>
             </motion.div>
           )}
