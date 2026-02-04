@@ -21,6 +21,10 @@ import AdminResetPassword from "./pages/AdminResetPassword";
 import AuthPage from "./pages/AuthPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProfilePage from "./pages/ProfilePage";
+import IronSteelPage from "./pages/export/IronSteelPage";
+import CopperRodPage from "./pages/export/CopperRodPage";
+import BitumenPage from "./pages/export/BitumenPage";
+import OilPage from "./pages/export/OilPage";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +51,10 @@ const App = () => (
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/export" element={<ExportPage />} />
+                <Route path="/export/iron-steel" element={<IronSteelPage />} />
+                <Route path="/export/copper-rod" element={<CopperRodPage />} />
+                <Route path="/export/bitumen" element={<BitumenPage />} />
+                <Route path="/export/oil" element={<OilPage />} />
                 <Route path="/warranty" element={<WarrantyPage />} />
                 <Route path="/representatives" element={<RepresentativesPage />} />
                 <Route path="/auth" element={<AuthPage />} />
