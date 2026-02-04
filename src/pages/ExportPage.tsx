@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, MessageCircle, Mail, Phone } from 'lucide-react';
+import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, MessageCircle, Mail, Phone, ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -81,6 +80,7 @@ const countries = [
 const exportProducts = [
   {
     id: 'iron-steel',
+    slug: '/export/iron-steel',
     name: 'آهن و فولاد',
     nameEn: 'Iron and Steel',
     image: 'https://export.armanhamrah.com/uploads/products/iron.webp',
@@ -88,10 +88,10 @@ const exportProducts = [
     categoryEn: 'Metals',
     description: 'The best and highest quality Iron And Steel in the IRAN market.',
     descriptionFa: 'بهترین و با کیفیت‌ترین آهن و فولاد در بازار ایران',
-    hasSpecs: false,
   },
   {
     id: 'copper-rod',
+    slug: '/export/copper-rod',
     name: 'مفتول مسی',
     nameEn: 'Copper Rod',
     image: 'https://export.armanhamrah.com/uploads/products/copper-rod.webp',
@@ -99,17 +99,10 @@ const exportProducts = [
     categoryEn: 'Metals',
     description: 'The best and highest quality Copper Rod in the IRAN market.',
     descriptionFa: 'بهترین و با کیفیت‌ترین مفتول مسی در بازار ایران',
-    hasSpecs: true,
-    specs: [
-      { label: 'Material', value: 'Cu-ETP (C11040)' },
-      { label: 'Cu+Ag', value: '≥ 99.90%' },
-      { label: 'Oxygen', value: '100-650 ppm' },
-      { label: 'Elongation', value: '≥30%' },
-      { label: 'Electrical Conductivity', value: '≥100% IACS' },
-    ],
   },
   {
     id: 'bitumen',
+    slug: '/export/bitumen',
     name: 'قیر',
     nameEn: 'Bitumen',
     image: 'https://export.armanhamrah.com/uploads/products/bitumen.webp',
@@ -117,18 +110,11 @@ const exportProducts = [
     categoryEn: 'Petrochemical',
     description: 'The best and highest quality bitumen in the IRAN market.',
     descriptionFa: 'بهترین و با کیفیت‌ترین قیر در بازار ایران',
-    hasSpecs: true,
     grades: ['60/70', 'VG10', 'VG20', 'VG30', 'VG40'],
-    specs: [
-      { label: 'Penetration @25°C', value: '60-70 (0.1mm)' },
-      { label: 'Softening Point', value: '46-56°C' },
-      { label: 'Ductility @25°C', value: '100 Min cm' },
-      { label: 'Flash Point', value: '250 Min °C' },
-      { label: 'Solubility in CS2', value: '99.0 Min %' },
-    ],
   },
   {
     id: 'oil',
+    slug: '/export/oil',
     name: 'روغن',
     nameEn: 'Oil',
     image: 'https://export.armanhamrah.com/uploads/products/oil.webp',
@@ -136,10 +122,10 @@ const exportProducts = [
     categoryEn: 'Petrochemical',
     description: 'The best and highest quality Oil in the IRAN market.',
     descriptionFa: 'بهترین و با کیفیت‌ترین روغن در بازار ایران',
-    hasSpecs: false,
   },
   {
     id: 'thread',
+    slug: null,
     name: 'نخ',
     nameEn: 'Thread',
     image: 'https://export.armanhamrah.com/uploads/products/thread.webp',
@@ -147,13 +133,10 @@ const exportProducts = [
     categoryEn: 'Textile',
     description: 'The best and highest quality Thread in the IRAN market.',
     descriptionFa: 'بهترین و با کیفیت‌ترین نخ در بازار ایران',
-    hasSpecs: false,
   },
 ];
 
 const ExportPage = () => {
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
-
   return (
     <HelmetProvider>
       <ThemeProvider>
@@ -269,7 +252,7 @@ const ExportPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className="card-premium group cursor-pointer"
-                        onClick={() => setSelectedProduct(selectedProduct === product.id ? null : product.id)}
+                        onClick={() => product.slug && window.location.assign(product.slug)}
                       >
                         <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-6">
                           <motion.img
@@ -285,41 +268,27 @@ const ExportPage = () => {
                         <p className="text-primary mb-3" dir="ltr">{product.nameEn}</p>
                         <p className="text-muted-foreground text-sm mb-4">{product.descriptionFa}</p>
                         
-                        {product.hasSpecs && selectedProduct === product.id && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="border-t border-border pt-4 mt-4"
-                          >
-                            {product.grades && (
-                              <div className="mb-4">
-                                <p className="text-sm font-medium text-foreground mb-2">Available Grades:</p>
-                                <div className="flex flex-wrap gap-2">
-                                  {product.grades.map((grade) => (
-                                    <span key={grade} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                                      {grade}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                            <p className="text-sm font-medium text-foreground mb-2">Specifications:</p>
-                            <div className="space-y-2">
-                              {product.specs?.map((spec, i) => (
-                                <div key={i} className="flex justify-between text-sm">
-                                  <span className="text-muted-foreground">{spec.label}</span>
-                                  <span className="text-foreground font-medium" dir="ltr">{spec.value}</span>
-                                </div>
+                        {product.grades && (
+                          <div className="mb-4">
+                            <div className="flex flex-wrap gap-2">
+                              {product.grades.map((grade) => (
+                                <span key={grade} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                                  {grade}
+                                </span>
                               ))}
                             </div>
-                          </motion.div>
+                          </div>
                         )}
                         
-                        {product.hasSpecs && (
-                          <button className="text-primary text-sm hover:underline mt-2">
-                            {selectedProduct === product.id ? 'بستن جزئیات' : 'مشاهده مشخصات فنی'}
-                          </button>
+                        {product.slug && (
+                          <Link 
+                            to={product.slug}
+                            className="inline-flex items-center gap-2 text-primary text-sm hover:underline mt-2"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <span>مشاهده جزئیات</span>
+                            <ExternalLink size={14} />
+                          </Link>
                         )}
                       </motion.div>
                     ))}
