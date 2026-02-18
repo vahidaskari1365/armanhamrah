@@ -5,7 +5,7 @@ export const products = [
     slug: 'apple-watch-s11-46mm-gray',
     brand: 'Apple',
     category: 'ساعت هوشمند',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT683ref_VW_34FR+watch-45-alum-gray-cell-s9_VW_34FR_WF_CO_GEO_CA?wid=700&hei=700&trim=1,0&fmt=p-jpg&qlt=95&.v=1694506315248',
+    image: '/images/products/apple-watch-s11-46mm-gray.jpg',
     description: 'اپل واچ سری ۱۱ با نمایشگر همیشه روشن و بزرگ‌تر، پردازنده قدرتمند S11 و سنسورهای سلامتی پیشرفته‌تر، بهترین همراه برای زندگی سالم و متصل است. قابلیت‌های جدیدی مانند پایش دمای بدن و تشخیص تصادف، آن را به یک گجت ضروری تبدیل کرده است.',
     specs: {
         'نمایشگر': 'Retina LTPO OLED همیشه روشن',
@@ -22,7 +22,7 @@ export const products = [
     slug: 'apple-watch-se11-44mm-black',
     brand: 'Apple',
     category: 'ساعت هوشمند',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MR9V3ref_VW_34FR+watch-44-alum-midnight-cell-se_VW_34FR_WF_CO_GEO_CA?wid=700&hei=700&trim=1,0&fmt=p-jpg&qlt=95&.v=1694505388331',
+    image: '/images/products/apple-watch-se11-44mm-black.jpg',
     description: 'اپل واچ SE جدید، ترکیبی عالی از طراحی مدرن، قابلیت‌های کلیدی و قیمت مناسب است. این ساعت با پردازنده سریع‌تر و قابلیت تشخیص تصادف، ارزش خرید بالایی را برای کاربرانی که به دنبال اولین اپل واچ خود هستند، ارائه می‌دهد.',
     specs: {
         'نمایشگر': 'Retina LTPO OLED',
@@ -39,7 +39,7 @@ export const products = [
     slug: 'apple-watch-se11-44mm-starlight',
     brand: 'Apple',
     category: 'ساعت هوشمند',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MR9T3ref_VW_34FR+watch-44-alum-starlight-cell-se_VW_34FR_WF_CO_GEO_CA?wid=700&hei=700&trim=1,0&fmt=p-jpg&qlt=95&.v=1694505388294',
+    image: '/images/products/apple-watch-se11-44mm-starlight.jpg',
     description: 'اپل واچ SE جدید، ترکیبی عالی از طراحی مدرن، قابلیت‌های کلیدی و قیمت مناسب است. این ساعت با پردازنده سریع‌تر و قابلیت تشخیص تصادف، ارزش خرید بالایی را برای کاربرانی که به دنبال اولین اپل واچ خود هستند، ارائه می‌دهد.',
     specs: {
         'نمایشگر': 'Retina LTPO OLED',
@@ -56,7 +56,7 @@ export const products = [
     slug: 'apple-watch-se10-40mm-black',
     brand: 'Apple',
     category: 'ساعت هوشمند',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MR9U3ref_VW_34FR+watch-40-alum-midnight-cell-se_VW_34FR_WF_CO_GEO_CA?wid=700&hei=700&trim=1,0&fmt=p-jpg&qlt=95&.v=1694505388318',
+    image: '/images/products/apple-watch-se10-40mm-black.jpg',
     description: 'اپل واچ SE (2023) با طراحی زیبا و نمایشگر Retina، همراهی هوشمند برای زندگی روزمره شماست. این ساعت با قابلیت‌های پیشرفته‌ای مانند پایش ضربان قلب، تشخیص تصادف و SOS اضطراری، سلامتی و ایمنی شما را تضمین می‌کند. همچنین با دسترسی به هزاران اپلیکیشن، می‌توانید فعالیت‌های ورزشی خود را ردیابی کرده و همیشه متصل بمانید.',
     specs: {
         'نمایشگر': 'Retina LTPO OLED',
@@ -74,7 +74,7 @@ export const products = [
     slug: 'apple-watch-se10-40mm-silver',
     brand: 'Apple',
     category: 'ساعت هوشمند',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MR9R3ref_VW_34FR+watch-40-alum-silver-cell-se_VW_34FR_WF_CO_GEO_CA?wid=700&hei=700&trim=1,0&fmt=p-jpg&qlt=95&.v=1694505388303',
+    image: '/images/products/apple-watch-se10-40mm-silver.jpg',
     description: 'اپل واچ SE (2023) با طراحی زیبا و نمایشگر Retina، همراهی هوشمند برای زندگی روزمره شماست. این ساعت با قابلیت‌های پیشرفته‌ای مانند پایش ضربان قلب، تشخیص تصادف و SOS اضطراری، سلامتی و ایمنی شما را تضمین می‌کند. همچنین با دسترسی به هزاران اپلیکیشن، می‌توانید فعالیت‌های ورزشی خود را ردیابی کرده و همیشه متصل بمانید.',
     specs: {
         'نمایشگر': 'Retina LTPO OLED',
@@ -92,7 +92,7 @@ export const products = [
     slug: 'airpods-pro-2',
     brand: 'Apple',
     category: 'لوازم جانبی',
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=512&hei=512&fmt=jpeg&qlt=95&.v=1694014871985',
+    image: '/images/products/airpods-pro-2.jpg',
     description: 'ایـرپاد پرو (نسل دوم) با قابلیت‌هایی نظیر حذف نویز فعال (Active Noise Cancellation) دو برابر قوی‌تر، حالت شفافیت تطبیق‌پذیر (Adaptive Transparency) و صدای فراگیر شخصی‌سازی‌شده (Personalized Spatial Audio)، تجربه‌ی شنیداری شما را متحول می‌کند. با یک بار شارژ تا ۶ ساعت و با کیس شارژ تا ۳۰ ساعت به موسیقی گوش دهید و با کنترل لمسی جدید، همه‌چیز را آسان‌تر مدیریت کنید.',
     specs: {
         'تراشه': 'Apple H2',
@@ -114,7 +114,7 @@ export const products = [
     slug: 'samsung-s25-ultra-256-12',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-s928bztqafa/gallery/za-galaxy-s24-ultra-sm-s928-sm-s928bztqafa-thumb-539568401?$172_172_PNG$',
+    image: '/images/products/samsung-s25-ultra-256-12.png',
     description: 'گلکسی S25 اولترا با بهره‌گیری از هوش مصنوعی Galaxy AI، استاندارد جدیدی در دنیای موبایل تعریف می‌کند. از قابلیت Circle to Search برای جستجوی آسان‌تر گرفته تا ترجمه زنده تماس‌ها و بهبود کیفیت عکس‌ها با Photo Assist، همه چیز برای تجربه‌ای هوشمندتر آماده شده است.',
     specs: {
         'صفحه نمایش': 'Dynamic AMOLED 2X, 120Hz, HDR10+, 6.8 inches',
@@ -131,7 +131,7 @@ export const products = [
     slug: 'samsung-s25-fe-256-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-s711blvgafa/gallery/za-galaxy-s23-fe-sm-s711-sm-s711blvgafa-thumb-538329683?$172_172_PNG$',
+    image: '/images/products/samsung-s25-fe-256-8.png',
     description: 'گلکسی S25 FE با طراحی نمادین سری S25 و رنگ‌های جذاب، تجربه‌ای پریمیوم را با قیمتی مناسب ارائه می‌دهد. دوربین باکیفیت، نمایشگر Dynamic AMOLED 2X و پردازنده قدرتمند، این گوشی را به انتخابی ایده‌آل برای طرفداران سامسونگ تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Dynamic AMOLED 2X, 120Hz, 6.4 inches',
@@ -148,7 +148,7 @@ export const products = [
     slug: 'samsung-a56-256-12',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a556elvaafa/gallery/za-awesome-iceblue-galaxy-a55-5g-sm-a556-sm-a556elvaafa-thumb-539820121?$172_172_PNG$',
+    image: '/images/products/samsung-a56-256-12.png',
     description: 'گلکسی A56 با ترکیب فلز و شیشه، طراحی زیبا و مقاومت بالا (IP67) را به ارمغان می‌آورد. نمایشگر Super AMOLED 120Hz، دوربین 50 مگاپیکسلی و پردازنده قدرتمند، این گوشی را به گزینه‌ای عالی در میان‌رده‌ها تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.6 inches',
@@ -165,7 +165,7 @@ export const products = [
     slug: 'samsung-a56-256-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a556ezyeafa/gallery/za-awesome-lemon-galaxy-a55-5g-sm-a556-sm-a556ezyeafa-thumb-539820253?$172_172_PNG$',
+    image: '/images/products/samsung-a56-256-8.png',
     description: 'گلکسی A56 با ترکیب فلز و شیشه، طراحی زیبا و مقاومت بالا (IP67) را به ارمغان می‌آورد. نمایشگر Super AMOLED 120Hz، دوربین 50 مگاپیکسلی و پردازنده قدرتمند، این گوشی را به گزینه‌ای عالی در میان‌رده‌ها تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.6 inches',
@@ -182,7 +182,7 @@ export const products = [
     slug: 'samsung-a56-128-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a556ezkeafa/gallery/za-awesome-navy-galaxy-a55-5g-sm-a556-sm-a556ezkeafa-thumb-539820188?$172_172_PNG$',
+    image: '/images/products/samsung-a56-128-8.png',
     description: 'گلکسی A56 با ترکیب فلز و شیشه، طراحی زیبا و مقاومت بالا (IP67) را به ارمغان می‌آورد. نمایشگر Super AMOLED 120Hz، دوربین 50 مگاپیکسلی و پردازنده قدرتمند، این گوشی را به گزینه‌ای عالی در میان‌رده‌ها تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.6 inches',
@@ -199,7 +199,7 @@ export const products = [
     slug: 'samsung-a36-256-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a356elbaafa/gallery/za-awesome-iceblue-galaxy-a35-5g-sm-a356-sm-a356elbaafa-thumb-539757656?$172_172_PNG$',
+    image: '/images/products/samsung-a36-256-8.png',
     description: 'گلکسی A36 با نمایشگر خیره‌کننده Super AMOLED، دوربین سه‌گانه باکیفیت و طراحی مدرن، تجربه‌ای لذت‌بخش را برای کاربران فراهم می‌کند. این گوشی با باتری بادوام و عملکرد روان، همراهی ایده‌آل برای کارهای روزمره و سرگرمی است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.6 inches',
@@ -216,7 +216,7 @@ export const products = [
     slug: 'samsung-a36-128-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a356ezkaafa/gallery/za-awesome-navy-galaxy-a35-5g-sm-a356-sm-a356ezkaafa-thumb-539757847?$172_172_PNG$',
+    image: '/images/products/samsung-a36-128-8.png',
     description: 'گلکسی A36 با نمایشگر خیره‌کننده Super AMOLED، دوربین سه‌گانه باکیفیت و طراحی مدرن، تجربه‌ای لذت‌بخش را برای کاربران فراهم می‌کند. این گوشی با باتری بادوام و عملکرد روان، همراهی ایده‌آل برای کارهای روزمره و سرگرمی است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.6 inches',
@@ -233,7 +233,7 @@ export const products = [
     slug: 'samsung-a26-256-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a255fzkgxfv/gallery/za-blue-black-galaxy-a25-5g-sm-a255-sm-a255fzkgxfv-thumb-538943285?$172_172_PNG$',
+    image: '/images/products/samsung-a26-256-8.png',
     description: 'گلکسی A26 با نمایشگر 6.5 اینچی Super AMOLED و نرخ نوسازی 120 هرتز، تصاویری روان و زنده را به نمایش می‌گذارد. دوربین اصلی 50 مگاپیکسلی با لرزشگیر اپتیکال (OIS) و پردازنده 5 نانومتری، این گوشی را به ابزاری قدرتمند برای عکاسی و کارهای روزمره تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.5 inches',
@@ -249,7 +249,7 @@ export const products = [
     slug: 'samsung-a26-128-6',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a255fzyexfv/gallery/za-yellow-galaxy-a25-5g-sm-a255-sm-a255fzyexfv-thumb-538943714?$172_172_PNG$',
+    image: '/images/products/samsung-a26-128-6.png',
     description: 'گلکسی A26 با نمایشگر 6.5 اینچی Super AMOLED و نرخ نوسازی 120 هرتز، تصاویری روان و زنده را به نمایش می‌گذارد. دوربین اصلی 50 مگاپیکسلی با لرزشگیر اپتیکال (OIS) و پردازنده 5 نانومتری، این گوشی را به ابزاری قدرتمند برای عکاسی و کارهای روزمره تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 120Hz, 6.5 inches',
@@ -265,7 +265,7 @@ export const products = [
     slug: 'samsung-a17-256-8',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a155fzbexfv/gallery/za-blue-galaxy-a15-sm-a155-sm-a155fzbexfv-thumb-538954217?$172_172_PNG$',
+    image: '/images/products/samsung-a17-256-8.png',
     description: 'گلکسی A17 با نمایشگر Super AMOLED، پردازنده هشت هسته‌ای و دوربین 50 مگاپیکسلی، گزینه‌ای عالی و مقرون‌به‌صرفه است. این گوشی با طراحی زیبا و باتری بادوام، نیازهای روزمره شما را به خوبی برآورده می‌کند.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 90Hz, 6.5 inches',
@@ -281,7 +281,7 @@ export const products = [
     slug: 'samsung-a17-128-6',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a155fzbdxfv/gallery/za-blue-galaxy-a15-sm-a155-sm-a155fzbdxfv-thumb-538954313?$172_172_PNG$',
+    image: '/images/products/samsung-a17-128-6.png',
     description: 'گلکسی A17 با نمایشگر Super AMOLED، پردازنده هشت هسته‌ای و دوربین 50 مگاپیکسلی، گزینه‌ای عالی و مقرون‌به‌صرفه است. این گوشی با طراحی زیبا و باتری بادوام، نیازهای روزمره شما را به خوبی برآورده می‌کند.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 90Hz, 6.5 inches',
@@ -297,7 +297,7 @@ export const products = [
     slug: 'samsung-a17-128-4',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a155fzkexfv/gallery/za-blue-black-galaxy-a15-sm-a155-sm-a155fzkexfv-thumb-538954409?$172_172_PNG$',
+    image: '/images/products/samsung-a17-128-4.png',
     description: 'گلکسی A17 با نمایشگر Super AMOLED، پردازنده هشت هسته‌ای و دوربین 50 مگاپیکسلی، گزینه‌ای عالی و مقرون‌به‌صرفه است. این گوشی با طراحی زیبا و باتری بادوام، نیازهای روزمره شما را به خوبی برآورده می‌کند.',
     specs: {
         'صفحه نمایش': 'Super AMOLED, 90Hz, 6.5 inches',
@@ -313,7 +313,7 @@ export const products = [
     slug: 'samsung-a07-128-6',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a057flvgxfa/gallery/za-sm-a057flvg-galaxy-a05s-sm-a057flvgxfa-thumb-538497699?$172_172_PNG$',
+    image: '/images/products/samsung-a07-128-6.png',
     description: 'گلکسی A07 با نمایشگر بزرگ 6.7 اینچی +FHD و پردازنده قدرتمند اسنپدراگون، تجربه‌ای روان و فراگیر را برای تماشا و بازی فراهم می‌کند. دوربین سه‌گانه 50 مگاپیکسلی و باتری بادوام، این گوشی را به انتخابی هوشمندانه در رده اقتصادی تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'PLS LCD, 90Hz, 6.7 inches',
@@ -329,7 +329,7 @@ export const products = [
     slug: 'samsung-a07-128-4',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a057fzvdxfa/gallery/za-sm-a057fzvd-galaxy-a05s-sm-a057fzvdxfa-thumb-538497645?$172_172_PNG$',
+    image: '/images/products/samsung-a07-128-4.png',
     description: 'گلکسی A07 با نمایشگر بزرگ 6.7 اینچی +FHD و پردازنده قدرتمند اسنپدراگون، تجربه‌ای روان و فراگیر را برای تماشا و بازی فراهم می‌کند. دوربین سه‌گانه 50 مگاپیکسلی و باتری بادوام، این گوشی را به انتخابی هوشمندانه در رده اقتصادی تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'PLS LCD, 90Hz, 6.7 inches',
@@ -345,7 +345,7 @@ export const products = [
     slug: 'samsung-a07-64-4',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a057fzkdxfa/gallery/za-sm-a057fzkd-galaxy-a05s-sm-a057fzkdxfa-thumb-538497551?$172_172_PNG$',
+    image: '/images/products/samsung-a07-64-4.png',
     description: 'گلکسی A07 با نمایشگر بزرگ 6.7 اینچی +FHD و پردازنده قدرتمند اسنپدراگون، تجربه‌ای روان و فراگیر را برای تماشا و بازی فراهم می‌کند. دوربین سه‌گانه 50 مگاپیکسلی و باتری بادوام، این گوشی را به انتخابی هوشمندانه در رده اقتصادی تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'PLS LCD, 90Hz, 6.7 inches',
@@ -361,7 +361,7 @@ export const products = [
     slug: 'samsung-a06-128-4',
     brand: 'Samsung',
     category: 'موبایل',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-a055fzggxfa/gallery/za-sm-a055fzgg-galaxy-a05-sm-a055fzggxfa-thumb-538497233?$172_172_PNG$',
+    image: '/images/products/samsung-a06-128-4.png',
     description: 'گلکسی A06 با نمایشگر بزرگ و دوربین دوگانه 50 مگاپیکسلی، گزینه‌ای اقتصادی و کارآمد برای نیازهای اولیه است. این گوشی با پردازنده هشت هسته‌ای و باتری حجیم، عملکردی روان و طولانی‌مدت را تضمین می‌کند.',
     specs: {
         'صفحه نمایش': 'PLS LCD, 6.7 inches',
@@ -377,7 +377,7 @@ export const products = [
     slug: 'samsung-galaxy-tab-a9-plus-128-8',
     brand: 'Samsung',
     category: 'تبلت',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/za/sm-x210nzaaafa/gallery/za-galaxy-tab-a9-plus-wifi-sm-x210-sm-x210nzaaafa-thumb-538495923?$172_172_PNG$',
+    image: '/images/products/samsung-galaxy-tab-a9-plus-128-8.png',
     description: 'تبلت گلکسی Tab A9+ با نمایشگر بزرگ و روان، صدای فراگیر و عملکرد چندوظیفه‌ای قدرتمند، همراهی ایده‌آل برای سرگرمی و کارهای روزمره است. طراحی شیک و مدرن آن، تجربه‌ای لذت‌بخش را برای تمام اعضای خانواده فراهم می‌کند.',
     specs: {
         'صفحه نمایش': 'TFT LCD, 90Hz, 11.0 inches',
@@ -394,7 +394,7 @@ export const products = [
     slug: 'samsung-galaxy-tab-a9-64-4',
     brand: 'Samsung',
     category: 'تبلت',
-    image: 'https://images.samsung.com/is/image/samsung/p6pim/levant/sm-x110nzaamea/gallery/levant-galaxy-tab-a9-sm-x110-sm-x110nzaamea-thumb-538568913?$172_172_PNG$',
+    image: '/images/products/samsung-galaxy-tab-a9-64-4.png',
     description: 'تبلت گلکسی Tab A9 با طراحی کلاسیک و بدنه فلزی، در عین زیبایی، عملکردی روان را برای کارهای روزمره ارائه می‌دهد. نمایشگر روشن و بلندگوهای دوگانه، این تبلت را به گزینه‌ای عالی برای تماشای فیلم و بازی تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'TFT LCD, 8.7 inches',
@@ -412,7 +412,7 @@ export const products = [
     slug: 'xiaomi-15t-512-12',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/xiaomi-14/specs/header.jpg',
+    image: '/images/products/xiaomi-15t-512-12.jpg',
     description: 'شیائومی 15T با همکاری لایکا، تجربه‌ی عکاسی حرفه‌ای را به دنیای موبایل می‌آورد. این گوشی با پردازنده قدرتمند اسنپدراگون و نمایشگر CrystalRes AMOLED، عملکردی بی‌نظیر و تصاویری خیره‌کننده را ارائه می‌دهد.',
     specs: {
         'صفحه نمایش': 'CrystalRes AMOLED, 120Hz, Dolby Vision, 6.36 inches',
@@ -429,7 +429,7 @@ export const products = [
     slug: 'redmi-note-14s-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-note-13-pro-5g/specs-header-redmi-note-13-pro-5g-green.jpg',
+    image: '/images/products/redmi-note-14s-256-8.jpg',
     description: 'ردمی نوت ۱۴ اس با دوربین ۲۰۰ مگاپیکسلی و نمایشگر 1.5K AMOLED، تصاویری با وضوح و کیفیت بی‌نظیر ثبت می‌کند. این گوشی با پردازنده اسنپدراگون و طراحی مقاوم، انتخابی هوشمندانه برای کاربرانی است که به دنبال بهترین‌ها هستند.',
     specs: {
         'صفحه نمایش': '1.5K AMOLED, 120Hz, 6.67 inches',
@@ -446,7 +446,7 @@ export const products = [
     slug: 'redmi-note-14-pro-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-note-13-pro-plus-5g/specs-header.jpg',
+    image: '/images/products/redmi-note-14-pro-256-8.jpg',
     description: 'ردمی نوت ۱۴ پرو با دوربین ۲۰۰ مگاپیکسلی و لرزشگیر اپتیکال، عکاسی را در سطح پرچمداران ارائه می‌دهد. نمایشگر 1.5K AMOLED با نرخ نوسازی 120 هرتز و شارژ فوق سریع 120 وات، این گوشی را به یک هیولای تمام‌عیار تبدیل کرده است.',
     specs: {
         'صفحه نمایش': '1.5K CrystalRes AMOLED, 120Hz, 6.67 inches',
@@ -463,7 +463,7 @@ export const products = [
     slug: 'redmi-note-14-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-note-13-5g/specs-header-redmi-note-13-5g.jpg',
+    image: '/images/products/redmi-note-14-256-8.jpg',
     description: 'ردمی نوت ۱۴ با دوربین سه‌گانه ۱۰۸ مگاپیکسلی و نمایشگر خیره‌کننده AMOLED با حاشیه‌های بسیار باریک، تجربه‌ای بصری فوق‌العاده را به ارمغان می‌آورد. طراحی شیک و پردازنده قدرتمند، آن را به گزینه‌ای جذاب در بازار میان‌رده‌ها تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'AMOLED, 120Hz, 6.67 inches',
@@ -479,7 +479,7 @@ export const products = [
     slug: 'redmi-15-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-13/specs-header-P1.jpg',
+    image: '/images/products/redmi-15-256-8.jpg',
     description: 'ردمی ۱۵ با دوربین اصلی ۱۰۸ مگاپیکسلی و زوم 3X، عکاسی با جزئیات خیره‌کننده را ممکن می‌سازد. نمایشگر FHD+ با تکنولوژی AdaptiveSync و باتری قدرتمند، تجربه‌ای روان و طولانی‌مدت را برای شما رقم می‌زند.',
     specs: {
         'صفحه نمایش': 'FHD+ AMOLED, 90Hz AdaptiveSync, 6.79 inches',
@@ -496,7 +496,7 @@ export const products = [
     slug: 'redmi-15c-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-13c/specs/specs-header.jpg',
+    image: '/images/products/redmi-15c-256-8.jpg',
     description: 'ردمی 15C با نمایشگر روان 90 هرتزی و دوربین دوگانه هوش مصنوعی 50 مگاپیکسلی، ترکیبی از کارایی و زیبایی را با قیمتی مناسب ارائه می‌دهد. این گوشی با پردازنده هشت هسته‌ای مدیاتک، عملکردی قابل اعتماد را برای تمام نیازهای شما تضمین می‌کند.',
     specs: {
         'صفحه نمایش': 'IPS LCD, 90Hz, 6.74 inches',
@@ -512,7 +512,7 @@ export const products = [
     slug: 'redmi-13x-256-8',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Redmi+13X',
+    image: '/images/products/redmi-13x-256-8.png',
     description: '',
     specs: {},
   },
@@ -521,7 +521,7 @@ export const products = [
     slug: 'redmi-a5-128-4',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Redmi+A5',
+    image: '/images/products/redmi-a5-128-4.png',
     description: '',
     specs: {},
   },
@@ -530,7 +530,7 @@ export const products = [
     slug: 'redmi-a3-128-4',
     brand: 'Xiaomi',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/redmi-a3/specs-header-redmi-a3.jpg',
+    image: '/images/products/redmi-a3-128-4.jpg',
     description: 'ردمی A3 شیائومی با طراحی پریمیوم و شیشه‌ای، نمایشگر بزرگ 6.71 اینچی با نرخ نوسازی 90 هرتز و قیمتی اقتصادی، تجربه‌ای فراتر از انتظار را به کاربران ارائه می‌دهد. این گوشی هوشمند، انتخابی عالی برای کسانی است که به دنبال زیبایی و کارایی در یک پکیج مقرون‌به‌صرفه هستند.',
     specs: {
         'صفحه نمایش': '6.71 اینچ, IPS LCD, 90Hz',
@@ -549,7 +549,7 @@ export const products = [
     slug: 'poco-m7-256-8',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Poco+M7',
+    image: '/images/products/poco-m7-256-8.png',
     description: '',
     specs: {},
   },
@@ -558,7 +558,7 @@ export const products = [
     slug: 'poco-m6-256-8',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://i02.appmifile.com/images/countries/global/poco-m6-pro/specs-header.jpg',
+    image: '/images/products/poco-m6-256-8.jpg',
     description: 'پوکو M6 پرو با اولین نمایشگر Flow AMOLED در سری M و نرخ نوسازی ۱۲۰ هرتز، تجربه‌ای بی‌نظیر از تماشا و بازی را ارائه می‌دهد. شارژ سریع ۶۷ واتی، دوربین ۶۴ مگاپیکسلی با لرزشگیر اپتیکال و پردازنده قدرتمند Helio G99-Ultra، این گوشی را به گزینه‌ای بی‌رقیب تبدیل کرده است.',
     specs: {
         'صفحه نمایش': 'Flow AMOLED, 120Hz, 6.67 inches',
@@ -575,7 +575,7 @@ export const products = [
     slug: 'poco-c85-256-8',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Poco+C85',
+    image: '/images/products/poco-c85-256-8.png',
     description: '',
     specs: {},
   },
@@ -584,7 +584,7 @@ export const products = [
     slug: 'poco-c85-128-6',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Poco+C85',
+    image: '/images/products/poco-c85-128-6.png',
     description: '',
     specs: {},
   },
@@ -593,7 +593,7 @@ export const products = [
     slug: 'poco-c75-256-8',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Poco+C75',
+    image: '/images/products/poco-c75-256-8.png',
     description: '',
     specs: {},
   },
@@ -602,7 +602,7 @@ export const products = [
     slug: 'poco-c71-128-4',
     brand: 'Poco',
     category: 'موبایل',
-    image: 'https://via.placeholder.com/512x512.png?text=Poco+C71',
+    image: '/images/products/poco-c71-128-4.png',
     description: '',
     specs: {},
   },
@@ -613,7 +613,7 @@ export const products = [
     slug: 'nokia-105',
     brand: 'Nokia',
     category: 'موبایل ساده',
-    image: 'https://images.ctfassets.net/wcfotm6rrl7u/5mMWi2Ve2f5M502vr5zL2s/31d3835694a9b5f939e6022e153b66d8/nokia_105_2023-hero-desktop_02.png',
+    image: '/images/products/nokia-105.png',
     description: 'نوکیا ۱۰۵ (۲۰۲۳) با طراحی مدرن، عمر باتری طولانی و بدنه‌ای مقاوم، یک گوشی کلاسیک و قابل اعتماد برای مکالمات روزمره است. این گوشی با قابلیت‌هایی مانند رادیو FM بی‌سیم و چراغ قوه، همراهی کاربردی برای شما خواهد بود.',
     specs: {
         'نمایشگر': '1.8 اینچ, QQVGA',
