@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -65,7 +65,7 @@ const AnalyticsTab = () => {
   const [dateRange, setDateRange] = useState('7');
   const { toast } = useToast();
 
-  const fetchAnalytics = async () => {
+  const fetchAnalytics = useCallback(async () => {
     try {
       const daysAgo = parseInt(dateRange);
       const startDate = new Date();
@@ -79,7 +79,7 @@ const AnalyticsTab = () => {
 
       if (error) throw error;
       setPageViews(data || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching analytics:', error);
       toast({
         title: 'خطا',
@@ -90,11 +90,11 @@ const AnalyticsTab = () => {
       setLoading(false);
       setRefreshing(false);
     }
-  };
+  }, [dateRange, toast]);
 
   useEffect(() => {
     fetchAnalytics();
-  }, [dateRange]);
+  }, [fetchAnalytics]);
 
   const handleRefresh = () => {
     setRefreshing(true);

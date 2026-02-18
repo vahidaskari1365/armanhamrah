@@ -103,9 +103,9 @@ const UsersTab = ({ users, currentUser, onRefresh }: UsersTabProps) => {
       toast({ title: 'موفق', description: 'کاربر با موفقیت ایجاد شد' });
       setNewUser({ email: '', password: '', first_name: '', last_name: '', role: 'editor' });
       onRefresh();
-    } catch (error: any) {
+    } catch (error: unknown) {
       let message = 'خطا در ایجاد کاربر';
-      if (error.message?.includes('already registered')) {
+      if (error instanceof Error && error.message?.includes('already registered')) {
         message = 'این ایمیل قبلا ثبت شده است';
       }
       toast({ title: 'خطا', description: message, variant: 'destructive' });

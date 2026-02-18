@@ -48,6 +48,14 @@ const AdminToolbar = () => {
   const location = useLocation();
   const { toast } = useToast();
 
+  // Add class to body for offset
+  React.useEffect(() => {
+    document.body.classList.add('has-admin-toolbar');
+    return () => {
+      document.body.classList.remove('has-admin-toolbar');
+    };
+  }, []);
+
   if (isLoading || !isAdmin) return null;
 
   // Don't show on admin dashboard
@@ -63,14 +71,6 @@ const AdminToolbar = () => {
     });
     navigate('/');
   };
-
-  // Add class to body for offset
-  React.useEffect(() => {
-    document.body.classList.add('has-admin-toolbar');
-    return () => {
-      document.body.classList.remove('has-admin-toolbar');
-    };
-  }, []);
 
   return (
     <AnimatePresence>
