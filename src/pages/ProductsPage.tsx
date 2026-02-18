@@ -11,98 +11,7 @@ import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
 import radicalLogo from '@/assets/radical-logo.jpeg';
 import EditableText from '@/components/admin/EditableText';
-
-const products = [
-  // Apple Products
-  {
-    name: 'اپل واچ اولترا 2',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Ultra%202/watch-ultra-2.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=23',
-    category: 'ساعت هوشمند',
-    brand: 'Apple',
-  },
-  {
-    name: 'اپل واچ سری 9',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20Watch%20Series%209/apple-watch-9.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=22',
-    category: 'ساعت هوشمند',
-    brand: 'Apple',
-  },
-  {
-    name: 'اپل آیفون 15 پرو مکس',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro%20Max/apple-iphone-15-promax.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=21',
-    category: 'موبایل',
-    brand: 'Apple',
-  },
-  {
-    name: 'اپل آیفون 15 پرو',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Pro/apple-iphone-15-pro.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=20',
-    category: 'موبایل',
-    brand: 'Apple',
-  },
-  {
-    name: 'اپل آیفون 15 پلاس',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015%20Plus/apple-iphone-15-plus.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=19',
-    category: 'موبایل',
-    brand: 'Apple',
-  },
-  {
-    name: 'اپل آیفون 15',
-    image: 'https://www.armanhamrah.com/uploads/products/Apple%20iPhone%2015/apple-iphone-15.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=18',
-    category: 'موبایل',
-    brand: 'Apple',
-  },
-  // Samsung Products
-  {
-    name: 'سامسونگ گلکسی Z فولد 4',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Z%20Fold4/samsung-galaxy-zfold4-1.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=17',
-    category: 'موبایل',
-    brand: 'Samsung',
-  },
-  {
-    name: 'سامسونگ گلکسی A04e',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04e/samsung-galaxy-A04E-1.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=16',
-    category: 'موبایل',
-    brand: 'Samsung',
-  },
-  {
-    name: 'سامسونگ گلکسی A04s',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04s/samsung-galaxy-A04S-1.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=15',
-    category: 'موبایل',
-    brand: 'Samsung',
-  },
-  {
-    name: 'سامسونگ گلکسی A04',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20A04/samsung-galaxy-A04-1.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=14',
-    category: 'موبایل',
-    brand: 'Samsung',
-  },
-  {
-    name: 'سامسونگ گلکسی واچ 5 پرو',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5%20Pro/galaxy-watch5-pro-1.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=13',
-    category: 'ساعت هوشمند',
-    brand: 'Samsung',
-  },
-  {
-    name: 'سامسونگ گلکسی واچ 5',
-    image: 'https://www.armanhamrah.com/uploads/products/Samsung%20Galaxy%20Watch5/samsung-galaxy-watch-5.webp',
-    link: 'https://www.armanhamrah.com/product.php?p=12',
-    category: 'ساعت هوشمند',
-    brand: 'Samsung',
-  },
-];
-
-const brandsList = ['همه', 'Apple', 'Samsung'];
-const categories = ['همه', 'موبایل', 'ساعت هوشمند'];
+import { products, brandsList, categories } from '@/data/products';
 
 const ProductsPageContent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -132,6 +41,21 @@ const ProductsPageContent = () => {
     }
     setSearchParams(searchParams);
   };
+  
+  const getCategoryTranslation = (category: string, lang: string) => {
+    if (lang === 'en') {
+      switch (category) {
+        case 'همه': return 'All';
+        case 'موبایل': return 'Mobile';
+        case 'ساعت هوشمند': return 'Smartwatch';
+        case 'تبلت': return 'Tablet';
+        case 'لوازم جانبی': return 'Accessories';
+        case 'موبایل ساده': return 'Feature Phone';
+        default: return category;
+      }
+    }
+    return category;
+  }
 
   return (
     <div className="min-h-screen bg-background relative admin-toolbar-offset" dir={language === 'fa' ? 'rtl' : 'ltr'}>
@@ -183,50 +107,54 @@ const ProductsPageContent = () => {
           </div>
         </section>
 
-        {/* Brands Filter */}
+        {/* Filters */}
         <section className="py-8 border-b border-border">
           <div className="container-custom">
-            <div className="flex flex-wrap gap-3">
-              <span className="text-sm font-medium text-muted-foreground ml-4">
-                {language === 'fa' ? 'برند:' : 'Brand:'}
-              </span>
-              {brandsList.map((brand, index) => (
-                <motion.button
-                  key={brand}
-                  onClick={() => handleBrandClick(brand)}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    selectedBrand === brand
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                >
-                  {brand === 'همه' && language === 'en' ? 'All' : brand}
-                </motion.button>
-              ))}
-              <span className="text-sm font-medium text-muted-foreground mr-8 ml-4">
-                {language === 'fa' ? 'دسته‌بندی:' : 'Category:'}
-              </span>
-              {categories.map((category, index) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: (brandsList.length + index) * 0.1 }}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    selectedCategory === category
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                >
-                  {category === 'همه' && language === 'en' ? 'All' : 
-                   category === 'موبایل' && language === 'en' ? 'Mobile' :
-                   category === 'ساعت هوشمند' && language === 'en' ? 'Smartwatch' : category}
-                </motion.button>
-              ))}
+            <div className="flex flex-wrap gap-x-6 gap-y-4">
+              {/* Brands Filter */}
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-sm font-medium text-muted-foreground">
+                  {language === 'fa' ? 'برند:' : 'Brand:'}
+                </span>
+                {brandsList.map((brand, index) => (
+                  <motion.button
+                    key={brand}
+                    onClick={() => handleBrandClick(brand)}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                      selectedBrand === brand
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
+                    }`}
+                  >
+                    {brand === 'همه' && language === 'en' ? 'All' : brand}
+                  </motion.button>
+                ))}
+              </div>
+              {/* Categories Filter */}
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-sm font-medium text-muted-foreground">
+                  {language === 'fa' ? 'دسته‌بندی:' : 'Category:'}
+                </span>
+                {categories.map((category, index) => (
+                  <motion.button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: (brandsList.length + index) * 0.05 }}
+                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                      selectedCategory === category
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
+                    }`}
+                  >
+                    {getCategoryTranslation(category, language)}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -236,35 +164,34 @@ const ProductsPageContent = () => {
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
               {filteredProducts.map((product, index) => (
-                <motion.a
+                <motion.div
                   key={index}
-                  href={product.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   whileHover={{ y: -10 }}
                   className="card-premium text-center group"
                 >
-                  <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
-                    <motion.img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                      {product.brand}
+                  <Link to={`/product/${product.slug}`}>
+                    <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4">
+                      <motion.img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <span className="absolute top-2 right-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                        {product.brand}
+                      </span>
+                    </div>
+                    <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
+                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                      {product.name}
+                    </h3>
+                    <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
+                      {language === 'fa' ? 'مشاهده' : 'View'}
                     </span>
-                  </div>
-                  <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
-                  <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {product.name}
-                  </h3>
-                  <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
-                    {language === 'fa' ? 'مشاهده' : 'View'}
-                  </span>
-                </motion.a>
+                  </Link>
+                </motion.div>
               ))}
             </div>
 

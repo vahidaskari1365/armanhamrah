@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Instagram, MessageCircle, Phone, Mail, MapPin, Linkedin } from 'lucide-react';
+import { Instagram, MessageCircle, Phone, Mail, MapPin, Linkedin, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.jpeg';
 
@@ -12,7 +12,6 @@ const Footer = () => {
     { key: 'nav.warranty', href: '/warranty' },
     { key: 'nav.products', href: '/products' },
     { key: 'nav.export', href: '/export' },
-    { key: 'nav.blog', href: '/blog' },
     { key: 'nav.contact', href: '/contact' },
   ];
 
@@ -25,7 +24,7 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-card border-t border-border">
       <div className="container-custom section-padding pb-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* About */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,12 +105,41 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Headquarters Contact */}
+          {/* Store Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h4 className="text-lg font-bold text-foreground mb-6">
+              {language === 'fa' ? 'فروشگاه' : 'Store'}
+            </h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
+                <span dir="ltr">{language === 'fa' ? '(به زودی)' : '(Coming Soon)'}</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
+                <div className="text-sm">
+                  <span>
+                    {language === 'fa' 
+                      ? 'آدرس فروشگاه به زودی اضافه خواهد شد.'
+                      : 'Store address will be added soon.'
+                    }
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Headquarters Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
