@@ -22,7 +22,7 @@ const ProductDetailPageContent = () => {
   return (
     <div className="min-h-screen bg-background admin-toolbar-offset" dir={language === 'fa' ? 'rtl' : 'ltr'}>
       <Navbar />
-      <main className="pt-24 relative z-10">
+      <main className="pt-24 relative z-10 pb-20">
         <div className="container-custom">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -36,30 +36,38 @@ const ProductDetailPageContent = () => {
                 </Link>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
-                    <div className="bg-secondary/50 rounded-2xl p-8 sticky top-28">
-                        <motion.img 
-                            src={product.image} 
-                            alt={product.name} 
-                            className="w-full h-auto object-contain max-h-96"
-                            layoutId={`product-image-${product.slug}`}
-                        />
-                    </div>
-                </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {/* Left Column: Image and Description */}
+                <div className="flex flex-col gap-12">
+                    <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
+                        <div className="bg-secondary/50 rounded-2xl p-8 sticky top-28">
+                            <motion.img 
+                                src={product.image} 
+                                alt={product.name} 
+                                className="w-full h-auto object-contain max-h-96"
+                                layoutId={`product-image-${product.slug}`}
+                            />
+                        </div>
+                    </motion.div>
+                    {product.description && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.3 }}
+                            className="mt-8 lg:mt-0"
+                        >
+                             <h2 className="text-2xl font-semibold text-foreground mb-4">__{language === 'fa' ? 'معرفی محصول' : 'Product Introduction'}__</h2>
+                            <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+                        </motion.div>
+                    )}
+                </div>
 
+                {/* Right Column: Details and Specs */}
                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
                     <span className="text-primary font-semibold">{product.brand}</span>
                     <h1 className="text-3xl md:text-4xl font-bold text-foreground my-3">{product.name}</h1>
                     <span className="text-lg text-muted-foreground">{product.category}</span>
                     
-                    {product.description && (
-                        <div className="mt-8">
-                             <h2 className="text-2xl font-semibold text-foreground mb-4">__{language === 'fa' ? 'معرفی محصول' : 'Product Introduction'}__</h2>
-                            <p className="text-muted-foreground leading-relaxed">{product.description}</p>
-                        </div>
-                    )}
-
                     <div className="mt-10 pt-8 border-t border-border">
                         <h2 className="text-2xl font-semibold text-foreground mb-6">__{language === 'fa' ? 'مشخصات فنی' : 'Specifications'}__</h2>
                         
