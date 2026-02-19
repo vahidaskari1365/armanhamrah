@@ -313,7 +313,7 @@ export const products = [
     slug: 'samsung-a07-128-6',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: 'public/images/products/samsung-a07.png',
+    image: '/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -329,7 +329,7 @@ export const products = [
     slug: 'samsung-a07-128-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: 'public/images/products/samsung-a07.png',
+    image: '/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -345,7 +345,7 @@ export const products = [
     slug: 'samsung-a07-64-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: 'public/images/products/samsung-a07.png',
+    image: '/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -361,7 +361,7 @@ export const products = [
     slug: 'samsung-a06-128-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: 'public/images/products/samsung-a06.png',
+    image: '/images/products/samsung-a06.png',
     description: 'product.samsung_a06.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7',
@@ -530,7 +530,7 @@ export const products = [
     slug: 'redmi-a3-128-4',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: 'https://dkstatics-public.digikala.com/digikala-products/06478e5c8309115f3333e14713a726622b071a93_1709033333.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
+    image: 'https.dkstatics-public.digikala.com/digikala-products/06478e5c8309115f3333e14713a726622b071a93_1709033333.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_a3.description',
     specs: {
         'spec.display': 'spec.value.display_ips_lcd_6_71_90hz',
