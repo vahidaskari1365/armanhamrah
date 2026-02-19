@@ -25,6 +25,8 @@ import IronSteelPage from "./pages/export/IronSteelPage";
 import CopperRodPage from "./pages/export/CopperRodPage";
 import BitumenPage from "./pages/export/BitumenPage";
 import OilPage from "./pages/export/OilPage";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const queryClient = new QueryClient();
 
@@ -40,32 +42,36 @@ const App = () => (
       <AdminProvider>
         <Toaster />
         <Sonner />
-          <BrowserRouter>
-            <PageTracker>
-              <AuthRecoveryRedirect />
-              <AdminToolbar />
-              <AdminEditSidebar />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/products" element={<ProductsPage />} />
-                <Route path="/product/:slug" element={<ProductDetailPage />} /> // Add the new route
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/export" element={<ExportPage />} />
-                <Route path="/export/iron-steel" element={<IronSteelPage />} />
-                <Route path="/export/copper-rod" element={<CopperRodPage />} />
-                <Route path="/export/bitumen" element={<BitumenPage />} />
-                <Route path="/export/oil" element={<OilPage />} />
-                <Route path="/warranty" element={<WarrantyPage />} />
-                <Route path="/representatives" element={<RepresentativesPage />} />
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/admin/auth" element={<AdminAuth />} />
-                <Route path="/admin/reset-password" element={<AdminResetPassword />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </PageTracker>
-          </BrowserRouter>
+        <LanguageProvider>
+          <ThemeProvider>
+            <BrowserRouter>
+              <PageTracker>
+                <AuthRecoveryRedirect />
+                <AdminToolbar />
+                <AdminEditSidebar />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/product/:slug" element={<ProductDetailPage />} /> // Add the new route
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/export" element={<ExportPage />} />
+                  <Route path="/export/iron-steel" element={<IronSteelPage />} />
+                  <Route path="/export/copper-rod" element={<CopperRodPage />} />
+                  <Route path="/export/bitumen" element={<BitumenPage />} />
+                  <Route path="/export/oil" element={<OilPage />} />
+                  <Route path="/warranty" element={<WarrantyPage />} />
+                  <Route path="/representatives" element={<RepresentativesPage />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/admin/auth" element={<AdminAuth />} />
+                  <Route path="/admin/reset-password" element={<AdminResetPassword />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </PageTracker>
+            </BrowserRouter>
+          </ThemeProvider>
+        </LanguageProvider>
       </AdminProvider>
     </TooltipProvider>
   </QueryClientProvider>

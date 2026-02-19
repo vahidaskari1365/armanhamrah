@@ -4,8 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import ChatWidget from '@/components/ChatWidget';
@@ -15,7 +14,7 @@ import { products, brandsList, categories } from '@/data/products';
 
 const ProductsPageContent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedBrand, setSelectedBrand] = useState<string>('همه');
   const [selectedCategory, setSelectedCategory] = useState<string>('همه');
 
@@ -42,21 +41,6 @@ const ProductsPageContent = () => {
     setSearchParams(searchParams);
   };
   
-  const getCategoryTranslation = (category: string, lang: string) => {
-    if (lang === 'en') {
-      switch (category) {
-        case 'همه': return 'All';
-        case 'موبایل': return 'Mobile';
-        case 'ساعت هوشمند': return 'Smartwatch';
-        case 'تبلت': return 'Tablet';
-        case 'لوازم جانبی': return 'Accessories';
-        case 'موبایل ساده': return 'Feature Phone';
-        default: return category;
-      }
-    }
-    return category;
-  }
-
   return (
     <div className="min-h-screen bg-background relative admin-toolbar-offset" dir={language === 'fa' ? 'rtl' : 'ltr'}>
       {/* Background Logo */}
@@ -79,14 +63,14 @@ const ProductsPageContent = () => {
             >
               <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
                 <ArrowRight size={20} />
-                {language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Back to Home'}
+                {t('products.back')}
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                 <EditableText
                   contentKey="products-page-title"
                   page="products"
                   section="hero"
-                  defaultValue={language === 'fa' ? 'محصولات' : 'Products'}
+                  defaultValue={t('products.title')}
                   as="span"
                 />
               </h1>
@@ -95,10 +79,7 @@ const ProductsPageContent = () => {
                   contentKey="products-page-description"
                   page="products"
                   section="hero"
-                  defaultValue={language === 'fa' 
-                    ? 'تمامی محصولات با گارانتی معتبر آرمان همراه ارتباطات آریا عرضه می‌شوند'
-                    : 'All products come with valid Arman Hamrah warranty'
-                  }
+                  defaultValue={t('products.description')}
                   as="span"
                   multiline
                 />
@@ -114,7 +95,7 @@ const ProductsPageContent = () => {
               {/* Brands Filter */}
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-sm font-medium text-muted-foreground">
-                  {language === 'fa' ? 'برند:' : 'Brand:'}
+                  {t('products.brand')}
                 </span>
                 {brandsList.map((brand, index) => (
                   <motion.button
@@ -129,14 +110,14 @@ const ProductsPageContent = () => {
                         : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
                     }`}
                   >
-                    {brand === 'همه' && language === 'en' ? 'All' : brand}
+                    {t(brand)}
                   </motion.button>
                 ))}
               </div>
               {/* Categories Filter */}
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-sm font-medium text-muted-foreground">
-                  {language === 'fa' ? 'دسته‌بندی:' : 'Category:'}
+                  {t('products.category')}
                 </span>
                 {categories.map((category, index) => (
                   <motion.button
@@ -151,7 +132,7 @@ const ProductsPageContent = () => {
                         : 'bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground'
                     }`}
                   >
-                    {getCategoryTranslation(category, language)}
+                    {t(category)}
                   </motion.button>
                 ))}
               </div>
@@ -183,12 +164,12 @@ const ProductsPageContent = () => {
                         {product.brand}
                       </span>
                     </div>
-                    <span className="text-xs text-muted-foreground block mb-2">{product.category}</span>
+                    <span className="text-xs text-muted-foreground block mb-2">{t(product.category)}</span>
                     <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
                     <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
-                      {language === 'fa' ? 'مشاهده' : 'View'}
+                      {t('products.view')}
                     </span>
                   </Link>
                 </motion.div>
@@ -198,7 +179,7 @@ const ProductsPageContent = () => {
             {filteredProducts.length === 0 && (
               <div className="text-center py-16">
                 <p className="text-muted-foreground text-lg">
-                  {language === 'fa' ? 'محصولی یافت نشد' : 'No products found'}
+                  {t('products.noProducts')}
                 </p>
               </div>
             )}
@@ -212,17 +193,14 @@ const ProductsPageContent = () => {
 };
 
 const ProductsPage = () => {
+  const { t } = useLanguage();
   return (
     <HelmetProvider>
-      <ThemeProvider>
-        <LanguageProvider>
-          <SEO 
-            title="محصولات | آرمان همراه ارتباطات آریا"
-            description="مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند"
-          />
-          <ProductsPageContent />
-        </LanguageProvider>
-      </ThemeProvider>
+      <SEO 
+        title={t('products.seo.title')}
+        description={t('products.seo.description')}
+      />
+      <ProductsPageContent />
     </HelmetProvider>
   );
 };

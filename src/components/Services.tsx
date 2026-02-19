@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Shield, Store, ShoppingBag } from 'lucide-react';
+import { Shield, Store, ShoppingBag, Globe } from 'lucide-react'; // Import Globe icon
 import { Link } from 'react-router-dom';
 import EditableText from '@/components/admin/EditableText';
 
@@ -35,6 +35,15 @@ const Services = () => {
       gradient: 'from-orange-500 to-red-500',
       isInternal: true,
     },
+    {
+      icon: Globe, // Add Globe icon for export service
+      titleKey: 'services.export.title',
+      descKey: 'services.export.desc',
+      contentKey: 'export',
+      link: '/export',
+      gradient: 'from-green-500 to-teal-500', // Add a gradient for the new service
+      isInternal: true,
+    },
   ];
 
   return (
@@ -59,7 +68,7 @@ const Services = () => {
           <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.titleKey}

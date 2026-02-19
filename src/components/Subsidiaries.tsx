@@ -1,41 +1,39 @@
-import subsidiary1 from '@/assets/subsidiary-1.jpeg';
-import subsidiary2 from '@/assets/subsidiary-2.jpeg';
-import subsidiary3 from '@/assets/subsidiary-3.jpeg';
-import subsidiary4 from '@/assets/subsidiary-4.jpeg';
-import subsidiary5 from '@/assets/subsidiary-5.jpeg';
-import subsidiary6 from '@/assets/subsidiary-6.jpeg';
-import subsidiary7 from '@/assets/subsidiary-7.jpeg';
-import subsidiary8 from '@/assets/subsidiary-8.jpeg';
-import subsidiary9 from '@/assets/subsidiary-9.jpeg';
-import EditableText from '@/components/admin/EditableText';
+import subsidiary1 from '@/assets/subsidiary-1.jpeg?v=2';
+import subsidiary2 from '@/assets/subsidiary-2.jpeg?v=2';
+import subsidiary3 from '@/assets/subsidiary-3.jpeg?v=2';
+import subsidiary4 from '@/assets/subsidiary-4.jpg?v=2';
+import subsidiary5 from '@/assets/subsidiary-5.jpeg?v=2';
+import subsidiary6 from '@/assets/subsidiary-6.jpg?v=2';
+import subsidiary7 from '@/assets/subsidiary-7.jpg?v=2';
+import subsidiary8 from '@/assets/subsidiary-8.jpeg?v=2';
+import subsidiary9 from '@/assets/subsidiary-9.jpg?v=2';
+import subsidiary10 from '@/assets/subsidiary-10.jpeg?v=2'; // Corrected the file extension
 import EditableImage from '@/components/admin/EditableImage';
 import { useAdmin } from '@/contexts/AdminContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const defaultSubsidiaries = [
-  { id: 1, name: 'آیین تجارت آران', logo: subsidiary1 },
-  { id: 2, name: 'آرشا فن آوران رادان', logo: subsidiary2 },
-  { id: 3, name: 'آرتا تجارت کیهان', logo: subsidiary3 },
-  { id: 4, name: 'بازرگانی فرنام تجارت', logo: subsidiary4 },
-  { id: 5, name: 'دانیال تجارت دارا', logo: subsidiary5 },
-  { id: 6, name: 'فرنام تجارت کارا', logo: subsidiary6 },
-  { id: 7, name: 'کارزین تجارت آرشان', logo: subsidiary7 },
-  { id: 8, name: 'مانیا تجارت ماکان', logo: subsidiary8 },
-  { id: 9, name: 'کارزین تجارت پرگون', logo: subsidiary9 },
+  { id: 1, name: 'subsidiary.1.name', logo: subsidiary1 },
+  { id: 2, name: 'subsidiary.2.name', logo: subsidiary2 },
+  { id: 3, name: 'subsidiary.3.name', logo: subsidiary3 },
+  { id: 4, name: 'subsidiary.4.name', logo: subsidiary4 },
+  { id: 5, name: 'subsidiary.5.name', logo: subsidiary5 },
+  { id: 6, name: 'subsidiary.6.name', logo: subsidiary6 },
+  { id: 7, name: 'subsidiary.7.name', logo: subsidiary7 },
+  { id: 8, name: 'subsidiary.8.name', logo: subsidiary8 },
+  { id: 9, name: 'subsidiary.9.name', logo: subsidiary9 },
+  { id: 10, name: 'subsidiary.10.name', logo: subsidiary10 },
 ];
 
 const Subsidiaries = () => {
   const { isEditMode } = useAdmin();
+  const { t } = useLanguage();
 
   return (
     <section className="py-12 bg-muted/30">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold text-center mb-8 text-foreground">
-          <EditableText
-            contentKey="subsidiaries-title"
-            page="home"
-            section="subsidiaries"
-            defaultValue="شرکت‌های زیرمجموعه"
-          />
+          {t('subsidiaries.title')}
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
           {defaultSubsidiaries.map((company) => (
@@ -50,25 +48,19 @@ const Subsidiaries = () => {
                     page="home"
                     section="subsidiaries"
                     defaultSrc={company.logo}
-                    alt={company.name}
+                    alt={t(company.name)}
                     className="w-full h-full object-contain opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                   />
                 ) : (
                   <img
                     src={company.logo}
-                    alt={company.name}
+                    alt={t(company.name)}
                     className="w-full h-full object-contain opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                   />
                 )}
               </div>
               <span className="mt-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <EditableText
-                  contentKey={`subsidiary-name-${company.id}`}
-                  page="home"
-                  section="subsidiaries"
-                  defaultValue={company.name}
-                  className="text-xs"
-                />
+                {t(company.name)}
               </span>
             </div>
           ))}
