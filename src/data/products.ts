@@ -5,7 +5,7 @@ export const products = [
     slug: 'apple-watch-s11-46mm-gray',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-s11-46mm-gray.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/11b68556b6933ad85cd1b0f5b45c43d5a5a133d3_1694943282.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.apple_watch_s11.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled_always_on',
@@ -22,7 +22,7 @@ export const products = [
     slug: 'apple-watch-se11-44mm-black',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-se11-44mm-black.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/0a395b0c979a6136d6c666579895c1c85d115456_1694943152.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.apple_watch_se11_44.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -39,7 +39,7 @@ export const products = [
     slug: 'apple-watch-se11-44mm-starlight',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-se11-44mm-starlight.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/272f77f3794b95a5896a22f602752989b53272d9_1694943187.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.apple_watch_se11_44.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -56,7 +56,7 @@ export const products = [
     slug: 'apple-watch-se10-40mm-black',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-se10-40mm-black.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/439ed8ab2448a436573b75489f6b95d9a9446d33_1694943085.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.apple_watch_se10_40.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -74,7 +74,7 @@ export const products = [
     slug: 'apple-watch-se10-40mm-silver',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-se10-40mm-silver.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/43c2cb8bcf9a2247f6828b6d3a84c8a24de13a36_1694943122.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.apple_watch_se10_40.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -92,7 +92,7 @@ export const products = [
     slug: 'airpods-pro-2',
     brand: 'Apple',
     category: 'category.accessories',
-    image: '/images/products/airpods-pro-2.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/4c9d55990263f35dd9a4b2326755a95353d368e7_1663493863.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.airpods_pro_2.description',
     specs: {
         'spec.chip': 'Apple H2',
@@ -114,7 +114,7 @@ export const products = [
     slug: 'samsung-s25-ultra-256-12',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-s25-ultra-256-12.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/a58231e3d36b71a2516a2432a39a5c88c7f395f6_1705494218.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_s25_ultra.description',
     specs: {
         'spec.display': 'spec.value.display_dynamic_amoled_6_8',
@@ -131,7 +131,7 @@ export const products = [
     slug: 'samsung-s25-fe-256-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-s25-fe-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/356d787093a8d1163e7ea4a8a5b6c0397753147e_1697292299.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_s25_fe.description',
     specs: {
         'spec.display': 'spec.value.display_dynamic_amoled_6_4',
@@ -148,7 +148,7 @@ export const products = [
     slug: 'samsung-a56-256-12',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a56-256-12.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/f4ab6488a7c2e26970425ef70940c66042e612a2_1709637785.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a56.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_6',
@@ -165,7 +165,7 @@ export const products = [
     slug: 'samsung-a56-256-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a56-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/f4ab6488a7c2e26970425ef70940c66042e612a2_1709637785.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a56.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_6',
@@ -182,7 +182,7 @@ export const products = [
     slug: 'samsung-a56-128-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a56-128-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/f4ab6488a7c2e26970425ef70940c66042e612a2_1709637785.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a56.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_6',
@@ -199,7 +199,7 @@ export const products = [
     slug: 'samsung-a36-256-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a36-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/0f1011394a1763a817b1d4416132711e5b8705f1_1709637951.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a36.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_6_120hz',
@@ -216,7 +216,7 @@ export const products = [
     slug: 'samsung-a36-128-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a36-128-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/0f1011394a1763a817b1d4416132711e5b8705f1_1709637951.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a36.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_6_120hz',
@@ -233,7 +233,7 @@ export const products = [
     slug: 'samsung-a26-256-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a26-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/3c231a44a64a021966a910609368565a0c001f3e_1702816999.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a26.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_5_120hz',
@@ -249,7 +249,7 @@ export const products = [
     slug: 'samsung-a26-128-6',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a26-128-6.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/3c231a44a64a021966a910609368565a0c001f3e_1702816999.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a26.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_5_120hz',
@@ -265,7 +265,7 @@ export const products = [
     slug: 'samsung-a17-256-8',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a17-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/2a36b9a623471c6a28f447a1b0213d2f3496d595_1702817351.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a17.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_5_90hz',
@@ -281,7 +281,7 @@ export const products = [
     slug: 'samsung-a17-128-6',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a17-128-6.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/2a36b9a623471c6a28f447a1b0213d2f3496d595_1702817351.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a17.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_5_90hz',
@@ -297,7 +297,7 @@ export const products = [
     slug: 'samsung-a17-128-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a17-128-4.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/2a36b9a623471c6a28f447a1b0213d2f3496d595_1702817351.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_a17.description',
     specs: {
         'spec.display': 'spec.value.display_super_amoled_6_5_90hz',
@@ -313,7 +313,7 @@ export const products = [
     slug: 'samsung-a07-128-6',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a07-128-6.png',
+    image: 'public/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -329,7 +329,7 @@ export const products = [
     slug: 'samsung-a07-128-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a07-128-4.png',
+    image: 'public/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -345,7 +345,7 @@ export const products = [
     slug: 'samsung-a07-64-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a07-64-4.png',
+    image: 'public/images/products/samsung-a07.png',
     description: 'product.samsung_a07.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
@@ -361,7 +361,7 @@ export const products = [
     slug: 'samsung-a06-128-4',
     brand: 'Samsung',
     category: 'category.mobile',
-    image: '/images/products/samsung-a06-128-4.png',
+    image: 'public/images/products/samsung-a06.png',
     description: 'product.samsung_a06.description',
     specs: {
         'spec.display': 'spec.value.display_pls_lcd_6_7',
@@ -377,7 +377,7 @@ export const products = [
     slug: 'samsung-galaxy-tab-a9-plus-128-8',
     brand: 'Samsung',
     category: 'category.tablet',
-    image: '/images/products/samsung-galaxy-tab-a9-plus-128-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/2957b4470402f09315b82d3b18f305f6d62828b1_1700650953.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_tab_a9_plus.description',
     specs: {
         'spec.display': 'spec.value.display_tft_lcd_11_90hz',
@@ -394,7 +394,7 @@ export const products = [
     slug: 'samsung-galaxy-tab-a9-64-4',
     brand: 'Samsung',
     category: 'category.tablet',
-    image: '/images/products/samsung-galaxy-tab-a9-64-4.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/500b65a5a1f6a19f6a5b6a7a7b80a2a537f8f7c9_1700650898.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.samsung_tab_a9.description',
     specs: {
         'spec.display': 'spec.value.display_tft_lcd_8_7',
@@ -412,7 +412,7 @@ export const products = [
     slug: 'xiaomi-15t-512-12',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/xiaomi-15t-512-12.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/061325d97f53a633a69a037b587b5a837c73950b_1708852331.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.xiaomi_15t.description',
     specs: {
         'spec.display': 'spec.value.display_crystalres_amoled_6_36',
@@ -429,7 +429,7 @@ export const products = [
     slug: 'redmi-note-14s-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-note-14s-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/690f3818e69888cb86b7720e365022e370a256a0_1705494883.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_note_14s.description',
     specs: {
         'spec.display': 'spec.value.display_1_5k_amoled_6_67',
@@ -446,7 +446,7 @@ export const products = [
     slug: 'redmi-note-14-pro-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-note-14-pro-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/645934509e5ad57c43315a6b7a5416f4618721c4_1702816353.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_note_14_pro.description',
     specs: {
         'spec.display': 'spec.value.display_1_5k_crystalres_amoled_6_67',
@@ -463,7 +463,7 @@ export const products = [
     slug: 'redmi-note-14-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-note-14-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/f03e67025816f1402379d713c751a0293d8e57eb_1702816654.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_note_14.description',
     specs: {
         'spec.display': 'spec.value.display_amoled_6_67_120hz',
@@ -479,7 +479,7 @@ export const products = [
     slug: 'redmi-15-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-15-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/180c441b4e54881266898b5b546df163a32f6381_1718092795.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_15.description',
     specs: {
         'spec.display': 'spec.value.display_fhd_plus_amoled_6_79_90hz',
@@ -496,7 +496,7 @@ export const products = [
     slug: 'redmi-15c-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-15c-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/927429182372d25687794359d9972b644837a7b9_1701072973.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_15c.description',
     specs: {
         'spec.display': 'spec.value.display_ips_lcd_6_74_90hz',
@@ -512,7 +512,7 @@ export const products = [
     slug: 'redmi-13x-256-8',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-13x-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/927429182372d25687794359d9972b644837a7b9_1701072973.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -521,7 +521,7 @@ export const products = [
     slug: 'redmi-a5-128-4',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-a5-128-4.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/06478e5c8309115f3333e14713a726622b071a93_1709033333.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -530,7 +530,7 @@ export const products = [
     slug: 'redmi-a3-128-4',
     brand: 'Xiaomi',
     category: 'category.mobile',
-    image: '/images/products/redmi-a3-128-4.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/06478e5c8309115f3333e14713a726622b071a93_1709033333.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.redmi_a3.description',
     specs: {
         'spec.display': 'spec.value.display_ips_lcd_6_71_90hz',
@@ -549,7 +549,7 @@ export const products = [
     slug: 'poco-m7-256-8',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-m7-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/209c13d71101e4a525b42d17c9135e5d36544f33_1705494723.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -558,7 +558,7 @@ export const products = [
     slug: 'poco-m6-256-8',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-m6-256-8.jpg',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/209c13d71101e4a525b42d17c9135e5d36544f33_1705494723.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.poco_m6.description',
     specs: {
         'spec.display': 'spec.value.display_flow_amoled_6_67_120hz',
@@ -575,7 +575,7 @@ export const products = [
     slug: 'poco-c85-256-8',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-c85-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/be104524491a613d5e27a6abe2c458d72f778642_1700557497.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -584,7 +584,7 @@ export const products = [
     slug: 'poco-c85-128-6',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-c85-128-6.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/be104524491a613d5e27a6abe2c458d72f778642_1700557497.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -593,7 +593,7 @@ export const products = [
     slug: 'poco-c75-256-8',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-c75-256-8.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/be104524491a613d5e27a6abe2c458d72f778642_1700557497.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -602,7 +602,7 @@ export const products = [
     slug: 'poco-c71-128-4',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/poco-c71-128-4.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/be104524491a613d5e27a6abe2c458d72f778642_1700557497.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.coming_soon',
     specs: {},
   },
@@ -613,7 +613,7 @@ export const products = [
     slug: 'nokia-105',
     brand: 'Nokia',
     category: 'category.feature_phone',
-    image: '/images/products/nokia-105.png',
+    image: 'https://dkstatics-public.digikala.com/digikala-products/064e430f3a613a968e77a28e833f20f049079f53_1683442654.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90',
     description: 'product.nokia_105.description',
     specs: {
         'spec.display': '1.8 inch, QQVGA',

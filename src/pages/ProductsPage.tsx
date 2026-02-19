@@ -15,8 +15,8 @@ import { products, brandsList, categories } from '@/data/products';
 const ProductsPageContent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t, language } = useLanguage();
-  const [selectedBrand, setSelectedBrand] = useState<string>('همه');
-  const [selectedCategory, setSelectedCategory] = useState<string>('همه');
+  const [selectedBrand, setSelectedBrand] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
     const brandParam = searchParams.get('brand');
@@ -26,14 +26,14 @@ const ProductsPageContent = () => {
   }, [searchParams]);
 
   const filteredProducts = products.filter((product) => {
-    const brandMatch = selectedBrand === 'همه' || product.brand === selectedBrand;
-    const categoryMatch = selectedCategory === 'همه' || product.category === selectedCategory;
+    const brandMatch = selectedBrand === 'all' || product.brand === selectedBrand;
+    const categoryMatch = selectedCategory === 'all' || product.category === selectedCategory;
     return brandMatch && categoryMatch;
   });
 
   const handleBrandClick = (brand: string) => {
     setSelectedBrand(brand);
-    if (brand === 'همه') {
+    if (brand === 'all') {
       searchParams.delete('brand');
     } else {
       searchParams.set('brand', brand);
