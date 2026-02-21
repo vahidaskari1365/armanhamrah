@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Instagram, MessageCircle, Phone, Mail, MapPin, Linkedin, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.jpeg';
+import EditableText from '@/components/admin/EditableText';
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -40,12 +41,15 @@ const Footer = () => {
                 className="h-14 w-auto object-contain rounded"
               />
             </div>
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              {language === 'fa' 
-                ? 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.'
-                : 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2014.'
-              }
-            </p>
+            <EditableText
+              contentKey="footer-description"
+              page="shared"
+              section="footer"
+              defaultValue={t('footer.description')}
+              as="p"
+              multiline
+              className="text-muted-foreground leading-relaxed text-sm"
+            />
           </motion.div>
 
           {/* Quick Links */}

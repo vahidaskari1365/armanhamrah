@@ -299,7 +299,7 @@ const fallbackTranslationsData = {
     'representatives.subtitle': 'Our extensive network across Iran',
     
     // Footer
-    'footer.description': 'Arman Hamrah Aria Communications Warranty Company, providing warranty and after-sales services for prestigious global brands',
+    'footer.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۴ تا کنون با بهترین تجربه در ارائه خدمات پس از فروش به مشتریان، هوشمندترین گارانتی در ایران را ارائه می‌دهد.',
     'footer.quickLinks': 'Quick Links',
     'footer.contact': 'Contact Us',
     'footer.followUs': 'Follow Us',
@@ -593,7 +593,7 @@ const fallbackTranslationsData = {
     'representatives.subtitle': 'Our extensive network across Iran',
     
     // Footer
-    'footer.description': 'Arman Hamrah Aria Communications Warranty Company, providing warranty and after-sales services for prestigious global brands',
+    'footer.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2015.',
     'footer.quickLinks': 'Quick Links',
     'footer.contact': 'Contact Us',
     'footer.followUs': 'Follow Us',
