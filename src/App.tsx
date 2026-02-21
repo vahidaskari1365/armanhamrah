@@ -11,7 +11,7 @@ import AuthRecoveryRedirect from "@/components/AuthRecoveryRedirect";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProductsPage from "./pages/ProductsPage";
-import ProductDetailPage from "./pages/ProductDetailPage"; // Import the new page
+import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/Contact";
 import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
@@ -52,7 +52,7 @@ const App = () => (
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/product/:slug" element={<ProductDetailPage />} /> // Add the new route
+                  <Route path="/product/:slug" element={<ProductDetailPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/export" element={<ExportPage />} />
                   <Route path="/export/iron-steel" element={<IronSteelPage />} />

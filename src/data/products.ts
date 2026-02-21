@@ -39,7 +39,7 @@ export const products = [
     slug: 'apple-watch-series10-40mm-blk',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-series10-40mm-blk.png',
+    image: '/images/products/Apple Watch series10 40mm BLK.png',
     description: 'product.apple_watch_se10_40.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -57,7 +57,7 @@ export const products = [
     slug: 'apple-watch-series10-silver',
     brand: 'Apple',
     category: 'category.smartwatch',
-    image: '/images/products/apple-watch-series10-silver.webp',
+    image: '/images/products/Apple-Watch-series10-silver.png',
     description: 'product.apple_watch_se10_40.description',
     specs: {
         'spec.display': 'spec.value.retina_ltpo_oled',
@@ -410,7 +410,7 @@ export const products = [
     slug: 'xiaomi-pocom6',
     brand: 'Poco',
     category: 'category.mobile',
-    image: '/images/products/xiaomi-pocom6.png',
+    image: '/images/products/xiaomi-pocom6.jpg',
     description: 'product.poco_m6.description',
     specs: {
         'spec.display': 'spec.value.display_flow_amoled_6_67_120hz',
@@ -456,7 +456,7 @@ export const products = [
     slug: 'nokia-105-4g',
     brand: 'Nokia',
     category: 'category.feature_phone',
-    image: '/images/products/nokia-105-4g.png',
+    image: '/images/products/nokia-105-4g.webp',
     description: 'product.nokia_105.description',
     specs: {
         'spec.display': '1.8 inch, QQVGA',

@@ -52,7 +52,11 @@ const EditableText: React.FC<EditableTextProps> = ({
     };
 
     loadContent();
-  }, [page, section, contentKey]);
+  }, [page, section, contentKey, defaultValue]);
+
+  useEffect(() => {
+      setValue(defaultValue)
+  }, [defaultValue])
 
   const handleSave = async () => {
     if (value === originalValue) {
@@ -136,7 +140,7 @@ const EditableText: React.FC<EditableTextProps> = ({
   }, [isEditing]);
 
   if (!isEditMode) {
-    return <Component className={className}>{value}</Component>;
+    return <Component className={cn(className, multiline && 'whitespace-pre-line')}>{value}</Component>;
   }
 
   return (
@@ -208,6 +212,7 @@ const EditableText: React.FC<EditableTextProps> = ({
             <Component
               className={cn(
                 className,
+                multiline && 'whitespace-pre-line',
                 "outline outline-2 outline-transparent transition-all",
                 isHovered && "outline-orange-500/50 outline-dashed"
               )}

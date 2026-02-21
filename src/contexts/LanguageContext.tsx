@@ -74,7 +74,7 @@ const fallbackTranslationsData = {
     'subsidiary.4.name': 'فرنام تجارت دادار',
     'subsidiary.5.name': 'دانیال تجارت دارا',
     'subsidiary.6.name': 'فرنام تجارت کارا',
-    'subsidiary.7.name': 'کارزین تجارت آرشان',
+    'subsidiary.7.name': 'کارزین تجارت پرگون',
     'subsidiary.8.name': 'مانیا تجارت ماکان',
     'subsidiary.9.name': 'کارزین تجارت آرشان',
     'subsidiary.10.name': 'رادیکال وان',
@@ -356,7 +356,7 @@ const fallbackTranslationsData = {
     'subsidiary.4.name': 'Farnam Tejarat Dadar',
     'subsidiary.5.name': 'Danial Tejarat Dara',
     'subsidiary.6.name': 'Farnam Tejarat Kara',
-    'subsidiary.7.name': 'Karzin Tejarat Arshan',
+    'subsidiary.7.name': 'Karzin Tejarat Pargon',
     'subsidiary.8.name': 'Mania Tejarat Makan',
     'subsidiary.9.name': 'Karzin Tejarat Arshan',
     'subsidiary.10.name': 'Radical One',
@@ -646,7 +646,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   useEffect(() => {
     document.documentElement.dir = direction;
     document.documentElement.lang = language;
-  }, [language, direction]);
+  }, [direction, language]);
 
   return (
     <LanguageContext.Provider value={{ language, direction, toggleLanguage, t, loading }}>

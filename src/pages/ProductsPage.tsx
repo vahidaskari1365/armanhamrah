@@ -76,7 +76,7 @@ const ProductsPageContent = () => {
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
                 <EditableText
-                  contentKey="products-page-description"
+                  contentKey="products-page-description-v2"
                   page="products"
                   section="hero"
                   defaultValue={t('products.description')}
