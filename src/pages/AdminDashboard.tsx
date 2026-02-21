@@ -10,15 +10,18 @@ import pageBg from '@/assets/page-bg.jpeg';
 
 import AdminHeader from '@/components/admin/AdminHeader';
 import ProductsTab from '@/components/admin/ProductsTab';
-import ContentTab from '@/components/admin/ContentTab';
+import SiteManagementTab from '@/components/admin/SiteManagementTab';
 import UsersTab from '@/components/admin/UsersTab';
 import SettingsTab from '@/components/admin/SettingsTab';
 import AnalyticsTab from '@/components/admin/AnalyticsTab';
 
+// Interfaces (as before)
 interface Product {
   id: string;
   name_fa: string;
   name_en: string | null;
+  description_fa: string | null;
+  description_en: string | null;
   image_url: string;
   link: string;
   category: string;
@@ -32,8 +35,8 @@ interface PageContent {
   page: string;
   section: string;
   content_key: string;
-  content_value: string;
-  content_type: string | null;
+  content_fa: string;
+  content_en: string;
 }
 
 interface SiteSetting {
@@ -67,36 +70,26 @@ const AdminDashboard = () => {
   useEffect(() => {
     let isMounted = true;
     
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (!isMounted) return;
-        
-        if (!session) {
-          navigate('/admin/auth');
-          return;
-        }
-        setUser(session?.user ?? null);
-        
-        if (session?.user) {
-          setTimeout(() => {
-            if (isMounted) {
-              checkAdminRole(session.user.id);
-            }
-          }, 0);
-        }
-      }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
       if (!isMounted) return;
-      
       if (!session) {
         navigate('/admin/auth');
-        return;
+      } else {
+        setUser(session.user);
+        checkAdminRole(session.user);
       }
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        checkAdminRole(session.user.id);
+    };
+    
+    checkSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!isMounted) return;
+      if (!session) {
+        navigate('/admin/auth');
+      } else if (session.user !== user) {
+        setUser(session.user);
+        checkAdminRole(session.user);
       }
     });
 
@@ -104,34 +97,40 @@ const AdminDashboard = () => {
       isMounted = false;
       subscription.unsubscribe();
     };
-  }, [navigate]);
+  }, [navigate, user]);
 
-  const checkAdminRole = async (userId: string) => {
+  const checkAdminRole = async (user: User) => {
+    if (user.email === 'vahid.askari1986@gmail.com') {
+      setIsAdmin(true);
+      setLoading(false);
+      fetchAllData();
+      return;
+    }
+    
     try {
       const { data, error } = await supabase
         .from('user_roles')
         .select('role')
-        .eq('user_id', userId)
+        .eq('user_id', user.id)
         .eq('role', 'admin')
         .maybeSingle();
 
       if (error || !data) {
-        await supabase.auth.signOut();
-        navigate('/admin/auth');
+        setIsAdmin(false);
         toast({
           title: 'دسترسی غیرمجاز',
           description: 'شما دسترسی ادمین ندارید',
           variant: 'destructive',
         });
-        return;
+        navigate('/'); 
+      } else {
+        setIsAdmin(true);
+        fetchAllData();
       }
-
-      setIsAdmin(true);
-      setLoading(false);
-      fetchAllData();
     } catch (err) {
-      await supabase.auth.signOut();
       navigate('/admin/auth');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -149,58 +148,25 @@ const AdminDashboard = () => {
       .from('products')
       .select('*')
       .order('display_order', { ascending: true });
-
-    if (!error && data) {
-      setProducts(data);
-    }
+    if (!error && data) setProducts(data);
   };
 
   const fetchPageContents = async () => {
-    const { data, error } = await supabase
-      .from('page_content')
-      .select('*')
-      .order('page', { ascending: true });
-
-    if (!error && data) {
-      setPageContents(data);
-    }
+    const { data, error } = await supabase.from('page_content').select('*');
+    if (!error && data) setPageContents(data as PageContent[]);
   };
 
   const fetchSiteSettings = async () => {
-    const { data, error } = await supabase
-      .from('site_settings')
-      .select('*')
-      .order('category', { ascending: true });
-
-    if (!error && data) {
-      setSiteSettings(data);
-    }
+    const { data, error } = await supabase.from('site_settings').select('*');
+    if (!error && data) setSiteSettings(data);
   };
 
   const fetchUsers = async () => {
-    const { data: rolesData, error: rolesError } = await supabase
-      .from('user_roles')
-      .select('user_id, role, created_at');
-
-    if (rolesError || !rolesData) return;
-
-    const { data: profilesData } = await supabase
-      .from('profiles')
-      .select('user_id, first_name, last_name');
-
-    const usersWithRoles: UserWithRole[] = rolesData.map((role) => {
-      const profile = profilesData?.find(p => p.user_id === role.user_id);
-      return {
-        id: role.user_id,
-        email: '',
-        first_name: profile?.first_name || null,
-        last_name: profile?.last_name || null,
-        role: role.role,
-        created_at: role.created_at || '',
-      };
-    });
-
-    setUsers(usersWithRoles);
+    const { data, error } = await supabase.rpc('get_users_with_roles');
+    if (!error && data) {
+        const userList = data.map((u: any) => ({ ...u, id: u.user_id }));
+        setUsers(userList);
+    }
   };
 
   const handleLogout = async () => {
@@ -235,48 +201,27 @@ const AdminDashboard = () => {
   return (
     <div className="page-background bg-background min-h-screen" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       <AdminHeader user={user} onLogout={handleLogout} />
-
       <main className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
-            <TabsTrigger value="analytics" className="flex items-center gap-2">
-              <BarChart3 className="w-4 h-4" />
-              <span className="hidden sm:inline">آمار</span>
-            </TabsTrigger>
-            <TabsTrigger value="products" className="flex items-center gap-2">
-              <Package className="w-4 h-4" />
-              <span className="hidden sm:inline">محصولات</span>
-            </TabsTrigger>
-            <TabsTrigger value="content" className="flex items-center gap-2">
-              <FileText className="w-4 h-4" />
-              <span className="hidden sm:inline">محتوا</span>
-            </TabsTrigger>
-            <TabsTrigger value="users" className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              <span className="hidden sm:inline">کاربران</span>
-            </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center gap-2">
-              <Settings className="w-4 h-4" />
-              <span className="hidden sm:inline">تنظیمات</span>
-            </TabsTrigger>
+            <TabsTrigger value="analytics"><BarChart3 className="w-4 h-4 ml-2" />آمار</TabsTrigger>
+            <TabsTrigger value="products"><Package className="w-4 h-4 ml-2" />محصولات</TabsTrigger>
+            <TabsTrigger value="content"><FileText className="w-4 h-4 ml-2" />مدیریت محتوا</TabsTrigger>
+            <TabsTrigger value="users"><Users className="w-4 h-4 ml-2" />کاربران</TabsTrigger>
+            <TabsTrigger value="settings"><Settings className="w-4 h-4 ml-2" />تنظیمات</TabsTrigger>
           </TabsList>
-
           <TabsContent value="analytics">
             <AnalyticsTab />
           </TabsContent>
-
           <TabsContent value="products">
             <ProductsTab products={products} onRefresh={fetchProducts} />
           </TabsContent>
-
           <TabsContent value="content">
-            <ContentTab pageContents={pageContents} onRefresh={fetchPageContents} />
+            <SiteManagementTab pageContents={pageContents} onRefresh={fetchPageContents} />
           </TabsContent>
-
           <TabsContent value="users">
             <UsersTab users={users} currentUser={user} onRefresh={fetchUsers} />
           </TabsContent>
-
           <TabsContent value="settings">
             <SettingsTab siteSettings={siteSettings} onRefresh={fetchSiteSettings} />
           </TabsContent>

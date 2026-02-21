@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 type Language = 'fa' | 'en';
 type Direction = 'rtl' | 'ltr';
@@ -7,10 +8,13 @@ interface LanguageContextType {
   language: Language;
   direction: Direction;
   toggleLanguage: () => void;
-  t: (key: string) => string;
+  t: (key: string, fallback?: string) => string;
+  loading: boolean;
 }
 
-const translations = {
+type Translations = Record<string, { fa: string; en: string }>;
+
+const fallbackTranslationsData = {
   fa: {
     // General
     'all': 'همه',
@@ -268,196 +272,30 @@ const translations = {
     'oil.seo.description': 'صادرات انواع روغن‌های پایه، روغن موتور، هیدرولیک و دنده از پالایشگاه‌های معتبر ایران با کیفیت تضمینی.',
 
     // Guarantee
-    'guarantee.title': 'شرایط گارانتی ۱۸ ماهه',
-    'guarantee.subtitle': 'شرکت آرمان همراه ارتباطات آریا',
-    'guarantee.conditionsTitle': 'شرایط گارانتی',
-    'guarantee.exceptionsTitle': 'موارد قابل اغماض',
+    'guarantee.title': '18-Month Warranty Terms',
+    'guarantee.subtitle': 'Arman Hamrah Aria Communications Company',
+    'guarantee.conditionsTitle': 'Warranty Conditions',
+    'guarantee.exceptionsTitle': 'Acceptable Exceptions',
     
     // App Section
-    'app.title': 'خدمات پس از فروش در دستان شما',
-    'app.description': 'شما عزیزان و همراهان آرمان همراه ارتباطات آریا با نصب اپلیکیشن آرمان من و یا استفاده از نسخه وب اپلیکیشن برای iOS از خدمات ما به صورت آنلاین بهره مند شوید.',
-    'app.cta': 'ورود به آرمان من',
+    'app.title': 'After-Sales Service at Your Fingertips',
+    'app.description': 'Dear customers of Arman Hamrah Aria Communications, enjoy our online services by installing the My Arman app or using the web version for iOS.',
+    'app.cta': 'Login to My Arman',
     
     // Representatives
-    'representatives.title': 'نمایندگان فروش',
-    'representatives.subtitle': 'شبکه گسترده نمایندگان آرمان همراه در سراسر ایران',
+    'representatives.title': 'Sales Representatives',
+    'representatives.subtitle': 'Our extensive network across Iran',
     
     // Footer
-    'footer.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا، ارائه دهنده خدمات گارانتی و پس از فروش برای برندهای معتبر جهانی',
-    'footer.quickLinks': 'لینک‌های سریع',
-    'footer.contact': 'تماس با ما',
-    'footer.followUs': 'ما را دنبال کنید',
-    'footer.rights': 'تمامی حقوق محفوظ است',
+    'footer.description': 'Arman Hamrah Aria Communications Warranty Company, providing warranty and after-sales services for prestigious global brands',
+    'footer.quickLinks': 'Quick Links',
+    'footer.contact': 'Contact Us',
+    'footer.followUs': 'Follow Us',
+    'footer.rights': 'All rights reserved',
     
     // Theme
-    'theme.light': 'روشن',
-    'theme.dark': 'تاریک',
-
-    // Product Names
-    'product.apple_watch_s11.name': 'اپل واچ سری ۱۱ 46mm خاکستری',
-    'product.apple_watch_se11_44.name': 'اپل واچ SE 44mm مشکی',
-    'product.apple_watch_se11_44_starlight.name': 'اپل واچ SE 44mm ستاره‌ای',
-    'product.apple_watch_se10_40.name': 'اپل واچ SE 40mm مشکی',
-    'product.apple_watch_se10_40_silver.name': 'اپل واچ SE 40mm نقره‌ای',
-    'product.airpods_pro_2.name': 'ایرپاد پرو ۲',
-    'product.samsung_s25_ultra.name': 'سامسونگ S25 Ultra 256/12',
-    'product.samsung_s25_fe.name': 'سامسونگ S25 FE 256/8',
-    'product.samsung_a56_12.name': 'سامسونگ A56 256/12',
-    'product.samsung_a56_8.name': 'سامسونگ A56 256/8',
-    'product.samsung_a56_128.name': 'سامسونگ A56 128/8',
-    'product.samsung_a36.name': 'سامسونگ A36 256/8',
-    'product.samsung_a36_128.name': 'سامسونگ A36 128/8',
-    'product.samsung_a26.name': 'سامسونگ A26 256/8',
-    'product.samsung_a26_128.name': 'سامسونگ A26 128/6',
-    'product.samsung_a17.name': 'سامسونگ A17 256/8',
-    'product.samsung_a17_128_6.name': 'سامسونگ A17 128/6',
-    'product.samsung_a17_128_4.name': 'سامسونگ A17 128/4',
-    'product.samsung_a07.name': 'سامسونگ A07 128/6',
-    'product.samsung_a07_128_4.name': 'سامسونگ A07 128/4',
-    'product.samsung_a07_64_4.name': 'سامسونگ A07 64/4',
-    'product.samsung_a06.name': 'سامسونگ A06 128/4',
-    'product.samsung_tab_a9_plus.name': 'تبلت سامسونگ Galaxy Tab A9+ 128/8',
-    'product.samsung_tab_a9.name': 'تبلت سامسونگ Galaxy Tab A9 64/4',
-    'product.xiaomi_15t.name': 'شیائومی 15T 512/12',
-    'product.redmi_note_14s.name': 'ردمی نوت 14s 256/8',
-    'product.redmi_note_14_pro.name': 'ردمی نوت 14 پرو 256/8',
-    'product.redmi_note_14.name': 'ردمی نوت 14 256/8',
-    'product.redmi_15.name': 'ردمی 15 256/8',
-    'product.redmi_15c.name': 'ردمی 15c 256/8',
-    'product.redmi_13x.name': 'ردمی 13X 256/8',
-    'product.redmi_a5.name': 'ردمی A5 128/4',
-    'product.redmi_a3.name': 'ردمی A3 128/4',
-    'product.poco_m7.name': 'پوکو M7 256/8',
-    'product.poco_m6.name': 'پوکو M6 256/8',
-    'product.poco_c85.name': 'پوکو C85 256/8',
-    'product.poco_c85_128.name': 'پوکو C85 128/6',
-    'product.poco_c75.name': 'پوکو C75 256/8',
-    'product.poco_c71.name': 'پوکو C71 128/4',
-    'product.nokia_105.name': 'نوکیا ۱۰۵',
-
-    // Product Descriptions
-    'product.apple_watch_s11.description': 'اپل واچ سری ۱۱ با نمایشگر همیشه روشن و بزرگ‌تر، پردازنده قدرتمند S11 و سنسورهای سلامتی پیشرفته‌تر، بهترین همراه برای زندگی سالم و متصل است. قابلیت‌های جدیدی مانند پایش دمای بدن و تشخیص تصادف، آن را به یک گجت ضروری تبدیل کرده است.',
-    'product.apple_watch_se11_44.description': 'اپل واچ SE جدید، ترکیبی عالی از طراحی مدرن، قابلیت‌های کلیدی و قیمت مناسب است. این ساعت با پردازنده سریع‌تر و قابلیت تشخیص تصادف، ارزش خرید بالایی را برای کاربرانی که به دنبال اولین اپل واچ خود هستند، ارائه می‌دهد.',
-    'product.apple_watch_se10_40.description': 'اپل واچ SE (2023) با طراحی زیبا و نمایشگر Retina، همراهی هوشمند برای زندگی روزمره شماست. این ساعت با قابلیت‌های پیشرفته‌ای مانند پایش ضربان قلب، تشخیص تصادف و SOS اضطراری، سلامتی و ایمنی شما را تضمین می‌کند. همچنین با دسترسی به هزاران اپلیکیشن، می‌توانید فعالیت‌های ورزشی خود را ردیابی کرده و همیشه متصل بمانید.',
-    'product.airpods_pro_2.description': 'ایـرپاد پرو (نسل دوم) با قابلیت‌هایی نظیر حذف نویز فعال (Active Noise Cancellation) دو برابر قوی‌تر، حالت شفافیت تطبیق‌پذیر (Adaptive Transparency) و صدای فراگیر شخصی‌سازی‌شده (Personalized Spatial Audio)، تجربه‌ی شنیداری شما را متحول می‌کند. با یک بار شارژ تا ۶ ساعت و با کیس شارژ تا ۳۰ ساعت به موسیقی گوش دهید و با کنترل لمسی جدید، همه‌چیز را آسان‌تر مدیریت کنید.',
-    'product.samsung_s25_ultra.description': 'گلکسی S25 اولترا با بهره‌گیری از هوش مصنوعی Galaxy AI، استاندارد جدیدی در دنیای موبایل تعریف می‌کند. از قابلیت Circle to Search برای جستجوی آسان‌تر گرفته تا ترجمه زنده تماس‌ها و بهبود کیفیت عکس‌ها با Photo Assist، همه چیز برای تجربه‌ای هوشمندتر آماده شده است.',
-    'product.samsung_s25_fe.description': 'گلکسی S25 FE با طراحی نمادین سری S25 و رنگ‌های جذاب، تجربه‌ای پریمیوم را با قیمتی مناسب ارائه می‌دهد. دوربین باکیفیت، نمایشگر Dynamic AMOLED 2X و پردازنده قدرتمند، این گوشی را به انتخابی ایده‌آل برای طرفداران سامسونگ تبدیل کرده است.',
-    'product.samsung_a56.description': 'گلکسی A56 با ترکیب فلز و شیشه، طراحی زیبا و مقاومت بالا (IP67) را به ارمغان می‌آورد. نمایشگر Super AMOLED 120Hz، دوربین 50 مگاپیکسلی و پردازنده قدرتمند، این گوشی را به گزینه‌ای عالی در میان‌رده‌ها تبدیل کرده است.',
-    'product.samsung_a36.description': 'گلکسی A36 با نمایشگر خیره‌کننده Super AMOLED، دوربین سه‌گانه باکیفیت و طراحی مدرن، تجربه‌ای لذت‌بخش را برای کاربران فراهم می‌کند. این گوشی با باتری بادوام و عملکرد روان، همراهی ایده‌آл برای کارهای روزمره و سرگرمی است.',
-    'product.samsung_a26.description': 'گلکسی A26 با نمایشگر 6.5 اینچی Super AMOLED و نرخ نوسازی 120 هرتز، تصاویری روان و زنده را به نمایش می‌گذارد. دوربین اصلی 50 مگاپیکسلی با لرزشگیر اپتیکال (OIS) و پردازنده 5 نانومتری، این گوشی را به ابزاری قدرتمند برای عکاسی و کارهای روزمره تبدیل کرده است.',
-    'product.samsung_a17.description': 'گلکسی A17 با نمایشگر Super AMOLED، پردازنده هشت هسته‌ای و دوربین 50 مگاپیکسلی، گزینه‌ای عالی و مقرون‌به‌صرفه است. این گوشی با طراحی زیبا و باتری بادوام، نیازهای روزمره شما را به خوبی برآورده می‌کند.',
-    'product.samsung_a07.description': 'گلکسی A07 با نمایشگر بزرگ 6.7 اینچی +FHD و پردازنده قدرتمند اسنپدراگون، تجربه‌ای روان و فراگیر را برای تماشا و بازی فراهم می‌کند. دوربین سه‌گانه 50 مگاپیکسلی و باتری بادوام، این گوشی را به انتخابی هوشمندانه در رده اقتصادی تبدیل کرده است.',
-    'product.samsung_a06.description': 'گلکسی A06 با نمایشگر بزرگ و دوربین دوگانه 50 مگاپیکسلی، گزینه‌ای اقتصادی و کارآمد برای نیازهای اولیه است. این گوشی با پردازنده هشت هسته‌ای و باتری حجیم، عملکردی روان و طولانی‌مدت را تضمین می‌کند.',
-    'product.samsung_tab_a9_plus.description': 'تبلت گلکسی Tab A9+ با نمایشگر بزرگ و روان، صدای فراگیر و عملکرد چندوظیفه‌ای قدرتمند، همراهی ایده‌آل برای سرگرمی و کارهای روزمره است. طراحی شیک و مدرن آن، تجربه‌ای لذت‌بخش را برای تمام اعضای خانواده فراهم می‌کند.',
-    'product.samsung_tab_a9.description': 'تبلت گلکسی Tab A9 با طراحی کلاسیک و بدنه فلزی، در عین زیبایی، عملکردی روان را برای کارهای روزمره ارائه می‌دهد. نمایشگر روشن و بلندگوهای دوگانه، این تبلت را به گزینه‌ای عالی برای تماشای فیلم و بازی تبدیل کرده است.',
-    'product.xiaomi_15t.description': 'شیائومی 15T با همکاری لایکا، تجربه‌ی عکاسی حرفه‌ای را به دنیای موبایل می‌آورد. این گوشی با پردازنده قدرتمند اسنپدراگون و نمایشگر CrystalRes AMOLED، عملکردی بی‌نظیر و تصاویری خیره‌کننده را ارائه می‌دهد.',
-    'product.redmi_note_14s.description': 'ردمی نوت ۱۴ اس با دوربین ۲۰۰ مگاپیکسلی و نمایشگر 1.5K AMOLED، تصاویری با وضوح و کیفیت بی‌نظیر ثبت می‌کند. این گوشی با پردازنده اسنپدراگون و طراحی مقاوم، انتخابی هوشمندانه برای کاربرانی است که به دنبال بهترین‌ها هستند.',
-    'product.redmi_note_14_pro.description': 'ردمی نوت ۱۴ پرو با دوربین ۲۰۰ مگاپیکسلی و لرزشگیر اپتیکال، عکاسی را در سطح پرچمداران ارائه می‌دهد. نمایشگر 1.5K AMOLED با نرخ نوسازی 120 هرتز و شارژ فوق سریع 120 وات، این گوشی را به یک هیولای تمام‌عیار تبدیل کرده است.',
-    'product.redmi_note_14.description': 'ردمی نوت ۱۴ با دوربین سه‌گانه ۱۰۸ مگاپیکسلی و نمایشگر خیره‌کننده AMOLED با حاشیه‌های بسیار باریک، تجربه‌ای بصری فوق‌العاده را به ارمغان می‌آورد. طراحی شیک و پردازنده قدرتمند، آن را به گزینه‌ای جذاب در بازار میان‌رده‌ها تبدیل کرده است.',
-    'product.redmi_15.description': 'ردمی ۱۵ با دوربین اصلی ۱۰۸ مگاپیکسلی و زوم 3X، عکاسی با جزئیات خیره‌کننده را ممکن می‌سازد. نمایشگر FHD+ با تکنولوژی AdaptiveSync و باتری قدرتمند، تجربه‌ای روان و طولانی‌مدت را برای شما رقم می‌زند.',
-    'product.redmi_15c.description': 'ردمی 15C با نمایشگر روان 90 هرتزی و دوربین دوگانه هوش مصنوعی 50 مگاپیکسلی، ترکیبی از کارایی و زیبایی را با قیمتی مناسب ارائه می‌دهد. این گوشی با پردازنده هشت هسته‌ای مدیاتک، عملکردی قابل اعتماد را برای تمام نیازهای شما تضمین می‌کند.',
-    'product.redmi_a3.description': 'ردمی A3 شیائومی با طراحی پریمیوم و شیشه‌ای، نمایشگر بزرگ 6.71 اینچی با نرخ نوسازی 90 هرتز و قیمتی اقتصادی، تجربه‌ای فراتر از انتظار را به کاربران ارائه می‌دهد. این گوشی هوشمند، انتخابی عالی برای کسانی است که به دنبال زیبایی و کارایی در یک پکیج مقرون‌به‌صرفه هستند.',
-    'product.poco_m6.description': 'پوکو M6 پرو با اولین نمایشگر Flow AMOLED در سری M و نرخ نوسازی ۱۲۰ هرتز، تجربه‌ای بی‌نظیر از تماشا و بازی را ارائه می‌دهد. شارژ سریع ۶۷ واتی، دوربین ۶۴ مگاپیکسلی با لرزشگیر اپتیکال و پردازنده قدرتمند Helio G99-Ultra، این گوشی را به گزینه‌ای بی‌رقیب تبدیل کرده است.',
-    'product.nokia_105.description': 'نوکیا ۱۰۵ (۲۰۲۳) با طراحی مدرن، عمر باتری طولانی و بدنه‌ای مقاوم، یک گوشی کلاسیک و قابل اعتماد برای مکالمات روزمره است. این گوشی با قابلیت‌هایی مانند رادیو FM بی‌سیم و چراغ قوه، همراهی کاربردی برای شما خواهد بود.',
-
-    // Product Specs - Keys
-    'spec.display': 'نمایشگر',
-    'spec.cpu': 'پردازنده',
-    'spec.ram': 'رم',
-    'spec.internal_storage': 'حافظه داخلی',
-    'spec.main_camera': 'دوربین اصلی',
-    'spec.battery': 'باتری',
-    'spec.water_resistance': 'مقاومت در برابر آب',
-    'spec.sensors': 'سنسورها',
-    'spec.features': 'قابلیت‌ها',
-    'spec.connectivity': 'اتصالات',
-    'spec.chip': 'تراشه',
-    'spec.noise_cancellation': 'حذف نویز',
-    'spec.transparency_mode': 'حالت شفافیت',
-    'spec.spatial_audio': 'صدای فراگیر',
-    'spec.microphones': 'میکروفون‌ها',
-    'spec.resistance': 'مقاومت',
-    'spec.battery_earbuds': 'عمر باتری (ایربادها)',
-    'spec.battery_case': 'عمر باتری (با کیس)',
-    'spec.pen': 'قلم',
-    'spec.security': 'امنیت',
-    'spec.os': 'سیستم عامل',
-    'spec.sound': 'صدا',
-    'spec.fingerprint': 'حسگر اثر انگشت',
-    'spec.port': 'درگاه',
-    'spec.sim': 'سیم‌کارت',
-
-    // Product Specs - Values
-    'spec.value.retina_ltpo_oled_always_on': 'Retina LTPO OLED همیشه روشن',
-    'spec.value.water_resistance_50m': 'مقاوم در برابر آب تا عمق ۵۰ متر',
-    'spec.value.sensors_s11': 'سنسور اکسیژن خون، سنسور ضربان قلب الکتریکی و اپتیکال، سنسور دمای بدن',
-    'spec.value.features_s11': 'تشخیص تصادف، تشخیص سقوط، SOS اضطراری بین‌المللی',
-    'spec.value.battery_s11': 'تا ۱۸ ساعت (تا ۳۶ ساعت در حالت Low Power)',
-    'spec.value.connectivity_s11': 'Wi-Fi, Bluetooth 5.3, GPS, Cellular',
-    'spec.value.retina_ltpo_oled': 'Retina LTPO OLED',
-    'spec.value.sensors_se11': 'سنسور ضربان قلب اپتیکال نسل دوم، شتاب‌سنج، ژیروسکوپ، ارتفاع‌سنج',
-    'spec.value.features_se': 'تشخیص تصادف، تشخیص سقوط، SOS اضطراری',
-    'spec.value.battery_18h': 'تا ۱۸ ساعت',
-    'spec.value.connectivity_se': 'Wi-Fi, Bluetooth 5.3, GPS',
-    'spec.value.sensors_se10': 'سنسور ضربان قلب اپتیکال نسل دوم، شتاب‌سنج، ژیروسکوپ، ارتفاع‌سنج، قطب‌نما',
-    'spec.value.features_se_sleep': 'تشخیص تصادف، تشخیص سقوط، SOS اضطراری، پایش خواب',
-    'spec.value.active_noise_cancellation': 'حذف نویز فعال (Active Noise Cancellation)',
-    'spec.value.adaptive_transparency': 'شفافیت تطبیق‌پذیر (Adaptive Transparency)',
-    'spec.value.personalized_spatial_audio': 'صدای فراگیر شخصی‌سازی‌شده با ردیابی پویای سر',
-    'spec.value.dual_beamforming_mics': 'میکروفون‌های دوگانه با قابلیت beamforming',
-    'spec.value.sensors_airpods_pro_2': 'سنسور تشخیص پوست، شتاب‌سنج تشخیص حرکت و گفتار، کنترل لمسی',
-    'spec.value.resistance_ipx4': 'مقاوم در برابر تعریق و آب (IPX4)',
-    'spec.value.battery_airpods_6h': 'تا ۶ ساعت پخش موسیقی با یک بار شارژ',
-    'spec.value.battery_airpods_30h': 'تا ۳۰ ساعت پخش موسیقی',
-    'spec.value.display_dynamic_amoled_6_8': 'Dynamic AMOLED 2X, 120Hz, HDR10+, 6.8 inches',
-    'spec.value.camera_s25_ultra': '200MP (واید) + 50MP (پریسکوپ تله‌فوتو) + 10MP (تله‌فوتو) + 12MP (اولتراواید)',
-    'spec.value.battery_5000mah_45w': '5000 میلی‌آمپر ساعت، شارژ سریع 45 وات',
-    'spec.value.spen_ai': 'S Pen داخلی با پشتیبانی از هوش مصنوعی',
-    'spec.value.display_dynamic_amoled_6_4': 'Dynamic AMOLED 2X, 120Hz, 6.4 inches',
-    'spec.value.camera_s25_fe': '50MP (واید) + 8MP (تله‌فوتو) + 12MP (اولتراواید)',
-    'spec.value.battery_4500mah_25w': '4500 میلی‌آمپر ساعت، شارژ سریع 25 وات',
-    'spec.value.resistance_ip68': 'مقاوم در برابر آب و گرد و غبار (IP68)',
-    'spec.value.display_super_amoled_6_6': 'Super AMOLED, 120Hz, 6.6 inches',
-    'spec.value.camera_a56': '50MP (واید) + 12MP (اولتراواید) + 5MP (ماکرو)',
-    'spec.value.battery_5000mah_25w': '5000 میلی‌آمپر ساعت، شارژ سریع 25 وات',
-    'spec.value.display_super_amoled_6_6_120hz': 'Super AMOLED, 120Hz, 6.6 inches',
-    'spec.value.camera_a36': '50MP (واید) + 8MP (اولتراواید) + 5MP (ماکرو)',
-    'spec.value.resistance_ip67': 'مقاوم در برابر آب و گرد و غبار (IP67)',
-    'spec.value.display_super_amoled_6_5_120hz': 'Super AMOLED, 120Hz, 6.5 inches',
-    'spec.value.camera_a26': '50MP (واید) OIS + 8MP (اولتراواید) + 2MP (ماکرو)',
-    'spec.value.display_super_amoled_6_5_90hz': 'Super AMOLED, 90Hz, 6.5 inches',
-    'spec.value.camera_a17': '50MP (واید) + 5MP (اولتراواید) + 2MP (ماکرو)',
-    'spec.value.display_pls_lcd_6_7_90hz': 'PLS LCD, 90Hz, 6.7 inches',
-    'spec.value.camera_a07': '50MP (واید) + 2MP (ماکرو) + 2MP (سنسور عمق)',
-    'spec.value.display_pls_lcd_6_7': 'PLS LCD, 6.7 inches',
-    'spec.value.camera_a06': '50MP (واید) + 2MP (سنسور عمق)',
-    'spec.value.display_tft_lcd_11_90hz': 'TFT LCD, 90Hz, 11.0 inches',
-    'spec.value.sound_quad_dolby_atmos': 'چهار بلندگو با پشتیبانی از Dolby Atmos',
-    'spec.value.display_tft_lcd_8_7': 'TFT LCD, 8.7 inches',
-    'spec.value.display_crystalres_amoled_6_36': 'CrystalRes AMOLED, 120Hz, Dolby Vision, 6.36 inches',
-    'spec.value.camera_xiaomi_15t': 'دوربین اصلی لایکا 50MP + تله‌فوتو لایکا 50MP + اولتراواید لایکا 50MP',
-    'spec.value.battery_4610mah_90w': '4610 میلی‌آمپر ساعت، شارژ سریع 90 وات HyperCharge',
-    'spec.value.display_1_5k_amoled_6_67': '1.5K AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14s': '200MP (واید) OIS + 8MP (اولتراواید) + 2MP (ماکرو)',
-    'spec.value.battery_5100mah_67w': '5100 میلی‌آمپر ساعت، شارژ سریع 67 وات',
-    'spec.value.display_1_5k_crystalres_amoled_6_67': '1.5K CrystalRes AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14_pro': '200MP (واید) OIS + 8MP (اولتراواید) + 2MP (ماکرو)',
-    'spec.value.battery_5000mah_120w': '5000 میلی‌آمپر ساعت، شارژ سریع 120 وات HyperCharge',
-    'spec.value.display_amoled_6_67_120hz': 'AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14': '108MP (واید) + 8MP (اولتراواید) + 2MP (سنسور عمق)',
-    'spec.value.battery_5000mah_33w': '5000 میلی‌آمپر ساعت، شارژ سریع 33 وات',
-    'spec.value.display_fhd_plus_amoled_6_79_90hz': 'FHD+ AMOLED, 90Hz AdaptiveSync, 6.79 inches',
-    'spec.value.camera_redmi_15': '108MP (واید) + 2MP (ماکرو)',
-    'spec.value.battery_5030mah_33w': '5030 میلی‌آمپر ساعت، شارژ سریع 33 وات',
-    'spec.value.display_ips_lcd_6_74_90hz': 'IPS LCD, 90Hz, 6.74 inches',
-    'spec.value.camera_redmi_15c': '50MP (واید) + 2MP (ماکرو)',
-    'spec.value.battery_5000mah_18w': '5000 میلی‌آمپر ساعت، شارژ سریع 18 وات',
-    'spec.value.display_ips_lcd_6_71_90hz': '6.71 اینچ, IPS LCD, 90Hz',
-    'spec.value.display_flow_amoled_6_67_120hz': 'Flow AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_poco_m6': '64MP (واید) OIS + 8MP (اولتراواید) + 2MP (ماکرو)',
-    'spec.value.battery_5000mah_67w': '5000 میلی‌آمپر ساعت، شارژ سریع 67 وات',
-    'spec.value.fingerprint_under_display': 'زیر نمایشگر',
-    'spec.value.features_nokia_105': 'رادیو FM (بی‌سیم و باسیم)، چراغ قوه، بازی‌های کلاسیک',
+    'theme.light': 'Light',
+    'theme.dark': 'Dark',
   },
   en: {
     // General
@@ -623,7 +461,7 @@ const translations = {
     'bitumen.feature4.desc': 'All necessary documents and certificates provided',
     'bitumen.table.characteristic': 'Characteristic',
     'bitumen.table.unit': 'Unit',
-    'bitumen.table.specification': 'Specification',
+    'bitimen.table.specification': 'Specification',
     'bitumen.table.testMethod': 'Test Method',
     'bitumen.spec.penetration': 'Penetration @25°C',
     'bitumen.spec.specificGravity': 'Specific Gravity @25°C',
@@ -740,228 +578,81 @@ const translations = {
     // Theme
     'theme.light': 'Light',
     'theme.dark': 'Dark',
-
-    // Product Names
-    'product.apple_watch_s11.name': 'Apple Watch S11 46mm Gray',
-    'product.apple_watch_se11_44.name': 'Apple Watch SE 44mm Black',
-    'product.apple_watch_se11_44_starlight.name': 'Apple Watch SE 44mm Starlight',
-    'product.apple_watch_se10_40.name': 'Apple Watch SE 40mm Black',
-    'product.apple_watch_se10_40_silver.name': 'Apple Watch SE 40mm Silver',
-    'product.airpods_pro_2.name': 'AirPods Pro 2',
-    'product.samsung_s25_ultra.name': 'Samsung S25 Ultra 256/12',
-    'product.samsung_s25_fe.name': 'Samsung S25 FE 256/8',
-    'product.samsung_a56_12.name': 'Samsung A56 256/12',
-    'product.samsung_a56_8.name': 'Samsung A56 256/8',
-    'product.samsung_a56_128.name': 'Samsung A56 128/8',
-    'product.samsung_a36.name': 'Samsung A36 256/8',
-    'product.samsung_a36_128.name': 'Samsung A36 128/8',
-    'product.sAMSUNG_A26.name': 'Samsung A26 256/8',
-    'product.samsung_a26_128.name': 'Samsung A26 128/6',
-    'product.samsung_a17.name': 'Samsung A17 256/8',
-    'product.samsung_a17_128_6.name': 'Samsung A17 128/6',
-    'product.samsung_a17_128_4.name': 'Samsung A17 128/4',
-    'product.samsung_a07.name': 'Samsung A07 128/6',
-    'product.samsung_a07_128_4.name': 'Samsung A07 128/4',
-    'product.samsung_a07_64_4.name': 'Samsung A07 64/4',
-    'product.samsung_a06.name': 'Samsung A06 128/4',
-    'product.samsung_tab_a9_plus.name': 'Samsung Galaxy Tab A9+ 128/8',
-    'product.samsung_tab_a9.name': 'Samsung Galaxy Tab A9 64/4',
-    'product.xiaomi_15t.name': 'Xiaomi 15T 512/12',
-    'product.redmi_note_14s.name': 'Redmi Note 14s 256/8',
-    'product.redmi_note_14_pro.name': 'Redmi Note 14 Pro 256/8',
-    'product.redmi_note_14.name': 'Redmi Note 14 256/8',
-    'product.redmi_15.name': 'Redmi 15 256/8',
-    'product.redmi_15c.name': 'Redmi 15c 256/8',
-    'product.redmi_13x.name': 'Redmi 13X 256/8',
-    'product.redmi_a5.name': 'Redmi A5 128/4',
-    'product.redmi_a3.name': 'Redmi A3 128/4',
-    'product.poco_m7.name': 'Poco M7 256/8',
-    'product.poco_m6.name': 'Poco M6 256/8',
-    'product.poco_c85.name': 'Poco C85 256/8',
-    'product.poco_c85_128.name': 'Poco C85 128/6',
-    'product.poco_c75.name': 'Poco C75 256/8',
-    'product.poco_c71.name': 'Poco C71 128/4',
-    'product.nokia_105.name': 'Nokia 105',
-
-    // Product Descriptions
-    'product.apple_watch_s11.description': 'The Apple Watch Series 11 features a larger, always-on display, a powerful S11 processor, and more advanced health sensors, making it the best companion for a healthy and connected life. New features like body temperature monitoring and crash detection make it an essential gadget.',
-    'product.apple_watch_se11_44.description': 'The new Apple Watch SE is a great combination of modern design, key features, and an affordable price. With a faster processor and crash detection, it offers great value for users looking for their first Apple Watch.',
-    'product.apple_watch_se10_40.description': 'The Apple Watch SE (2023) with its beautiful design and Retina display is a smart companion for your daily life. With advanced features like heart rate monitoring, crash detection, and Emergency SOS, it ensures your health and safety. You can also track your workouts and stay connected with access to thousands of apps.',
-    'product.airpods_pro_2.description': 'AirPods Pro (2nd generation) revolutionize your listening experience with features like twice as strong Active Noise Cancellation, Adaptive Transparency, and Personalized Spatial Audio. Listen to music for up to 6 hours on a single charge and up to 30 hours with the charging case, and manage everything easier with the new touch control.',
-    'product.samsung_s25_ultra.description': 'The Galaxy S25 Ultra, powered by Galaxy AI, sets a new standard in the mobile world. From the Circle to Search feature for easier searching to live translation of calls and improved photo quality with Photo Assist, everything is ready for a smarter experience.',
-    'product.samsung_s25_fe.description': 'The Galaxy S25 FE, with the iconic design of the S25 series and attractive colors, offers a premium experience at an affordable price. A high-quality camera, Dynamic AMOLED 2X display, and powerful processor make this phone an ideal choice for Samsung fans.',
-    'product.samsung_a56.description': 'The Galaxy A56 combines metal and glass for a beautiful and durable design (IP67). A Super AMOLED 120Hz display, 50MP camera, and powerful processor make this phone a great mid-range option.',
-    'product.samsung_a36.description': 'The Galaxy A36 provides a delightful experience with its stunning Super AMOLED display, high-quality triple camera, and modern design. With a durable battery and smooth performance, this phone is an ideal companion for daily tasks and entertainment.',
-    'product.samsung_a26.description': 'The Galaxy A26 displays smooth and vivid images with its 6.5-inch Super AMOLED display and 120Hz refresh rate. The 50MP main camera with optical image stabilization (OIS) and a 5nm processor make this phone a powerful tool for photography and daily tasks.',
-    'product.samsung_a17.description': 'The Galaxy A17 is an excellent and affordable option with its Super AMOLED display, octa-core processor, and 50MP camera. With a beautiful design and durable battery, this phone meets your daily needs well.',
-    'product.samsung_a07.description': 'The Galaxy A07 provides a smooth and immersive experience for watching and gaming with its large 6.7-inch FHD+ display and powerful Snapdragon processor. A 50MP triple camera and durable battery make this phone a smart choice in the budget category.',
-    'product.samsung_a06.description': 'The Galaxy A06 is an economical and efficient option for basic needs with its large display and 50MP dual camera. With an octa-core processor and a large battery, this phone ensures smooth and long-lasting performance.',
-    'product.samsung_tab_a9_plus.description': 'The Galaxy Tab A9+ is an ideal companion for entertainment and daily tasks with its large and smooth display, immersive sound, and powerful multitasking performance. Its stylish and modern design provides a delightful experience for the whole family.',
-    'product.samsung_tab_a9.description': 'The Galaxy Tab A9, with its classic design and metal body, offers smooth performance for daily tasks while being beautiful. A bright display and dual speakers make this tablet a great option for watching movies and playing games.',
-    'product.xiaomi_15t.description': 'The Xiaomi 15T, in collaboration with Leica, brings a professional photography experience to the mobile world. With a powerful Snapdragon processor and CrystalRes AMOLED display, this phone delivers outstanding performance and stunning visuals.',
-    'product.redmi_note_14s.description': 'The Redmi Note 14s captures images with unparalleled clarity and quality with its 200MP camera and 1.5K AMOLED display. With a Snapdragon processor and durable design, this phone is a smart choice for users looking for the best.',
-    'product.redmi_note_14_pro.description': 'The Redmi Note 14 Pro offers flagship-level photography with its 200MP camera and optical image stabilization. A 1.5K AMOLED display with a 120Hz refresh rate and 120W ultra-fast charging make this phone a true beast.',
-    'product.redmi_note_14.description': 'The Redmi Note 14 provides an extraordinary visual experience with its 108MP triple camera and stunning AMOLED display with ultra-thin bezels. Its stylish design and powerful processor make it an attractive option in the mid-range market.',
-    'product.redmi_15.description': 'The Redmi 15 enables photography with stunning detail with its 108MP main camera and 3X zoom. The FHD+ display with AdaptiveSync technology and a powerful battery provide a smooth and long-lasting experience.',
-    'product.redmi_15c.description': 'The Redmi 15C offers a combination of performance and beauty at an affordable price with its smooth 90Hz display and 50MP AI dual camera. With a MediaTek octa-core processor, this phone ensures reliable performance for all your needs.',
-    'product.redmi_a3.description': 'The Xiaomi Redmi A3 offers a beyond-expectation experience with its premium glass design, large 6.71-inch display with 90Hz refresh rate, and an economical price. This smartphone is an excellent choice for those looking for beauty and performance in an affordable package.',
-    'product.poco_m6.description': 'The Poco M6 Pro offers an unparalleled viewing and gaming experience with the first Flow AMOLED display in the M series and a 120Hz refresh rate. 67W fast charging, a 64MP camera with OIS, and a powerful Helio G99-Ultra processor make this phone an unbeatable option.',
-    'product.nokia_105.description': 'The Nokia 105 (2023) is a classic and reliable phone for daily calls with its modern design, long battery life, and durable body. With features like a wireless FM radio and flashlight, this phone will be a practical companion for you.',
-
-    // Product Specs - Keys
-    'spec.display': 'Display',
-    'spec.cpu': 'CPU',
-    'spec.ram': 'RAM',
-    'spec.internal_storage': 'Internal Storage',
-    'spec.main_camera': 'Main Camera',
-    'spec.battery': 'Battery',
-    'spec.water_resistance': 'Water Resistance',
-    'spec.sensors': 'Sensors',
-    'spec.features': 'Features',
-    'spec.connectivity': 'Connectivity',
-    'spec.chip': 'Chip',
-    'spec.noise_cancellation': 'Noise Cancellation',
-    'spec.transparency_mode': 'Transparency Mode',
-    'spec.spatial_audio': 'Spatial Audio',
-    'spec.microphones': 'Microphones',
-    'spec.resistance': 'Resistance',
-    'spec.battery_earbuds': 'Battery Life (Earbuds)',
-    'spec.battery_case': 'Battery Life (with Case)',
-    'spec.pen': 'Pen',
-    'spec.security': 'Security',
-    'spec.os': 'Operating System',
-    'spec.sound': 'Sound',
-    'spec.fingerprint': 'Fingerprint Sensor',
-    'spec.port': 'Port',
-    'spec.sim': 'SIM',
-
-    // Product Specs - Values
-    'spec.value.retina_ltpo_oled_always_on': 'Retina LTPO OLED always-on',
-    'spec.value.water_resistance_50m': 'Water resistant to 50 meters',
-    'spec.value.sensors_s11': 'Blood Oxygen sensor, Electrical and Optical heart rate sensors, Body temperature sensor',
-    'spec.value.features_s11': 'Crash Detection, Fall Detection, International Emergency SOS',
-    'spec.value.battery_s11': 'Up to 18 hours (up to 36 hours in Low Power mode)',
-    'spec.value.connectivity_s11': 'Wi-Fi, Bluetooth 5.3, GPS, Cellular',
-    'spec.value.retina_ltpo_oled': 'Retina LTPO OLED',
-    'spec.value.sensors_se11': 'Second-generation optical heart rate sensor, Accelerometer, Gyroscope, Altimeter',
-    'spec.value.features_se': 'Crash Detection, Fall Detection, Emergency SOS',
-    'spec.value.battery_18h': 'Up to 18 hours',
-    'spec.value.connectivity_se': 'Wi-Fi, Bluetooth 5.3, GPS',
-    'spec.value.sensors_se10': 'Second-generation optical heart rate sensor, Accelerometer, Gyroscope, Altimeter, Compass',
-    'spec.value.features_se_sleep': 'Crash Detection, Fall Detection, Emergency SOS, Sleep tracking',
-    'spec.value.active_noise_cancellation': 'Active Noise Cancellation',
-    'spec.value.adaptive_transparency': 'Adaptive Transparency',
-    'spec.value.personalized_spatial_audio': 'Personalized Spatial Audio with Dynamic Head Tracking',
-    'spec.value.dual_beamforming_mics': 'Dual beamforming microphones',
-    'spec.value.sensors_airpods_pro_2': 'Skin-detect sensor, Motion-detecting and speech-detecting accelerometer, Touch control',
-    'spec.value.resistance_ipx4': 'Sweat and water resistant (IPX4)',
-    'spec.value.battery_airpods_6h': 'Up to 6 hours of listening time on a single charge',
-    'spec.value.battery_airpods_30h': 'Up to 30 hours of listening time',
-    'spec.value.display_dynamic_amoled_6_8': 'Dynamic AMOLED 2X, 120Hz, HDR10+, 6.8 inches',
-    'spec.value.camera_s25_ultra': '200MP (wide) + 50MP (periscope telephoto) + 10MP (telephoto) + 12MP (ultrawide)',
-    'spec.value.battery_5000mah_45w': '5000 mAh, 45W fast charging',
-    'spec.value.spen_ai': 'Built-in S Pen with AI support',
-    'spec.value.display_dynamic_amoled_6_4': 'Dynamic AMOLED 2X, 120Hz, 6.4 inches',
-    'spec.value.camera_s25_fe': '50MP (wide) + 8MP (telephoto) + 12MP (ultrawide)',
-    'spec.value.battery_4500mah_25w': '4500 mAh, 25W fast charging',
-    'spec.value.resistance_ip68': 'Water and dust resistant (IP68)',
-    'spec.value.display_super_amoled_6_6': 'Super AMOLED, 120Hz, 6.6 inches',
-    'spec.value.camera_a56': '50MP (wide) + 12MP (ultrawide) + 5MP (macro)',
-    'spec.value.battery_5000mah_25w': '5000 mAh, 25W fast charging',
-    'spec.value.display_super_amoled_6_6_120hz': 'Super AMOLED, 120Hz, 6.6 inches',
-    'spec.value.camera_a36': '50MP (wide) + 8MP (ultrawide) + 5MP (macro)',
-    'spec.value.resistance_ip67': 'Water and dust resistant (IP67)',
-    'spec.value.display_super_amoled_6_5_120hz': 'Super AMOLED, 120Hz, 6.5 inches',
-    'spec.value.camera_a26': '50MP (wide) OIS + 8MP (ultrawide) + 2MP (macro)',
-    'spec.value.display_super_amoled_6_5_90hz': 'Super AMOLED, 90Hz, 6.5 inches',
-    'spec.value.camera_a17': '50MP (wide) + 5MP (ultrawide) + 2MP (macro)',
-    'spec.value.display_pls_lcd_6_7_90hz': 'PLS LCD, 90Hz, 6.7 inches',
-    'spec.value.camera_a07': '50MP (wide) + 2MP (macro) + 2MP (depth sensor)',
-    'spec.value.display_pls_lcd_6_7': 'PLS LCD, 6.7 inches',
-    'spec.value.camera_a06': '50MP (wide) + 2MP (depth sensor)',
-    'spec.value.display_tft_lcd_11_90hz': 'TFT LCD, 90Hz, 11.0 inches',
-    'spec.value.sound_quad_dolby_atmos': 'Quad speakers with Dolby Atmos support',
-    'spec.value.display_tft_lcd_8_7': 'TFT LCD, 8.7 inches',
-    'spec.value.display_crystalres_amoled_6_36': 'CrystalRes AMOLED, 120Hz, Dolby Vision, 6.36 inches',
-    'spec.value.camera_xiaomi_15t': '50MP Leica main camera + 50MP Leica telephoto + 50MP Leica ultrawide',
-    'spec.value.battery_4610mah_90w': '4610 mAh, 90W HyperCharge',
-    'spec.value.display_1_5k_amoled_6_67': '1.5K AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14s': '200MP (wide) OIS + 8MP (ultrawide) + 2MP (macro)',
-    'spec.value.battery_5100mah_67w': '5100 mAh, 67W fast charging',
-    'spec.value.display_1_5k_crystalres_amoled_6_67': '1.5K CrystalRes AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14_pro': '200MP (wide) OIS + 8MP (ultrawide) + 2MP (macro)',
-    'spec.value.battery_5000mah_120w': '5000 mAh, 120W HyperCharge',
-    'spec.value.display_amoled_6_67_120hz': 'AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_redmi_note_14': '108MP (wide) + 8MP (ultrawide) + 2MP (depth sensor)',
-    'spec.value.battery_5000mah_33w': '5000 mAh, 33W fast charging',
-    'spec.value.display_fhd_plus_amoled_6_79_90hz': 'FHD+ AMOLED, 90Hz AdaptiveSync, 6.79 inches',
-    'spec.value.camera_redmi_15': '108MP (wide) + 2MP (macro)',
-    'spec.value.battery_5030mah_33w': '5030 mAh, 33W fast charging',
-    'spec.value.display_ips_lcd_6_74_90hz': 'IPS LCD, 90Hz, 6.74 inches',
-    'spec.value.camera_redmi_15c': '50MP (wide) + 2MP (macro)',
-    'spec.value.battery_5000mah_18w': '5000 mAh, 18W fast charging',
-    'spec.value.display_ips_lcd_6_71_90hz': '6.71 inch, IPS LCD, 90Hz',
-    'spec.value.display_flow_amoled_6_67_120hz': 'Flow AMOLED, 120Hz, 6.67 inches',
-    'spec.value.camera_poco_m6': '64MP (wide) OIS + 8MP (ultrawide) + 2MP (macro)',
-    'spec.value.battery_5000mah_67w': '5000 mAh, 67W fast charging',
-    'spec.value.fingerprint_under_display': 'Under display',
-    'spec.value.features_nokia_105': 'FM Radio (Wireless and Wired), Flashlight, Classic Games',
   },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const transformFallback = () => {
+    const newTranslations: Translations = {};
+    for (const key in fallbackTranslationsData.fa) {
+        if (Object.prototype.hasOwnProperty.call(fallbackTranslationsData.fa, key)) {
+            newTranslations[key] = {
+                fa: (fallbackTranslationsData.fa as any)[key],
+                en: (fallbackTranslationsData.en as any)[key] || '',
+            };
+        }
+    }
+    return newTranslations;
+};
+
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [language, setLanguage] = useState<Language>(() => {
-        const storedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') as Language : null;
-        return storedLanguage || 'fa';
-    });
-    const direction: Direction = language === 'fa' ? 'rtl' : 'ltr';
+  const [language, setLanguage] = useState<Language>(() => 
+    (typeof window !== 'undefined' && localStorage.getItem('language') as Language) || 'fa'
+  );
+  const [translations, setTranslations] = useState<Translations>(transformFallback()); // Use fallback data initially
+  const [loading, setLoading] = useState(true);
 
-    const toggleLanguage = () => {
-        const newLanguage = language === 'fa' ? 'en' : 'fa';
-        setLanguage(newLanguage);
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('language', newLanguage);
-        }
+  const direction: Direction = language === 'fa' ? 'rtl' : 'ltr';
+
+  useEffect(() => {
+    const fetchTranslations = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from('page_content').select('content_key, content_fa, content_en');
+      
+      if (error || !data || data.length === 0) {
+        console.warn('Could not fetch translations from DB, using fallback data.', error);
+        // Fallback is already set, so we just stop loading
+      } else {
+        const newTranslations: Translations = data.reduce((acc, item) => {
+          acc[item.content_key] = { fa: item.content_fa, en: item.content_en };
+          return acc;
+        }, {} as Translations);
+        setTranslations(newTranslations);
+      }
+      setLoading(false);
     };
 
-    const t = (key: string): string => {
-        const langTranslations = translations[language];
-        if (langTranslations && key in langTranslations) {
-            return langTranslations[key as keyof typeof langTranslations];
-        }
-        
-        // Fallback to the other language if key not found
-        const otherLanguage = language === 'fa' ? 'en' : 'fa';
-        const fallbackTranslations = translations[otherLanguage];
-        if (fallbackTranslations && key in fallbackTranslations) {
-            return fallbackTranslations[key as keyof typeof fallbackTranslations];
-        }
+    fetchTranslations();
+  }, []);
 
-        return key; // Return the key itself if not found in any language
-    };
+  const toggleLanguage = () => {
+    const newLanguage = language === 'fa' ? 'en' : 'fa';
+    setLanguage(newLanguage);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', newLanguage);
+    }
+  };
 
-    useEffect(() => {
-        const storedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') as Language : null;
-        if (storedLanguage && storedLanguage !== language) {
-            setLanguage(storedLanguage);
-        }
-    }, []);
+  const t = useCallback((key: string, fallback: string = ''): string => {
+    const translationSet = translations[key];
+    if (translationSet) {
+      return translationSet[language] || translationSet.fa || fallback;
+    }
 
-    useEffect(() => {
-        document.documentElement.dir = direction;
-        document.documentElement.lang = language;
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('language', language);
-        }
-    }, [language, direction]);
+    return fallback || key;
+  }, [language, translations]);
 
-    return (
-        <LanguageContext.Provider value={{ language, direction, toggleLanguage, t }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+  useEffect(() => {
+    document.documentElement.dir = direction;
+    document.documentElement.lang = language;
+  }, [language, direction]);
+
+  return (
+    <LanguageContext.Provider value={{ language, direction, toggleLanguage, t, loading }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
 export const useLanguage = (): LanguageContextType => {
