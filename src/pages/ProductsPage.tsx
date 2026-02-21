@@ -84,6 +84,16 @@ const ProductsPageContent = () => {
                   multiline
                 />
               </p>
+              <p className="text-lg text-muted-foreground max-w-2xl mt-4">
+                <EditableText
+                  contentKey="products-page-availability"
+                  page="products"
+                  section="hero"
+                  defaultValue={t('products.availability')}
+                  as="span"
+                  multiline
+                />
+              </p>
             </motion.div>
           </div>
         </section>

@@ -12,13 +12,6 @@ import EditableText from '@/components/admin/EditableText';
 
 const representatives = [
   {
-    name: 'موبایل کسری',
-    province: 'گیلان',
-    city: 'رشت',
-    phone: '013-33235303',
-    address: 'رشت خیابان لاکانی ، جنب بیمه آسیا موبایل کسری'
-  },
-  {
     name: 'موبایل اورژانس',
     province: 'خراسان رضوی',
     city: 'سبزوار',
