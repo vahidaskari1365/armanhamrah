@@ -48,7 +48,7 @@ const fallbackTranslationsData = {
     // Hero
     'hero.title': 'هوشمندترین گارانتی و خدمات',
     'hero.subtitle': 'پس از فروش در ایران',
-    'hero.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۳ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان',
+    'hero.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۴ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان',
     'hero.cta': 'خدمات ما',
     'hero.cta2': 'ثبت نام',
     
@@ -95,6 +95,17 @@ const fallbackTranslationsData = {
     'products.specs_soon': 'مشخصات فنی این محصول به زودی اضافه خواهد شد.',
     'products.seo.title': 'محصولات | آرمان همراه ارتباطات آریا',
     'products.seo.description': 'مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند',
+
+    'product.redmi_a5.description': 'شیائومی Redmi A5 یک گوشی هوشمند اقتصادی با نمایشگر بزرگ، باتری بادوام و عملکردی قابل اعتماد برای کارهای روزمره است.',
+    'spec.value.camera_redmi_a5': 'دوربین اصلی 13 مگاپیکسل، دوربین سلفی 5 مگاپیکسل',
+    'product.poco_m7.description': 'پوکو M7 با پردازنده قدرتمند، نمایشگر روان و باتری با شارژدهی فوق‌العاده، یک انتخاب عالی برای گیمینگ و استفاده‌های سنگین است.',
+    'spec.value.camera_poco_m7': 'دوربین اصلی 108 مگاپیکسل، دوربین اولترا واید 8 مگاپیکسل، دوربین ماکرو 2 مگاپیکسل',
+    'product.poco_c85.description': 'پوکو C85 یک گوشی اقتصادی با طراحی مدرن، نمایشگر بزرگ و باتری حجیم است که نیازهای روزمره شما را به خوبی برآورده می‌کند.',
+    'spec.value.camera_poco_c85': 'دوربین اصلی 50 مگاپیکسل، دوربین عمق 2 مگاپیکسل',
+    'product.poco_c75.description': 'پوکو C75 با قیمتی مناسب، عملکردی روان و باتری بزرگ، یک گوشی هوشمند قابل اعتماد برای استفاده‌های روزمره است.',
+    'spec.value.camera_poco_c75': 'دوربین اصلی 50 مگاپیکسل، دوربین سلفی 8 مگاپیکسل',
+    'product.poco_c71.description': 'پوکو C71 یک گزینه اقتصادی با نمایشگر بزرگ و باتری قدرتمند است که برای تماشای فیلم و وب‌گردی بسیار مناسب است.',
+    'spec.value.camera_poco_c71': 'دوربین اصلی 13 مگاپیکسل، دوربین عمق 2 مگاپیکسل',
 
     // Export Page
     'export.back': 'بازگشت به صفحه صادرات',
@@ -331,7 +342,7 @@ const fallbackTranslationsData = {
     // Hero
     'hero.title': 'The Smartest Warranty & Services',
     'hero.subtitle': 'After-Sales in Iran',
-    'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2014',
+    'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2015',
     'hero.cta': 'Our Services',
     'hero.cta2': 'Register',
     
@@ -378,6 +389,17 @@ const fallbackTranslationsData = {
     'products.specs_soon': 'Specifications for this product will be added soon.',
     'products.seo.title': 'Products | Arman Hamrah Communications Aria',
     'products.seo.description': 'View all Apple, Samsung products with Arman Hamrah warranty - iPhone, Galaxy, Apple Watch and smartwatches',
+
+    'product.redmi_a5.description': 'Xiaomi Redmi A5 is an affordable smartphone with a large display, durable battery, and reliable performance for daily tasks.',
+    'spec.value.camera_redmi_a5': 'Main Camera: 13 MP, Selfie Camera: 5 MP',
+    'product.poco_m7.description': 'Poco M7, with its powerful processor, smooth display, and excellent battery life, is a great choice for gaming and heavy usage.',
+    'spec.value.camera_poco_m7': 'Main Camera: 108 MP, Ultra-wide: 8 MP, Macro: 2 MP',
+    'product.poco_c85.description': 'Poco C85 is a budget-friendly phone with a modern design, large display, and a massive battery that meets your daily needs.',
+    'spec.value.camera_poco_c85': 'Main Camera: 50 MP, Depth Sensor: 2 MP',
+    'product.poco_c75.description': 'Poco C75 offers smooth performance, a large battery, and an affordable price, making it a reliable smartphone for everyday use.',
+    'spec.value.camera_poco_c75': 'Main Camera: 50 MP, Selfie Camera: 8 MP',
+    'product.poco_c71.description': 'Poco C71 is an economical option with a large display and a powerful battery, perfect for watching movies and browsing the web.',
+    'spec.value.camera_poco_c71': 'Main Camera: 13 MP, Depth Sensor: 2 MP',
 
     // Export Page
     'export.back': 'Back to Export Page',
