@@ -15,6 +15,9 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/Contact";
 import ExportPage from "./pages/ExportPage";
 import WarrantyPage from "./pages/WarrantyPage";
+import WarrantyConditionsPage from "./pages/warranty/Conditions";
+import WarrantyAccessoriesPage from "./pages/warranty/Accessories";
+import WarrantyRepairsPage from "./pages/warranty/Repairs";
 import RepresentativesPage from "./pages/RepresentativesPage";
 import AdminAuth from "./pages/AdminAuth";
 import AdminResetPassword from "./pages/AdminResetPassword";
@@ -60,6 +63,9 @@ const App = () => (
                   <Route path="/export/bitumen" element={<BitumenPage />} />
                   <Route path="/export/oil" element={<OilPage />} />
                   <Route path="/warranty" element={<WarrantyPage />} />
+                  <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
+                  <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
+                  <Route path="/warranty/repairs" element={<WarrantyRepairsPage />} />
                   <Route path="/representatives" element={<RepresentativesPage />} />
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/admin/auth" element={<AdminAuth />} />
