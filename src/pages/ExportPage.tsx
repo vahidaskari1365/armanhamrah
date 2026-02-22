@@ -122,6 +122,14 @@ const exportProducts = [
     categoryKey: 'export.products.category.petrochemical',
     descriptionKey: 'export.products.petrochemical-downstream.description',
   },
+  {
+    id: 'general-industrial-supplies',
+    slug: '/export/general-industrial-supplies',
+    nameKey: 'export.products.general-industrial-supplies.name',
+    image: '/images/products/export-1.jpeg',
+    categoryKey: 'export.products.category.general',
+    descriptionKey: 'export.products.general-industrial-supplies.description',
+  },
 ];
 
 const ExportPageContent = () => {

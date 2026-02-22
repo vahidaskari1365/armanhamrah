@@ -30,6 +30,7 @@ import BitumenPage from "./pages/export/BitumenPage";
 import OilPage from "./pages/export/OilPage";
 import PipingEquipmentPage from "./pages/export/PipingEquipmentPage";
 import PetrochemicalDownstreamPage from "./pages/export/PetrochemicalDownstreamPage";
+import GeneralIndustrialSuppliesPage from "./pages/export/GeneralIndustrialSuppliesPage"; // Added this line
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -66,6 +67,7 @@ const App = () => (
                   <Route path="/export/oil" element={<OilPage />} />
                   <Route path="/export/piping-equipment" element={<PipingEquipmentPage />} />
                   <Route path="/export/petrochemical-downstream" element={<PetrochemicalDownstreamPage />} />
+                  <Route path="/export/general-industrial-supplies" element={<GeneralIndustrialSuppliesPage />} /> {/* Added this line */}
                   <Route path="/warranty" element={<WarrantyPage />} />
                   <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
                   <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
