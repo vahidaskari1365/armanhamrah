@@ -308,6 +308,20 @@ const fallbackTranslationsData = {
     // Theme
     'theme.light': 'Light',
     'theme.dark': 'Dark',
+
+    'export.products.category.construction':'ساختمانی',
+    'export.products.piping-equipment.name': 'تجهیزات لوله کشی و شیرآلات',
+    'export.products.piping-equipment.description': 'لوله های انتقال مایع ، تک لایه ساده.',
+    'export.products.piping-equipment.details.description': 'لوله های انتقال مایع ، تک لایه ساده.',
+    'export.products.piping-equipment.details.material': 'PVC',
+    'export.products.piping-equipment.details.size': '100mm',
+    'export.products.piping-equipment.details.length': '6 متری',
+    'general.back_to_export': 'بازگشت به صفحه صادرات',
+    'general.product_details': 'توضیحات محصول',
+    'general.description': 'توضیحات',
+    'general.material': 'جنس',
+    'general.size': 'سایز',
+    'general.length': 'طول',
   },
   en: {
     // General
@@ -602,6 +616,20 @@ const fallbackTranslationsData = {
     // Theme
     'theme.light': 'Light',
     'theme.dark': 'Dark',
+
+    'export.products.category.construction':'Construction',
+    'export.products.piping-equipment.name': 'Piping and Fittings',
+    'export.products.piping-equipment.description': 'Single-layer, plain fluid transfer pipes.',
+    'export.products.piping-equipment.details.description': 'Single-layer, plain fluid transfer pipes.',
+    'export.products.piping-equipment.details.material': 'PVC',
+    'export.products.piping-equipment.details.size': '100mm',
+    'export.products.piping-equipment.details.length': '6 meters',
+    'general.back_to_export': 'Back to Export Page',
+    'general.product_details': 'Product Description',
+    'general.description': 'Description',
+    'general.material': 'Material',
+    'general.size': 'Size',
+    'general.length': 'Length',
   },
 };
 

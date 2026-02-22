@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
 import EditableText from '@/components/admin/EditableText';
+import ExportGallery from '@/components/ExportGallery';
 
 // Data now uses translation keys
 const features = [
@@ -103,6 +104,14 @@ const exportProducts = [
     image: 'https://export.armanhamrah.com/uploads/products/thread.webp',
     categoryKey: 'export.products.category.textile',
     descriptionKey: 'export.products.thread.description',
+  },
+  {
+    id: 'piping-equipment',
+    slug: '/export/piping-equipment',
+    nameKey: 'export.products.piping-equipment.name',
+    image: '/images/piping-equipment.jpg',
+    categoryKey: 'export.products.category.construction',
+    descriptionKey: 'export.products.piping-equipment.description',
   },
 ];
 
@@ -254,6 +263,9 @@ const ExportPageContent = () => {
               </div>
             </div>
           </section>
+
+          {/* Gallery */}
+          <ExportGallery />
 
           {/* Services */}
           <section className="section-padding bg-gradient-premium">
