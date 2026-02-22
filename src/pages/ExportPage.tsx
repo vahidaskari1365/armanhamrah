@@ -110,7 +110,7 @@ const exportProducts = [
     id: 'piping-equipment',
     slug: '/export/piping-equipment',
     nameKey: 'export.products.piping-equipment.name',
-    image: '/images/products/piping-equipment.jpg',
+    image: '/images/products/export-2.jpg',
     categoryKey: 'export.products.category.construction',
     descriptionKey: 'export.products.piping-equipment.description',
   },
@@ -458,7 +458,7 @@ const ExportPageContent = () => {
                       <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.company_name')}</label>
                       <input
                         type="text"
-                        className="w-fill px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
                         placeholder={t('export.form.company_name_placeholder')}
                       />
                     </div>
