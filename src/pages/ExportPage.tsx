@@ -114,6 +114,14 @@ const exportProducts = [
     categoryKey: 'export.products.category.construction',
     descriptionKey: 'export.products.piping-equipment.description',
   },
+  {
+    id: 'petrochemical-downstream',
+    slug: '/export/petrochemical-downstream',
+    nameKey: 'export.products.petrochemical-downstream.name',
+    image: '/images/products/export-3.jpg',
+    categoryKey: 'export.products.category.petrochemical',
+    descriptionKey: 'export.products.petrochemical-downstream.description',
+  },
 ];
 
 const ExportPageContent = () => {
@@ -450,7 +458,7 @@ const ExportPageContent = () => {
                       <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.company_name')}</label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                        className="w-fill px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
                         placeholder={t('export.form.company_name_placeholder')}
                       />
                     </div>
