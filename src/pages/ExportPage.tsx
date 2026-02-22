@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, MessageCircle, Mail, Phone, ExternalLink } from 'lucide-react';
@@ -109,7 +110,7 @@ const exportProducts = [
     id: 'piping-equipment',
     slug: '/export/piping-equipment',
     nameKey: 'export.products.piping-equipment.name',
-    image: '/images/piping-equipment.jpg',
+    image: '/images/products/piping-equipment.jpg',
     categoryKey: 'export.products.category.construction',
     descriptionKey: 'export.products.piping-equipment.description',
   },
