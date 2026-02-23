@@ -19,15 +19,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { useDebounce } from '@/hooks/use-debounce';
+import BackgroundImage from '../assets/radical-logo.jpeg';
 
-// Expanded Product type to include full relations for editing
 export interface Product {
   id: string;
   name: string;
   description?: string;
   slug: string;
   image: string;
-  brand_id: string; // Keep relation IDs for editing
+  brand_id: string;
   category_id: string;
   brand: { name: string }; 
   category: { name: string };
@@ -36,12 +36,11 @@ export interface Product {
 export interface Brand { id: string; name: string; }
 export interface Category { id: string; name: string; }
 
-// --- Data Fetching and Mutation Functions ---
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
     .select('*, brand:brands(name), category:categories(name)')
-    .order('created_at', { ascending: false });
+    .order('name', { ascending: true }); // Sort by product name alphabetically
   if (error) throw new Error(error.message);
   return data as unknown as Product[];
 };
@@ -64,28 +63,24 @@ const deleteProduct = async (productId: string) => {
 };
 
 const ProductsPageContent = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const { t, language } = useLanguage();
   const { isEditMode } = useAdmin();
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // --- Filter and Search State ---
   const [selectedBrand, setSelectedBrand] = useState<string>(() => searchParams.get('brand') || 'all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const debouncedSearchTerm = useDebounce(searchTerm, 300); // Debounce user input
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  // --- Editor State ---
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState<Product | null>(null);
 
-  // --- Queries ---
   const { data: products, isLoading: isLoadingProducts, error: productsError } = useQuery<Product[]>({ queryKey: ['products'], queryFn: fetchProducts });
   const { data: brands, isLoading: isLoadingBrands } = useQuery<Brand[]>({ queryKey: ['brands'], queryFn: fetchBrands });
   const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
 
-  // --- Mutations ---
   const deleteMutation = useMutation({ 
     mutationFn: deleteProduct,
     onSuccess: () => {
@@ -97,13 +92,11 @@ const ProductsPageContent = () => {
     }
   });
 
-  // Update brand from URL search param
   useEffect(() => {
     const brandParam = searchParams.get('brand');
     if (brandParam) setSelectedBrand(brandParam);
   }, [searchParams]);
   
-  // --- Filtering Logic ---
   const filteredProducts = useMemo(() => {
     if (!products) return [];
     return products.filter((product) => {
@@ -116,7 +109,6 @@ const ProductsPageContent = () => {
     });
   }, [products, selectedBrand, selectedCategory, debouncedSearchTerm, t]);
 
-  // --- Event Handlers ---
   const handleBrandClick = (brandName: string) => {
     setSelectedBrand(brandName);
     if (brandName === 'all') searchParams.delete('brand');
@@ -131,102 +123,119 @@ const ProductsPageContent = () => {
   
   return (
     <>
-      <div className="min-h-screen bg-background relative admin-toolbar-offset" dir={language === 'fa' ? 'rtl' : 'ltr'}>
-        <Navbar />
-        <main className="pt-24 relative z-10">
-          <section className="py-16">
-            <div className="container-custom">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                 <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                  <EditableText contentKey="products-page-title" defaultValue={t('products_page.title', 'Our Products')} as="span" />
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl">
-                  <EditableText contentKey="products-page-description" defaultValue={t('products_page.description', 'Here you can see our latest and highest quality products.')} as="span" multiline />
-                </p>
-              </motion.div>
-            </div>
-          </section>
+      <div 
+        className="min-h-screen relative admin-toolbar-offset w-full bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${BackgroundImage})` }}
+        dir={language === 'fa' ? 'rtl' : 'ltr'}
+      >
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
 
-          {isEditMode && (
-            <div className="container-custom text-center mb-12">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                <Button onClick={handleAddProduct} size="lg" className="btn-gold gap-2 shadow-lg">
-                  <PlusCircle />
-                  {t('products.add_new', 'Add New Product')}
-                </Button>
-              </motion.div>
-            </div>
-          )}
-
-          <section className="py-8 border-y border-border sticky top-[48px] bg-background/80 backdrop-blur-sm z-20">
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <section className="pb-16 pt-28">
               <div className="container-custom">
-                <div className="flex flex-col gap-8">
-                  <div className="relative max-w-md mx-auto">
-                      <Search className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground ${language === 'fa' ? 'right-4' : 'left-4'}`} size={20} />
-                      <Input 
-                          type="text"
-                          placeholder={t('products.search_placeholder', 'Search by product name or brand...')}
-                          className={`w-full bg-background border-border rounded-full shadow-lg hover:shadow-primary/10 focus:shadow-primary/20 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-12' : 'pl-12'}`} 
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                      />
-                  </div>
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground">{t('products.brand', 'Brand:')}</span>
-                    <button onClick={() => handleBrandClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
-                    {isLoadingBrands ? <Loader2 className="animate-spin" /> : brands?.map((brand) => (
-                      <button key={brand.id} onClick={() => handleBrandClick(brand.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === brand.name ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
-                        {t(brand.name, brand.name)}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground">{t('products.category', 'Category:')}</span>
-                    <button onClick={() => handleCategoryClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
-                    {isLoadingCategories ? <Loader2 className="animate-spin" /> : categories?.map((category) => (
-                      <button key={category.id} onClick={() => handleCategoryClick(category.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category.name ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
-                        {t(category.name, category.name)}
-                      </button>
-                    ))}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                   <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                    <EditableText contentKey="products-page-title" defaultValue={t('products_page.title', 'Our Products')} as="span" />
+                  </h1>
+                  <p className="text-lg text-muted-foreground max-w-2xl">
+                    <EditableText contentKey="products-page-description" defaultValue={t('products_page.description', 'Here you can see our latest and highest quality products.')} as="span" multiline />
+                  </p>
+                </motion.div>
+              </div>
+            </section>
+
+            {isEditMode && (
+              <div className="container-custom text-center mb-12">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                  <Button onClick={handleAddProduct} size="lg" className="btn-gold gap-2 shadow-lg">
+                    <PlusCircle />
+                    {t('products.add_new', 'Add New Product')}
+                  </Button>
+                </motion.div>
+              </div>
+            )}
+            
+            <section className="container-custom pb-16">
+                <div className="relative max-w-xl mx-auto w-full mb-12">
+                    <Search className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground ${language === 'fa' ? 'right-5' : 'left-5'}`} size={24} />
+                    <Input 
+                        type="text"
+                        placeholder={t('products.search_placeholder', 'Search by product name or brand...')}
+                        className={`h-14 w-full bg-background/80 border-2 border-border rounded-full shadow-lg text-lg hover:shadow-primary/10 focus:shadow-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-14' : 'pl-14'}`} 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                  {/* --- Sidebar for Filters --- */}
+                  <aside className="lg:col-span-1 space-y-8 lg:sticky top-24 h-fit">
+                    {/* Brands Card */}
+                    <div className="bg-background/70 p-6 rounded-xl shadow-lg border border-border/30">
+                        <h3 className="text-xl font-bold mb-5 text-foreground">{t('products.brand', 'Brand')}</h3>
+                        <div className="flex flex-col items-start gap-3">
+                          <button onClick={() => handleBrandClick('all')} className={`w-full text-start px-4 py-2 rounded-lg text-base font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/10'}`}>{t('all', 'All')}</button>
+                          {isLoadingBrands ? <Loader2 className="animate-spin" /> : brands?.map((brand) => (
+                            <button key={brand.id} onClick={() => handleBrandClick(brand.name)} className={`w-full text-start px-4 py-2 rounded-lg text-base font-medium transition-all ${selectedBrand === brand.name ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/10'}`}>
+                              {t(brand.name, brand.name)}
+                            </button>
+                          ))}
+                        </div>
+                    </div>
+
+                    {/* Categories Card */}
+                    <div className="bg-background/70 p-6 rounded-xl shadow-lg border border-border/30">
+                        <h3 className="text-xl font-bold mb-5 text-foreground">{t('products.category', 'Category')}</h3>
+                        <div className="flex flex-col items-start gap-3">
+                           <button onClick={() => handleCategoryClick('all')} className={`w-full text-start px-4 py-2 rounded-lg text-base font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/10'}`}>{t('all', 'All')}</button>
+                          {isLoadingCategories ? <Loader2 className="animate-spin" /> : categories?.map((category) => (
+                            <button key={category.id} onClick={() => handleCategoryClick(category.name)} className={`w-full text-start px-4 py-2 rounded-lg text-base font-medium transition-all ${selectedCategory === category.name ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/10'}`}>
+                              {t(category.name, category.name)}
+                            </button>
+                          ))}
+                        </div>
+                    </div>
+                  </aside>
+
+                  {/* --- Products Grid --- */}
+                  <div className="lg:col-span-3">
+                    {isLoadingProducts && (
+                      <div className="text-center py-16"><Loader2 className="animate-spin mx-auto text-primary" size={32} /></div>
+                    )}
+                    {productsError && (
+                      <div className="text-center py-16"><p className="text-destructive">{t('products.load_error', 'Error loading products')}: {productsError.message}</p></div>
+                    )}
+                    {!isLoadingProducts && (
+                      <AnimatePresence>
+                        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                          {filteredProducts.map((product, index) => (
+                            <EditableProductCard 
+                              key={product.id} 
+                              product={product} 
+                              index={index}
+                              onEdit={handleEditProduct}
+                              onDelete={handleDeleteProduct}
+                            />
+                          ))}
+                        </motion.div>
+                      </AnimatePresence>
+                    )}
+                     {!isLoadingProducts && filteredProducts?.length === 0 && (
+                      <div className="text-center py-16"><p className="text-muted-foreground text-lg">{t('products.noProducts', 'No products found.')}</p></div>
+                    )}
                   </div>
                 </div>
-            </div>
-          </section>
-
-          <section className="section-padding">
-            <div className="container-custom">
-              {isLoadingProducts && (
-                <div className="text-center py-16"><Loader2 className="animate-spin mx-auto text-primary" size={32} /></div>
-              )}
-              {productsError && (
-                <div className="text-center py-16"><p className="text-destructive">{t('products.load_error', 'Error loading products')}: {productsError.message}</p></div>
-              )}
-              {!isLoadingProducts && (
-                <AnimatePresence>
-                  <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                    {filteredProducts.map((product, index) => (
-                      <EditableProductCard 
-                        key={product.id} 
-                        product={product} 
-                        index={index}
-                        onEdit={handleEditProduct}
-                        onDelete={handleDeleteProduct}
-                      />
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
-              )}
-               {!isLoadingProducts && filteredProducts?.length === 0 && (
-                <div className="text-center py-16"><p className="text-muted-foreground text-lg">{t('products.noProducts', 'No products found.')}</p></div>
-              )}
-            </div>
-          </section>
-        </main>
-        <Footer />
-        <ChatWidget />
+            </section>
+          </main>
+          <Footer />
+          <ChatWidget />
+        </div>
       </div>
+
       <ProductEditor 
-          isOpen={isEditorOpen} 
+          isOpen={isEditorOpen}
           onClose={() => setIsEditorOpen(false)} 
           productToEdit={productToEdit}
       />
