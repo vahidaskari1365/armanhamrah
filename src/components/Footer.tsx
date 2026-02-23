@@ -59,7 +59,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-lg font-bold text-foreground mb-6">{t('footer.quickLinks')}</h4>
+            <h4 className="text-lg font-bold text-foreground mb-6">{language === 'fa' ? 'لینک‌های سریع' : 'Quick Links'}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.key}>

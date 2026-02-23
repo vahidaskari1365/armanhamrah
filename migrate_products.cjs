@@ -1,0 +1,588 @@
+
+require('dotenv').config({ path: '.env' });
+const { createClient } = require('@supabase/supabase-js');
+
+// The products data is now directly embedded in the script
+const products = [
+  // Apple
+  {
+    name: 'Apple Watch Series 11 46mm',
+    slug: 'apple-watch-series11-46mm',
+    brand: 'Apple',
+    category: 'category.smartwatch',
+    image: '/images/products/apple-watch-series11-46mm.png',
+    description: 'product.apple_watch_s11.description',
+    specs: {
+        'spec.display': 'spec.value.retina_ltpo_oled_always_on',
+        'spec.cpu': 'S11 SiP',
+        'spec.water_resistance': 'spec.value.water_resistance_50m',
+        'spec.sensors': 'spec.value.sensors_s11',
+        'spec.features': 'spec.value.features_s11',
+        'spec.battery': 'spec.value.battery_s11',
+        'spec.connectivity': 'spec.value.connectivity_s11',
+    },
+  },
+  {
+    name: 'Apple Watch SE 44mm',
+    slug: 'apple-watch-se-44mm',
+    brand: 'Apple',
+    category: 'category.smartwatch',
+    image: '/images/products/apple-watch-se-44mm.webp',
+    description: 'product.apple_watch_se11_44.description',
+    specs: {
+        'spec.display': 'spec.value.retina_ltpo_oled',
+        'spec.cpu': 'S8 SiP',
+        'spec.water_resistance': 'spec.value.water_resistance_50m',
+        'spec.sensors': 'spec.value.sensors_se11',
+        'spec.features': 'spec.value.features_se',
+        'spec.battery': 'spec.value.battery_18h',
+        'spec.connectivity': 'spec.value.connectivity_se',
+    },
+  },
+  {
+    name: 'Apple Watch Series 10 40mm Black',
+    slug: 'apple-watch-series10-40mm-blk',
+    brand: 'Apple',
+    category: 'category.smartwatch',
+    image: '/images/products/Apple Watch series10 40mm BLK.png',
+    description: 'product.apple_watch_se10_40.description',
+    specs: {
+        'spec.display': 'spec.value.retina_ltpo_oled',
+        'spec.cpu': 'S8 SiP',
+        'spec.internal_storage': '32 GB',
+        'spec.water_resistance': 'spec.value.water_resistance_50m',
+        'spec.sensors': 'spec.value.sensors_se10',
+        'spec.features': 'spec.value.features_se_sleep',
+        'spec.battery': 'spec.value.battery_18h',
+        'spec.connectivity': 'spec.value.connectivity_se',
+    },
+  },
+  {
+    name: 'Apple Watch Series 10 Silver',
+    slug: 'apple-watch-series10-silver',
+    brand: 'Apple',
+    category: 'category.smartwatch',
+    image: '/images/products/Apple-Watch-series10-silver.png',
+    description: 'product.apple_watch_se10_40.description',
+    specs: {
+        'spec.display': 'spec.value.retina_ltpo_oled',
+        'spec.cpu': 'S8 SiP',
+        'spec.internal_storage': '32 GB',
+        'spec.water_resistance': 'spec.value.water_resistance_50m',
+        'spec.sensors': 'spec.value.sensors_se10',
+        'spec.features': 'spec.value.features_se_sleep',
+        'spec.battery': 'spec.value.battery_18h',
+        'spec.connectivity': 'spec.value.connectivity_se',
+    },
+  },
+  {
+    name: 'Apple AirPods Pro 2',
+    slug: 'apple-airpods-pro2',
+    brand: 'Apple',
+    category: 'category.accessories',
+    image: '/images/products/apple-airpods-pro2.jpg',
+    description: 'product.airpods_pro_2.description',
+    specs: {
+        'spec.chip': 'Apple H2',
+        'spec.noise_cancellation': 'spec.value.active_noise_cancellation',
+        'spec.transparency_mode': 'spec.value.adaptive_transparency',
+        'spec.spatial_audio': 'spec.value.personalized_spatial_audio',
+        'spec.microphones': 'spec.value.dual_beamforming_mics',
+        'spec.sensors': 'spec.value.sensors_airpods_pro_2',
+        'spec.resistance': 'spec.value.resistance_ipx4',
+        'spec.battery_earbuds': 'spec.value.battery_airpods_6h',
+        'spec.battery_case': 'spec.value.battery_airpods_30h',
+        'spec.connectivity': 'Bluetooth 5.3',
+    },
+  },
+
+  // Samsung
+  {
+    name: 'Samsung Galaxy S25 Ultra',
+    slug: 'samsung-galaxys25ultra',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-galaxys25ultra.png',
+    description: 'product.samsung_s25_ultra.description',
+    specs: {
+        'spec.display': 'spec.value.display_dynamic_amoled_6_8',
+        'spec.cpu': 'Qualcomm Snapdragon 8 Gen 4 for Galaxy',
+        'spec.ram': '12 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_s25_ultra',
+        'spec.battery': 'spec.value.battery_5000mah_45w',
+        'spec.pen': 'spec.value.spen_ai',
+    },
+  },
+  {
+    name: 'Samsung Galaxy S25 FE',
+    slug: 'samsung-galaxys25-fe',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-galaxys25-fe.png',
+    description: 'product.samsung_s25_fe.description',
+    specs: {
+        'spec.display': 'spec.value.display_dynamic_amoled_6_4',
+        'spec.cpu': 'Exynos 2400 / Snapdragon 8 Gen 3',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_s25_fe',
+        'spec.battery': 'spec.value.battery_4500mah_25w',
+        'spec.resistance': 'spec.value.resistance_ip68',
+    },
+  },
+  {
+    name: 'Samsung A56',
+    slug: 'samsung-a56',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a56.png',
+    description: 'product.samsung_a56.description',
+    specs: {
+        'spec.display': 'spec.value.display_super_amoled_6_6',
+        'spec.cpu': 'Exynos 1480',
+        'spec.ram': '12 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_a56',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+        'spec.security': 'Samsung Knox Vault',
+    },
+  },
+  {
+    name: 'Samsung A36',
+    slug: 'samsung-a36',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a36.png',
+    description: 'product.samsung_a36.description',
+    specs: {
+        'spec.display': 'spec.value.display_super_amoled_6_6_120hz',
+        'spec.cpu': 'Exynos 1380',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_a36',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+        'spec.resistance': 'spec.value.resistance_ip67',
+    },
+  },
+  {
+    name: 'Samsung A26',
+    slug: 'samsung-a26',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a26.png',
+    description: 'product.samsung_a26.description',
+    specs: {
+        'spec.display': 'spec.value.display_super_amoled_6_5_120hz',
+        'spec.cpu': 'Exynos 1280',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_a26',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+    },
+  },
+  {
+    name: 'Samsung A17',
+    slug: 'samsung-a17',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a17.png',
+    description: 'product.samsung_a17.description',
+    specs: {
+        'spec.display': 'spec.value.display_super_amoled_6_5_90hz',
+        'spec.cpu': 'Mediatek Helio G99',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_a17',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+    },
+  },
+  {
+    name: 'Samsung A07',
+    slug: 'samsung-a07',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a07.png',
+    description: 'product.samsung_a07.description',
+    specs: {
+        'spec.display': 'spec.value.display_pls_lcd_6_7_90hz',
+        'spec.cpu': 'Snapdragon 680 4G',
+        'spec.ram': '6 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': 'spec.value.camera_a07',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+    },
+  },
+  {
+    name: 'Samsung A06',
+    slug: 'samsung-a06',
+    brand: 'Samsung',
+    category: 'category.mobile',
+    image: '/images/products/samsung-a06.png',
+    description: 'product.samsung_a06.description',
+    specs: {
+        'spec.display': 'spec.value.display_pls_lcd_6_7',
+        'spec.cpu': 'Mediatek Helio G85',
+        'spec.ram': '4 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': 'spec.value.camera_a06',
+        'spec.battery': 'spec.value.battery_5000mah_25w',
+    },
+  },
+  {
+    name: 'Samsung TAB A9 Plus',
+    slug: 'samsung-tab-a9-plus',
+    brand: 'Samsung',
+    category: 'category.tablet',
+    image: '/images/products/samsung-tab-a9-plus.png',
+    description: 'product.samsung_tab_a9_plus.description',
+    specs: {
+        'spec.display': 'spec.value.display_tft_lcd_11_90hz',
+        'spec.cpu': 'Snapdragon 695 5G',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': '8 MP',
+        'spec.battery': '7040 mAh',
+        'spec.sound': 'spec.value.sound_quad_dolby_atmos',
+    },
+  },
+  {
+    name: 'Samsung TAB A9',
+    slug: 'samsung-tab-a9',
+    brand: 'Samsung',
+    category: 'category.tablet',
+    image: '/images/products/samsung-tab-a9.png',
+    description: 'product.samsung_tab_a9.description',
+    specs: {
+        'spec.display': 'spec.value.display_tft_lcd_8_7',
+        'spec.cpu': 'Mediatek Helio G99',
+        'spec.ram': '4 GB',
+        'spec.internal_storage': '64 GB',
+        'spec.main_camera': '8 MP',
+        'spec.battery': '5100 mAh',
+    },
+  },
+
+  // Xiaomi
+  {
+    name: 'Xiaomi 15T',
+    slug: 'xiaomi-15t',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-15t.png',
+    description: 'product.xiaomi_15t.description',
+    specs: {
+        'spec.display': 'spec.value.display_crystalres_amoled_6_36',
+        'spec.cpu': 'Snapdragon 8 Gen 4',
+        'spec.ram': '12 GB',
+        'spec.internal_storage': '512 GB',
+        'spec.main_camera': 'spec.value.camera_xiaomi_15t',
+        'spec.battery': 'spec.value.battery_4610mah_90w',
+        'spec.os': 'Xiaomi HyperOS',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi Note 14S',
+    slug: 'xiaomi-redminote-14-s',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redminote-14-s.png',
+    description: 'product.redmi_note_14s.description',
+    specs: {
+        'spec.display': 'spec.value.display_1_5k_amoled_6_67',
+        'spec.cpu': 'Snapdragon 7s Gen 2',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_note_14s',
+        'spec.battery': 'spec.value.battery_5100mah_67w',
+        'spec.resistance': 'Corning Gorilla Glass Victus',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi Note 14 Pro',
+    slug: 'xiaomi-redminote-14-pro',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redminote-14-pro.png',
+    description: 'product.redmi_note_14_pro.description',
+    specs: {
+        'spec.display': 'spec.value.display_1_5k_crystalres_amoled_6_67',
+        'spec.cpu': 'MediaTek Dimensity 7200-Ultra',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_note_14_pro',
+        'spec.battery': 'spec.value.battery_5000mah_120w',
+        'spec.resistance': 'spec.value.resistance_ip68',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi Note 14',
+    slug: 'xiaomi-redminote-14',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redminote-14.png',
+    description: 'product.redmi_note_14.description',
+    specs: {
+        'spec.display': 'spec.value.display_amoled_6_67_120hz',
+        'spec.cpu': 'MediaTek Dimensity 6080',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_note_14',
+        'spec.battery': 'spec.value.battery_5000mah_33w',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi 15',
+    slug: 'xiaomi-redmi15',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redmi15.png',
+    description: 'product.redmi_15.description',
+    specs: {
+        'spec.display': 'spec.value.display_fhd_plus_amoled_6_79_90hz',
+        'spec.cpu': 'MediaTek Helio G91-Ultra',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_15',
+        'spec.battery': 'spec.value.battery_5030mah_33w',
+        'spec.resistance': 'IP53',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi 15C',
+    slug: 'xiaomi-redmi15c',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redmi15c.png',
+    description: 'product.redmi_15c.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_74_90hz',
+        'spec.cpu': 'Mediatek Helio G85',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_15c',
+        'spec.battery': 'spec.value.battery_5000mah_18w',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi 13X',
+    slug: 'xiaomi-redmi13x',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redmi13x.png',
+    description: 'product.coming_soon',
+    specs: {},
+  },
+  {
+    name: 'Xiaomi Redmi A5',
+    slug: 'xiaomi-redmi-a5',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redmi-a5.png',
+    description: 'product.redmi_a5.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_71_90hz',
+        'spec.cpu': 'Mediatek Helio G37',
+        'spec.ram': '4 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': 'spec.value.camera_redmi_a5',
+        'spec.battery': '5000 mAh',
+        'spec.os': 'Android 14 (Go edition), MIUI',
+    },
+  },
+  {
+    name: 'Xiaomi Redmi A3',
+    slug: 'xiaomi-redmia3',
+    brand: 'Xiaomi',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-redmia3.png',
+    description: 'product.redmi_a3.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_71_90hz',
+        'spec.cpu': 'Mediatek Helio G36',
+        'spec.ram': '4 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': '8 MP (wide)',
+        'spec.battery': '5000 mAh',
+        'spec.os': 'Android 14 (Go edition), MIUI',
+    },
+  },
+
+  // Poco
+  {
+    name: 'Xiaomi Poco M7',
+    slug: 'xiaomi-pocom7',
+    brand: 'Poco',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-pocom7.png',
+    description: 'product.poco_m7.description',
+    specs: {
+        'spec.display': 'spec.value.display_flow_amoled_6_67_120hz',
+        'spec.cpu': 'MediaTek Dimensity 8300-Ultra',
+        'spec.ram': '12 GB',
+        'spec.internal_storage': '512 GB',
+        'spec.main_camera': 'spec.value.camera_poco_m7',
+        'spec.battery': 'spec.value.battery_5000mah_90w',
+        'spec.fingerprint': 'spec.value.fingerprint_under_display',
+    },
+  },
+  {
+    name: 'Xiaomi Poco M6',
+    slug: 'xiaomi-pocom6',
+    brand: 'Poco',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-pocom6.jpg',
+    description: 'product.poco_m6.description',
+    specs: {
+        'spec.display': 'spec.value.display_flow_amoled_6_67_120hz',
+        'spec.cpu': 'MediaTek Helio G99-Ultra',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_poco_m6',
+        'spec.battery': 'spec.value.battery_5000mah_67w',
+        'spec.fingerprint': 'spec.value.fingerprint_under_display',
+    },
+  },
+  {
+    name: 'Xiaomi Poco C85',
+    slug: 'xiaomi-pococ85',
+    brand: 'Poco',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-pococ85.png',
+    description: 'product.poco_c85.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_8_90hz',
+        'spec.cpu': 'Mediatek Helio G99',
+        'spec.ram': '8 GB',
+        'spec.internal_storage': '256 GB',
+        'spec.main_camera': 'spec.value.camera_poco_c85',
+        'spec.battery': 'spec.value.battery_5000mah_33w',
+    },
+  },
+  {
+    name: 'Xiaomi Poco C75',
+    slug: 'xiaomi-pococ75',
+    brand: 'Poco',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-pococ75.png',
+    description: 'product.poco_c75.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_74_90hz',
+        'spec.cpu': 'Mediatek Helio G88',
+        'spec.ram': '6 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': 'spec.value.camera_poco_c75',
+        'spec.battery': 'spec.value.battery_5000mah_18w',
+    },
+  },
+  {
+    name: 'Xiaomi Poco C71',
+    slug: 'xiaomi-pococ71',
+    brand: 'Poco',
+    category: 'category.mobile',
+    image: '/images/products/xiaomi-pococ71.png',
+    description: 'product.poco_c71.description',
+    specs: {
+        'spec.display': 'spec.value.display_ips_lcd_6_74_90hz',
+        'spec.cpu': 'Unisoc T612',
+        'spec.ram': '4 GB',
+        'spec.internal_storage': '128 GB',
+        'spec.main_camera': 'spec.value.camera_poco_c71',
+        'spec.battery': 'spec.value.battery_5000mah_18w',
+    },
+  },
+
+  // Nokia
+  {
+    name: 'Nokia 105 4G',
+    slug: 'nokia-105-4g',
+    brand: 'Nokia',
+    category: 'category.feature_phone',
+    image: '/images/products/nokia-105-4g.webp',
+    description: 'product.nokia_105.description',
+    specs: {
+        'spec.display': '1.8 inch, QQVGA',
+        'spec.battery': '1000 mAh, Removable',
+        'spec.features': 'spec.value.features_nokia_105',
+        'spec.port': 'Micro USB',
+        'spec.sim': 'Dual SIM',
+    },
+  },
+];
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!supabaseUrl || !supabaseServiceKey) {
+  console.error('Supabase URL or Service Role Key is not defined in your .env file.');
+  process.exit(1);
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+const getPersianName = (name) => {
+    return name.replace(/series/i, 'سری').replace(/pro/i, 'پرو').replace(/ultra/i, 'اولترا');
+}
+
+const migrate = async () => {
+  console.log('Starting migration...');
+
+  const productsToInsert = products.map((p, index) => ({
+    name_fa: getPersianName(p.name),
+    name_en: p.name,
+    slug: p.slug,
+    brand: p.brand,
+    category: p.category,
+    image_url: p.image,
+    description_fa: p.description, // These are translation keys
+    description_en: p.description, // These are translation keys
+    specs: p.specs,
+    is_active: true,
+    display_order: index,
+    link: `/product/${p.slug}` // Keep the internal link consistent
+  }));
+
+  console.log(`Prepared ${productsToInsert.length} products for insertion.`);
+
+  const { data, error } = await supabase
+    .from('products')
+    .upsert(productsToInsert, { onConflict: 'slug' });
+
+  if (error) {
+    console.error('\nAn error occurred during migration:');
+    console.error('Error Code:', error.code);
+    console.error('Error Message:', error.message);
+    console.error('Error Details:', error.details);
+    
+    if (error.code === '42P01') {
+        console.error('\n[ACTION REQUIRED] The table "products" does not exist in your database.');
+        console.error('Please go to your Supabase project dashboard, open the "SQL Editor", and run the following command to create the table:\n');
+        console.log(`
+CREATE TABLE public.products (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  name_fa text NOT NULL,
+  name_en text NULL,
+  description_fa text NULL,
+  description_en text NULL,
+  slug text NOT NULL,
+  brand text NULL,
+  category text NULL,
+  image_url text NULL,
+  specs jsonb NULL,
+  is_active boolean NOT NULL DEFAULT true,
+  display_order integer NULL,
+  link text NULL,
+  CONSTRAINT products_pkey PRIMARY KEY (id),
+  CONSTRAINT products_slug_key UNIQUE (slug)
+);
+        `);
+    }
+    process.exit(1);
+  }
+
+  console.log('\nMigration completed successfully!');
+  console.log('All products from `products.ts` have been migrated to the Supabase `products` table.');
+};
+
+migrate();
