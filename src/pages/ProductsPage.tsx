@@ -160,31 +160,31 @@ const ProductsPageContent = () => {
 
           <section className="py-8 border-y border-border sticky top-[48px] bg-background/80 backdrop-blur-sm z-20">
               <div className="container-custom">
-                <div className="flex flex-col gap-6">
-                  <div className="relative">
-                      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+                <div className="flex flex-col gap-8">
+                  <div className="relative max-w-md mx-auto">
+                      <Search className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground ${language === 'fa' ? 'right-4' : 'left-4'}`} size={20} />
                       <Input 
                           type="text"
                           placeholder={t('products.search_placeholder', 'Search by product name or brand...')}
-                          className="pl-12 w-full bg-secondary/40 border-border focus:bg-background transition-all duration-300 ease-in-out" 
+                          className={`w-full bg-background border-border rounded-full shadow-lg hover:shadow-primary/10 focus:shadow-primary/20 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-12' : 'pl-12'}`} 
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
                       />
                   </div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.brand', 'Brand:')}</span>
-                    <button onClick={() => handleBrandClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <span className="text-sm font-medium text-muted-foreground">{t('products.brand', 'Brand:')}</span>
+                    <button onClick={() => handleBrandClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
                     {isLoadingBrands ? <Loader2 className="animate-spin" /> : brands?.map((brand) => (
-                      <button key={brand.id} onClick={() => handleBrandClick(brand.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === brand.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
+                      <button key={brand.id} onClick={() => handleBrandClick(brand.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === brand.name ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
                         {t(brand.name, brand.name)}
                       </button>
                     ))}
                   </div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.category', 'Category:')}</span>
-                    <button onClick={() => handleCategoryClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <span className="text-sm font-medium text-muted-foreground">{t('products.category', 'Category:')}</span>
+                    <button onClick={() => handleCategoryClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
                     {isLoadingCategories ? <Loader2 className="animate-spin" /> : categories?.map((category) => (
-                      <button key={category.id} onClick={() => handleCategoryClick(category.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
+                      <button key={category.id} onClick={() => handleCategoryClick(category.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category.name ? 'bg-primary text-primary-foreground shadow-md' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
                         {t(category.name, category.name)}
                       </button>
                     ))}
