@@ -60,6 +60,83 @@ const fallbackTranslationsData = {
     'spec.fingerprint': 'حسگر اثر انگشت',
     'spec.port': 'درگاه',
     'spec.sim': 'سیم‌کارت',
+    'spec.dimensions': 'ابعاد',
+    'spec.weight': 'وزن',
+    'spec.build_material': 'جنس بدنه',
+    'spec.display_size': 'اندازه نمایشگر',
+    'spec.display_type': 'نوع نمایشگر',
+    'spec.display_refresh_rate': 'نرخ نوسازی',
+    'spec.display_resolution': 'رزولوشن',
+    'spec.display_density': 'تراکم پیکسلی',
+    'spec.display_brightness': 'روشنایی',
+    'spec.display_features': 'ویژگی‌های نمایشگر',
+    'spec.chip_model': 'مدل تراشه',
+    'spec.chip_process': 'فرآیند ساخت',
+    'spec.chip_cpu': 'پردازنده مرکزی',
+    'spec.chip_gpu': 'پردازنده گرافیکی',
+    'spec.memory_options': 'ترکیب حافظه و رم',
+    'spec.memory_type': 'نوع حافظه',
+    'spec.memory_card': 'کارت حافظه',
+    'spec.camera_rear_config': 'پیکربندی دوربین پشت',
+    'spec.camera_rear_main': 'دوربین اصلی',
+    'spec.camera_rear_ultrawide': 'دوربین اولتراواید',
+    'spec.camera_rear_macro': 'دوربین ماکرو',
+    'spec.camera_rear_video': 'فیلم‌برداری (پشت)',
+    'spec.camera_front_main': 'دوربین سلفی',
+    'spec.camera_front_video': 'فیلم‌برداری (سلفی)',
+    'spec.battery_capacity': 'ظرفیت باتری',
+    'spec.battery_charging': 'شارژ',
+    'spec.battery_charging_time': 'زمان شارژ',
+    'spec.audio_speaker': 'اسپیکر',
+    'spec.audio_jack': 'جک ۳.۵ میلی‌متری',
+    'spec.sensors_list': 'حسگرها',
+    'spec.connectivity_wifi': 'وای-فای',
+    'spec.connectivity_bluetooth': 'بلوتوث',
+    'spec.connectivity_nfc': 'NFC',
+    'spec.connectivity_sim': 'سیم‌کارت',
+    'spec.connectivity_network': 'شبکه',
+    'spec.connectivity_gps': 'مسیریابی',
+
+    // Spec Values (Samsung A56)
+    'spec.value.a56_os': 'اندروید 15 با رابط کاربری One UI 7',
+    'spec.value.a56_dimensions': '162.2 در 77.5 در 7.4 میلی‌متر',
+    'spec.value.a56_weight': '198 گرم',
+    'spec.value.a56_build': 'پشت شیشه (گوریلا گلس +Victus)، جلو شیشه (گوریلا گلس +Victus)، فریم آلومینیومی',
+    'spec.value.a56_water_resistance': 'IP67 (مقاوم تا عمق 1 متر برای 30 دقیقه)',
+    'spec.value.a56_display_size': '6.7 اینچ',
+    'spec.value.a56_display_type': 'Super AMOLED',
+    'spec.value.a56_refresh_rate': '120 هرتز',
+    'spec.value.a56_resolution': '1080 در 2340 پیکسل',
+    'spec.value.a56_density': '~385 پیکسل در اینچ',
+    'spec.value.a56_brightness': '1200 نیت (HBM)، 1900 نیت (Peak)',
+    'spec.value.a56_display_features': 'HDR10+, نمایشگر همیشه روشن',
+    'spec.value.a56_chip_model': 'Samsung Exynos 1580',
+    'spec.value.a56_chip_process': '4 نانومتر',
+    'spec.value.a56_chip_cpu': '8 هسته (1x2.9 GHz & 3x2.6 GHz & 4x1.9 GHz)',
+    'spec.value.a56_chip_gpu': 'Xclipse 540',
+    'spec.value.a56_memory_options': '128/8, 256/8, 256/12 گیگابایت',
+    'spec.value.a56_memory_type': 'UFS 3.1',
+    'spec.value.a56_memory_card': 'ندارد',
+    'spec.value.a56_camera_rear_config': 'واید/استاندارد، اولتراواید، ماکرو',
+    'spec.value.a56_camera_rear_main': '50 مگاپیکسل (f/1.8, واید, OIS, PDAF)',
+    'spec.value.a56_camera_rear_ultrawide': '12 مگاپیکسل (f/2.2, اولتراواید, °123)',
+    'spec.value.a56_camera_rear_macro': '5 مگاپیکسل (f/2.4, ماکرو)',
+    'spec.value.a56_camera_rear_video': '4K@30fps, 1080p@30/60fps, لرزشگیر gyro-EIS',
+    'spec.value.a56_camera_front_main': '12 مگاپیکسل (f/2.2, واید)',
+    'spec.value.a56_camera_front_video': '4K@30fps, 1080p@30/60fps, 10-bit HDR',
+    'spec.value.a56_battery_capacity': '5000 میلی‌آمپر ساعت',
+    'spec.value.a56_battery_charging': 'شارژ سریع 45 وات',
+    'spec.value.a56_battery_charging_time': '65% در 30 دقیقه، 100% در 68 دقیقه',
+    'spec.value.a56_port': 'USB Type-C 2.0, OTG',
+    'spec.value.a56_audio_speaker': 'استریو (دوگانه)',
+    'spec.value.a56_audio_jack': 'ندارد',
+    'spec.value.a56_sensors_list': 'اثرانگشت (زیر نمایشگر، اپتیکال)، شتاب‌سنج، ژیروسکوپ، مجاورت، قطب‌نما، نور محیط',
+    'spec.value.a56_connectivity_wifi': 'Wi-Fi 6E, دو بانده, Wi-Fi Direct',
+    'spec.value.a56_connectivity_bluetooth': '5.3, A2DP, LE',
+    'spec.value.a56_connectivity_nfc': 'دارد (وابسته به بازار)',
+    'spec.value.a56_connectivity_sim': 'دو سیم‌کارت (2 نانو سیم + eSIM), dual stand-by',
+    'spec.value.a56_connectivity_network': 'GSM / HSPA / LTE / 5G',
+    'spec.value.a56_connectivity_gps': 'GPS, A-GPS, GLONASS, GALILEO, BDS, QZSS',
 
     // Auto-generated Spec-Value Translations
     'spec.value.s11_sip': 'S11 SiP',
@@ -170,6 +247,13 @@ const fallbackTranslationsData = {
     'products.seo.description': 'مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند',
     'products_page.title': 'محصولات ما',
     'products_page.description': 'در اینجا می‌توانید جدیدترین و با کیفیت‌ترین محصولات ما را مشاهده کنید.',
+    'products.search_placeholder': 'جستجو بر اساس نام محصول یا برند...',
+    'products.add_new': 'افزودن محصول جدید',
+    'products.load_error': 'خطا در بارگذاری محصولات',
+    'delete_product.success.title': 'موفقیت',
+    'delete_product.success.description': 'محصول با موفقیت حذف شد.',
+    'delete_product.error.title': 'خطا',
+    'delete_product.error.description': 'خطا در حذف محصول',
 
     'product.redmi_a5.description': 'شیائومی Redmi A5 یک گوشی هوشمند اقتصادی با نمایشگر بزرگ، باتری بادوام و عملکردی قابل اعتماد برای کارهای روزمره است.',
     'spec.value.camera_redmi_a5': 'دوربین اصلی 13 مگاپیکسل، دوربین سلفی 5 مگاپیکسل',
@@ -465,6 +549,83 @@ const fallbackTranslationsData = {
     'spec.fingerprint': 'Fingerprint Sensor',
     'spec.port': 'Port',
     'spec.sim': 'SIM',
+    'spec.dimensions': 'Dimensions',
+    'spec.weight': 'Weight',
+    'spec.build_material': 'Build Material',
+    'spec.display_size': 'Display Size',
+    'spec.display_type': 'Display Type',
+    'spec.display_refresh_rate': 'Refresh Rate',
+    'spec.display_resolution': 'Resolution',
+    'spec.display_density': 'Pixel Density',
+    'spec.display_brightness': 'Brightness',
+    'spec.display_features': 'Display Features',
+    'spec.chip_model': 'Chip Model',
+    'spec.chip_process': 'Manufacturing Process',
+    'spec.chip_cpu': 'CPU',
+    'spec.chip_gpu': 'GPU',
+    'spec.memory_options': 'Memory & RAM Options',
+    'spec.memory_type': 'Storage Type',
+    'spec.memory_card': 'Memory Card',
+    'spec.camera_rear_config': 'Rear Camera Config',
+    'spec.camera_rear_main': 'Main Camera',
+    'spec.camera_rear_ultrawide': 'Ultrawide Camera',
+    'spec.camera_rear_macro': 'Macro Camera',
+    'spec.camera_rear_video': 'Rear Video',
+    'spec.camera_front_main': 'Front Camera',
+    'spec.camera_front_video': 'Front Video',
+    'spec.battery_capacity': 'Battery Capacity',
+    'spec.battery_charging': 'Charging',
+    'spec.battery_charging_time': 'Charging Time',
+    'spec.audio_speaker': 'Speaker',
+    'spec.audio_jack': '3.5mm Jack',
+    'spec.sensors_list': 'Sensors',
+    'spec.connectivity_wifi': 'Wi-Fi',
+    'spec.connectivity_bluetooth': 'Bluetooth',
+    'spec.connectivity_nfc': 'NFC',
+    'spec.connectivity_sim': 'SIM',
+    'spec.connectivity_network': 'Network',
+    'spec.connectivity_gps': 'Positioning',
+
+    // Spec Values (Samsung A56)
+    'spec.value.a56_os': 'Android 15 with One UI 7',
+    'spec.value.a56_dimensions': '162.2 x 77.5 x 7.4 mm',
+    'spec.value.a56_weight': '198 g',
+    'spec.value.a56_build': 'Glass back (Gorilla Glass Victus+), glass front (Gorilla Glass Victus+), aluminum frame',
+    'spec.value.a56_water_resistance': 'IP67 (up to 1m for 30 mins)',
+    'spec.value.a56_display_size': '6.7 inches',
+    'spec.value.a56_display_type': 'Super AMOLED',
+    'spec.value.a56_refresh_rate': '120Hz',
+    'spec.value.a56_resolution': '1080 x 2340 pixels',
+    'spec.value.a56_density': '~385 ppi density',
+    'spec.value.a56_brightness': '1200 nits (HBM), 1900 nits (peak)',
+    'spec.value.a56_display_features': 'HDR10+, Always-on display',
+    'spec.value.a56_chip_model': 'Samsung Exynos 1580',
+    'spec.value.a56_chip_process': '4 nm',
+    'spec.value.a56_chip_cpu': '8-core (1x2.9 GHz & 3x2.6 GHz & 4x1.9 GHz)',
+    'spec.value.a56_chip_gpu': 'Xclipse 540',
+    'spec.value.a56_memory_options': '128GB/8GB, 256GB/8GB, 256GB/12GB',
+    'spec.value.a56_memory_type': 'UFS 3.1',
+    'spec.value.a56_memory_card': 'No',
+    'spec.value.a56_camera_rear_config': 'Wide, Ultrawide, Macro',
+    'spec.value.a56_camera_rear_main': '50 MP (f/1.8, wide, OIS, PDAF)',
+    'spec.value.a56_camera_rear_ultrawide': '12 MP (f/2.2, ultrawide, 123°)',
+    'spec.value.a56_camera_rear_macro': '5 MP (f/2.4, macro)',
+    'spec.value.a56_camera_rear_video': '4K@30fps, 1080p@30/60fps, gyro-EIS',
+    'spec.value.a56_camera_front_main': '12 MP (f/2.2, wide)',
+    'spec.value.a56_camera_front_video': '4K@30fps, 1080p@30/60fps, 10-bit HDR',
+    'spec.value.a56_battery_capacity': '5000 mAh',
+    'spec.value.a56_battery_charging': '45W fast charging',
+    'spec.value.a56_battery_charging_time': '65% in 30 min, 100% in 68 min',
+    'spec.value.a56_port': 'USB Type-C 2.0, OTG',
+    'spec.value.a56_audio_speaker': 'Stereo (dual)',
+    'spec.value.a56_audio_jack': 'No',
+    'spec.value.a56_sensors_list': 'Fingerprint (under display, optical), accelerometer, gyro, proximity, compass, ambient light',
+    'spec.value.a56_connectivity_wifi': 'Wi-Fi 6E, dual-band, Wi-Fi Direct',
+    'spec.value.a56_connectivity_bluetooth': '5.3, A2DP, LE',
+    'spec.value.a56_connectivity_nfc': 'Yes (market dependent)',
+    'spec.value.a56_connectivity_sim': 'Dual SIM (2 Nano-SIMs + eSIM), dual stand-by',
+    'spec.value.a56_connectivity_network': 'GSM / HSPA / LTE / 5G',
+    'spec.value.a56_connectivity_gps': 'GPS, A-GPS, GLONASS, GALILEO, BDS, QZSS',
 
     // Auto-generated Spec-Value Translations
     'spec.value.s11_sip': 'S11 SiP',
@@ -575,6 +736,13 @@ const fallbackTranslationsData = {
     'products.seo.description': 'View all Apple, Samsung products with Arman Hamrah warranty - iPhone, Galaxy, Apple Watch and smartwatches',
     'products_page.title': 'Our Products',
     'products_page.description': 'Here you can see our latest and highest quality products.',
+    'products.search_placeholder': 'Search by product name or brand...',
+    'products.add_new': 'Add New Product',
+    'products.load_error': 'Error loading products',
+    'delete_product.success.title': 'Success',
+    'delete_product.success.description': 'Product deleted successfully.',
+    'delete_product.error.title': 'Error',
+    'delete_product.error.description': 'Failed to delete product',
 
     'product.redmi_a5.description': 'Xiaomi Redmi A5 is an affordable smartphone with a large display, durable battery, and reliable performance for daily tasks.',
     'spec.value.camera_redmi_a5': 'Main Camera: 13 MP, Selfie Camera: 5 MP',
@@ -675,6 +843,8 @@ const fallbackTranslationsData = {
     'bitumen.feature2.desc': 'Quality assurance with international standards',
     'bitumen.feature3.title': 'Certifications',
     'bitumen.feature3.desc': 'Compliant with ASTM standards',
+    'bitumen.feature4.title': 'Complete Documentation',
+    'bitumen.feature4.desc': 'All necessary documents and certificates provided',
     'bitimen.table.characteristic': 'Characteristic',
     'bitimen.table.unit': 'Unit',
     'bitimen.table.specification': 'Specification',
@@ -844,7 +1014,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [language, setLanguage] = useState<Language>(() => 
     (typeof window !== 'undefined' && localStorage.getItem('language') as Language) || 'fa'
   );
-  const [translations, setTranslations] = useState<Translations>(transformFallback()); // Use fallback data initially
+  // Initialize with the full set of fallback translations
+  const [translations, setTranslations] = useState<Translations>(transformFallback());
   const [loading, setLoading] = useState(true);
 
   const direction: Direction = language === 'fa' ? 'rtl' : 'ltr';
@@ -852,17 +1023,24 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   useEffect(() => {
     const fetchTranslations = async () => {
       setLoading(true);
+      // Start with a fresh copy of the transformed fallback translations
+      const baseTranslations = transformFallback();
+
       const { data, error } = await supabase.from('page_content').select('content_key, content_fa, content_en');
       
       if (error || !data || data.length === 0) {
-        console.warn('Could not fetch translations from DB, using fallback data.', error);
-        // Fallback is already set, so we just stop loading
+        console.warn('Could not fetch translations from DB, using only fallback data.', error);
+        // No data from DB, just use the fallback
+        setTranslations(baseTranslations);
       } else {
-        const newTranslations: Translations = data.reduce((acc, item) => {
+        // Create a map of translations from the database
+        const dbTranslations: Translations = data.reduce((acc, item) => {
           acc[item.content_key] = { fa: item.content_fa, en: item.content_en };
           return acc;
         }, {} as Translations);
-        setTranslations(newTranslations);
+
+        // Merge the database translations over the fallback translations
+        setTranslations({ ...baseTranslations, ...dbTranslations });
       }
       setLoading(false);
     };
@@ -879,9 +1057,20 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   const t = useCallback((key: string, fallback: string = ''): string => {
-    const translationSet = translations[key];
+    if (!key) return fallback;
+    const keyLower = key.toLowerCase();
+    const translationSet = translations[key] || translations[keyLower];
+
     if (translationSet) {
       return translationSet[language] || translationSet.fa || fallback;
+    }
+    
+    // Fallback for keys that might not be in the map, e.g. direct names
+    const fallbackSet = fallbackTranslationsData.fa[key as keyof typeof fallbackTranslationsData.fa] ? 
+        { fa: fallbackTranslationsData.fa[key as keyof typeof fallbackTranslationsData.fa], en: fallbackTranslationsData.en[key as keyof typeof fallbackTranslationsData.en] } : null;
+
+    if (fallbackSet) {
+        return fallbackSet[language] || fallbackSet.fa || fallback;
     }
 
     return fallback || key;
