@@ -124,11 +124,12 @@ const ProductsPageContent = () => {
   return (
     <>
       <div 
-        className="min-h-screen relative admin-toolbar-offset w-full bg-cover bg-center bg-fixed"
+        className="min-h-screen relative admin-toolbar-offset w-full bg-cover bg-center"
         style={{ backgroundImage: `url(${BackgroundImage})` }}
         dir={language === 'fa' ? 'rtl' : 'ltr'}
       >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-background/80"></div>
 
         <div className="relative z-10">
           <Navbar />
