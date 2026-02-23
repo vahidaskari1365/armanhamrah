@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Clock, Headphones, FileText, Smartphone, Award, Wrench, Users, Cable } from 'lucide-react';
+import { ArrowRight, Shield, FileText, Headphones, Wrench } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
@@ -29,14 +29,6 @@ const warrantySections = [
     description: { fa: 'شرایط و رویه‌های تعمیر دستگاه‌هایی که گارانتی آن‌ها به اتمام رسیده', en: 'Conditions and procedures for repairing out-of-warranty devices' },
     link: '/warranty/repairs',
   }
-];
-
-const brands = [
-  { name: 'اپل', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp' },
-  { name: 'سامسونگ', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp' },
-  { name: 'شیائومی', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp' },
-  { name: 'سونی', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp' },
-  { name: 'هارمن کاردن', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp' },
 ];
 
 const WarrantyPageContent = () => {
@@ -78,43 +70,6 @@ const WarrantyPageContent = () => {
                 />
               </p>
             </motion.div>
-          </div>
-        </section>
-
-        {/* Brands */}
-        <section className="section-padding bg-gradient-premium">
-          <div className="container-custom">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                {language === 'fa' ? 'برندهای تحت پوشش گارانتی' : 'Brands Covered by Warranty'}
-              </h2>
-              <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
-            </motion.div>
-
-            <div className="flex flex-wrap justify-center gap-8 items-center">
-              {brands.map((brand, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-card p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="h-12 object-contain filter dark:invert"
-                  />
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

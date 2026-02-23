@@ -8,6 +8,7 @@ import AdminToolbar from "@/components/admin/AdminToolbar";
 import AdminEditSidebar from "@/components/admin/AdminEditSidebar";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import AuthRecoveryRedirect from "@/components/AuthRecoveryRedirect";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProductsPage from "./pages/ProductsPage";
@@ -30,7 +31,7 @@ import BitumenPage from "./pages/export/BitumenPage";
 import OilPage from "./pages/export/OilPage";
 import PipingEquipmentPage from "./pages/export/PipingEquipmentPage";
 import PetrochemicalDownstreamPage from "./pages/export/PetrochemicalDownstreamPage";
-import GeneralIndustrialSuppliesPage from "./pages/export/GeneralIndustrialSuppliesPage"; // Added this line
+import GeneralIndustrialSuppliesPage from "./pages/export/GeneralIndustrialSuppliesPage";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -51,6 +52,7 @@ const App = () => (
         <LanguageProvider>
           <ThemeProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <PageTracker>
                 <AuthRecoveryRedirect />
                 <AdminToolbar />
@@ -67,7 +69,7 @@ const App = () => (
                   <Route path="/export/oil" element={<OilPage />} />
                   <Route path="/export/piping-equipment" element={<PipingEquipmentPage />} />
                   <Route path="/export/petrochemical-downstream" element={<PetrochemicalDownstreamPage />} />
-                  <Route path="/export/general-industrial-supplies" element={<GeneralIndustrialSuppliesPage />} /> {/* Added this line */}
+                  <Route path="/export/general-industrial-supplies" element={<GeneralIndustrialSuppliesPage />} />
                   <Route path="/warranty" element={<WarrantyPage />} />
                   <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
                   <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />

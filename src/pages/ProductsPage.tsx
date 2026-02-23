@@ -39,6 +39,12 @@ const ProductsPageContent = () => {
       searchParams.set('brand', brand);
     }
     setSearchParams(searchParams);
+    window.scrollTo(0, 0);
+  };
+
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
+    window.scrollTo(0, 0);
   };
   
   return (
@@ -132,7 +138,7 @@ const ProductsPageContent = () => {
                 {categories.map((category, index) => (
                   <motion.button
                     key={category}
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => handleCategoryClick(category)}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: (brandsList.length + index) * 0.05 }}
