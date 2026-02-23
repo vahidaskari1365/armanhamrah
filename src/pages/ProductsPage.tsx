@@ -87,10 +87,10 @@ const ProductsPageContent = () => {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
-      toast({ title: 'موفقیت', description: 'محصول با موفقیت حذف شد.' });
+      toast({ title: 'Success', description: 'Product deleted successfully.' });
     },
     onError: (error) => {
-      toast({ title: 'خطا', description: `خطا در حذف محصول: ${error.message}`, variant: 'destructive' });
+      toast({ title: 'Error', description: `Failed to delete product: ${error.message}`, variant: 'destructive' });
     }
   });
 
@@ -139,10 +139,10 @@ const ProductsPageContent = () => {
           <div className="container-custom">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                <EditableText contentKey="products-page-title" defaultValue="محصولات ما" as="span" />
+                <EditableText contentKey="products-page-title" defaultValue={t('products_page.title', 'Our Products')} as="span" />
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                <EditableText contentKey="products-page-description-v2" defaultValue="در اینجا می‌توانید جدیدترین و با کیفیت‌ترین محصولات ما را مشاهده کنید." as="span" multiline />
+                <EditableText contentKey="products-page-description" defaultValue={t('products_page.description', 'Here you can see our latest and highest quality products.')} as="span" multiline />
               </p>
             </motion.div>
           </div>
@@ -153,7 +153,7 @@ const ProductsPageContent = () => {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
               <Button onClick={handleAddProduct} size="lg" className="btn-gold gap-2 shadow-lg">
                 <PlusCircle />
-                افزودن محصول جدید
+                Add New Product
               </Button>
             </motion.div>
           </div>
@@ -163,20 +163,20 @@ const ProductsPageContent = () => {
             <div className="container-custom">
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.brand')}</span>
-                <button onClick={() => handleBrandClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>همه</button>
+                <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.brand', 'Brand:')}</span>
+                <button onClick={() => handleBrandClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
                 {isLoadingBrands ? <Loader2 className="animate-spin" /> : brands?.map((brand) => (
                   <button key={brand.id} onClick={() => handleBrandClick(brand.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedBrand === brand.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
-                    {brand.name}
+                    {t(brand.name, brand.name)}
                   </button>
                 ))}
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.category')}</span>
-                <button onClick={() => handleCategoryClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>همه</button>
+                <span className="text-sm font-medium text-muted-foreground ml-4">{t('products.category', 'Category:')}</span>
+                <button onClick={() => handleCategoryClick('all')} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>{t('all', 'All')}</button>
                 {isLoadingCategories ? <Loader2 className="animate-spin" /> : categories?.map((category) => (
                   <button key={category.id} onClick={() => handleCategoryClick(category.name)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === category.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground hover:bg-primary/90 hover:text-primary-foreground'}`}>
-                    {category.name}
+                    {t(category.name, category.name)}
                   </button>
                 ))}
               </div>
@@ -190,7 +190,7 @@ const ProductsPageContent = () => {
               <div className="text-center py-16"><Loader2 className="animate-spin mx-auto text-primary" size={32} /></div>
             )}
             {productsError && (
-              <div className="text-center py-16"><p className="text-destructive">خطا: {productsError.message}</p></div>
+              <div className="text-center py-16"><p className="text-destructive">Error: {productsError.message}</p></div>
             )}
             {!isLoadingProducts && filteredProducts && (
               <AnimatePresence>
@@ -208,7 +208,7 @@ const ProductsPageContent = () => {
               </AnimatePresence>
             )}
              {!isLoadingProducts && filteredProducts?.length === 0 && (
-              <div className="text-center py-16"><p className="text-muted-foreground text-lg">محصولی یافت نشد. برای افزودن محصول، حالت ویرایش را فعال کرده و روی دکمه "افزودن محصول جدید" کلیک کنید.</p></div>
+              <div className="text-center py-16"><p className="text-muted-foreground text-lg">{t('products.noProducts', 'No products found. Enable edit mode to add a new product.')}</p></div>
             )}
           </div>
         </section>
@@ -229,7 +229,7 @@ const ProductsPage = () => {
   const { t } = useLanguage();
   return (
     <HelmetProvider>
-      <SEO title={t('products.seo.title') || 'محصولات'} description={t('products.seo.description') || 'لیست محصولات ما'} />
+      <SEO title={t('products.seo.title', 'Products')} description={t('products.seo.description', 'Our product list')} />
       <ProductsPageContent />
     </HelmetProvider>
   );

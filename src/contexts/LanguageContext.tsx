@@ -32,7 +32,7 @@ const fallbackTranslationsData = {
     'category.smartwatch': 'ساعت هوشمند',
     'category.tablet': 'تبلت',
     'category.accessories': 'لوازم جانبی',
-    'category.feature_phone': 'موبایل ساده',
+    'category.feature_phone': 'گوشی ساده',
 
     // Spec Keys
     'spec.display': 'نمایشگر',
@@ -168,6 +168,8 @@ const fallbackTranslationsData = {
     'products.specs_soon': 'مشخصات فنی این محصول به زودی اضافه خواهد شد.',
     'products.seo.title': 'محصولات | آرمان همراه ارتباطات آریا',
     'products.seo.description': 'مشاهده تمامی محصولات اپل، سامسونگ با گارانتی آرمان همراه - آیفون، گلکسی، اپل واچ و ساعت‌های هوشمند',
+    'products_page.title': 'محصولات ما',
+    'products_page.description': 'در اینجا می‌توانید جدیدترین و با کیفیت‌ترین محصولات ما را مشاهده کنید.',
 
     'product.redmi_a5.description': 'شیائومی Redmi A5 یک گوشی هوشمند اقتصادی با نمایشگر بزرگ، باتری بادوام و عملکردی قابل اعتماد برای کارهای روزمره است.',
     'spec.value.camera_redmi_a5': 'دوربین اصلی 13 مگاپیکسل، دوربین سلفی 5 مگاپیکسل',
@@ -571,6 +573,8 @@ const fallbackTranslationsData = {
     'products.specs_soon': 'Specifications for this product will be added soon.',
     'products.seo.title': 'Products | Arman Hamrah Communications Aria',
     'products.seo.description': 'View all Apple, Samsung products with Arman Hamrah warranty - iPhone, Galaxy, Apple Watch and smartwatches',
+    'products_page.title': 'Our Products',
+    'products_page.description': 'Here you can see our latest and highest quality products.',
 
     'product.redmi_a5.description': 'Xiaomi Redmi A5 is an affordable smartphone with a large display, durable battery, and reliable performance for daily tasks.',
     'spec.value.camera_redmi_a5': 'Main Camera: 13 MP, Selfie Camera: 5 MP',
