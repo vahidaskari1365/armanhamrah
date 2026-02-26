@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Users, Award, TrendingUp, HeadphonesIcon, ShieldCheck, Gift, Store, Truck, CheckCircle2, MapPin, Phone, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { Award, HeadphonesIcon, TrendingUp, Store, MapPin, Phone, PlusCircle, Edit, Trash2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
@@ -9,11 +8,9 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
-import EditableText from '@/components/admin/EditableText';
 import { useAdmin } from '@/contexts/AdminContext';
 import { supabase } from '@/integrations/supabase/client';
 
-// Define types
 interface Representative {
   id?: number;
   name: string;
@@ -28,8 +25,7 @@ const RepresentativesPageContent = () => {
   const { isAdmin } = useAdmin();
   const [representatives, setRepresentatives] = useState<Representative[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Fetch representatives from Supabase
+
   useEffect(() => {
     const fetchRepresentatives = async () => {
       setIsLoading(true);
@@ -49,38 +45,34 @@ const RepresentativesPageContent = () => {
     fetchRepresentatives();
   }, []);
 
-  // Placeholder data until it's made editable
   const benefits = [
-    { key: 'benefits.1', icon: Award, title: { fa: 'محصولات اورجینال', en: 'Original Products' }, description: { fa: 'دسترسی به محصولات اورجینال برندهای معتبر با گارانتی رسمی آرمان همراه', en: 'Access to original products...' } },
-    { key: 'benefits.2', icon: TrendingUp, title: { fa: 'قیمت‌های رقابتی', en: 'Competitive Prices' }, description: { fa: 'ارائه قیمت‌های ویژه و تخفیف‌های اختصاصی برای همکاران و نمایندگان', en: 'Special prices and exclusive discounts...' } },
-    { key: 'benefits.3', icon: HeadphonesIcon, title: { fa: 'پشتیبانی اختصاصی', en: 'Dedicated Support' }, description: { fa: 'تیم پشتیبانی ویژه همکاران برای پاسخگویی سریع به سوالات و نیازها', en: 'Dedicated support team for quick response...' } },
+    { key: 'representatives.benefits.1', icon: Award },
+    { key: 'representatives.benefits.2', icon: TrendingUp },
+    { key: 'representatives.benefits.3', icon: HeadphonesIcon },
   ];
-
 
   return (
     <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir={language === 'fa' ? 'rtl' : 'ltr'}>
       <Navbar />
       <main className="pt-24">
-        {/* Hero */}
         <section className="bg-gradient-hero py-16">
           <div className="container-custom">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                <EditableText contentKey="representatives-title" page="representatives" section="hero" defaultValue={t('representatives.pageTitle', 'نمایندگان فروش')} as="span" />
+                {t('representatives.hero.title')}
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                <EditableText contentKey="representatives-description" page="representatives" section="hero" defaultValue={t('representatives.pageDescription', 'شبکه گسترده نمایندگان آرمان همراه در سراسر ایران آماده خدمت‌رسانی به شما عزیزان است')} as="span" multiline />
+                {t('representatives.hero.description')}
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Representatives List */}
         <section className="section-padding bg-gradient-premium">
           <div className="container-custom">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                <EditableText contentKey="list-title" page="representatives" section="list" defaultValue={t('representatives.listTitle', 'نمایندگان ما در سراسر کشور')} />
+                {t('representatives.list.title')}
               </h2>
               <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
             </motion.div>
@@ -89,13 +81,13 @@ const RepresentativesPageContent = () => {
               <div className="text-center mb-8">
                 <button className="btn-primary inline-flex items-center gap-2">
                   <PlusCircle size={20} />
-                  {t('representatives.add', 'افزودن نماینده جدید')}
+                  {t('representatives.add_button')}
                 </button>
               </div>
             )}
 
             {isLoading ? (
-              <div className="text-center text-muted-foreground">{t('loading', 'در حال بارگذاری...')}</div>
+              <div className="text-center text-muted-foreground">{t('representatives.loading')}</div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {representatives.map((rep, index) => (
@@ -136,12 +128,11 @@ const RepresentativesPageContent = () => {
           </div>
         </section>
 
-        {/* Benefits */}
         <section className="section-padding">
             <div className="container-custom">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-foreground mb-4">
-                        <EditableText as="span" page="representatives" section="benefits" contentKey="title" defaultValue={t('representatives.benefits.title', 'مزایای همکاری با آرمان همراه')} />
+                        {t('representatives.benefits.title')}
                     </h2>
                     <div className="w-24 h-1 mx-auto rounded-full bg-primary"></div>
                 </div>
@@ -152,18 +143,16 @@ const RepresentativesPageContent = () => {
                                 <benefit.icon size={24} className="text-primary group-hover:text-primary-foreground transition-colors" />
                             </div>
                             <h3 className="text-xl font-bold text-foreground mb-3">
-                                <EditableText as="span" page="representatives" section="benefits" contentKey={`${benefit.key}-title`} defaultValue={benefit.title[language]} />
+                                {t(`${benefit.key}.title`)}
                             </h3>
                             <p className="text-muted-foreground leading-relaxed">
-                                <EditableText as="span" page="representatives" section="benefits" contentKey={`${benefit.key}-description`} defaultValue={benefit.description[language]} multiline />
+                                {t(`${benefit.key}.description`)}
                             </p>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
-        
-        {/* Other sections can be made editable similarly */}
 
       </main>
       <Footer />
@@ -172,13 +161,14 @@ const RepresentativesPageContent = () => {
 };
 
 const RepresentativesPage = () => {
+  const { t } = useLanguage();
   return (
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
           <SEO 
-            title="نمایندگان | Sales Representatives - Arman Hamrah"
-            description="لیست نمایندگان فروش و شرایط همکاری با شرکت آرمان همراه ارتباطات آریا در سراسر ایران"
+            title={t('representatives.seo.title')}
+            description={t('representatives.seo.description')}
           />
           <RepresentativesPageContent />
         </LanguageProvider>
