@@ -10,8 +10,14 @@ import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
 
 const WarrantyRepairsPageContent = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   
+  const repairItems = [
+    'warranty.repairs.item1',
+    'warranty.repairs.item2',
+    'warranty.repairs.item3',
+  ];
+
   return (
     <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` }} dir={language === 'fa' ? 'rtl' : 'ltr'}>
       <Navbar />
@@ -25,19 +31,21 @@ const WarrantyRepairsPageContent = () => {
             >
               <Link to="/warranty" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8">
                 <ChevronLeft size={20} />
-                {language === 'fa' ? 'بازگشت به صفحه گارانتی' : 'Back to Warranty Page'}
+                <span dangerouslySetInnerHTML={{ __html: t('warranty.backLink') }} />
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-12">
-                {language === 'fa' ? 'تعمیرات دستگاه‌های فاقد گارانتی' : 'Out-of-Warranty Repairs'}
+                <span dangerouslySetInnerHTML={{ __html: t('warranty.repairs.title') }} />
               </h1>
 
               <div className="card-premium prose prose-invert max-w-none text-muted-foreground">
                 <ol>
-                    <li>دستگاه های آب خورده.ضربه خورده به علت تغییر شکل ظاهری و وضعیت داخلی ,ممکن است پس از بازکردن به حالت اولیه در زمان پذیرش باز نگردد.</li>
-                    <li>دستگاهی که فاقد گارانتی می باشد چنانچه با یک ایراد مشخص به مرکز مراجعه نماید.این مرکز فقط در قبال ایراد ذکرشده مسئولیت می پذیرد بدین علت که ممکن است دستگاه آب خورده یا ضربه خورده به علت آسیبی که به آن وارد شده بعد از گذشت مدتی سایر عیوب خود را نمایان سازد.</li>
-                    <li>قطعه ی تعویضی در این مرکز به مدت 1 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد</li>
+                  {repairItems.map(key => (
+                    <li key={key}>
+                      <span dangerouslySetInnerHTML={{ __html: t(key) }} />
+                    </li>
+                  ))}
                 </ol>
-                <p>چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 3.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *</p>
+                <p dangerouslySetInnerHTML={{ __html: t('warranty.repairs.note') }} />
               </div>
             </motion.div>
           </div>
@@ -49,13 +57,14 @@ const WarrantyRepairsPageContent = () => {
 };
 
 const WarrantyRepairsPage = () => {
+  const { t } = useLanguage();
   return (
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
           <SEO 
-            title="تعمیرات دستگاه‌های فاقد گارانتی | آرمان همراه"
-            description="شرایط و رویه‌های تعمیر دستگاه‌هایی که گارانتی آن‌ها به اتمام رسیده"
+            title={t('warranty.repairs.title')}
+            description={t('warranty.repairs.title')}
           />
           <WarrantyRepairsPageContent />
         </LanguageProvider>
