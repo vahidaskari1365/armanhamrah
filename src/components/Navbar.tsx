@@ -1,14 +1,18 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Menu, X, Moon, Sun, User, LogOut } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/arman-aria-logo.png';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const { user, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -20,6 +24,42 @@ const Navbar = () => {
     { key: 'nav.representatives', href: '/representatives' },
     { key: 'nav.contact', href: '/contact' },
   ];
+  
+  const getInitials = (email: string | undefined) => {
+      if (!email) return '?';
+      return email.charAt(0).toUpperCase();
+  };
+
+  const renderProfileDropdown = () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <motion.button 
+          className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }}
+        >
+          <Avatar className="w-8 h-8">
+            <AvatarImage src={user?.user_metadata?.avatar_url} />
+            <AvatarFallback>{getInitials(user?.email)}</AvatarFallback>
+          </Avatar>
+        </motion.button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align={language === 'fa' ? "end" : "start"}>
+        <DropdownMenuLabel className="truncate font-normal text-muted-foreground">
+          {user?.email}
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onSelect={() => alert('Coming soon!')} className="cursor-pointer">
+            <User className="w-4 h-4 ltr:mr-2 rtl:ml-2"/>
+            {t('nav.profile')}
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={signOut} className="cursor-pointer text-red-500 focus:text-red-500 focus:bg-red-500/10">
+          <LogOut className="w-4 h-4 ltr:mr-2 rtl:ml-2"/>
+          {t('nav.logout')}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 
   return (
     <motion.nav
@@ -30,16 +70,15 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex-shrink-0">
+            <motion.div whileHover={{ scale: 1.02 }}>
               <img 
                 src={logo} 
                 alt="آرمان همراه ارتباطات آریا" 
                 className="h-10 w-auto object-contain rounded"
               />
-            </Link>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
@@ -61,7 +100,6 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            {/* Language Toggle */}
             <motion.button
               onClick={toggleLanguage}
               className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -72,7 +110,6 @@ const Navbar = () => {
               <span className="text-xs font-bold">{language === 'fa' ? 'EN' : 'FA'}</span>
             </motion.button>
 
-            {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
               className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -82,17 +119,19 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
 
-            {/* Register Button */}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                to="/auth"
-                className="hidden sm:flex btn-gold text-sm px-6 py-3"
-              >
-                {t('nav.myArman')}
-              </Link>
-            </motion.div>
+            {user ? (
+              <div className="hidden sm:flex">{renderProfileDropdown()}</div>
+            ) : (
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/auth"
+                  className="hidden sm:flex btn-gold text-sm px-6 py-3"
+                >
+                  {t('nav.myArman')}
+                </Link>
+              </motion.div>
+            )}
 
-            {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground"
@@ -111,13 +150,13 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden pb-6"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mt-4">
               {navItems.map((item) => (
                 <Link
                   key={item.key}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`font-medium py-2 transition-colors ${
+                  className={`font-medium py-2 transition-colors text-lg ${
                     location.pathname === item.href
                       ? 'text-primary'
                       : 'text-muted-foreground hover:text-primary'
@@ -126,13 +165,25 @@ const Navbar = () => {
                   {t(item.key)}
                 </Link>
               ))}
-              <Link
-                to="/auth"
-                onClick={() => setIsOpen(false)}
-                className="btn-gold text-sm px-6 py-3 text-center"
-              >
-                {t('nav.myArman')}
-              </Link>
+              <DropdownMenuSeparator />
+              {user ? (
+                <div className="flex items-center justify-between py-2">
+                    <span className="font-medium text-muted-foreground truncate">
+                        {user.email}
+                    </span>
+                    <button onClick={() => { signOut(); setIsOpen(false); }} className="btn-secondary text-red-500 text-sm">
+                        {t('nav.logout')}
+                    </button>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  onClick={() => setIsOpen(false)}
+                  className="btn-gold text-sm px-6 py-3 text-center"
+                >
+                  {t('nav.myArman')}
+                </Link>
+              )}
             </div>
           </motion.div>
         )}
