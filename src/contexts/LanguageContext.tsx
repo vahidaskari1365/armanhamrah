@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -18,16 +19,14 @@ const fallbackTranslationsData = {
   fa: {
     // General
     'all': 'همه',
+    'loading': 'در حال بارگذاری...',
+    'export.back': 'بازگشت به صفحه صادرات',
     'product.coming_soon': 'اطلاعات این محصول به زودی تکمیل می‌شود.',
     'warranty.backLink': 'بازگشت به صفحه گارانتی',
-    'loading': 'در حال بارگذاری...',
 
-    // Brands
-    'Apple': 'اپل',
-    'Samsung': 'سامسونگ',
-    'Xiaomi': 'شیائومی',
-    'Poco': 'پوکو',
-    'Nokia': 'نوکیا',
+    // Brands & Countries
+    'Apple': 'اپل', 'Samsung': 'سامسونگ', 'Xiaomi': 'شیائومی', 'Poco': 'پوکو', 'Nokia': 'نوکیا',
+    'country.uae': 'امارات متحده عربی', 'country.iraq': 'عراق', 'country.afghanistan': 'افغانستان', 'country.turkmenistan': 'ترکمنستان', 'country.azerbaijan': 'آذربایجان', 'country.armenia': 'ارمنستان', 'country.qatar': 'قطر', 'country.kuwait': 'کویت',
 
     // Categories
     'category.mobile': 'موبایل',
@@ -37,25 +36,17 @@ const fallbackTranslationsData = {
     'category.feature_phone': 'گوشی ساده',
 
     // Navigation
-    'nav.home': 'صفحه اصلی',
-    'nav.warranty': 'گارانتی آرمان همراه',
-    'nav.products': 'محصولات',
-    'nav.export': 'صادرات',
-    'nav.representatives': 'نمایندگان',
+    'nav.home': 'صفحه اصلی', 'nav.warranty': 'گارانتی', 'nav.products': 'محصولات', 'nav.export': 'صادرات', 'nav.representatives': 'نمایندگان', 'nav.contact': 'تماس با ما', 'nav.myArman': 'ورود / ثبت نام', 'nav.profile': 'پروفایل', 'nav.logout': 'خروج',
     'nav.blog': 'بلاگ و آموزش',
-    'nav.contact': 'تماس با ما',
-    'nav.myArman': 'ثبت نام / ورود',
     'nav.cooperation': 'همکاری با ما',
-    'nav.profile': 'پروفایل کاربری',
-    'nav.logout': 'خروج از حساب',
-    
+
     // Hero
     'hero.title': 'هوشمندترین گارانتی و خدمات',
     'hero.subtitle': 'پس از فروش در ایران',
     'hero.description': 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۴ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان',
     'hero.cta': 'خدمات ما',
     'hero.cta2': 'ثبت نام',
-    
+
     // Brands
     'brands.title': 'برندهای تحت پوشش',
     
@@ -102,7 +93,43 @@ const fallbackTranslationsData = {
     'products_page.title': 'محصولات ما',
     'products_page.description': 'در اینجا می‌توانید جدیدترین و با کیفیت‌ترین محصولات ما را مشاهده کنید.',
     'products.search_placeholder': 'جستجو بر اساس نام محصول یا برند...',
+
+    // Export Main Page
+    'export.title_main': 'صادرات آرمان', 'export.subtitle_main': 'تجارت بین‌المللی با کیفیت و اطمینان', 'export.description_main': 'ما در آرمان با تکیه بر تجربه و شبکه گسترده خود، محصولات با کیفیت ایرانی و بین‌المللی را به بازارهای جهانی عرضه می‌کنیم.',
+    'export.features.title': 'ویژگی‌های خدمات صادراتی ما', 'export.features.international.title': 'شبکه بین‌المللی', 'export.features.international.description': 'دسترسی به بازارهای متنوع در سراسر جهان.', 'export.features.transportation.title': 'حمل و نقل امن', 'export.features.transportation.description': 'تضمین سلامت کالا تا رسیدن به مقصد.', 'export.features.original.title': 'تضمین اصالت کالا', 'export.features.original.description': 'ارائه مدارک و گواهی‌های معتبر بین‌المللی.', 'export.features.documentation.title': 'تسهیل امور گمرکی', 'export.features.documentation.description': 'انجام کلیه فرآیندهای گمرکی توسط تیم متخصص ما.',
+    'export.products.title': 'محصولات صادراتی ما', 'export.products.category.metals': 'فلزات', 'export.products.category.petrochemical': 'پتروشیمی', 'export.products.category.textile': 'نساجی', 'export.products.category.construction': 'ساختمانی', 'export.products.category.general': 'عمومی', 'export.products.iron_steel.name': 'آهن و فولاد', 'export.products.iron_steel.description': 'انواع مقاطع فولادی و محصولات آهنی.', 'export.products.copper_rod.name': 'مفتول مس', 'export.products.copper_rod.description': 'مفتول مس با خلوص بالا برای صنایع مختلف.', 'export.products.bitumen.name': 'قیر', 'export.products.bitumen.description': 'انواع گریدهای قیر برای مصارف جاده‌ای و صنعتی.', 'export.products.oil.name': 'روغن موتور', 'export.products.oil.description': 'روغن موتورهای با کیفیت برای انواع خودروها.', 'export.products.thread.name': 'نخ', 'export.products.thread.description': 'انواع نخ‌های پنبه‌ای و مصنوعی برای نساجی.', 'export.products.piping-equipment.name': 'تجهیزات لوله‌کشی', 'export.products.piping-equipment.description': 'شیرآلات، لوله‌ها و اتصالات صنعتی.', 'export.products.petrochemical-downstream.name': 'پایین‌دستی پتروشیمی', 'export.products.petrochemical-downstream.description': 'محصولات پلیمری و شیمیایی.', 'export.products.general-industrial-supplies.name': 'تامین عمومی صنعتی', 'export.products.general-industrial-supplies.description': 'تامین قطعات، تجهیزات و مواد اولیه.', 'export.products.view_details': 'مشاهده جزئیات',
+    'export.services.title': 'خدمات تکمیلی صادرات', 'export.services.packaging.title': 'بسته‌بندی استاندارد', 'export.services.packaging.description': 'بسته‌بندی محصولات طبق استانداردهای بین‌المللی.', 'export.services.clearance.title': 'ترخیص کالا از گمرک', 'export.services.clearance.description': 'انجام سریع امور ترخیص کالا در گمرکات مبدا و مقصد.', 'export.services.quality.title': 'کنترل کیفیت', 'export.services.quality.description': 'بازرسی و کنترل کیفیت محصولات قبل از ارسال.',
+    'export.goal.title': 'هدف ما', 'export.goal.description': 'ایجاد پلی مطمئن بین تولیدکنندگان برتر و بازارهای جهانی برای روابط تجاری بلندمدت و سودمند.',
+    'export.countries.title': 'صادرات به کشورهای', 'export.countries.subtitle': 'ما به طور فعال با کشورهای زیر در ارتباط تجاری هستیم.',
+    'export.contact.title': 'تماس با واحد صادرات', 'export.contact.subtitle': 'برای مشاوره و شروع همکاری با ما تماس بگیرید.', 'export.contact.phone': 'تلفن', 'export.contact.address': 'آدرس', 'export.contact.address_value': 'تهران، خ مطهری، خ قائم مقام فراهانی، کوچه چهارم، پلاک ۱۵، واحد ۱',
+    'export.form.title': 'ارسال پیام', 'export.form.full_name': 'نام کامل', 'export.form.full_name_placeholder': 'نام خود را وارد کنید', 'export.form.company_name': 'نام شرکت', 'export.form.company_name_placeholder': 'نام شرکت را وارد کنید', 'export.form.message': 'پیام شما', 'export.form.message_placeholder': 'درخواست خود را بنویسید...', 'export.form.send': 'ارسال',
+    'export.cta.title': 'کسب و کار خود را جهانی کنید؟', 'export.cta.subtitle': 'تیم ما آماده است تا به شما در یافتن بهترین راه‌حل‌ها برای ورود به بازارهای جهانی کمک کند.', 'export.cta.button_start': 'شروع از طریق واتساپ',
+    'export.seo.title': 'صادرات | آرمان همراه', 'export.seo.description': 'صادرات محصولات با کیفیت با خدمات جامع گمرکی و حمل و نقل توسط آرمان همراه.',
+
+    // Iron & Steel Page
+    'iron.title': 'صادرات آهن و فولاد', 'iron.subtitle': 'کیفیت برتر، استاندارد جهانی', 'iron.description': 'تامین کننده انواع محصولات فولادی از جمله میلگرد، تیرآهن، ورق و سایر مقاطع برای پروژه‌های ساختمانی و صنعتی شما.',
+    'iron.productsTitle': 'محصولات فولادی ما', 'iron.product1.name': 'میلگرد', 'iron.product1.desc': 'در سایزها و استانداردهای مختلف برای افزایش مقاومت بتن.', 'iron.product2.name': 'تیرآهن', 'iron.product2.desc': 'تیرآهن‌های IPE، IPB و INP برای اسکلت‌های فلزی.', 'iron.product3.name': 'ورق فولادی', 'iron.product3.desc': 'ورق‌های سیاه، گالوانیزه و رنگی برای مصارف صنعتی.', 'iron.product4.name': 'پروفیل', 'iron.product4.desc': 'انواع پروفیل‌های باز و بسته برای ساختمان و صنعت.', 'iron.product5.name': 'نبشی و ناودانی', 'iron.product5.desc': 'برای استفاده در سازه‌ها و ماشین‌آلات صنعتی.', 'iron.product6.name': 'لوله فولادی', 'iron.product6.desc': 'لوله‌های درزدار و بدون درز برای انتقال سیالات.',
+    'iron.featuresTitle': 'چرا ما؟', 'iron.feature1.title': 'تطابق با استانداردها', 'iron.feature1.desc': 'تمامی محصولات دارای گواهینامه کیفیت بین‌المللی هستند.', 'iron.feature2.title': 'قیمت رقابتی', 'iron.feature2.desc': 'ارائه بهترین قیمت‌ها به دلیل حذف واسطه‌ها.', 'iron.feature3.title': 'بسته‌بندی صادراتی', 'iron.feature3.desc': 'بسته‌بندی ایمن و استاندارد برای حمل و نقل.', 'iron.feature4.title': 'مشاوره فنی', 'iron.feature4.desc': 'تیم فنی ما آماده ارائه مشاوره تخصصی است.',
+    'iron.seo.title': 'صادرات آهن و فولاد | آرمان همراه', 'iron.seo.description': 'صادرات انواع میلگرد، تیرآهن، ورق و پروفیل فولادی با بهترین کیفیت و قیمت رقابتی.',
     
+    // Copper Rod Page
+    'copper.title': 'صادرات مفتول مس', 'copper.subtitle': 'خلوص بالا برای صنایع پیشرفته', 'copper.description': 'ما مفتول مس با درجه خلوص ۹۹.۹۹٪ را برای استفاده در صنایع کابل‌سازی، ترانسفورماتور و الکترونیک با بهترین کیفیت عرضه می‌کنیم.',
+    'copper.specsTitle': 'مشخصات فنی', 'copper.spec1.name': 'قطر مفتول', 'copper.spec1.value': '۸ تا ۲۵ میلی‌متر', 'copper.spec2.name': 'استاندارد', 'copper.spec2.value': 'ASTM B49, EN 1977', 'copper.spec3.name': 'بسته‌بندی', 'copper.spec3.value': 'کلاف‌های ۲ تا ۴ تنی', 'copper.spec4.name': 'خلوص', 'copper.spec4.value': '۹۹.۹۹٪ Cu',
+    'copper.featuresTitle': 'ویژگی‌های محصول ما', 'copper.feature1.title': 'هدایت الکتریکی بالا', 'copper.feature1.desc': 'ایده‌آل برای تولید کابل‌های برق و مخابرات.', 'copper.feature2.title': 'انعطاف‌پذیری عالی', 'copper.feature2.desc': 'مناسب برای فرآیندهای کشش و تولید سیم‌های نازک.', 'copper.feature3.title': 'کیفیت سطح برتر', 'copper.feature3.desc': 'سطح صاف و بدون اکسیداسیون برای بهترین عملکرد.',
+    'copper.seo.title': 'صادرات مفتول مس | آرمان همراه', 'copper.seo.description': 'صادرات مفتول مس با خلوص بالا و کیفیت برتر برای صنایع کابل و الکترونیک در سراسر جهان.',
+
+    // Bitumen Page
+    'bitumen.title': 'صادرات قیر', 'bitumen.subtitle': 'پوششی مطمئن برای زیرساخت‌ها', 'bitumen.description': 'تامین کننده انواع گریدهای قیر نفوذی و عملکردی (VG) برای پروژه‌های راه‌سازی و عایق‌کاری مطابق با استانداردهای بین‌المللی.',
+    'bitumen.gradesTitle': 'گریدهای قابل ارائه', 'bitumen.grade1': '60/70', 'bitumen.grade2': '80/100', 'bitumen.grade3': '40/50', 'bitumen.grade4': 'VG-10', 'bitumen.grade5': 'VG-30',
+    'bitumen.featuresTitle': 'تضمین کیفیت ما', 'bitumen.feature1.title': 'تست در آزمایشگاه معتبر', 'bitumen.feature1.desc': 'ارائه برگه آنالیز کیفیت (SGS) برای هر محموله.', 'bitumen.feature2.title': 'بسته‌بندی متنوع', 'bitumen.feature2.desc': 'عرضه به صورت فله، بشکه نو و جامبوبگ.', 'bitumen.feature3.title': 'تحویل به موقع', 'bitumen.feature3.desc': 'تضمین زمانبندی دقیق تحویل در مقاصد مختلف.',
+    'bitumen.seo.title': 'صادرات قیر | آرمان همراه', 'bitumen.seo.description': 'صادرات و فروش انواع گریدهای قیر نفوذی و عملکردی با بهترین کیفیت و بسته‌بندی استاندارد.',
+    
+    // Piping Equipment Page
+    'piping.title': 'تجهیزات خطوط لوله', 'piping.subtitle': 'اتصالات حیاتی برای صنعت شما', 'piping.description': 'تامین کننده جامع انواع شیرآلات صنعتی، لوله‌ها، فلنج‌ها و اتصالات برای صنایع نفت، گاز، پتروشیمی و آب و فاضلاب.',
+    'piping.productsTitle': 'دسته بندی محصولات', 'piping.product1.name': 'شیرآلات (Valves)', 'piping.product1.desc': 'شیرهای توپی، کشویی، پروانه‌ای و کنترلی.', 'piping.product2.name': 'لوله‌ها (Pipes)', 'piping.product2.desc': 'لوله‌های فولادی، استنلس استیل و پلیمری.', 'piping.product3.name': 'اتصالات (Fittings)', 'piping.product3.desc': 'زانویی، سه‌راهی، تبدیل و کپ.', 'piping.product4.name': 'فلنج‌ها (Flanges)', 'piping.product4.desc': 'فلنج‌های گلودار، اسلیپ‌آن و کور.',
+    'piping.featuresTitle': 'مزایای تامین از ما', 'piping.feature1.title': 'برندهای معتبر', 'piping.feature1.desc': 'تامین تجهیزات از تولیدکنندگان برتر جهانی و داخلی.', 'piping.feature2.title': 'گواهی اصالت', 'piping.feature2.desc': 'ارائه گواهی‌نامه محصول (Certificate) همراه با کالا.', 'piping.feature3.title': 'پشتیبانی فنی', 'piping.feature3.desc': 'مشاوره در انتخاب و نصب تجهیزات متناسب با نیاز شما.',
+    'piping.seo.title': 'صادرات تجهیزات خطوط لوله | آرمان همراه', 'piping.seo.description': 'تامین و صادرات انواع شیرآلات، لوله‌ها و اتصالات صنعتی برای پروژه‌های نفت، گاز و پتروشیمی.',
+
     // Warranty Page - Conditions
     'warranty.conditions.title': 'شرایط گارانتی 18 ماه',
     'warranty.conditions.item1': 'کلیه دستگاه های گارانتی شده توسط شرکت آرمان همراه ارتباطات آریا دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد. همچنین تا 3 سال ضمانت تامین قطعه و پذیرش دستگاه و رفع ایراد مذکور توسط مشتری را دارد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای کالاهای تلفن همراه و تبلت و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
@@ -165,16 +192,14 @@ const fallbackTranslationsData = {
   en: {
     // General
     'all': 'All',
+    'loading': 'Loading...',
+    'export.back': 'Back to Export Page',
     'product.coming_soon': 'Product information will be available soon.',
     'warranty.backLink': 'Back to Warranty Page',
-    'loading': 'Loading...',
 
-    // Brands
-    'Apple': 'Apple',
-    'Samsung': 'Samsung',
-    'Xiaomi': 'Xiaomi',
-    'Poco': 'Poco',
-    'Nokia': 'Nokia',
+    // Brands & Countries
+    'Apple': 'Apple', 'Samsung': 'Samsung', 'Xiaomi': 'Xiaomi', 'Poco': 'Poco', 'Nokia': 'Nokia',
+    'country.uae': 'UAE', 'country.iraq': 'Iraq', 'country.afghanistan': 'Afghanistan', 'country.turkmenistan': 'Turkmenistan', 'country.azerbaijan': 'Azerbaijan', 'country.armenia': 'Armenia', 'country.qatar': 'Qatar', 'country.kuwait': 'Kuwait',
 
     // Categories
     'category.mobile': 'Mobile',
@@ -184,25 +209,17 @@ const fallbackTranslationsData = {
     'category.feature_phone': 'Feature Phone',
 
     // Navigation
-    'nav.home': 'Home',
-    'nav.warranty': 'Arman Warranty',
-    'nav.products': 'Products',
-    'nav.export': 'Export',
-    'nav.representatives': 'Representatives',
+    'nav.home': 'Home', 'nav.warranty': 'Warranty', 'nav.products': 'Products', 'nav.export': 'Export', 'nav.representatives': 'Reps', 'nav.contact': 'Contact', 'nav.myArman': 'Login / Sign Up', 'nav.profile': 'Profile', 'nav.logout': 'Logout',
     'nav.blog': 'Blog & Training',
-    'nav.contact': 'Contact Us',
-    'nav.myArman': 'Sign Up / Login',
     'nav.cooperation': 'Cooperation',
-    'nav.profile': 'Profile',
-    'nav.logout': 'Logout',
-    
+
     // Hero
     'hero.title': 'The Smartest Warranty & Services',
     'hero.subtitle': 'After-Sales in Iran',
     'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2015',
     'hero.cta': 'Our Services',
     'hero.cta2': 'Register',
-    
+
     // Brands
     'brands.title': 'Covered Brands',
     
@@ -249,6 +266,42 @@ const fallbackTranslationsData = {
     'products_page.title': 'Our Products',
     'products_page.description': 'Here you can see our latest and highest quality products.',
     'products.search_placeholder': 'Search by product name or brand...',
+
+    // Export Main Page
+    'export.title_main': 'Arman Export', 'export.subtitle_main': 'International Trade with Quality and Confidence', 'export.description_main': 'At Arman, relying on our experience and extensive network, we supply quality Iranian and international products to global markets.',
+    'export.features.title': 'Features of Our Export Services', 'export.features.international.title': 'International Network', 'export.features.international.description': 'Access to diverse markets worldwide.', 'export.features.transportation.title': 'Secure Transportation', 'export.features.transportation.description': 'Ensuring the safety of goods until destination.', 'export.features.original.title': 'Authenticity Guarantee', 'export.features.original.description': 'Providing valid international documents.', 'export.features.documentation.title': 'Customs Facilitation', 'export.features.documentation.description': 'Handling all customs procedures by our expert team.',
+    'export.products.title': 'Our Export Products', 'export.products.category.metals': 'Metals', 'export.products.category.petrochemical': 'Petrochemical', 'export.products.category.textile': 'Textile', 'export.products.category.construction': 'Construction', 'export.products.category.general': 'General', 'export.products.iron_steel.name': 'Iron & Steel', 'export.products.iron_steel.description': 'Various steel sections and iron products.', 'export.products.copper_rod.name': 'Copper Rod', 'export.products.copper_rod.description': 'High-purity copper rod for various industries.', 'export.products.bitumen.name': 'Bitumen', 'export.products.bitumen.description': 'Various grades of bitumen for road and industrial uses.', 'export.products.oil.name': 'Engine Oil', 'export.products.oil.description': 'High-quality engine oils for all types of vehicles.', 'export.products.thread.name': 'Thread', 'export.products.thread.description': 'Cotton and synthetic threads for the textile industry.', 'export.products.piping-equipment.name': 'Piping Equipment', 'export.products.piping-equipment.description': 'Industrial valves, pipes, and fittings.', 'export.products.petrochemical-downstream.name': 'Petrochemical Downstream', 'export.products.petrochemical-downstream.description': 'Polymer and chemical products.', 'export.products.general-industrial-supplies.name': 'General Industrial Supplies', 'export.products.general-industrial-supplies.description': 'Supplying parts, equipment, and raw materials.', 'export.products.view_details': 'View Details',
+    'export.services.title': 'Complementary Export Services', 'export.services.packaging.title': 'Standard Packaging', 'export.services.packaging.description': 'Packaging products according to international standards.', 'export.services.clearance.title': 'Customs Clearance', 'export.services.clearance.description': 'Fast handling of customs clearance at origin and destination.', 'export.services.quality.title': 'Quality Control', 'export.services.quality.description': 'Inspecting product quality before shipment.',
+    'export.goal.title': 'Our Goal', 'export.goal.description': 'To create a reliable bridge between top producers and global markets for long-term, mutually beneficial business relationships.',
+    'export.countries.title': 'Exporting to Countries', 'export.countries.subtitle': 'We are actively engaged in trade with the following countries.',
+    'export.contact.title': 'Contact Export Dept.', 'export.contact.subtitle': 'Contact us for consultation and to start a partnership.', 'export.contact.phone': 'Phone', 'export.contact.address': 'Address', 'export.contact.address_value': 'Unit 1, No. 15, 4th Alley, Qaem Maqam Farahani St, Motahari St, Tehran',
+    'export.form.title': 'Send a Message', 'export.form.full_name': 'Full Name', 'export.form.full_name_placeholder': 'Enter your name', 'export.form.company_name': 'Company Name', 'export.form.company_name_placeholder': 'Enter company name', 'export.form.message': 'Message', 'export.form.message_placeholder': 'Write your request...', 'export.form.send': 'Send',
+    'export.cta.title': 'Ready to Take Your Business Global?', 'export.cta.subtitle': 'Our export team is ready to help you find the best solutions for entering global markets.', 'export.cta.button_start': 'Start via WhatsApp',
+    'export.seo.title': 'Export | Arman Hamrah', 'export.seo.description': 'Export of quality products with comprehensive customs and transportation services by Arman Hamrah.',
+
+    // Iron & Steel Page
+    'iron.title': 'Iron & Steel Export', 'iron.subtitle': 'Superior Quality, Global Standards', 'iron.description': 'Supplier of various steel products including rebar, beams, sheets, and other sections for your construction and industrial projects.',
+    'iron.productsTitle': 'Our Steel Products', 'iron.product1.name': 'Rebar', 'iron.product1.desc': 'In various sizes and standards to increase concrete strength.', 'iron.product2.name': 'Beam', 'iron.product2.desc': 'IPE, IPB, and INP beams for steel structures.', 'iron.product3.name': 'Steel Sheet', 'iron.product3.desc': 'Black, galvanized, and colored sheets for industrial use.', 'iron.product4.name': 'Profile', 'iron.product4.desc': 'Open and closed profiles for construction and industry.', 'iron.product5.name': 'Angle & Channel', 'iron.product5.desc': 'For use in structures and industrial machinery.', 'iron.product6.name': 'Steel Pipe', 'iron.product6.desc': 'Seamed and seamless pipes for fluid transfer.',
+    'iron.featuresTitle': 'Why Us?', 'iron.feature1.title': 'Standard Compliance', 'iron.feature1.desc': 'All products have international quality certification.', 'iron.feature2.title': 'Competitive Pricing', 'iron.feature2.desc': 'Offering the best prices by eliminating intermediaries.', 'iron.feature3.title': 'Export Packaging', 'iron.feature3.desc': 'Safe and standard packaging for transport.', 'iron.feature4.title': 'Technical Consultation', 'iron.feature4.desc': 'Our technical team is ready to provide expert advice.',
+    'iron.seo.title': 'Iron & Steel Export | Arman Hamrah', 'iron.seo.description': 'Export of rebar, beams, sheets, and steel profiles with the best quality and competitive prices.',
+
+    // Copper Rod Page
+    'copper.title': 'Copper Rod Export', 'copper.subtitle': 'High Purity for Advanced Industries', 'copper.description': 'We supply high-purity 99.99% copper rod for use in the cable, transformer, and electronics industries with the best quality.',
+    'copper.specsTitle': 'Technical Specifications', 'copper.spec1.name': 'Rod Diameter', 'copper.spec1.value': '8mm to 25mm', 'copper.spec2.name': 'Standard', 'copper.spec2.value': 'ASTM B49, EN 1977', 'copper.spec3.name': 'Packaging', 'copper.spec3.value': 'Coils of 2 to 4 tons', 'copper.spec4.name': 'Purity', 'copper.spec4.value': '99.99% Cu',
+    'copper.featuresTitle': 'Our Product Features', 'copper.feature1.title': 'High Electrical Conductivity', 'copper.feature1.desc': 'Ideal for producing power and telecommunication cables.', 'copper.feature2.title': 'Excellent Flexibility', 'copper.feature2.desc': 'Suitable for drawing processes and producing thin wires.', 'copper.feature3.title': 'Superior Surface Quality', 'copper.feature3.desc': 'Smooth and oxidation-free surface for best performance.',
+    'copper.seo.title': 'Copper Rod Export | Arman Hamrah', 'copper.seo.description': 'Export of high-purity, top-quality copper rod for the cable and electronics industries worldwide.',
+
+    // Bitumen Page
+    'bitumen.title': 'Bitumen Export', 'bitumen.subtitle': 'A Reliable Coating for Infrastructures', 'bitumen.description': 'Supplier of various penetration and viscosity grade (VG) bitumen for road construction and insulation projects, compliant with international standards.',
+    'bitumen.gradesTitle': 'Available Grades', 'bitumen.grade1': '60/70', 'bitumen.grade2': '80/100', 'bitumen.grade3': '40/50', 'bitumen.grade4': 'VG-10', 'bitumen.grade5': 'VG-30',
+    'bitumen.featuresTitle': 'Our Quality Assurance', 'bitumen.feature1.title': 'Certified Lab Testing', 'bitumen.feature1.desc': 'Providing a quality analysis report (SGS) for each shipment.', 'bitumen.feature2.title': 'Various Packaging', 'bitumen.feature2.desc': 'Available in bulk, new drums, and jumbo bags.', 'bitumen.feature3.title': 'Timely Delivery', 'bitumen.feature3.desc': 'Guaranteeing precise delivery schedules to various destinations.',
+    'bitumen.seo.title': 'Bitumen Export | Arman Hamrah', 'bitumen.seo.description': 'Export and sale of various penetration and viscosity grades of bitumen with the best quality and standard packaging.',
+    
+    // Piping Equipment Page
+    'piping.title': 'Piping Equipment', 'piping.subtitle': 'Vital Connections for Your Industry', 'piping.description': 'Comprehensive supplier of industrial valves, pipes, flanges, and fittings for the oil, gas, petrochemical, and water/wastewater industries.',
+    'piping.productsTitle': 'Product Categories', 'piping.product1.name': 'Valves', 'piping.product1.desc': 'Ball, gate, butterfly, and control valves.', 'piping.product2.name': 'Pipes', 'piping.product2.desc': 'Carbon steel, stainless steel, and polymer pipes.', 'piping.product3.name': 'Fittings', 'piping.product3.desc': 'Elbows, tees, reducers, and caps.', 'piping.product4.name': 'Flanges', 'piping.product4.desc': 'Weld neck, slip-on, and blind flanges.',
+    'piping.featuresTitle': 'Advantages of Sourcing From Us', 'piping.feature1.title': 'Reputable Brands', 'piping.feature1.desc': 'Sourcing equipment from top global and local manufacturers.', 'piping.feature2.title': 'Certificate of Authenticity', 'piping.feature2.desc': 'Providing a product certificate with the goods.', 'piping.feature3.title': 'Technical Support', 'piping.feature3.desc': 'Consultation on selecting and installing equipment tailored to your needs.',
+    'piping.seo.title': 'Piping Equipment Export | Arman Hamrah', 'piping.seo.description': 'Sourcing and exporting industrial valves, pipes, and fittings for oil, gas, and petrochemical projects.',
 
     // Warranty Page - Conditions
     'warranty.conditions.title': '18-Month Warranty Conditions',
@@ -310,6 +363,7 @@ const fallbackTranslationsData = {
     'theme.dark': 'Dark',
   },
 };
+
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
