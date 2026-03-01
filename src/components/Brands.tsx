@@ -1,17 +1,11 @@
+
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 import EditableText from '@/components/admin/EditableText';
 import EditableImage from '@/components/admin/EditableImage';
 import { useAdmin } from '@/contexts/AdminContext';
-
-const defaultBrands = [
-  { id: 1, name: 'Apple', logo: 'https://www.armanhamrah.com/uploads/brands/apple-logo.webp', filter: 'Apple' },
-  { id: 2, name: 'Samsung', logo: 'https://www.armanhamrah.com/uploads/brands/samsung-logo.webp', filter: 'Samsung' },
-  { id: 3, name: 'Xiaomi', logo: 'https://www.armanhamrah.com/uploads/brands/xiaomi-logo.webp', filter: 'Xiaomi' },
-  { id: 4, name: 'Sony', logo: 'https://www.armanhamrah.com/uploads/brands/sony-logo.webp', filter: 'Sony' },
-  { id: 5, name: 'Harman Kardon', logo: 'https://www.armanhamrah.com/uploads/brands/harman-kardon-logo.webp', filter: 'Harman Kardon' },
-];
+import { brandData } from '@/data/brands';
 
 const Brands = () => {
   const { t } = useLanguage();
@@ -40,7 +34,7 @@ const Brands = () => {
         </motion.div>
 
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-          {defaultBrands.map((brand, index) => (
+          {brandData.map((brand, index) => (
             <motion.div
               key={brand.id}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -50,7 +44,7 @@ const Brands = () => {
               whileHover={{ scale: 1.1 }}
             >
               <Link
-                to={`/products?brand=${encodeURIComponent(brand.filter)}`}
+                to={`/products?brand=${encodeURIComponent(brand.name)}`}
                 className="block grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-pointer"
               >
                 {isEditMode ? (
