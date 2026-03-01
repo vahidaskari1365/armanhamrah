@@ -33,7 +33,7 @@ const Brands = () => {
           <div className="w-24 h-1 mx-auto rounded-full bg-primary" />
         </motion.div>
 
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
           {brandData.map((brand, index) => (
             <motion.div
               key={brand.id}
@@ -41,11 +41,12 @@ const Brands = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
+              className="bg-gray-800/20 backdrop-blur-sm p-4 rounded-xl shadow-lg w-48 h-24 flex justify-center items-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
             >
               <Link
                 to={`/products?brand=${encodeURIComponent(brand.name)}`}
-                className="block grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-pointer"
+                className="w-full h-full flex justify-center items-center"
               >
                 {isEditMode ? (
                   <EditableImage
@@ -54,13 +55,13 @@ const Brands = () => {
                     section="brands"
                     defaultSrc={brand.logo}
                     alt={brand.name}
-                    className="h-12 md:h-16 w-auto object-contain"
+                    className="h-12 w-auto object-contain"
                   />
                 ) : (
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="h-12 md:h-16 w-auto object-contain"
+                    className="h-12 w-auto object-contain"
                   />
                 )}
               </Link>
