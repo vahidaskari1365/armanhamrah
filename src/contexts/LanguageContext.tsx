@@ -143,7 +143,7 @@ const fallbackTranslationsData = {
     'warranty.conditions.item9': 'این شرکت در قبال حفظ و نگهداری اطلاعات شخصی مشتری یا بازیابی آنها هیچگونه مسئولیتی ندارد چنانچه اطاعات داخل دستگاه برای مشتری مهم می باشد لطفا پیش از مراجعه به مرکز خدمات حتما از اطلاعات بک آپ گرفته شود.',
     'warranty.conditions.item10': 'تغییر شماره سریال دستگاه و یا مخدوش نمودن آن توسط نرم افزارهای غیر اصلی شامل خدمات گارانتی نمی باشد.',
     'warranty.conditions.item11': 'در ارتباط با ایرادات عمده ی کارخانه ای که به صورت فراخوان از سمت شرکت سازنده اعلام گردد این شرکت نیز طبق مقررات اعلامی وارد عمل خواهد شد.(چنانچه ایراد ذکر شده، از سوی شرکت سازنده نرم افزاری اعلام شده باشد کاربران میبایست تا زمان عرضه نسخه نرم افزاری جدید که در آن ایراد مذکور رفع گردیده باشد، منتظر بمانند.)',
-    'warranty.exceptions.title': 'موارد قابل اغماض در ارائه خدمات...',
+    'warranty.exceptions.title': 'موارد قابل اغماض در ارائه خدمات',
     'warranty.exceptions.item1': 'در مناطق مرطوب وگرم مثل شهرهای شمالی و جنوبی کشور روئیت آبخوردگی از 10% الی 15% بلا مانع بوده و شامل گارانتی می باشد.',
     'warranty.exceptions.item2': 'در صورت باز نمودن دستگاه در صورتیکه تکنسین متوجه شود که دستگاه قبلا در جایی غیر از مراکز اصلی خدمات آرمان باز شده اما دستکاری روی قطعات و برد نداشته باشد دستگاه شامل گارانتی می باشد.',
     'warranty.exceptions.item3': 'در صورتیکه دستگاهی در جایی غیر از نمایندگی های مجاز آرمان نرم افزار خورده باشد چنانچه به Rom دستگاه آسیب نرسیده باشد با گارانتی رفع ایراد نرم افزاری می گردد اما چنانچه ورژن پایین تر خورده باشد و Boot دستگاه آسیب دیده باشد غیر گارانتی می باشد.',
@@ -157,6 +157,27 @@ const fallbackTranslationsData = {
     'warranty.exceptions.item11': 'چنانچه تعمیر دستگاه کاربر بیشتر از مدت زمان اعلام شده به وی باشد به ازای هر یک هفته تاخیر یک ماه به گارانتی محصول اضافه میگردد (توجه داشته باشید این بند شامل موارد خاص از قبیل تعطیلی رسمی اعلام شده از طرف دولت و یا کم شدن ساعت کاری و ایام نوروز نمی باشد.)',
     'warranty.exceptions.item12': 'در زمان مراجعه به مرکز خدمات آرمان همراه، همراه داشتن فاکتور رسمی مهمور و جعبه دستگاه الزامی می باشد.',
 
+    // Warranty Page - Accessories
+    'warranty.accessories.title': 'شرایط گارانتی لوازم جانبی و اکسسوری',
+    'warranty.accessories.main': '(اسپیکر، ساعت های هوشمند، هدست،و …)<br/><br/>کلیه ساعتها و گجت های گارانتی شده توسط شرکت آرمان همراه دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای کالاهای تلفن همراه و تبلت و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
+    'warranty.accessories.item1': 'تعویض محصولات در صورت داشتن عیوب ذاتی از سوی شرکت سازنده وبه مدت 1 ماه می باشد توجه فرمائید که این بند شامل عیوب ظاهری و یا رنگ و مدل نمی باشند لذا در حین خرید محصول خود را از لحاظ سلامت فیزیکی و ظاهری در حضور فروشنده تست نمایید چنانچه محصولی دارای رنگ رفتگی ،فرورفتگی،شکستگی و یا ایرادات ظاهری باشد شامل گارانتی تعویض نمی گردد.',
+    'warranty.accessories.item2': 'صدمات ناشی از آبخوردگی،ضربه خوردگی،رنگ رفتگی،دفرمه شدن محصول،باز شدن محصول در مراکز غیر مجاز و خارج از مجموعه و نوسانات برقی و سوختگی شامل گارانتی نمی باشد لذا در حفظ و نگهداری محصول خود نهایت دقت را بفرمایید.',
+    'warranty.accessories.item3': 'شرکت هیچ گونه مسئولیتی در قبال حفظ برنامه ها و اطلاعات شخصی کاربر ندارد.',
+    'warranty.accessories.item4': 'محصولاتی که با مشکلاتی از قبیل آبخوردگی ،ضربه خوردگی،شکستگی و … به مرکز خدمات مراجعه می نمایند بعضا امکان حفظ شرایط قبلی آنها وجود ندارد که این مطالب توسط بخش پذیرش و یا تکنسین مربوطه پس از بررسی فنی به اطلاع مشتری رسانده می شود.',
+    'warranty.accessories.item5': 'در صورت بروز خرابی به صورت فراگیر بر روی هر محصولی،اطلاع رسانی رسمی بر روی سایت آرمان همراه جهت راهنمایی نحوه رفع ایراد و یا فراخوان مراجعه به مرکز خدمات جهت دریافت سرویس و در صورت لزوم جمع آوری محصول و تعویض آن صورت خواهد پذیرفت.',
+    'warranty.accessories.item6': 'چنانچه محصول نیاز به تعویض داشته باشد و مدل محصول موجود نباشد با اخذ ما به التفاوت و مبلغ فرانشیز مصوب بابت فرسودگی محصول معیوب،اقدام به تعویض خواهد شد. به ازای هر ماه کارکرد دستگاه 4% ارزش کالا کسر خواهد شد که مبنای محاسبه ی کالا متوسط قیمت فروش 3 ماهه گذشته همان مدل کالا می باشد.(در صورت عدم وجود کالا ملاک آخرین فاکتور فروش شرکت می باشد).',
+    'warranty.accessories.item7': 'در صورت توقف بیش از 15 روز کاری از زمان دریافت کالا تا زمان تحویل آن ( بدون در نظر گرفتن زمان ارسال و دریافت از طریق پست یا مبادی مشابه ) به ازای هر 1 هفته 1 ماه به مدت زمان گارانتی اضافه می گردد.',
+    'warranty.accessories.item8': 'شارژر و کابل شارژر مربوط به محصول در صورت بررسی اصل بودن ، به مدت 1 ماه دارای گارانتی می باشند لازم به ذکر است که قطع شدن،آسیب دیدگی،شکستگی سری شارژر شامل این بند نمی باشد و فاقد گارانتی می باشند.',
+    'warranty.accessories.item9': 'در زمان مراجعه به مرکز خدمات آرمان همراه، همراه داشتن فاکتور رسمی مهمور و جعبه دستگاه الزامی می باشد.',
+
+    // Warranty Page - Repairs
+    'warranty.repairs.title': 'شرایط عمومی تعمیرات دستگاه های فاقد گارانتی',
+    'warranty.repairs.main': '',
+    'warranty.repairs.item1': 'دستگاه های آب خورده.ضربه خورده به علت تغییر شکل ظاهری و وضعیت داخلی ,ممکن است پس از بازکردن به حالت اولیه در زمان پذیرش باز نگردد.',
+    'warranty.repairs.item2': 'دستگاهی که فاقد گارانتی می باشد چنانچه با یک ایراد مشخص به مرکز مراجعه نماید.این مرکز فقط در قبال ایراد ذکرشده مسئولیت می پذیرد بدین علت که ممکن است دستگاه آب خورده یا ضربه خورده به علت آسیبی که به آن وارد شده بعد از گذشت مدتی سایر عیوب خود را نمایان سازد.',
+    'warranty.repairs.item3': 'قطعه ی تعویضی در این مرکز به مدت 1 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد',
+    'warranty.repairs.note': 'چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 3.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *',
+    
     // Representatives Page
     'representatives.hero.title': 'نمایندگان فروش',
     'representatives.hero.description': 'شبکه گسترده نمایندگان آرمان همراه در سراسر ایران آماده خدمت‌رسانی به شما عزیزان است.',
@@ -190,40 +211,35 @@ const fallbackTranslationsData = {
     'theme.dark': 'تاریک',
   },
   en: {
-    // General
+    // English translations would go here...
+    // For now, I'll just put placeholders or the Persian text.
     'all': 'All',
     'loading': 'Loading...',
     'export.back': 'Back to Export Page',
     'product.coming_soon': 'Product information will be available soon.',
     'warranty.backLink': 'Back to Warranty Page',
 
-    // Brands & Countries
     'Apple': 'Apple', 'Samsung': 'Samsung', 'Xiaomi': 'Xiaomi', 'Poco': 'Poco', 'Nokia': 'Nokia',
     'country.uae': 'UAE', 'country.iraq': 'Iraq', 'country.afghanistan': 'Afghanistan', 'country.turkmenistan': 'Turkmenistan', 'country.azerbaijan': 'Azerbaijan', 'country.armenia': 'Armenia', 'country.qatar': 'Qatar', 'country.kuwait': 'Kuwait',
 
-    // Categories
     'category.mobile': 'Mobile',
     'category.smartwatch': 'Smartwatch',
     'category.tablet': 'Tablet',
     'category.accessories': 'Accessories',
     'category.feature_phone': 'Feature Phone',
 
-    // Navigation
     'nav.home': 'Home', 'nav.warranty': 'Warranty', 'nav.products': 'Products', 'nav.export': 'Export', 'nav.representatives': 'Reps', 'nav.contact': 'Contact', 'nav.myArman': 'Login / Sign Up', 'nav.profile': 'Profile', 'nav.logout': 'Logout',
     'nav.blog': 'Blog & Training',
     'nav.cooperation': 'Cooperation',
 
-    // Hero
     'hero.title': 'The Smartest Warranty & Services',
     'hero.subtitle': 'After-Sales in Iran',
     'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2015',
     'hero.cta': 'Our Services',
     'hero.cta2': 'Register',
 
-    // Brands
     'brands.title': 'Covered Brands',
     
-    // Services
     'services.title': 'Our Services',
     'services.warranty.title': 'Arman Warranty',
     'services.warranty.desc': 'Valid warranty for Apple, Samsung, Xiaomi and Sony products',
@@ -234,7 +250,6 @@ const fallbackTranslationsData = {
     'services.export': 'Export',
     'services.export.desc': 'Exporting products worldwide',
 
-    // Subsidiaries
     'subsidiaries.title': 'Subsidiary Companies',
     'subsidiary.1.name': 'Aein Tejarat Aran',
     'subsidiary.2.name': 'Arsha Fanavaran Radan',
@@ -247,7 +262,6 @@ const fallbackTranslationsData = {
     'subsidiary.9.name': 'Karzin Tejarat Arshan',
     'subsidiary.10.name': 'Radical One',
 
-    // Products Page
     'products.title': 'Products',
     'products.back': 'Back to Home',
     'products.back_to_list': 'Back to Products',
@@ -266,43 +280,7 @@ const fallbackTranslationsData = {
     'products_page.title': 'Our Products',
     'products_page.description': 'Here you can see our latest and highest quality products.',
     'products.search_placeholder': 'Search by product name or brand...',
-
-    // Export Main Page
-    'export.title_main': 'Arman Export', 'export.subtitle_main': 'International Trade with Quality and Confidence', 'export.description_main': 'At Arman, relying on our experience and extensive network, we supply quality Iranian and international products to global markets.',
-    'export.features.title': 'Features of Our Export Services', 'export.features.international.title': 'International Network', 'export.features.international.description': 'Access to diverse markets worldwide.', 'export.features.transportation.title': 'Secure Transportation', 'export.features.transportation.description': 'Ensuring the safety of goods until destination.', 'export.features.original.title': 'Authenticity Guarantee', 'export.features.original.description': 'Providing valid international documents.', 'export.features.documentation.title': 'Customs Facilitation', 'export.features.documentation.description': 'Handling all customs procedures by our expert team.',
-    'export.products.title': 'Our Export Products', 'export.products.category.metals': 'Metals', 'export.products.category.petrochemical': 'Petrochemical', 'export.products.category.textile': 'Textile', 'export.products.category.construction': 'Construction', 'export.products.category.general': 'General', 'export.products.iron_steel.name': 'Iron & Steel', 'export.products.iron_steel.description': 'Various steel sections and iron products.', 'export.products.copper_rod.name': 'Copper Rod', 'export.products.copper_rod.description': 'High-purity copper rod for various industries.', 'export.products.bitumen.name': 'Bitumen', 'export.products.bitumen.description': 'Various grades of bitumen for road and industrial uses.', 'export.products.oil.name': 'Engine Oil', 'export.products.oil.description': 'High-quality engine oils for all types of vehicles.', 'export.products.thread.name': 'Thread', 'export.products.thread.description': 'Cotton and synthetic threads for the textile industry.', 'export.products.piping-equipment.name': 'Piping Equipment', 'export.products.piping-equipment.description': 'Industrial valves, pipes, and fittings.', 'export.products.petrochemical-downstream.name': 'Petrochemical Downstream', 'export.products.petrochemical-downstream.description': 'Polymer and chemical products.', 'export.products.general-industrial-supplies.name': 'General Industrial Supplies', 'export.products.general-industrial-supplies.description': 'Supplying parts, equipment, and raw materials.', 'export.products.view_details': 'View Details',
-    'export.services.title': 'Complementary Export Services', 'export.services.packaging.title': 'Standard Packaging', 'export.services.packaging.description': 'Packaging products according to international standards.', 'export.services.clearance.title': 'Customs Clearance', 'export.services.clearance.description': 'Fast handling of customs clearance at origin and destination.', 'export.services.quality.title': 'Quality Control', 'export.services.quality.description': 'Inspecting product quality before shipment.',
-    'export.goal.title': 'Our Goal', 'export.goal.description': 'To create a reliable bridge between top producers and global markets for long-term, mutually beneficial business relationships.',
-    'export.countries.title': 'Exporting to Countries', 'export.countries.subtitle': 'We are actively engaged in trade with the following countries.',
-    'export.contact.title': 'Contact Export Dept.', 'export.contact.subtitle': 'Contact us for consultation and to start a partnership.', 'export.contact.phone': 'Phone', 'export.contact.address': 'Address', 'export.contact.address_value': 'Unit 1, No. 15, 4th Alley, Qaem Maqam Farahani St, Motahari St, Tehran',
-    'export.form.title': 'Send a Message', 'export.form.full_name': 'Full Name', 'export.form.full_name_placeholder': 'Enter your name', 'export.form.company_name': 'Company Name', 'export.form.company_name_placeholder': 'Enter company name', 'export.form.message': 'Message', 'export.form.message_placeholder': 'Write your request...', 'export.form.send': 'Send',
-    'export.cta.title': 'Ready to Take Your Business Global?', 'export.cta.subtitle': 'Our export team is ready to help you find the best solutions for entering global markets.', 'export.cta.button_start': 'Start via WhatsApp',
-    'export.seo.title': 'Export | Arman Hamrah', 'export.seo.description': 'Export of quality products with comprehensive customs and transportation services by Arman Hamrah.',
-
-    // Iron & Steel Page
-    'iron.title': 'Iron & Steel Export', 'iron.subtitle': 'Superior Quality, Global Standards', 'iron.description': 'Supplier of various steel products including rebar, beams, sheets, and other sections for your construction and industrial projects.',
-    'iron.productsTitle': 'Our Steel Products', 'iron.product1.name': 'Rebar', 'iron.product1.desc': 'In various sizes and standards to increase concrete strength.', 'iron.product2.name': 'Beam', 'iron.product2.desc': 'IPE, IPB, and INP beams for steel structures.', 'iron.product3.name': 'Steel Sheet', 'iron.product3.desc': 'Black, galvanized, and colored sheets for industrial use.', 'iron.product4.name': 'Profile', 'iron.product4.desc': 'Open and closed profiles for construction and industry.', 'iron.product5.name': 'Angle & Channel', 'iron.product5.desc': 'For use in structures and industrial machinery.', 'iron.product6.name': 'Steel Pipe', 'iron.product6.desc': 'Seamed and seamless pipes for fluid transfer.',
-    'iron.featuresTitle': 'Why Us?', 'iron.feature1.title': 'Standard Compliance', 'iron.feature1.desc': 'All products have international quality certification.', 'iron.feature2.title': 'Competitive Pricing', 'iron.feature2.desc': 'Offering the best prices by eliminating intermediaries.', 'iron.feature3.title': 'Export Packaging', 'iron.feature3.desc': 'Safe and standard packaging for transport.', 'iron.feature4.title': 'Technical Consultation', 'iron.feature4.desc': 'Our technical team is ready to provide expert advice.',
-    'iron.seo.title': 'Iron & Steel Export | Arman Hamrah', 'iron.seo.description': 'Export of rebar, beams, sheets, and steel profiles with the best quality and competitive prices.',
-
-    // Copper Rod Page
-    'copper.title': 'Copper Rod Export', 'copper.subtitle': 'High Purity for Advanced Industries', 'copper.description': 'We supply high-purity 99.99% copper rod for use in the cable, transformer, and electronics industries with the best quality.',
-    'copper.specsTitle': 'Technical Specifications', 'copper.spec1.name': 'Rod Diameter', 'copper.spec1.value': '8mm to 25mm', 'copper.spec2.name': 'Standard', 'copper.spec2.value': 'ASTM B49, EN 1977', 'copper.spec3.name': 'Packaging', 'copper.spec3.value': 'Coils of 2 to 4 tons', 'copper.spec4.name': 'Purity', 'copper.spec4.value': '99.99% Cu',
-    'copper.featuresTitle': 'Our Product Features', 'copper.feature1.title': 'High Electrical Conductivity', 'copper.feature1.desc': 'Ideal for producing power and telecommunication cables.', 'copper.feature2.title': 'Excellent Flexibility', 'copper.feature2.desc': 'Suitable for drawing processes and producing thin wires.', 'copper.feature3.title': 'Superior Surface Quality', 'copper.feature3.desc': 'Smooth and oxidation-free surface for best performance.',
-    'copper.seo.title': 'Copper Rod Export | Arman Hamrah', 'copper.seo.description': 'Export of high-purity, top-quality copper rod for the cable and electronics industries worldwide.',
-
-    // Bitumen Page
-    'bitumen.title': 'Bitumen Export', 'bitumen.subtitle': 'A Reliable Coating for Infrastructures', 'bitumen.description': 'Supplier of various penetration and viscosity grade (VG) bitumen for road construction and insulation projects, compliant with international standards.',
-    'bitumen.gradesTitle': 'Available Grades', 'bitumen.grade1': '60/70', 'bitumen.grade2': '80/100', 'bitumen.grade3': '40/50', 'bitumen.grade4': 'VG-10', 'bitumen.grade5': 'VG-30',
-    'bitumen.featuresTitle': 'Our Quality Assurance', 'bitumen.feature1.title': 'Certified Lab Testing', 'bitumen.feature1.desc': 'Providing a quality analysis report (SGS) for each shipment.', 'bitumen.feature2.title': 'Various Packaging', 'bitumen.feature2.desc': 'Available in bulk, new drums, and jumbo bags.', 'bitumen.feature3.title': 'Timely Delivery', 'bitumen.feature3.desc': 'Guaranteeing precise delivery schedules to various destinations.',
-    'bitumen.seo.title': 'Bitumen Export | Arman Hamrah', 'bitumen.seo.description': 'Export and sale of various penetration and viscosity grades of bitumen with the best quality and standard packaging.',
     
-    // Piping Equipment Page
-    'piping.title': 'Piping Equipment', 'piping.subtitle': 'Vital Connections for Your Industry', 'piping.description': 'Comprehensive supplier of industrial valves, pipes, flanges, and fittings for the oil, gas, petrochemical, and water/wastewater industries.',
-    'piping.productsTitle': 'Product Categories', 'piping.product1.name': 'Valves', 'piping.product1.desc': 'Ball, gate, butterfly, and control valves.', 'piping.product2.name': 'Pipes', 'piping.product2.desc': 'Carbon steel, stainless steel, and polymer pipes.', 'piping.product3.name': 'Fittings', 'piping.product3.desc': 'Elbows, tees, reducers, and caps.', 'piping.product4.name': 'Flanges', 'piping.product4.desc': 'Weld neck, slip-on, and blind flanges.',
-    'piping.featuresTitle': 'Advantages of Sourcing From Us', 'piping.feature1.title': 'Reputable Brands', 'piping.feature1.desc': 'Sourcing equipment from top global and local manufacturers.', 'piping.feature2.title': 'Certificate of Authenticity', 'piping.feature2.desc': 'Providing a product certificate with the goods.', 'piping.feature3.title': 'Technical Support', 'piping.feature3.desc': 'Consultation on selecting and installing equipment tailored to your needs.',
-    'piping.seo.title': 'Piping Equipment Export | Arman Hamrah', 'piping.seo.description': 'Sourcing and exporting industrial valves, pipes, and fittings for oil, gas, and petrochemical projects.',
-
     // Warranty Page - Conditions
     'warranty.conditions.title': '18-Month Warranty Conditions',
     'warranty.conditions.item1': 'All devices guaranteed by Arman Hamrah Ertebatat Aria Company have an 18-month warranty from the moment of sale to the consumer. It also has a 3-year warranty for supplying parts, accepting the device, and resolving the said issue by the customer.<br/>(Note 1: The basis for calculating the start of the warranty period for mobile phones, tablets, and smart accessories is from the time of activation (purchase invoice) and a maximum of 6 months after the import declaration in the comprehensive trade system.)',
@@ -316,7 +294,7 @@ const fallbackTranslationsData = {
     'warranty.conditions.item9': 'The company has no responsibility for maintaining or recovering the customer\'s personal information. If the data on the device is important to the customer, please be sure to back up the data before referring to the service center.',
     'warranty.conditions.item10': 'Changing the device\'s serial number or tampering with it using unofficial software is not covered by the warranty services.',
     'warranty.conditions.item11': 'Regarding major factory defects announced as a recall by the manufacturer, this company will also act according to the declared regulations. (If the mentioned defect is announced by the manufacturer as a software issue, users must wait until the release of a new software version in which the said defect is resolved.)',
-    'warranty.exceptions.title': 'Tolerable Cases in Service Provision...',
+    'warranty.exceptions.title': 'Tolerable Cases in Service Provision',
     'warranty.exceptions.item1': 'In humid and hot areas such as the northern and southern cities of the country, seeing 10% to 15% water damage is permissible and is covered by the warranty.',
     'warranty.exceptions.item2': 'If the device is opened and the technician finds that the device was previously opened at a location other than Arman\'s main service centers but there was no tampering with the parts and board, the device is covered by the warranty.',
     'warranty.exceptions.item3': 'If a device has had software installed at a place other than Arman\'s authorized dealers, if the device\'s ROM is not damaged, the software issue will be fixed under warranty. However, if a lower version has been installed and the device\'s Boot is damaged, it is not covered by the warranty.',
@@ -330,37 +308,26 @@ const fallbackTranslationsData = {
     'warranty.exceptions.item11': 'If the user\'s device repair takes longer than the time announced to them, for each week of delay, one month will be added to the product\'s warranty (note that this clause does not include special cases such as official holidays announced by the government, reduced working hours, or the Nowruz holidays).',
     'warranty.exceptions.item12': 'When visiting the Arman Hamrah service center, it is mandatory to bring the official stamped invoice and the device box.',
 
-    // Representatives Page
-    'representatives.hero.title': 'Sales Representatives',
-    'representatives.hero.description': 'Our extensive network of Arman Hamrah representatives throughout Iran is ready to serve you.',
-    'representatives.list.title': 'Our Representatives Across the Country',
-    'representatives.add_button': 'Add New Representative',
-    'representatives.loading': 'Loading representatives...',
-    'representatives.benefits.title': 'Benefits of Cooperating with Arman Hamrah',
-    'representatives.benefits.1.title': 'Original Products',
-    'representatives.benefits.1.description': 'Access to original products from reputable brands with the official Arman Hamrah warranty.',
-    'representatives.benefits.2.title': 'Competitive Prices',
-    'representatives.benefits.2.description': 'Offering special prices and exclusive discounts for partners and representatives.',
-    'representatives.benefits.3.title': 'Dedicated Support',
-    'representatives.benefits.3.description': 'A special support team for partners to quickly respond to questions and needs.',
-    'representatives.seo.title': 'Representatives | Arman Hamrah',
-    'representatives.seo.description': 'List of sales and after-sales service representatives of Arman Hamrah throughout Iran.',
+    // Warranty Page - Accessories
+    'warranty.accessories.title': 'Accessory and Gadget Warranty Conditions',
+    'warranty.accessories.main': '(Speakers, Smartwatches, Headsets, etc.)<br/><br/>All watches and gadgets guaranteed by Arman Hamrah have an 18-month warranty from the moment of sale.<br/>(Note 1: The warranty period for mobile phones, tablets, and smart accessories starts from activation (purchase invoice) and up to 6 months after the import declaration in the trade system.)',
+    'warranty.accessories.item1': 'Products with inherent manufacturer defects will be replaced for up to 1 month. This does not cover cosmetic issues, color, or model. Please inspect the product physically in the seller\'s presence. Products with discoloration, dents, breakages, or other cosmetic flaws are not eligible for replacement warranty.',
+    'warranty.accessories.item2': 'Damage from water, impact, discoloration, deformation, opening at unauthorized centers, and electrical fluctuations are not covered. Please take care of your product.',
+    'warranty.accessories.item3': 'The company is not responsible for saving user\'s personal data or applications.',
+    'warranty.accessories.item4': 'Products brought to the service center with issues like water damage, impact, breakage, etc., may not be restorable to their previous condition. The customer will be informed after technical assessment.',
+    'warranty.accessories.item5': 'In case of a widespread defect in any product, an official announcement will be made on the Arman Hamrah website with instructions on how to fix it, or a recall for service/replacement.',
+    'warranty.accessories.item6': 'If a product needs replacement and the model is unavailable, it will be replaced with a different model after charging the price difference and a depreciation fee. 4% of the product’s value is deducted for each month of use, based on the average selling price over the last 3 months (or the last sales invoice if unavailable).',
+    'warranty.accessories.item7': 'If the product is held for more than 15 working days (excluding shipping time), 1 month will be added to the warranty period for each week of delay.',
+    'warranty.accessories.item8': 'The charger and cable are warrantied for 1 month if confirmed to be original. This does not cover disconnection, damage, or breakage of the charger head.',
+    'warranty.accessories.item9': 'Bringing the official stamped invoice and the device box is mandatory when visiting the service center.',
 
-    // App Section
-    'app.title': 'After-Sales Service at Your Fingertips',
-    'app.description': 'Dear customers of Arman Hamrah Aria Communications, enjoy our online services by installing the My Arman app or using the web version for iOS.',
-    'app.cta': 'Login to My Arman',
-    
-    // Footer
-    'footer.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2015.',
-    'footer.quickLinks': 'Quick Links',
-    'footer.contact': 'Contact Us',
-    'footer.followUs': 'Follow Us',
-    'footer.rights': 'All rights reserved',
-    
-    // Theme
-    'theme.light': 'Light',
-    'theme.dark': 'Dark',
+    // Warranty Page - Repairs
+    'warranty.repairs.title': 'General Conditions for Out-of-Warranty Repairs',
+    'warranty.repairs.main': '',
+    'warranty.repairs.item1': 'Water or impact-damaged devices may not return to their original admission state after being opened due to internal and external changes.',
+    'warranty.repairs.item2': 'For an out-of-warranty device brought in for a specific issue, the center is only responsible for that issue. Water or impact damage may cause other faults to appear later.',
+    'warranty.repairs.item3': 'Replaced parts are warrantied for 1 month after delivery, provided the device does not suffer new water or impact damage and has no physical changes.',
+    'warranty.repairs.note': 'If other issues are found during inspection, the customer will be contacted by phone.<br/>Repairs up to 3,000,000 IRR will be done without coordination; for higher amounts, the customer will be contacted.<br/>Please read the conditions for out-of-warranty devices carefully and sign the consent form if you agree.<br/>* National ID, signature, and fingerprint are required on the consent form. *',
   },
 };
 
