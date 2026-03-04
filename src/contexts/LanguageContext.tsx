@@ -39,6 +39,7 @@ const fallbackTranslationsData = {
     'nav.home': 'صفحه اصلی', 'nav.warranty': 'گارانتی', 'nav.products': 'محصولات', 'nav.export': 'صادرات', 'nav.representatives': 'نمایندگان', 'nav.contact': 'تماس با ما', 'nav.myArman': 'ورود / ثبت نام', 'nav.profile': 'پروفایل', 'nav.logout': 'خروج',
     'nav.blog': 'بلاگ و آموزش',
     'nav.cooperation': 'همکاری با ما',
+    'nav.about': 'درباره ما',
 
     // Hero
     'hero.title': 'هوشمندترین گارانتی و خدمات',
@@ -296,6 +297,19 @@ const fallbackTranslationsData = {
     'piping.featuresTitle': 'مزایای تامین از ما', 'piping.feature1.title': 'برندهای معتبر', 'piping.feature1.desc': 'تامین تجهیزات از تولیدکنندگان برتر جهانی و داخلی.', 'piping.feature2.title': 'گواهی اصالت', 'piping.feature2.desc': 'ارائه گواهی‌نامه محصول (Certificate) همراه با کالا.', 'piping.feature3.title': 'پشتیبانی فنی', 'piping.feature3.desc': 'مشاوره در انتخاب و نصب تجهیزات متناسب با نیاز شما.',
     'piping.seo.title': 'صادرات تجهیزات خطوط لوله | آرمان همراه', 'piping.seo.description': 'تامین و صادرات انواع شیرآلات، لوله‌ها و اتصالات صنعتی برای پروژه‌های نفت، گاز و پتروشیمی.',
 
+    // About Page
+    'about.title': 'آرمان همراه ارتباطات آریا؛ فراتر از یک انتخاب',
+    'about.p1': 'شرکت آرمان همراه ارتباطات آریا، به عنوان یکی از نام‌های پیشرو و معتبر در عرصه فناوری و تجارت ایران، فعالیت خود را با تمرکز بر واردات، توزیع و ارائه جدیدترین دستگاه‌های تلفن همراه، تبلت و لوازم جانبی از برترین برندهای جهانی آغاز کرده است. هدف ما از ابتدا، ایجاد پلی مطمئن میان شما و دنیای تکنولوژی بوده است تا با ارائه محصولاتی اصیل و با کیفیت، تجربه‌ای بی‌نظیر از خرید را برای هر مشتری رقم بزنیم.',
+    'about.p2': 'ما در آرمان همراه، رضایت و آرامش خاطر مشتریان را سنگ بنای فعالیت خود می‌دانیم. به همین دلیل، تمامی محصولات خود را با گارانتی معتبر ۱۸ ماهه آرمان همراه ارائه می‌دهیم. این گارانتی، تضمین تعهد ما به پشتیبانی و ارائه خدمات پس از فروش در بالاترین سطح کیفی است. مراکز خدمات پس از فروش ما با بهره‌گیری از تیمی متخصص و کارآزموده، همواره آماده‌اند تا در سریع‌ترین زمان ممکن پاسخگوی نیازهای شما باشند.',
+    'about.p3': 'فعالیت‌های گروه آرمان به بازار کالاهای دیجیتال محدود نمی‌شود. ما با افتخار، به عنوان یک هلدینگ توانمند و چندوجهی، در عرصه صادرات محصولات صنعتی، پتروشیمی و مواد اولیه نیز حضوری فعال داریم. این گستردگی، نشان از توانمندی، تجربه و شبکه ارتباطات بین‌المللی ما دارد و ما را در مسیر تبدیل شدن به یک شریک تجاری قابل اعتماد در مقیاس‌های بزرگ‌تر یاری می‌کند.',
+    'about.p4': 'چشم‌انداز ما، تبدیل شدن به معتمدترین نام در ارائه کالا و خدمات در ایران است. ما بر آنیم تا با نوآوری مستمر، شفافیت در عملکرد و پایبندی به اصول مشتری‌مداری، ارزشی پایدار برای مشتریان، کارکنان و شرکای تجاری خود خلق کنیم. در آرمان همراه، هر روز برای ساختن فردایی بهتر و ارائه خدماتی شایسته‌تر تلاش می‌کنیم.',
+    'about.stats.experience': 'سال تجربه',
+    'about.stats.customers': 'مشتری راضی',
+    'about.stats.products': 'تنوع محصول',
+    'about.stats.representatives': 'نماینده فروش',
+    'about.seo.title': 'درباره ما | آرمان همراه',
+    'about.seo.description': 'با داستان، ماموریت و چشم‌انداز شرکت آرمان همراه، پیشرو در ارائه خدمات پس از فروش و گارانتی در ایران، بیشتر آشنا شوید.',
+    
     // Warranty Page - Conditions
     'warranty.conditions.title': 'شرایط گارانتی 18 ماه',
     'warranty.conditions.item1': 'کلیه دستگاه های گارانتی شده توسط شرکت آرمان همراه ارتباطات آریا دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد. همچنین تا 3 سال ضمانت تامین قطعه و پذیرش دستگاه و رفع ایراد مذکور توسط مشتری را دارد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای کالاهای تلفن همراه و تبلت و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
@@ -399,6 +413,7 @@ const fallbackTranslationsData = {
     'nav.home': 'Home', 'nav.warranty': 'Warranty', 'nav.products': 'Products', 'nav.export': 'Export', 'nav.representatives': 'Reps', 'nav.contact': 'Contact', 'nav.myArman': 'Login / Sign Up', 'nav.profile': 'Profile', 'nav.logout': 'Logout',
     'nav.blog': 'Blog & Training',
     'nav.cooperation': 'Cooperation',
+    'nav.about': 'About Us',
 
     // Hero
     'hero.title': 'The Smartest Warranty & Services',
@@ -655,6 +670,19 @@ const fallbackTranslationsData = {
     'piping.productsTitle': 'Product Categories', 'piping.product1.name': 'Valves', 'piping.product1.desc': 'Ball, gate, butterfly, and control valves.', 'piping.product2.name': 'Pipes', 'piping.product2.desc': 'Carbon steel, stainless steel, and polymer pipes.', 'piping.product3.name': 'Fittings', 'piping.product3.desc': 'Elbows, tees, reducers, and caps.', 'piping.product4.name': 'Flanges', 'piping.product4.desc': 'Weld neck, slip-on, and blind flanges.',
     'piping.featuresTitle': 'Advantages of Sourcing From Us', 'piping.feature1.title': 'Reputable Brands', 'piping.feature1.desc': 'Sourcing equipment from top global and local manufacturers.', 'piping.feature2.title': 'Certificate of Authenticity', 'piping.feature2.desc': 'Providing a product certificate with the goods.', 'piping.feature3.title': 'Technical Support', 'piping.feature3.desc': 'Consultation on selecting and installing equipment tailored to your needs.',
     'piping.seo.title': 'Piping Equipment Export | Arman Hamrah', 'piping.seo.description': 'Sourcing and exporting industrial valves, pipes, and fittings for oil, gas, and petrochemical projects.',
+    
+    // About Page
+    'about.title': 'Arman Hamrah Aria Communications; More Than a Choice',
+    'about.p1': 'Arman Hamrah Aria Communications Company, as one of the leading and reputable names in the field of technology and trade in Iran, has started its activity by focusing on importing, distributing and offering the latest mobile phones, tablets and accessories from the world\'s top brands. Our goal from the beginning has been to create a reliable bridge between you and the world of technology in order to create a unique shopping experience for every customer by providing genuine and high-quality products.',
+    'about.p2': 'At Arman Hamrah, we consider customer satisfaction and peace of mind to be the cornerstone of our activities. For this reason, we offer all our products with a valid 18-month Arman Hamrah warranty. This warranty guarantees our commitment to providing the highest quality after-sales support and services. Our after-sales service centers, with the help of a specialized and experienced team, are always ready to respond to your needs in the fastest possible time.',
+    'about.p3': 'The activities of the Arman Group are not limited to the digital goods market. We are proud to have an active presence in the export of industrial products, petrochemicals and raw materials as a capable and multifaceted holding. This breadth shows our capability, experience and international communication network and helps us on the way to becoming a reliable business partner on a larger scale.',
+    'about.p4': 'Our vision is to become the most trusted name in providing goods and services in Iran. We intend to create sustainable value for our customers, employees and business partners through continuous innovation, transparency in performance and adherence to customer-oriented principles. At Arman Hamrah, we strive every day to build a better tomorrow and provide more worthy services.',
+    'about.stats.experience': 'Years of Experience',
+    'about.stats.customers': 'Satisfied Customers',
+    'about.stats.products': 'Product Variety',
+    'about.stats.representatives': 'Sales Representatives',
+    'about.seo.title': 'About Us | Arman Hamrah',
+    'about.seo.description': 'Learn more about the story, mission, and vision of Arman Hamrah, a leader in providing after-sales services and warranty in Iran.',
 
     // Warranty Page - Conditions
     'warranty.conditions.title': '18-Month Warranty Conditions',

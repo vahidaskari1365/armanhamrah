@@ -22,6 +22,7 @@ const Navbar = () => {
     { key: 'nav.products', href: '/products' },
     { key: 'nav.export', href: '/export' },
     { key: 'nav.representatives', href: '/representatives' },
+    { key: 'nav.about', href: '/about' },
     { key: 'nav.contact', href: '/contact' },
   ];
   

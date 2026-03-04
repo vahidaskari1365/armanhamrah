@@ -16,6 +16,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/Contact";
 import ExportPage from "./pages/ExportPage";
+import AboutPage from './pages/AboutPage';
 import WarrantyPage from "./pages/WarrantyPage";
 import WarrantyConditionsPage from "./pages/warranty/Conditions";
 import WarrantyAccessoriesPage from "./pages/warranty/Accessories";
@@ -64,6 +65,7 @@ const App = () => (
                     <Route path="/product/:slug" element={<ProductDetailPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/export" element={<ExportPage />} />
+                    <Route path='/about' element={<AboutPage />} />
                     <Route path="/export/iron-steel" element={<IronSteelPage />} />
                     <Route path="/export/copper-rod" element={<CopperRodPage />} />
                     <Route path="/export/bitumen" element={<BitumenPage />} />
