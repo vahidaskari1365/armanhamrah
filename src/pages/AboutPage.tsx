@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import heroBg from '@/assets/hero-bg.jpg';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const AboutPage = () => {
   const { t, language } = useLanguage();
@@ -12,7 +12,7 @@ const AboutPage = () => {
     <div 
       dir={language === 'fa' ? 'rtl' : 'ltr'}
       className="page-background flex flex-col min-h-screen"
-      style={{ '--page-bg-image': `url(${heroBg})` } as React.CSSProperties}
+      style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}
     >
       <Navbar />
       <main className="flex-grow flex justify-center items-center container-custom px-4">

@@ -88,8 +88,8 @@ const Footer = () => {
               <li className="flex items-start gap-3 text-muted-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <a href="tel:02158798" dir="ltr" className="block hover:text-primary transition-colors">021-58798</a>
-                  <a href="tel:02188329274" dir="ltr" className="block hover:text-primary transition-colors">021-88329274</a>
+                  <a href="tel:02158798" dir="ltr" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</a>
+                  <a href="tel:02188329274" dir="ltr" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۸۸۳۲۹۲۷۴' : '021-88329274'}</a>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground">
@@ -102,7 +102,7 @@ const Footer = () => {
                     }
                   </span>
                   <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
-                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} ۱۵۷۵۹۴۵۳۳۵
+                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'}{language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335'}
                   </p>
                 </div>
               </li>
@@ -151,7 +151,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-muted-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0" />
-                <span dir="ltr">021-88321030-2</span>
+                <span dir="ltr">{language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۰-۲' : '021-88321030-2'}</span>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
@@ -167,7 +167,7 @@ const Footer = () => {
                     }
                   </span>
                   <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
-                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} 1575945341
+                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} {language === 'fa' ? '۱۵۷۵۹۴۵۳۴۱' : '1575945341'}
                   </p>
                 </div>
               </li>
