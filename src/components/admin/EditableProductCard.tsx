@@ -66,6 +66,7 @@ const EditableProductCard: React.FC<EditableProductCardProps> = ({ product, inde
             <motion.img
               src={product.image || '/placeholder.png'}
               alt={product.name}
+              loading="lazy"
               className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
               // Prevent image drag in edit mode
               onDragStart={(e) => isEditMode && e.preventDefault()}

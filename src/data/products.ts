@@ -6,7 +6,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "iPhone 17 Pro",
     slug: "apple-iphone-17-pro",
-    image: "/images/products/apple-iphone-17-pro.jpg",
+    image: "/images/products/apple-iphone-17-pro.webp",
     brand_id: "Apple",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -21,7 +21,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "iPhone 16 Pro",
     slug: "apple-iphone-16-pro",
-    image: "/images/products/apple-iphone-16-pro.jpg",
+    image: "/images/products/apple-iphone-16-pro.webp",
     brand_id: "Apple",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -51,7 +51,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "AirPods Pro 2",
     slug: "airpods-pro-2",
-    image: "/images/products/apple-airpods-pro2.jpg",
+    image: "/images/products/apple-airpods-pro2.webp",
     brand_id: "Apple",
     category_id: "category.accessories",
     description: "product.coming_soon",
@@ -68,7 +68,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy S25 Ultra",
     slug: "samsung-galaxy-s25-ultra",
-    image: "/images/products/samsung-galaxys25ultra.png",
+    image: "/images/products/samsung-galaxys25ultra.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -84,7 +84,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy S24 Ultra",
     slug: "samsung-galaxy-s24-ultra",
-    image: "/images/products/samsung-galaxy-s24-ultra.jpg",
+    image: "/images/products/samsung-galaxy-s24-ultra.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -100,7 +100,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy S25 FE",
     slug: "samsung-galaxy-s25-fe",
-    image: "/images/products/samsung-galaxys25-fe.png",
+    image: "/images/products/samsung-galaxys25-fe.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -115,7 +115,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A56",
     slug: "samsung-galaxy-a56",
-    image: "/images/products/samsung-a56.png",
+    image: "/images/products/samsung-a56.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -135,7 +135,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A36",
     slug: "samsung-galaxy-a36",
-    image: "/images/products/samsung-a36.png",
+    image: "/images/products/samsung-a36.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -151,7 +151,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A26",
     slug: "samsung-galaxy-a26",
-    image: "/images/products/samsung-a26.png",
+    image: "/images/products/samsung-a26.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -166,7 +166,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A17",
     slug: "samsung-galaxy-a17",
-    image: "/images/products/samsung-a17.png",
+    image: "/images/products/samsung-a17.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -181,7 +181,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A07",
     slug: "samsung-galaxy-a07",
-    image: "/images/products/samsung-a07.png",
+    image: "/images/products/samsung-a07.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -196,7 +196,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy A06",
     slug: "samsung-galaxy-a06",
-    image: "/images/products/samsung-a06.png",
+    image: "/images/products/samsung-a06.webp",
     brand_id: "Samsung",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -211,7 +211,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy Tab A9+",
     slug: "samsung-galaxy-tab-a9-plus",
-    image: "/images/products/samsung-tab-a9-plus.png",
+    image: "/images/products/samsung-tab-a9-plus.webp",
     brand_id: "Samsung",
     category_id: "category.tablet",
     description: "product.coming_soon",
@@ -226,7 +226,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Samsung Galaxy Tab A9",
     slug: "samsung-galaxy-tab-a9",
-    image: "/images/products/samsung-tab-a9.png",
+    image: "/images/products/samsung-tab-a9.webp",
     brand_id: "Samsung",
     category_id: "category.tablet",
     description: "product.coming_soon",
@@ -243,7 +243,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi 15T",
     slug: "xiaomi-15t",
-    image: "/images/products/xiaomi-15t.png",
+    image: "/images/products/xiaomi-15t.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -258,7 +258,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi Note 14 Pro",
     slug: "xiaomi-redmi-note-14-pro",
-    image: "/images/products/xiaomi-redminote-14-pro.png",
+    image: "/images/products/xiaomi-redminote-14-pro.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -274,7 +274,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi Note 14",
     slug: "xiaomi-redmi-note-14",
-    image: "/images/products/xiaomi-redminote-14.png",
+    image: "/images/products/xiaomi-redminote-14.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -289,7 +289,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi 15",
     slug: "xiaomi-redmi-15",
-    image: "/images/products/xiaomi-redmi15.png",
+    image: "/images/products/xiaomi-redmi15.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -304,7 +304,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi 15c",
     slug: "xiaomi-redmi-15c",
-    image: "/images/products/xiaomi-redmi15c.png",
+    image: "/images/products/xiaomi-redmi15c.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -320,7 +320,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi A3",
     slug: "xiaomi-redmi-a3",
-    image: "/images/products/xiaomi-redmia3.png",
+    image: "/images/products/xiaomi-redmia3.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -336,7 +336,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Xiaomi Redmi A5",
     slug: "xiaomi-redmi-a5",
-    image: "/images/products/xiaomi-redmi-a5-v2.png",
+    image: "/images/products/xiaomi-redmi-a5-v2.webp",
     brand_id: "Xiaomi",
     category_id: "category.mobile",
     description: "product.redmi_a5.description",
@@ -354,7 +354,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Poco M7",
     slug: "poco-m7",
-    image: "/images/products/xiaomi-pocom7-v2.png",
+    image: "/images/products/xiaomi-pocom7-v2.webp",
     brand_id: "Poco",
     category_id: "category.mobile",
     description: "product.poco_m7.description",
@@ -369,7 +369,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Poco M6",
     slug: "poco-m6",
-    image: "/images/products/xiaomi-pocom6-v2.jpg",
+    image: "/images/products/xiaomi-pocom6-v2.webp",
     brand_id: "Poco",
     category_id: "category.mobile",
     description: "product.coming_soon",
@@ -384,7 +384,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Poco C85",
     slug: "poco-c85",
-    image: "/images/products/xiaomi-pococ85-v2.png",
+    image: "/images/products/xiaomi-pococ85-v2.webp",
     brand_id: "Poco",
     category_id: "category.mobile",
     description: "product.poco_c85.description",
@@ -399,7 +399,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
   {
     name: "Poco C75",
     slug: "poco-c75",
-    image: "/images/products/xiaomi-pococ75-v2.png",
+    image: "/images/products/xiaomi-pococ75-v2.webp",
     brand_id: "Poco",
     category_id: "category.mobile",
     description: "product.poco_c75.description",
@@ -414,7 +414,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
     {
     name: "Poco C71",
     slug: "poco-c71",
-        image: "/images/products/xiaomi-pococ71.png",
+        image: "/images/products/xiaomi-pococ71.webp",
         brand_id: "Poco",
         category_id: "category.mobile",
         description: "product.poco_c71.description",
