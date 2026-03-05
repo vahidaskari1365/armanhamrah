@@ -231,7 +231,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.1;
+    opacity: 0.5;
     pointer-events: none;
   }
 
@@ -241,7 +241,7 @@
   }
 
   .dark .page-background::before {
-    opacity: 0.05;
+    opacity: 0.3;
   }
 
   /* Make gradient sections transparent so background shows through */

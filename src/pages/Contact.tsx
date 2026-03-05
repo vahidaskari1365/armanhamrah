@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import pageBg from '@/assets/page-bg.jpeg';
 
 const ContactPageContent = () => {
   const { language } = useLanguage();
@@ -13,25 +14,23 @@ const ContactPageContent = () => {
   const contactSections = [
     {
       title: language === 'fa' ? 'دفتر مرکزی' : 'Headquarters',
-      phone: '021-88321030-2',
+      phone: language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۰-۲' : '021-88321030-2',
       email: 'info@armanhamrah.com',
       address:
         language === 'fa'
           ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
           : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304',
-      postalCode: '1575945341',
+      postalCode: language === 'fa' ? '۱۵۷۵۹۴۵۳۴۱' : '1575945341',
     },
     {
       title: language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service',
-      phone: '021-58798',
-      phone2:
-        '021-88329274 ' +
-        (language === 'fa' ? 'داخلی ۴' : 'Ext. 4'),
+      phone: language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798',
+      phone2: language === 'fa' ? '۰۲۱-۸۸۳۲۹۲۷۴' : '021-88329274',
       address:
         language === 'fa'
           ? 'تهران، خیابان مطهری، سلیمان خاطر، نبش بانک ملت، ساختمان امیر اتابک، ط۲، واحد ۲۰۴'
           : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 204',
-      postalCode: '۱۵۷۵۹۴۵۳۳۵',
+      postalCode: language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335',
     },
     {
       title: language === 'fa' ? 'فروشگاه' : 'Store',
@@ -45,7 +44,8 @@ const ContactPageContent = () => {
 
   return (
     <div
-      className="bg-background admin-toolbar-offset"
+      className="page-background admin-toolbar-offset"
+      style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}
       dir={language === 'fa' ? 'rtl' : 'ltr'}
     >
       <Navbar />
