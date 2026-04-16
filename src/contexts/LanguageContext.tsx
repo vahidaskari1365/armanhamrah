@@ -796,14 +796,14 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       setLoading(true);
       const baseTranslations = transformFallback();
 
-      const { data, error } = await supabase.from('page_content').select('content_key, content_fa, content_en');
+      const { data, error } = await supabase.from('page_content').select('content_key, content_value');
       
       if (error || !data || data.length === 0) {
         console.warn('Could not fetch translations from DB, using only fallback data.', error);
         setTranslations(baseTranslations);
       } else {
         const dbTranslations: Translations = data.reduce((acc, item) => {
-          acc[item.content_key] = { fa: item.content_fa, en: item.content_en };
+          acc[item.content_key] = { fa: item.content_value, en: item.content_value };
           return acc;
         }, {} as Translations);
         setTranslations({ ...baseTranslations, ...dbTranslations });
