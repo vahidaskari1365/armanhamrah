@@ -14,8 +14,8 @@ interface PageContent {
   page: string;
   section: string;
   content_key: string;
-  content_fa: string;
-  content_en: string;
+  content_value: string;
+  content_type: string | null;
 }
 
 interface SiteManagementTabProps {
@@ -29,9 +29,9 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
   const [savingId, setSavingId] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleContentChange = (id: string, field: 'content_fa' | 'content_en', value: string) => {
+  const handleContentChange = (id: string, value: string) => {
     setEditableContents(prev => 
-      prev.map(item => (item.id === id ? { ...item, [field]: value } : item))
+      prev.map(item => (item.id === id ? { ...item, content_value: value } : item))
     );
   };
 
@@ -39,10 +39,7 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
     setSavingId(contentItem.id);
     const { error } = await supabase
       .from('page_content')
-      .update({
-        content_fa: contentItem.content_fa,
-        content_en: contentItem.content_en,
-      })
+      .update({ content_value: contentItem.content_value })
       .eq('id', contentItem.id);
 
     if (error) {
@@ -56,9 +53,7 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
 
   const groupedContent = editableContents.reduce((acc, item) => {
     const page = item.page || 'uncategorized';
-    if (!acc[page]) {
-      acc[page] = [];
-    }
+    if (!acc[page]) acc[page] = [];
     acc[page].push(item);
     return acc;
   }, {} as Record<string, PageContent[]>);
@@ -66,12 +61,9 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
   const filteredContent = Object.keys(groupedContent).reduce((acc, page) => {
     const items = groupedContent[page].filter(item => 
       item.content_key.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.content_fa.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.content_en.toLowerCase().includes(searchTerm.toLowerCase())
+      item.content_value.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    if (items.length > 0) {
-      acc[page] = items;
-    }
+    if (items.length > 0) acc[page] = items;
     return acc;
   }, {} as Record<string, PageContent[]>);
 
@@ -80,12 +72,7 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
       <div className="flex justify-between items-center">
         <h2 className="text-lg font-semibold">مدیریت محتوای سایت</h2>
         <div className="relative w-1/3">
-          <Input
-            placeholder="جستجو در کلید یا محتوا..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
+          <Input placeholder="جستجو..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10" />
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
         </div>
       </div>
@@ -100,33 +87,18 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
               <div className="space-y-4">
                 {filteredContent[page].map(item => (
                   <div key={item.id} className="grid grid-cols-12 gap-4 items-start p-3 bg-secondary/30 rounded-md">
-                    <div className="col-span-2 text-sm text-muted-foreground font-mono self-center">{item.content_key}</div>
-                    <div className="col-span-4">
-                      <Label className="text-xs">فارسی</Label>
+                    <div className="col-span-3 text-sm text-muted-foreground font-mono self-center">{item.content_key}</div>
+                    <div className="col-span-7">
+                      <Label className="text-xs">محتوا</Label>
                       <Textarea
-                        value={item.content_fa}
-                        onChange={(e) => handleContentChange(item.id, 'content_fa', e.target.value)}
-                        className="w-full text-sm font-sans"
-                        rows={3}
-                      />
-                    </div>
-                    <div className="col-span-4">
-                      <Label className="text-xs">English</Label>
-                      <Textarea
-                        value={item.content_en}
-                        onChange={(e) => handleContentChange(item.id, 'content_en', e.target.value)}
-                        className="w-full text-sm font-sans"
-                        dir="ltr"
+                        value={item.content_value}
+                        onChange={(e) => handleContentChange(item.id, e.target.value)}
+                        className="w-full text-sm"
                         rows={3}
                       />
                     </div>
                     <div className="col-span-2 self-center">
-                      <Button 
-                        onClick={() => handleSave(item)} 
-                        size="sm" 
-                        className="w-full btn-gold"
-                        disabled={savingId === item.id}
-                      >
+                      <Button onClick={() => handleSave(item)} size="sm" className="w-full" disabled={savingId === item.id}>
                         {savingId === item.id ? '⏳' : <Save className="w-4 h-4 ml-1"/>}
                         ذخیره
                       </Button>
@@ -138,12 +110,6 @@ const SiteManagementTab = ({ pageContents, onRefresh }: SiteManagementTabProps) 
           </AccordionItem>
         ))}
       </Accordion>
-
-      {Object.keys(filteredContent).length === 0 && (
-        <div className="text-center text-muted-foreground py-12">
-          <p>هیچ محتوایی با عبارت جستجو شده یافت نشد.</p>
-        </div>
-      )}
     </motion.div>
   );
 };

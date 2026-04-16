@@ -20,8 +20,6 @@ interface Product {
   id: string;
   name_fa: string;
   name_en: string | null;
-  description_fa: string | null;
-  description_en: string | null;
   image_url: string;
   link: string;
   category: string;
@@ -35,8 +33,8 @@ interface PageContent {
   page: string;
   section: string;
   content_key: string;
-  content_fa: string;
-  content_en: string;
+  content_value: string;
+  content_type: string | null;
 }
 
 interface SiteSetting {
@@ -148,12 +146,12 @@ const AdminDashboard = () => {
       .from('products')
       .select('*')
       .order('display_order', { ascending: true });
-    if (!error && data) setProducts(data);
+    if (!error && data) setProducts(data as unknown as Product[]);
   };
 
   const fetchPageContents = async () => {
     const { data, error } = await supabase.from('page_content').select('*');
-    if (!error && data) setPageContents(data as PageContent[]);
+    if (!error && data) setPageContents(data as unknown as PageContent[]);
   };
 
   const fetchSiteSettings = async () => {
@@ -162,7 +160,8 @@ const AdminDashboard = () => {
   };
 
   const fetchUsers = async () => {
-    const { data, error } = await supabase.rpc('get_users_with_roles');
+    // Fetch users from profiles since get_users_with_roles RPC doesn't exist
+    const { data, error } = await supabase.from('profiles').select('*');
     if (!error && data) {
         const userList = data.map((u: any) => ({ ...u, id: u.user_id }));
         setUsers(userList);

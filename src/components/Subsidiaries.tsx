@@ -1,8 +1,8 @@
-import subsidiary2 from '@/assets/subsidiary-2.jpeg?v=2';
-import subsidiary7 from '@/assets/subsidiary-7.jpg?v=2';
-import subsidiary8 from '@/assets/subsidiary-8.jpeg?v=2';
-import subsidiary9 from '@/assets/subsidiary-9.jpg?v=2';
-import subsidiary10 from '@/assets/subsidiary-10.jpeg?v=2';
+import subsidiary2 from '@/assets/subsidiary-2.jpeg';
+import subsidiary7 from '@/assets/subsidiary-7.jpg';
+import subsidiary8 from '@/assets/subsidiary-8.jpeg';
+import subsidiary9 from '@/assets/subsidiary-9.jpg';
+import subsidiary10 from '@/assets/subsidiary-10.jpeg';
 import EditableImage from '@/components/admin/EditableImage';
 import { useAdmin } from '@/contexts/AdminContext';
 import { useLanguage } from '@/contexts/LanguageContext';
