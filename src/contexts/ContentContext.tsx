@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -8,13 +7,13 @@ interface PageContent {
   page: string;
   section: string;
   content_key: string;
-  content_fa: string;
-  content_en: string;
+  content_value: string;
+  content_type: string | null;
 }
 
 interface ContentContextType {
   content: Record<string, PageContent>;
-  getContent: (key: string) => Omit<PageContent, 'id' | 'page' | 'section' | 'content_key'>;
+  getContent: (key: string) => string;
   refreshContent: () => Promise<void>;
   loading: boolean;
 }
@@ -32,18 +31,18 @@ export const ContentProvider = ({ children }: { children: ReactNode }) => {
       const { data, error } = await supabase.from('page_content').select('*');
       if (error) throw error;
 
-      const contentMap = data.reduce((acc, item) => {
-        acc[item.content_key] = item;
+      const contentMap = (data || []).reduce((acc, item) => {
+        acc[item.content_key] = item as PageContent;
         return acc;
       }, {} as Record<string, PageContent>);
       
       setContent(contentMap);
     } catch (error: any) {
-      toast({ title: 'خطا', description: `Could not fetch page content: ${error.message}`, variant: 'destructive' });
+      console.error('Could not fetch page content:', error.message);
     } finally {
       setLoading(false);
     }
-  }, [toast]);
+  }, []);
 
   useEffect(() => {
     fetchContent();
@@ -51,10 +50,7 @@ export const ContentProvider = ({ children }: { children: ReactNode }) => {
 
   const getContent = (key: string) => {
     const item = content[key];
-    return {
-      content_fa: item?.content_fa || `FA: ${key}`,
-      content_en: item?.content_en || `EN: ${key}`,
-    };
+    return item?.content_value || key;
   };
 
   return (
