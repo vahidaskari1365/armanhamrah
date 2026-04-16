@@ -179,6 +179,36 @@ export type Database = {
         }
         Relationships: []
       }
+      representatives: {
+        Row: {
+          address: string
+          city: string
+          created_at: string
+          id: number
+          name: string
+          phone: string
+          province: string
+        }
+        Insert: {
+          address: string
+          city: string
+          created_at?: string
+          id?: number
+          name: string
+          phone: string
+          province: string
+        }
+        Update: {
+          address?: string
+          city?: string
+          created_at?: string
+          id?: number
+          name?: string
+          phone?: string
+          province?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           category: string
