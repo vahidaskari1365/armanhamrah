@@ -43,7 +43,7 @@ const WarrantyConditionsPageContent = () => {
   ];
 
   return (
-    <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` }} dir={language === 'fa' ? 'rtl' : 'ltr'}>
+    <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir={language === 'fa' ? 'rtl' : 'ltr'}>
       <Navbar />
       <main className="pt-24">
         <section className="section-padding">
