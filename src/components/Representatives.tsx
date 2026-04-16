@@ -7,6 +7,15 @@ import { supabase } from '@/integrations/supabase/client';
 
 const Representatives = () => {
   const { language } = useLanguage();
+  const [representatives, setRepresentatives] = useState<{name: string; province: string; city: string; phone: string; address: string}[]>([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data } = await supabase.from('representatives').select('*').limit(4);
+      if (data) setRepresentatives(data);
+    };
+    fetch();
+  }, []);
 
   return (
     <section id="representatives" className="section-padding bg-gradient-premium">
