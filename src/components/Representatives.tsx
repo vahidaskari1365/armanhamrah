@@ -1,38 +1,9 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Phone, Store, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const representatives = [
-  {
-    name: 'موبایل کسری',
-    province: 'گیلان',
-    city: 'رشت',
-    phone: '013-33235303',
-    address: 'رشت خیابان لاکانی ، جنب بیمه آسیا موبایل کسری'
-  },
-  {
-    name: 'موبایل اورژانس',
-    province: 'خراسان رضوی',
-    city: 'سبزوار',
-    phone: '051-44230039',
-    address: 'سبزوار،خیابان کاشفی شمالی نبش کاشفی8،اورژانس موبایل'
-  },
-  {
-    name: 'موبایل وحید',
-    province: 'اصفهان',
-    city: 'اصفهان',
-    phone: '031-32228180',
-    address: 'خیابان فردوسی مجتمع زاینده رود طبقه اول فروشگاه وحید'
-  },
-  {
-    name: 'سامسونگ مرکزی',
-    province: 'آذربایجان شرقی',
-    city: 'تبریز',
-    phone: '041-36600150',
-    address: 'تبریز اتوبان پاسداران میدان فهمیده مجتمع تجاری لاله پارک،طبقه منفی یک فروشگاه سامسونگ'
-  },
-];
+import { supabase } from '@/integrations/supabase/client';
 
 const Representatives = () => {
   const { language } = useLanguage();
