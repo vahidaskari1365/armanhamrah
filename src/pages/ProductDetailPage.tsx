@@ -121,11 +121,31 @@ const ProductDetailPage = () => {
     const product = productsData.find(p => p.slug === slug);
     const title = product ? t(product.name) : t('products.title', 'Product');
 
+    const productJsonLd = product ? {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": title,
+      "image": product.image?.startsWith('http') ? product.image : `https://armanhamrah.com${product.image}`,
+      "brand": { "@type": "Brand", "name": product.brand_id },
+      "category": product.category_id,
+      "url": `https://armanhamrah.com/product/${product.slug}`,
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "IRR",
+        "url": `https://armanhamrah.com/product/${product.slug}`
+      }
+    } : undefined;
+
     return (
       <HelmetProvider>
         <SEO 
           title={`${title} | Arman Hamrah`}
           description={`Details for ${title}`}
+          type="product"
+          url={product ? `https://armanhamrah.com/product/${product.slug}` : undefined}
+          image={product?.image?.startsWith('http') ? product.image : (product ? `https://armanhamrah.com${product.image}` : undefined)}
+          jsonLd={productJsonLd}
         />
         <div className="min-h-screen bg-background">
           <Navbar />
