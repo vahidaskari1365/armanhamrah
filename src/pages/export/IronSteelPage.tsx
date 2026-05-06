@@ -50,7 +50,7 @@ const IronSteelPageContent = () => {
         <section className="section-padding">
             <div className="container-custom">
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-                    <img src="https://export.armanhamrah.com/uploads/products/iron.webp" alt={t('iron.title')} className="rounded-2xl shadow-xl w-full max-w-4xl mx-auto" />
+                    <img src="https://export.armanhamrah.com/uploads/products/iron.webp" alt={t('iron.title')} className="rounded-2xl shadow-xl w-full max-w-4xl mx-auto" / loading="lazy" decoding="async">
                 </motion.div>
             </div>
         </section>
