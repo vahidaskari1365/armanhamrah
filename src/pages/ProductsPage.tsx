@@ -153,7 +153,7 @@ const ProductsPageContent = () => {
                                             src={product.image}
                                             alt={product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                                        />
+                                        / loading="lazy" decoding="async">
                                     </div>
                                     <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                                         {t(product.name)}
@@ -189,7 +189,7 @@ const ProductsPage = () => {
       />
        <div className="min-h-screen w-full" dir={language === 'fa' ? 'rtl' : 'ltr'}>
             <div className="fixed inset-0 z-0">
-                <img src={BackgroundImage} alt="Background" className="w-full h-full object-cover object-center" />
+                <img src={BackgroundImage} alt="Background" className="w-full h-full object-cover object-center" / loading="lazy" decoding="async">
                 <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
             </div>
             <ProductsPageContent />

@@ -77,7 +77,7 @@ const Navbar = () => {
                 src={logo} 
                 alt="آرمان همراه ارتباطات آریا" 
                 className="h-10 w-auto object-contain rounded"
-              />
+              / loading="lazy" decoding="async">
             </motion.div>
           </Link>
 
