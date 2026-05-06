@@ -49,7 +49,7 @@ const Subsidiaries = () => {
                   />
                 )}
               </div>
-              <span className="mt-2 text-xs font-semibold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="mt-2 px-3 py-1 rounded-full text-xs font-bold bg-primary text-primary-foreground shadow-lg shadow-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                 {t(company.name)}
               </span>
             </div>
