@@ -13,6 +13,37 @@ interface ResetRequest {
   redirectTo?: string;
 }
 
+// Simple in-memory rate limiter (per edge function instance)
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const MAX_PER_IP = 5;
+const MAX_PER_EMAIL = 3;
+const ipHits = new Map<string, number[]>();
+const emailHits = new Map<string, number[]>();
+
+function isRateLimited(map: Map<string, number[]>, key: string, max: number): boolean {
+  const now = Date.now();
+  const arr = (map.get(key) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  if (arr.length >= max) {
+    map.set(key, arr);
+    return true;
+  }
+  arr.push(now);
+  map.set(key, arr);
+  return false;
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Always return the same generic success response to prevent user enumeration
+const genericSuccess = () =>
+  new Response(
+    JSON.stringify({
+      success: true,
+      message: "If an account exists for this email, a reset link has been sent.",
+    }),
+    { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+  );
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -20,6 +51,26 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { email, redirectTo }: ResetRequest = await req.json();
+
+    // Input validation
+    if (typeof email !== "string" || email.length > 255 || !EMAIL_REGEX.test(email.trim())) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email format" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    const cleanEmail = email.trim().toLowerCase();
+
+    // Rate limiting
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      req.headers.get("cf-connecting-ip") ||
+      "unknown";
+    if (isRateLimited(ipHits, ip, MAX_PER_IP) || isRateLimited(emailHits, cleanEmail, MAX_PER_EMAIL)) {
+      console.warn("Rate limit hit for password reset", { ip, email: cleanEmail });
+      // Return generic success to avoid leaking rate-limit state
+      return genericSuccess();
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -46,21 +97,16 @@ const handler = async (req: Request): Promise<Response> => {
     // Generate a password reset link using admin API
     const { data, error } = await supabaseAdmin.auth.admin.generateLink({
       type: "recovery",
-      email: email,
+      email: cleanEmail,
       options: {
         redirectTo: redirectTo || "https://armanhamrah.lovable.app/admin/reset-password",
       },
     });
 
     if (error) {
+      // Do not reveal whether email exists; log server-side and return generic success
       console.error("Error generating reset link:", error);
-      return new Response(
-        JSON.stringify({ error: error.message }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
+      return genericSuccess();
     }
 
     // The generated link from Supabase admin API
@@ -68,23 +114,17 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!resetLink) {
       console.error("No reset link generated");
-      return new Response(
-        JSON.stringify({ error: "Failed to generate reset link" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
+      return genericSuccess();
     }
 
-    console.log("Generated reset link for:", email);
+    console.log("Generated reset link for:", cleanEmail);
 
     // Send email via Resend
     const resend = new Resend(resendApiKey);
 
     const emailResponse = await resend.emails.send({
       from: "Arman Hamrah <noreply@resend.dev>",
-      to: [email],
+      to: [cleanEmail],
       subject: "بازیابی رمز عبور - آرمان همراه",
       html: `
         <!DOCTYPE html>
