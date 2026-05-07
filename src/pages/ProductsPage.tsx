@@ -1,7 +1,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Loader2, Search } from 'lucide-react';
+import { Loader2, Search, X } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
@@ -60,8 +60,8 @@ const ProductsPageContent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectedBrand, setSelectedBrand] = useState<string>(() => searchParams.get('brand') || 'all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => searchParams.get('category') || 'all');
+  const [searchTerm, setSearchTerm] = useState<string>(() => searchParams.get('q') || '');
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({ queryKey: ['products'], queryFn: fetchProducts });
@@ -73,9 +73,11 @@ const ProductsPageContent = () => {
     return products.filter((product) => {
       const brandMatch = selectedBrand === 'all' || product.brand.name === selectedBrand;
       const categoryMatch = selectedCategory === 'all' || product.category.name === selectedCategory;
-      const searchMatch = debouncedSearchTerm.trim() === '' || 
-                          t(product.name).toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-                          t(product.brand.name).toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+      const q = debouncedSearchTerm.trim().toLowerCase();
+      const searchMatch = q === '' ||
+                          t(product.name).toLowerCase().includes(q) ||
+                          t(product.brand.name).toLowerCase().includes(q) ||
+                          t(product.category.name).toLowerCase().includes(q);
       return brandMatch && categoryMatch && searchMatch;
     });
   }, [products, selectedBrand, selectedCategory, debouncedSearchTerm, t]);
@@ -86,7 +88,25 @@ const ProductsPageContent = () => {
     else searchParams.set('brand', brandName);
     setSearchParams(searchParams, { replace: true });
   };
-  const handleCategoryClick = (categoryName: string) => setSelectedCategory(categoryName);
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+    if (categoryName === 'all') searchParams.delete('category');
+    else searchParams.set('category', categoryName);
+    setSearchParams(searchParams, { replace: true });
+  };
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    if (!value.trim()) searchParams.delete('q');
+    else searchParams.set('q', value);
+    setSearchParams(searchParams, { replace: true });
+  };
+  const clearAllFilters = () => {
+    setSelectedBrand('all');
+    setSelectedCategory('all');
+    setSearchTerm('');
+    setSearchParams({}, { replace: true });
+  };
+  const hasActiveFilters = selectedBrand !== 'all' || selectedCategory !== 'all' || searchTerm.trim() !== '';
 
   return (
     <div className="relative z-10 flex flex-col min-h-screen">
@@ -103,11 +123,52 @@ const ProductsPageContent = () => {
                     <Input 
                         type="text"
                         placeholder={t('products.search_placeholder', 'Search by product name or brand...')}
-                        className={`h-14 w-full bg-card/80 backdrop-blur-sm border-2 border-border rounded-full shadow-lg text-lg hover:shadow-primary/10 focus:shadow-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-14' : 'pl-14'}`} 
+                        className={`h-14 w-full bg-card/80 backdrop-blur-sm border-2 border-border rounded-full shadow-lg text-lg hover:shadow-primary/10 focus:shadow-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-14 pl-14' : 'pl-14 pr-14'}`}
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={(e) => handleSearchChange(e.target.value)}
                     />
+                    {searchTerm && (
+                      <button
+                        type="button"
+                        onClick={() => handleSearchChange('')}
+                        className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors ${language === 'fa' ? 'left-5' : 'right-5'}`}
+                        aria-label={t('clear', 'Clear')}
+                      >
+                        <X size={20} />
+                      </button>
+                    )}
                 </div>
+
+                {/* Active filters bar */}
+                {hasActiveFilters && (
+                  <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+                    <span className="text-sm text-muted-foreground">
+                      {filteredProducts.length} {t('products.results', 'results')}
+                    </span>
+                    {selectedBrand !== 'all' && (
+                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-sm font-medium">
+                        {t(selectedBrand)}
+                        <button onClick={() => handleBrandClick('all')} aria-label="remove">
+                          <X size={14} />
+                        </button>
+                      </span>
+                    )}
+                    {selectedCategory !== 'all' && (
+                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-sm font-medium">
+                        {t(selectedCategory)}
+                        <button onClick={() => handleCategoryClick('all')} aria-label="remove">
+                          <X size={14} />
+                        </button>
+                      </span>
+                    )}
+                    <button
+                      onClick={clearAllFilters}
+                      className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
+                    >
+                      {t('products.clear_filters', 'Clear all')}
+                    </button>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:items-start">
                     <aside className="lg:col-span-1 space-y-8 lg:sticky top-28 h-fit">
