@@ -52,7 +52,7 @@ const WarrantyPageContent = () => {
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                 <EditableText
-                  contentKey="warranty-title"
+                  contentKey={language === 'fa' ? 'warranty-title' : 'warranty-title-en'}
                   page="warranty"
                   section="hero"
                   defaultValue={language === 'fa' ? 'هوشمندترین گارانتی و خدمات پس از فروش در ایران' : 'The Smartest Warranty & After-Sales Service in Iran'}
@@ -61,7 +61,7 @@ const WarrantyPageContent = () => {
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
                 <EditableText
-                  contentKey="warranty-description"
+                  contentKey={language === 'fa' ? 'warranty-description' : 'warranty-description-en'}
                   page="warranty"
                   section="hero"
                   defaultValue={language === 'fa' ? 'شرکت گارانتی آرمان همراه ارتباطات آریا از سال ۱۳۹۴ تا کنون با بهترین تجربه در ارائه خدمات به مشتریان' : 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2015'}
