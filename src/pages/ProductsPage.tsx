@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
 import { productsData } from '@/data/products';
+import { matchesSearch } from '@/lib/searchNormalize';
 
 // Define interfaces for our data structures
 export interface Product {
@@ -73,11 +74,16 @@ const ProductsPageContent = () => {
     return products.filter((product) => {
       const brandMatch = selectedBrand === 'all' || product.brand.name === selectedBrand;
       const categoryMatch = selectedCategory === 'all' || product.category.name === selectedCategory;
-      const q = debouncedSearchTerm.trim().toLowerCase();
-      const searchMatch = q === '' ||
-                          t(product.name).toLowerCase().includes(q) ||
-                          t(product.brand.name).toLowerCase().includes(q) ||
-                          t(product.category.name).toLowerCase().includes(q);
+      const q = debouncedSearchTerm.trim();
+      const haystack = [
+        product.name,
+        t(product.name),
+        product.brand.name,
+        t(product.brand.name),
+        t(product.category.name),
+        product.slug,
+      ].join(' ');
+      const searchMatch = q === '' || matchesSearch(haystack, q);
       return brandMatch && categoryMatch && searchMatch;
     });
   }, [products, selectedBrand, selectedCategory, debouncedSearchTerm, t]);
