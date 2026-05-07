@@ -47,7 +47,7 @@ const PipingEquipmentPageContent = () => {
         <section className="section-padding">
             <div className="container-custom">
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-                    <img src="/images/products/export-2.jpg" alt={t('piping.title')} className="rounded-2xl shadow-xl w-full max-w-4xl mx-auto" / loading="lazy" decoding="async">
+                    <img src="/images/products/export-2.jpg" alt={t('piping.title')} className="rounded-2xl shadow-xl w-full max-w-4xl mx-auto" loading="lazy" decoding="async" />
                 </motion.div>
             </div>
         </section>

@@ -33,7 +33,7 @@ const ExportGallery = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="overflow-hidden rounded-lg"
             >
-              <img src={image.src} alt={image.alt} className="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300" / loading="lazy" decoding="async">
+              <img src={image.src} alt={image.alt} className="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />
             </motion.div>
           ))}
         </div>
