@@ -73,7 +73,7 @@ const GeneralIndustrialSuppliesPageContent = () => {
                   className="card-premium p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center"
                 >
                   <div className="w-full h-64 bg-secondary/50 rounded-xl flex items-center justify-center p-4">
-                     <img src={product.image} alt={product.name[language]} className="max-w-full max-h-full object-contain" / loading="lazy" decoding="async">
+                     <img src={product.image} alt={product.name[language]} className="max-w-full max-h-full object-contain" loading="lazy" decoding="async" />
                   </div>
                   <div className="w-full">
                     <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">{product.name[language]}</h3>
