@@ -52,7 +52,7 @@ const WarrantyPageContent = () => {
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                 <EditableText
-                  contentKey="warranty-title"
+                  contentKey={language === 'fa' ? 'warranty-title' : 'warranty-title-en'}
                   page="warranty"
                   section="hero"
                   defaultValue={language === 'fa' ? 'هوشمندترین گارانتی و خدمات پس از فروش در ایران' : 'The Smartest Warranty & After-Sales Service in Iran'}
