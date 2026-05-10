@@ -89,7 +89,6 @@ const Footer = () => {
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div>
                   <a href="tel:02158798" dir="ltr" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</a>
-                  <a href="tel:02188329274" dir="ltr" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۸۸۳۲۹۲۷۴' : '021-88329274'}</a>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-muted-foreground">
