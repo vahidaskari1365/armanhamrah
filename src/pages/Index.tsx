@@ -5,7 +5,6 @@ import Brands from '@/components/Brands';
 import Services from '@/components/Services';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
-import ChatWidget from '@/components/ChatWidget';
 import Subsidiaries from '@/components/Subsidiaries';
 import pageBg from '@/assets/page-bg.jpeg';
 
@@ -22,7 +21,6 @@ const Index = () => {
           <Subsidiaries />
         </main>
         <Footer />
-        <ChatWidget />
       </div>
     </HelmetProvider>
   );
