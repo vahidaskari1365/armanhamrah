@@ -29,9 +29,9 @@ const Subsidiaries = () => {
           {defaultSubsidiaries.map((company) => (
             <div
               key={company.id}
-              className="group flex flex-col items-center cursor-pointer"
+              className="group flex flex-col items-center cursor-pointer gap-3"
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden bg-background p-2 transition-all duration-300 ease-out group-hover:scale-125 group-hover:shadow-2xl group-hover:shadow-primary/40 group-hover:ring-2 group-hover:ring-primary group-hover:-translate-y-1 group-hover:bg-card">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden bg-background p-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-primary/40 group-hover:ring-2 group-hover:ring-primary group-hover:bg-card">
                 {isEditMode ? (
                   <EditableImage
                     contentKey={`subsidiary-logo-${company.id}`}
@@ -49,7 +49,7 @@ const Subsidiaries = () => {
                   />
                 )}
               </div>
-              <span className="mt-2 px-3 py-1 rounded-full text-xs font-bold bg-primary text-primary-foreground shadow-lg shadow-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+              <span className="px-3 py-1 rounded-full text-xs font-bold text-foreground/70 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/30 transition-all duration-300 whitespace-nowrap text-center">
                 {t(company.name)}
               </span>
             </div>
