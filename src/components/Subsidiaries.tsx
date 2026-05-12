@@ -31,7 +31,7 @@ const Subsidiaries = () => {
               key={company.id}
               className="group flex flex-col items-center cursor-pointer gap-3"
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden bg-background p-2 transition-all duration-300 ease-out group-hover:scale-110 group-hover:shadow-2xl group-hover:shadow-primary/40 group-hover:ring-2 group-hover:ring-primary group-hover:bg-card">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden p-2 transition-transform duration-300 ease-out group-hover:scale-110">
                 {isEditMode ? (
                   <EditableImage
                     contentKey={`subsidiary-logo-${company.id}`}
