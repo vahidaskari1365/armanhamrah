@@ -243,7 +243,7 @@ const ExportPageContent = () => {
                     className="card-premium group"
                   >
                     <Link to={product.slug || '#'} className="block">
-                        <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-6">
+                        <div className="relative mb-4 overflow-hidden rounded-xl p-6">
                         <motion.img
                             src={product.image}
                             alt={t(product.nameKey)}
