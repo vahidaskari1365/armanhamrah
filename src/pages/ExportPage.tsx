@@ -401,16 +401,6 @@ const ExportPageContent = () => {
                   
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center flex-shrink-0">
-                        <MessageCircle size={24} className="text-white" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-foreground mb-1">WhatsApp</p>
-                        <a href="https://wa.me/9888321032" className="text-muted-foreground hover:text-primary" dir="ltr">+98 88321032</a>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <Mail size={24} className="text-primary" />
                       </div>
@@ -443,57 +433,6 @@ const ExportPageContent = () => {
                     </div>
                   </div>
                 </motion.div>
-
-                {/* Contact Form */}
-                <motion.div
-                  initial={{ opacity: 0, x: (direction === 'rtl' ? -30 : 30) }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="card-premium"
-                >
-                  <h3 className="text-2xl font-bold text-foreground mb-6">{t('export.form.title')}</h3>
-                  <form className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.full_name')}</label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                        placeholder={t('export.form.full_name_placeholder')}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.company_name')}</label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                        placeholder={t('export.form.company_name_placeholder')}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                      <input
-                        type="email"
-                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.message')}</label>
-                      <textarea
-                        rows={4}
-                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
-                        placeholder={t('export.form.message_placeholder')}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full btn-gold py-4 text-lg"
-                    >
-                      {t('export.form.send')}
-                    </button>
-                  </form>
-                </motion.div>
               </div>
             </div>
           </section>
@@ -516,14 +455,6 @@ const ExportPageContent = () => {
                   {t('export.cta.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href="https://wa.me/9888321032"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
-                  >
-                    {t('export.cta.button_start')}
-                  </a>
                   <Link
                     to="/contact"
                     className="inline-block bg-background/20 text-primary-foreground border-2 border-primary-foreground/30 px-8 py-4 rounded-xl font-bold hover:bg-background/30 transition-colors"
