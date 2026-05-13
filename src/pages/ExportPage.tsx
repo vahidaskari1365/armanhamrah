@@ -388,7 +388,7 @@ const ExportPageContent = () => {
           {/* Contact Section */}
           <section className="section-padding">
             <div className="container-custom">
-              <div className="grid lg:grid-cols-2 gap-12">
+              <div className="max-w-2xl mx-auto">
                 {/* Contact Info */}
                 <motion.div
                   initial={{ opacity: 0, x: (direction === 'rtl' ? 30 : -30) }}
