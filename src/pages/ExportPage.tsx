@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, MessageCircle, Mail, Phone, ExternalLink } from 'lucide-react';
+import { ArrowRight, Globe, Truck, Shield, FileCheck, Package, BadgeCheck, Handshake, MapPin, Mail, Phone, ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,7 +9,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
 import EditableText from '@/components/admin/EditableText';
-import ExportGallery from '@/components/ExportGallery';
+import exportGoalImage from '@/assets/export-goal.jpg';
 
 // Data now uses translation keys
 const features = [
@@ -281,9 +281,6 @@ const ExportPageContent = () => {
             </div>
           </section>
 
-          {/* Gallery */}
-          <ExportGallery />
-
           {/* Services */}
           <section className="section-padding bg-gradient-premium">
             <div className="container-custom">
@@ -342,9 +339,12 @@ const ExportPageContent = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <img
-                    src="https://export.armanhamrah.com/uploads/goals.webp"
+                    src={exportGoalImage}
                     alt={t('export.goal.title')}
                     className="rounded-2xl shadow-2xl w-full"
+                    loading="lazy"
+                    width={1024}
+                    height={768}
                   />
                 </motion.div>
               </div>
