@@ -471,7 +471,7 @@ const fallbackTranslationsData = {
 
     // Warranty Page - Accessories
     'warranty.accessories.title': 'شرایط گارانتی لوازم جانبی و اکسسوری',
-    'warranty.accessories.main': '(اسپیکر، ساعت های هوشمند، هدست،و …)<br/><br/>کلیه ساعتها و گجت های گارانتی شده توسط شرکت آرمان همراه دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای کالاهای تلفن همراه و تبلت و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
+    'warranty.accessories.main': '(اسپیکر، ساعت های هوشمند، هدست،و …)<br/><br/>کلیه ساعتها و گجت های گارانتی شده توسط شرکت آرمان همراه دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای گجت های پوشیدنی و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
     'warranty.accessories.item1': 'تعویض محصولات در صورت داشتن عیوب ذاتی از سوی شرکت سازنده وبه مدت 1 ماه می باشد توجه فرمائید که این بند شامل عیوب ظاهری و یا رنگ و مدل نمی باشند لذا در حین خرید محصول خود را از لحاظ سلامت فیزیکی و ظاهری در حضور فروشنده تست نمایید چنانچه محصولی دارای رنگ رفتگی ،فرورفتگی،شکستگی و یا ایرادات ظاهری باشد شامل گارانتی تعویض نمی گردد.',
     'warranty.accessories.item2': 'صدمات ناشی از آبخوردگی،ضربه خوردگی،رنگ رفتگی،دفرمه شدن محصول،باز شدن محصول در مراکز غیر مجاز و خارج از مجموعه و نوسانات برقی و سوختگی شامل گارانتی نمی باشد لذا در حفظ و نگهداری محصول خود نهایت دقت را بفرمایید.',
     'warranty.accessories.item3': 'شرکت هیچ گونه مسئولیتی در قبال حفظ برنامه ها و اطلاعات شخصی کاربر ندارد.',
@@ -487,8 +487,8 @@ const fallbackTranslationsData = {
     'warranty.repairs.main': '',
     'warranty.repairs.item1': 'دستگاه های آب خورده.ضربه خورده به علت تغییر شکل ظاهری و وضعیت داخلی ,ممکن است پس از بازکردن به حالت اولیه در زمان پذیرش باز نگردد.',
     'warranty.repairs.item2': 'دستگاهی که فاقد گارانتی می باشد چنانچه با یک ایراد مشخص به مرکز مراجعه نماید.این مرکز فقط در قبال ایراد ذکرشده مسئولیت می پذیرد بدین علت که ممکن است دستگاه آب خورده یا ضربه خورده به علت آسیبی که به آن وارد شده بعد از گذشت مدتی سایر عیوب خود را نمایان سازد.',
-    'warranty.repairs.item3': 'قطعه ی تعویضی در این مرکز به مدت 1 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد',
-    'warranty.repairs.note': 'چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 3.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *',
+    'warranty.repairs.item3': 'قطعه ی تعویضی در این مرکز به مدت 3 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد',
+    'warranty.repairs.note': 'چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 5.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *',
     
     // Representatives Page
     'representatives.hero.title': 'نمایندگان فروش',
@@ -957,7 +957,7 @@ const fallbackTranslationsData = {
 
     // Warranty Page - Accessories
     'warranty.accessories.title': 'Accessory and Gadget Warranty Conditions',
-    'warranty.accessories.main': '(Speakers, Smartwatches, Headsets, etc.)<br/><br/>All watches and gadgets guaranteed by Arman Hamrah have an 18-month warranty from the moment of sale.<br/>(Note 1: The warranty period for mobile phones, tablets, and smart accessories starts from activation (purchase invoice) and up to 6 months after the import declaration in the trade system.)',
+    'warranty.accessories.main': '(Speakers, Smartwatches, Headsets, etc.)<br/><br/>All watches and gadgets guaranteed by Arman Hamrah have an 18-month warranty from the moment of sale.<br/>(Note 1: The warranty period for wearable gadgets and smart accessories starts from activation (purchase invoice) and up to 6 months after the import declaration in the trade system.)',
     'warranty.accessories.item1': 'Products with inherent manufacturer defects will be replaced for up to 1 month. This does not cover cosmetic issues, color, or model. Please inspect the product physically in the seller\'s presence. Products with discoloration, dents, breakages, or other cosmetic flaws are not eligible for replacement warranty.',
     'warranty.accessories.item2': 'Damage from water, impact, discoloration, deformation, opening at unauthorized centers, and electrical fluctuations are not covered. Please take care of your product.',
     'warranty.accessories.item3': 'The company is not responsible for saving user\'s personal data or applications.',
@@ -973,8 +973,8 @@ const fallbackTranslationsData = {
     'warranty.repairs.main': '',
     'warranty.repairs.item1': 'Water or impact-damaged devices may not return to their original admission state after being opened due to internal and external changes.',
     'warranty.repairs.item2': 'For an out-of-warranty device brought in for a specific issue, the center is only responsible for that issue. Water or impact damage may cause other faults to appear later.',
-    'warranty.repairs.item3': 'Replaced parts are warrantied for 1 month after delivery, provided the device does not suffer new water or impact damage and has no physical changes.',
-    'warranty.repairs.note': 'If other issues are found during inspection, the customer will be contacted by phone.<br/>Repairs up to 3,000,000 IRR will be done without coordination; for higher amounts, the customer will be contacted.<br/>Please read the conditions for out-of-warranty devices carefully and sign the consent form if you agree.<br/>* National ID, signature, and fingerprint are required on the consent form. *',
+    'warranty.repairs.item3': 'Replaced parts are warrantied for 3 months after delivery, provided the device does not suffer new water or impact damage and has no physical changes.',
+    'warranty.repairs.note': 'If other issues are found during inspection, the customer will be contacted by phone.<br/>Repairs up to 5,000,000 IRR will be done without coordination; for higher amounts, the customer will be contacted.<br/>Please read the conditions for out-of-warranty devices carefully and sign the consent form if you agree.<br/>* National ID, signature, and fingerprint are required on the consent form. *',
 
     // Representatives Page
     'representatives.hero.title': 'Sales Representatives',

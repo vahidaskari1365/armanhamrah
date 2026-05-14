@@ -24,7 +24,6 @@ const WarrantyConditionsPageContent = () => {
     'warranty.conditions.item9',
     'warranty.conditions.item10',
     'warranty.conditions.item11',
-    'warranty.conditions.item12',
   ];
 
   const exceptions = [
