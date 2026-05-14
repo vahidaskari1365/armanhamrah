@@ -471,7 +471,7 @@ const fallbackTranslationsData = {
 
     // Warranty Page - Accessories
     'warranty.accessories.title': 'شرایط گارانتی لوازم جانبی و اکسسوری',
-    'warranty.accessories.main': '(اسپیکر، ساعت های هوشمند، هدست،و …)<br/><br/>کلیه ساعتها و گجت های گارانتی شده توسط شرکت آرمان همراه دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای کالاهای تلفن همراه و تبلت و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
+    'warranty.accessories.main': '(اسپیکر، ساعت های هوشمند، هدست،و …)<br/><br/>کلیه ساعتها و گجت های گارانتی شده توسط شرکت آرمان همراه دارای 18 ماه گارانتی از لحظه فروش به مصرف کننده می باشد.<br/>(تبصره ۱ : مبنای محاسبه زمان شروع گارانتی برای گجت های پوشیدنی و اکسسوری های هوشمند از زمان فعالسازی (فاکتور خرید) و حداکثر ۶ماه پس از زمان اظهار واردات در سامانه جامع تجارت خواهد بود.)',
     'warranty.accessories.item1': 'تعویض محصولات در صورت داشتن عیوب ذاتی از سوی شرکت سازنده وبه مدت 1 ماه می باشد توجه فرمائید که این بند شامل عیوب ظاهری و یا رنگ و مدل نمی باشند لذا در حین خرید محصول خود را از لحاظ سلامت فیزیکی و ظاهری در حضور فروشنده تست نمایید چنانچه محصولی دارای رنگ رفتگی ،فرورفتگی،شکستگی و یا ایرادات ظاهری باشد شامل گارانتی تعویض نمی گردد.',
     'warranty.accessories.item2': 'صدمات ناشی از آبخوردگی،ضربه خوردگی،رنگ رفتگی،دفرمه شدن محصول،باز شدن محصول در مراکز غیر مجاز و خارج از مجموعه و نوسانات برقی و سوختگی شامل گارانتی نمی باشد لذا در حفظ و نگهداری محصول خود نهایت دقت را بفرمایید.',
     'warranty.accessories.item3': 'شرکت هیچ گونه مسئولیتی در قبال حفظ برنامه ها و اطلاعات شخصی کاربر ندارد.',
@@ -957,7 +957,7 @@ const fallbackTranslationsData = {
 
     // Warranty Page - Accessories
     'warranty.accessories.title': 'Accessory and Gadget Warranty Conditions',
-    'warranty.accessories.main': '(Speakers, Smartwatches, Headsets, etc.)<br/><br/>All watches and gadgets guaranteed by Arman Hamrah have an 18-month warranty from the moment of sale.<br/>(Note 1: The warranty period for mobile phones, tablets, and smart accessories starts from activation (purchase invoice) and up to 6 months after the import declaration in the trade system.)',
+    'warranty.accessories.main': '(Speakers, Smartwatches, Headsets, etc.)<br/><br/>All watches and gadgets guaranteed by Arman Hamrah have an 18-month warranty from the moment of sale.<br/>(Note 1: The warranty period for wearable gadgets and smart accessories starts from activation (purchase invoice) and up to 6 months after the import declaration in the trade system.)',
     'warranty.accessories.item1': 'Products with inherent manufacturer defects will be replaced for up to 1 month. This does not cover cosmetic issues, color, or model. Please inspect the product physically in the seller\'s presence. Products with discoloration, dents, breakages, or other cosmetic flaws are not eligible for replacement warranty.',
     'warranty.accessories.item2': 'Damage from water, impact, discoloration, deformation, opening at unauthorized centers, and electrical fluctuations are not covered. Please take care of your product.',
     'warranty.accessories.item3': 'The company is not responsible for saving user\'s personal data or applications.',
