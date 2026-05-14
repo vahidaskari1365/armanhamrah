@@ -487,8 +487,8 @@ const fallbackTranslationsData = {
     'warranty.repairs.main': '',
     'warranty.repairs.item1': 'دستگاه های آب خورده.ضربه خورده به علت تغییر شکل ظاهری و وضعیت داخلی ,ممکن است پس از بازکردن به حالت اولیه در زمان پذیرش باز نگردد.',
     'warranty.repairs.item2': 'دستگاهی که فاقد گارانتی می باشد چنانچه با یک ایراد مشخص به مرکز مراجعه نماید.این مرکز فقط در قبال ایراد ذکرشده مسئولیت می پذیرد بدین علت که ممکن است دستگاه آب خورده یا ضربه خورده به علت آسیبی که به آن وارد شده بعد از گذشت مدتی سایر عیوب خود را نمایان سازد.',
-    'warranty.repairs.item3': 'قطعه ی تعویضی در این مرکز به مدت 1 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد',
-    'warranty.repairs.note': 'چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 3.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *',
+    'warranty.repairs.item3': 'قطعه ی تعویضی در این مرکز به مدت 3 ماه پس از تحویل خدمات گارانتی دارد,این خدمات در صورتی می باشد که دستگاه مجددا اب یا ضربه نخورد و تغییر فیزیکی نداشته باشد',
+    'warranty.repairs.note': 'چنانچه دستگاه به جز ایرادی که مشتری اعلام نموده پس از کارشناسی ایرادات دیگری نیز مشاهده گردد طی تماس تلفنی با مشتری هماهنگ می گردد.<br/>این مرکز ایرادات تا سقف 5.000.000 میلیون ریال را بدون هماهنگی تعمیر می نماید ومبالغ بالاتر تماس تلفنی هماهنگ می گردد.<br/>لطفا شرایط دستگاه های فاقد گارانتی را با دقت مطالعه فرمایید و با آگاهی کامل و در صورت تمایل فرم رضایت نامه را امضاء و تکمیل نمایید.<br/>* کدملی ، امضاء و اثرانگشت در فرم رضایت الزامی می باشد. *',
     
     // Representatives Page
     'representatives.hero.title': 'نمایندگان فروش',
@@ -973,8 +973,8 @@ const fallbackTranslationsData = {
     'warranty.repairs.main': '',
     'warranty.repairs.item1': 'Water or impact-damaged devices may not return to their original admission state after being opened due to internal and external changes.',
     'warranty.repairs.item2': 'For an out-of-warranty device brought in for a specific issue, the center is only responsible for that issue. Water or impact damage may cause other faults to appear later.',
-    'warranty.repairs.item3': 'Replaced parts are warrantied for 1 month after delivery, provided the device does not suffer new water or impact damage and has no physical changes.',
-    'warranty.repairs.note': 'If other issues are found during inspection, the customer will be contacted by phone.<br/>Repairs up to 3,000,000 IRR will be done without coordination; for higher amounts, the customer will be contacted.<br/>Please read the conditions for out-of-warranty devices carefully and sign the consent form if you agree.<br/>* National ID, signature, and fingerprint are required on the consent form. *',
+    'warranty.repairs.item3': 'Replaced parts are warrantied for 3 months after delivery, provided the device does not suffer new water or impact damage and has no physical changes.',
+    'warranty.repairs.note': 'If other issues are found during inspection, the customer will be contacted by phone.<br/>Repairs up to 5,000,000 IRR will be done without coordination; for higher amounts, the customer will be contacted.<br/>Please read the conditions for out-of-warranty devices carefully and sign the consent form if you agree.<br/>* National ID, signature, and fingerprint are required on the consent form. *',
 
     // Representatives Page
     'representatives.hero.title': 'Sales Representatives',
