@@ -70,9 +70,7 @@ const fallbackTranslationsData = {
     'subsidiary.4.name': 'فرنام تجارت دادار',
     'subsidiary.5.name': 'دانیال تجارت دارا',
     'subsidiary.6.name': 'فرنام تجارت کارا',
-    'subsidiary.7.name': 'کارزین تجارت پرگون',
     'subsidiary.8.name': 'مانیا تجارت ماکان',
-    'subsidiary.9.name': 'کارزین تجارت آرشان',
     'subsidiary.10.name': 'رادیکال وان',
 
     // Products Page
@@ -550,7 +548,7 @@ const fallbackTranslationsData = {
     // Hero
     'hero.title': 'The Smartest Warranty & Services',
     'hero.subtitle': 'After-Sales in Iran',
-    'hero.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the best customer service experience since 2015',
+    'hero.description': 'Arman Hamrah Ertebatat Aria has been providing the best customer service experience since 2015',
     'hero.cta': 'Our Services',
     'hero.cta2': 'Register',
 
@@ -576,16 +574,14 @@ const fallbackTranslationsData = {
     'subsidiary.4.name': 'Farnam Tejarat Dadar',
     'subsidiary.5.name': 'Danial Tejarat Dara',
     'subsidiary.6.name': 'Farnam Tejarat Kara',
-    'subsidiary.7.name': 'Karzin Tejarat Pargon',
     'subsidiary.8.name': 'Mania Tejarat Makan',
-    'subsidiary.9.name': 'Karzin Tejarat Arshan',
     'subsidiary.10.name': 'Radical One',
 
     // Products Page
     'products.title': 'Products',
     'products.back': 'Back to Home',
     'products.back_to_list': 'Back to Products',
-    'products.description': 'All products come with a valid Arman Hamrah Communications Aria warranty.',
+    'products.description': 'All products come with a valid Arman Hamrah Ertebatat Aria warranty.',
     'products.availability': 'For information on price and availability, please contact the store.',
     'products.brand': 'Brand',
     'products.category': 'Category',
@@ -595,7 +591,7 @@ const fallbackTranslationsData = {
     'products.intro': 'Product Introduction',
     'products.specs': 'Specifications',
     'products.specs_soon': 'Specifications for this product will be added soon.',
-    'products.seo.title': 'Products | Arman Hamrah Communications Aria',
+    'products.seo.title': 'Products | Arman Hamrah Ertebatat Aria',
     'products.seo.description': 'View all Apple, Samsung products with Arman Hamrah warranty - iPhone, Galaxy, Apple Watch and smartwatches',
     'products_page.title': 'Our Products',
     'products_page.description': 'Here you can see our latest and highest quality products.',
@@ -916,8 +912,8 @@ const fallbackTranslationsData = {
     'piping.seo.title': 'Piping Equipment Export | Arman Hamrah', 'piping.seo.description': 'Sourcing and exporting industrial valves, pipes, and fittings for oil, gas, and petrochemical projects.',
     
     // About Page
-    'about.title': 'Arman Hamrah Aria Communications; More Than a Choice',
-    'about.p1': 'Arman Hamrah Aria Communications Company, as one of the leading and reputable names in the field of technology and trade in Iran, has started its activity by focusing on importing, distributing and offering the latest mobile phones, tablets and accessories from the world\'s top brands. Our goal from the beginning has been to create a reliable bridge between you and the world of technology in order to create a unique shopping experience for every customer by providing genuine and high-quality products.',
+    'about.title': 'Arman Hamrah Ertebatat Aria; More Than a Choice',
+    'about.p1': 'Arman Hamrah Ertebatat Aria Company, as one of the leading and reputable names in the field of technology and trade in Iran, has started its activity by focusing on importing, distributing and offering the latest mobile phones, tablets and accessories from the world\'s top brands. Our goal from the beginning has been to create a reliable bridge between you and the world of technology in order to create a unique shopping experience for every customer by providing genuine and high-quality products.',
     'about.p2': 'At Arman Hamrah, we consider customer satisfaction and peace of mind to be the cornerstone of our activities. For this reason, we offer all our products with a valid 18-month Arman Hamrah warranty. This warranty guarantees our commitment to providing the highest quality after-sales support and services. Our after-sales service centers, with the help of a specialized and experienced team, are always ready to respond to your needs in the fastest possible time.',
     'about.p3': 'The activities of the Arman Group are not limited to the digital goods market. We are proud to have an active presence in the export of industrial products, petrochemicals and raw materials as a capable and multifaceted holding. This breadth shows our capability, experience and international communication network and helps us on the way to becoming a reliable business partner on a larger scale.',
     'about.p4': 'Our vision is to become the most trusted name in providing goods and services in Iran. We intend to create sustainable value for our customers, employees and business partners through continuous innovation, transparency in performance and adherence to customer-oriented principles. At Arman Hamrah, we strive every day to build a better tomorrow and provide more worthy services.',
@@ -994,11 +990,11 @@ const fallbackTranslationsData = {
 
     // App Section
     'app.title': 'After-Sales Service at Your Fingertips',
-    'app.description': 'Dear customers of Arman Hamrah Aria Communications, enjoy our online services by installing the My Arman app or using the web version for iOS.',
+    'app.description': 'Dear customers of Arman Hamrah Ertebatat Aria, enjoy our online services by installing the My Arman app or using the web version for iOS.',
     'app.cta': 'Login to My Arman',
     
     // Footer
-    'footer.description': 'Arman Hamrah Aria Communications Warranty Company has been providing the smartest warranty in Iran with the best after-sales service experience since 2015.',
+    'footer.description': 'Arman Hamrah Ertebatat Aria has been providing the smartest warranty in Iran with the best after-sales service experience since 2015.',
     'footer.quickLinks': 'Quick Links',
     'footer.contact': 'Contact Us',
     'footer.followUs': 'Follow Us',

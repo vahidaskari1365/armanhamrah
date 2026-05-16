@@ -1,7 +1,5 @@
 import subsidiary2 from '@/assets/subsidiary-2.jpeg';
-import subsidiary7 from '@/assets/subsidiary-7.jpg';
 import subsidiary8 from '@/assets/subsidiary-8.jpeg';
-import subsidiary9 from '@/assets/subsidiary-9.jpg';
 import subsidiary10 from '@/assets/subsidiary-10.jpeg';
 import EditableImage from '@/components/admin/EditableImage';
 import { useAdmin } from '@/contexts/AdminContext';
@@ -10,8 +8,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const defaultSubsidiaries = [
   { id: 2, name: 'subsidiary.2.name', logo: subsidiary2 },
   { id: 8, name: 'subsidiary.8.name', logo: subsidiary8 },
-  { id: 9, name: 'subsidiary.9.name', logo: subsidiary9 },
-  { id: 7, name: 'subsidiary.7.name', logo: subsidiary7 },
   { id: 10, name: 'subsidiary.10.name', logo: subsidiary10 },
 ];
 

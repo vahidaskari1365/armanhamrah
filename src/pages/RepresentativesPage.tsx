@@ -20,57 +20,6 @@ interface Representative {
   address: string;
 }
 
-const representativeTranslations: { [key: string]: Partial<Representative> } = {
-  'فروشگاه خانه موبایل-تهران': {
-    name: 'Mobile House Store',
-    province: 'Tehran',
-    city: 'Tehran',
-    address: 'Phase 3, Ekbatan Town, Kourosh Shopping Center, Ground Floor, No. 1',
-  },
-  'فروشگاه موبایل کلاسیک-تهران': {
-    name: 'Classic Mobile Store',
-    province: 'Tehran',
-    city: 'Tehran',
-    address: 'Hafez St., Iran Mobile Market, Ground Floor, No. 236',
-  },
-  'فروشگاه پرشین موبایل-تهران': {
-    name: 'Persian Mobile Store',
-    province: 'Tehran',
-    city: 'Tehran',
-    address: 'Jomhouri St., Alaeddin Passage, First Floor, No. 154',
-  },
-  'فروشگاه موبایل پایتخت-تهران': {
-    name: 'Paytakht Mobile Store',
-    province: 'Tehran',
-    city: 'Tehran',
-    address: 'Valiasr St., Mirdamad intersection, Paytakht Computer Complex, First floor, Unit 101',
-  },
-  'فروشگاه دنیای موبایل-اصفهان': {
-    name: 'Mobile World Store',
-    province: 'Isfahan',
-    city: 'Isfahan',
-    address: 'Ferdowsi St., Isfahan Mobile Passage, Second Floor, Unit 205',
-  },
-  'فروشگاه دنیای موبایل-شیراز': {
-    name: 'Mobile World Store',
-    province: 'Shiraz',
-    city: 'Shiraz',
-    address: 'Mulla Sadra St., Pars Shopping Center, First Floor, No. 110',
-  },
-  'فروشگاه عصر ارتباط-مشهد': {
-    name: 'Asr Ertebat Store',
-    province: 'Mashhad',
-    city: 'Mashhad',
-    address: 'Ahmadabad Blvd., Mashhad Mobile Passage, Third Floor, No. 301',
-  },
-  'فروشگاه موبایل آنلاین-تبریز': {
-    name: 'Mobile Online Store',
-    province: 'Tabriz',
-    city: 'Tabriz',
-    address: 'Shariati St., Tabriz Mobile Passage, Ground Floor, No. 50',
-  },
-};
-
 
 const RepresentativesPageContent = () => {
   const { language, t } = useLanguage();
@@ -89,25 +38,13 @@ const RepresentativesPageContent = () => {
       if (error) {
         console.error('Error fetching representatives:', error);
       } else if (data) {
-          if (language === 'en') {
-              const translatedData = data.map(rep => {
-                  const translationKey = `${rep.name}-${rep.city}`;
-                  const translation = representativeTranslations[translationKey];
-                  if (translation) {
-                      return { ...rep, ...translation };
-                  }
-                  return rep;
-              });
-              setRepresentatives(translatedData);
-          } else {
-              setRepresentatives(data);
-          }
+        setRepresentatives(data);
       }
       setIsLoading(false);
     };
 
     fetchRepresentatives();
-  }, [language]);
+  }, []);
 
   const benefits = [
     { key: 'representatives.benefits.1', icon: Award },
