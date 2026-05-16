@@ -80,7 +80,7 @@ const ContactPageContent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
+              <Link to="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary mb-6">
                 <ArrowRight size={20} />
                 {language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Back to Home'}
               </Link>
@@ -93,7 +93,7 @@ const ContactPageContent = () => {
                   as="span"
                 />
               </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">
+              <p className="text-lg text-foreground max-w-2xl">
                 <EditableText
                   contentKey="contact-description"
                   page="contact"
@@ -132,7 +132,7 @@ const ContactPageContent = () => {
                       <a
                         key={phoneIndex}
                         href={phone.href}
-                        className="block text-muted-foreground text-sm hover:text-primary transition-colors"
+                        className="block text-foreground text-sm hover:text-primary transition-colors"
                         dir={phone.href.startsWith('tel') ? 'ltr' : language === 'fa' ? 'rtl' : 'ltr'}
                       >
                         {language === 'en' && 'numberEn' in phone ? phone.numberEn : phone.number}
@@ -156,8 +156,8 @@ const ContactPageContent = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{addressInfo.title[language]}</h3>
-                  <p className="text-muted-foreground mb-2">{addressInfo.value[language]}</p>
-                  <p className="text-sm text-muted-foreground/70">
+                  <p className="text-foreground mb-2">{addressInfo.value[language]}</p>
+                  <p className="text-sm text-foreground/70">
                     {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} {addressInfo.postalCode}
                   </p>
                 </div>

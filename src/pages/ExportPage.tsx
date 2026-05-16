@@ -147,7 +147,7 @@ const ExportPageContent = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
+                <Link to="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary mb-6">
                   <ArrowRight size={20} />
                   {t('nav.home')}
                 </Link>
@@ -169,7 +169,7 @@ const ExportPageContent = () => {
                     as="span"
                   />
                 </p>
-                <p className="text-lg text-muted-foreground max-w-2xl">
+                <p className="text-lg text-foreground max-w-2xl">
                   <EditableText
                     contentKey="export-description"
                     page="export"
@@ -211,7 +211,7 @@ const ExportPageContent = () => {
                       <feature.icon size={28} className="text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-2">{t(feature.titleKey)}</h3>
-                    <p className="text-muted-foreground text-sm">{t(feature.descriptionKey)}</p>
+                    <p className="text-foreground text-sm">{t(feature.descriptionKey)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -254,7 +254,7 @@ const ExportPageContent = () => {
                         </span>
                         </div>
                         <h3 className="text-xl font-bold text-foreground mb-2">{t(product.nameKey)}</h3>
-                        <p className="text-muted-foreground text-sm mb-4">{t(product.descriptionKey)}</p>
+                        <p className="text-foreground text-sm mb-4">{t(product.descriptionKey)}</p>
                         
                         {product.grades && (
                         <div className="mb-4">
@@ -310,7 +310,7 @@ const ExportPageContent = () => {
                       <service.icon size={24} className="text-primary-foreground" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">{t(service.titleKey)}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{t(service.descriptionKey)}</p>
+                    <p className="text-foreground leading-relaxed">{t(service.descriptionKey)}</p>
                   </motion.div>
                 ))}
               </div>
@@ -328,7 +328,7 @@ const ExportPageContent = () => {
                   transition={{ duration: 0.6 }}
                 >
                   <h2 className="text-3xl font-bold text-foreground mb-4">{t('export.goal.title')}</h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-lg text-foreground leading-relaxed mb-6">
                     {t('export.goal.description')}
                   </p>
                 </motion.div>
@@ -362,7 +362,7 @@ const ExportPageContent = () => {
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl font-bold text-foreground mb-4">{t('export.countries.title')}</h2>
-                <p className="text-muted-foreground">{t('export.countries.subtitle')}</p>
+                <p className="text-foreground">{t('export.countries.subtitle')}</p>
                 <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-4" />
               </motion.div>
 
@@ -406,7 +406,7 @@ const ExportPageContent = () => {
                       </div>
                       <div>
                         <p className="font-medium text-foreground mb-1">Email</p>
-                        <a href="mailto:commercial@armanhamrah.com" className="text-muted-foreground hover:text-primary" dir="ltr">commercial@armanhamrah.com</a>
+                        <a href="mailto:commercial@armanhamrah.com" className="text-foreground hover:text-primary font-medium" dir="ltr">commercial@armanhamrah.com</a>
                       </div>
                     </div>
                     
@@ -416,7 +416,7 @@ const ExportPageContent = () => {
                       </div>
                       <div>
                         <p className="font-medium text-foreground mb-1">{t('export.contact.phone')}</p>
-                        <a href="tel:02188321032" className="text-muted-foreground hover:text-primary" dir="ltr">+98 21 88321032</a>
+                        <a href="tel:02188321032" className="text-foreground hover:text-primary font-medium" dir="ltr">+98 21 88321032</a>
                       </div>
                     </div>
                     
@@ -426,7 +426,7 @@ const ExportPageContent = () => {
                       </div>
                       <div>
                         <p className="font-medium text-foreground mb-1">{t('export.contact.address')}</p>
-                        <p className="text-muted-foreground text-sm">
+                        <p className="text-foreground font-medium text-sm">
                           {t('export.contact.address_value')}
                         </p>
                       </div>

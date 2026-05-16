@@ -125,11 +125,11 @@ const ProductsPageContent = () => {
                 </h1>
       
                 <div className="relative max-w-xl mx-auto w-full mb-12">
-                    <Search className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground ${language === 'fa' ? 'right-5' : 'left-5'}`} size={24} />
+                    <Search className={`absolute top-1/2 -translate-y-1/2 text-foreground ${language === 'fa' ? 'right-5' : 'left-5'}`} size={24} />
                     <Input 
                         type="text"
                         placeholder={t('products.search_placeholder', 'Search by product name or brand...')}
-                        className={`h-14 w-full bg-card/80 backdrop-blur-sm border-2 border-border rounded-full shadow-lg text-lg hover:shadow-primary/10 focus:shadow-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out ${language === 'fa' ? 'pr-14 pl-14' : 'pl-14 pr-14'}`}
+                        className={`h-14 w-full bg-card/80 backdrop-blur-sm border-2 border-border rounded-full shadow-lg text-lg hover:shadow-primary/10 focus:shadow-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out text-foreground ${language === 'fa' ? 'pr-14 pl-14' : 'pl-14 pr-14'}`}
                         value={searchTerm}
                         onChange={(e) => handleSearchChange(e.target.value)}
                     />
@@ -137,7 +137,7 @@ const ProductsPageContent = () => {
                       <button
                         type="button"
                         onClick={() => handleSearchChange('')}
-                        className={`absolute top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors ${language === 'fa' ? 'left-5' : 'right-5'}`}
+                        className={`absolute top-1/2 -translate-y-1/2 text-foreground hover:text-primary transition-colors ${language === 'fa' ? 'left-5' : 'right-5'}`}
                         aria-label={t('clear', 'Clear')}
                       >
                         <X size={20} />
@@ -148,7 +148,7 @@ const ProductsPageContent = () => {
                 {/* Active filters bar */}
                 {hasActiveFilters && (
                   <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-sm text-foreground font-medium">
                       {filteredProducts.length} {t('products.results', 'results')}
                     </span>
                     {selectedBrand !== 'all' && (
@@ -169,7 +169,7 @@ const ProductsPageContent = () => {
                     )}
                     <button
                       onClick={clearAllFilters}
-                      className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
+                      className="text-sm text-foreground font-medium hover:text-primary underline underline-offset-4"
                     >
                       {t('products.clear_filters', 'Clear all')}
                     </button>
@@ -234,7 +234,7 @@ const ProductsPageContent = () => {
                             </AnimatePresence>
                         )}
                         {!isLoadingProducts && filteredProducts?.length === 0 && (
-                            <div className="text-center py-16"><p className="text-muted-foreground text-lg">{t('products.noProducts', 'No products matching your criteria.')}</p></div>
+                            <div className="text-center py-16"><p className="text-foreground text-lg">{t('products.noProducts', 'No products matching your criteria.')}</p></div>
                         )}
                     </div>
                 </div>

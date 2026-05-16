@@ -48,7 +48,7 @@ const Footer = () => {
               defaultValue={t('footer.description')}
               as="p"
               multiline
-              className="text-muted-foreground leading-relaxed text-sm"
+              className="text-foreground leading-relaxed text-sm"
             />
           </motion.div>
 
@@ -65,7 +65,7 @@ const Footer = () => {
                 <li key={link.key}>
                   <Link
                     to={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-foreground hover:text-primary transition-colors"
                   >
                     {t(link.key)}
                   </Link>
@@ -85,13 +85,13 @@ const Footer = () => {
               {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-muted-foreground">
+              <li className="flex items-start gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div>
                   <a href="tel:02158798" dir="ltr" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</a>
                 </div>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground">
+              <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div className="text-sm">
                   <span>
@@ -100,7 +100,7 @@ const Footer = () => {
                       : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 204'
                     }
                   </span>
-                  <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
+                  <p className="text-xs text-foreground/70 mt-1" dir="ltr">
                     {language === 'fa' ? 'کد پستی:' : 'Postal Code:'}{language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335'}
                   </p>
                 </div>
@@ -119,11 +119,11 @@ const Footer = () => {
               {language === 'fa' ? 'فروشگاه' : 'Store'}
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-muted-foreground">
+              <li className="flex items-start gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
                 <span dir="ltr">{language === 'fa' ? '(به زودی)' : '(Coming Soon)'}</span>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground">
+              <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div className="text-sm">
                   <span>
@@ -148,15 +148,15 @@ const Footer = () => {
               {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-muted-foreground">
+              <li className="flex items-center gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0" />
                 <span dir="ltr">{language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۰-۲' : '021-88321030-2'}</span>
               </li>
-              <li className="flex items-center gap-3 text-muted-foreground">
+              <li className="flex items-center gap-3 text-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
                 <span>info@armanhamrah.com</span>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground">
+              <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div className="text-sm">
                   <span>
@@ -165,7 +165,7 @@ const Footer = () => {
                       : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
                     }
                   </span>
-                  <p className="text-xs text-muted-foreground/70 mt-1" dir="ltr">
+                  <p className="text-xs text-foreground/70 mt-1" dir="ltr">
                     {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} {language === 'fa' ? '۱۵۷۵۹۴۵۳۴۱' : '1575945341'}
                   </p>
                 </div>
@@ -182,7 +182,7 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
                     <social.icon size={20} />
                   </a>

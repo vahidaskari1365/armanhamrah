@@ -23,7 +23,7 @@ const AboutPage = () => {
           className="bg-card/80 backdrop-blur-sm p-8 md:p-10 rounded-2xl shadow-xl border border-border/30 max-w-4xl w-full my-48"
         >
           <h1 className="text-4xl font-bold text-center mb-6 text-foreground">{t('about.title')}</h1>
-          <div className="space-y-4 text-center text-muted-foreground text-lg">
+          <div className="space-y-4 text-center text-foreground text-lg">
             <p>
               {t('about.p1')}
             </p>
