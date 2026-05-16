@@ -475,39 +475,11 @@ const ExportPageContent = () => {
             </div>
           </section>
 
-          {/* CTA */}
-          <section className="section-padding bg-gradient-premium">
-            <div className="container-custom">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center card-premium bg-gradient-gold p-12"
-              >
-                <Globe size={48} className="mx-auto mb-6 text-primary-foreground" />
-                <h2 className="text-2xl font-bold text-primary-foreground mb-4">
-                  {t('export.cta.title')}
-                </h2>
-                <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-                  {t('export.cta.subtitle')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    to="/contact"
-                    className="inline-block bg-background/20 text-primary-foreground border-2 border-primary-foreground/30 px-8 py-4 rounded-xl font-bold hover:bg-background/30 transition-colors"
-                  >
-                    {t('nav.contact')}
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        </main>
-        <Footer />
-      </div>
-    );
-};
+          </main>
+          <Footer />
+          </div>
+          );
+          };
 
 const ExportPage = () => {
   const { t } = useLanguage();
