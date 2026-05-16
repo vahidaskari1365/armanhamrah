@@ -388,7 +388,7 @@ const ExportPageContent = () => {
           {/* Contact Section */}
           <section className="section-padding">
             <div className="container-custom">
-              <div className="max-w-2xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
                 {/* Contact Info */}
                 <motion.div
                   initial={{ opacity: 0, x: (direction === 'rtl' ? 30 : -30) }}
@@ -432,6 +432,44 @@ const ExportPageContent = () => {
                       </div>
                     </div>
                   </div>
+                </motion.div>
+
+                {/* Contact Form */}
+                <motion.div
+                  initial={{ opacity: 0, x: (direction === 'rtl' ? -30 : 30) }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="card-premium"
+                >
+                  <h3 className="text-2xl font-bold text-foreground mb-6">{t('export.form.title')}</h3>
+                  <form className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.full_name')}</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                        placeholder={t('export.form.full_name_placeholder')}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.company_name')}</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
+                        placeholder={t('export.form.company_name_placeholder')}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">{t('export.form.message')}</label>
+                      <textarea
+                        rows={4}
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
+                        placeholder={t('export.form.message_placeholder')}
+                      />
+                    </div>
+                    <button type="submit" className="w-full btn-gold py-3">{t('export.form.send')}</button>
+                  </form>
                 </motion.div>
               </div>
             </div>

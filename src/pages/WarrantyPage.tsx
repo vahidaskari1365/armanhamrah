@@ -120,43 +120,11 @@ const WarrantyPageContent = () => {
             </div>
           </div>
         </section>
-
-        {/* CTA */}
-        <section className="section-padding">
-          <div className="container-custom">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center card-premium bg-gradient-gold p-12"
-            >
-              <Shield size={48} className="mx-auto mb-6 text-primary-foreground" />
-              <h2 className="text-2xl font-bold text-primary-foreground mb-4">
-                {language === 'fa' ? 'ثبت و پیگیری گارانتی' : 'Register & Track Warranty'}
-              </h2>
-              <p className="text-primary-foreground/80 mb-6 max-w-xl mx-auto">
-                {language === 'fa' 
-                  ? 'برای ثبت محصول و پیگیری وضعیت گارانتی خود، وارد سامانه آرمان من شوید'
-                  : 'To register your product and track warranty status, log in to My Arman system'
-                }
-              </p>
-              <div className="flex justify-center">
-                <Link
-                  to="/contact"
-                  className="inline-block bg-background text-foreground px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
-                >
-                  {language === 'fa' ? 'تماس با پشتیبانی' : 'Contact Support'}
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+        </main>
+        <Footer />
+        </div>
+        );
+        };
 
 const WarrantyPage = () => {
   return (
