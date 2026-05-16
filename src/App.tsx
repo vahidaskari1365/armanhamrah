@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminProvider } from "@/contexts/AdminContext";
 import AdminToolbar from "@/components/admin/AdminToolbar";
@@ -43,6 +43,42 @@ const PageTracker = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+const AppContent = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  return (
+    <div className={isHome ? '' : 'not-home-page'}>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:slug" element={<ProductDetailPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/export" element={<ExportPage />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path="/export/iron-steel" element={<IronSteelPage />} />
+        <Route path="/export/copper-rod" element={<CopperRodPage />} />
+        <Route path="/export/bitumen" element={<BitumenPage />} />
+        <Route path="/export/oil" element={<OilPage />} />
+        <Route path="/export/piping-equipment" element={<PipingEquipmentPage />} />
+        <Route path="/export/petrochemical-downstream" element={<PetrochemicalDownstreamPage />} />
+        <Route path="/export/general-industrial-supplies" element={<GeneralIndustrialSuppliesPage />} />
+        <Route path="/warranty" element={<WarrantyPage />} />
+        <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
+        <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
+        <Route path="/warranty/repairs" element={<WarrantyRepairsPage />} />
+        <Route path="/representatives" element={<RepresentativesPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/admin/auth" element={<AdminAuth />} />
+        <Route path="/admin/reset-password" element={<AdminResetPassword />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -57,32 +93,7 @@ const App = () => (
                   <AuthRecoveryRedirect />
                   <AdminToolbar />
                   <AdminEditSidebar />
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/products" element={<ProductsPage />} />
-                    <Route path="/product/:slug" element={<ProductDetailPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
-                    <Route path="/export" element={<ExportPage />} />
-                    <Route path='/about' element={<AboutPage />} />
-                    <Route path="/export/iron-steel" element={<IronSteelPage />} />
-                    <Route path="/export/copper-rod" element={<CopperRodPage />} />
-                    <Route path="/export/bitumen" element={<BitumenPage />} />
-                    <Route path="/export/oil" element={<OilPage />} />
-                    <Route path="/export/piping-equipment" element={<PipingEquipmentPage />} />
-                    <Route path="/export/petrochemical-downstream" element={<PetrochemicalDownstreamPage />} />
-                    <Route path="/export/general-industrial-supplies" element={<GeneralIndustrialSuppliesPage />} />
-                    <Route path="/warranty" element={<WarrantyPage />} />
-                    <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
-                    <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
-                    <Route path="/warranty/repairs" element={<WarrantyRepairsPage />} />
-                    <Route path="/representatives" element={<RepresentativesPage />} />
-                    <Route path="/auth" element={<AuthPage />} />
-                    <Route path="/admin/auth" element={<AdminAuth />} />
-                    <Route path="/admin/reset-password" element={<AdminResetPassword />} />
-                    <Route path="/admin" element={<AdminDashboard />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
+                  <AppContent />
                 </PageTracker>
               </BrowserRouter>
             </AuthProvider>

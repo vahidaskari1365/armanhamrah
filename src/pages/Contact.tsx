@@ -37,8 +37,8 @@ const ContactPageContent = () => {
       phone: language === 'fa' ? '(به زودی)' : '(Coming Soon)',
       address:
         language === 'fa'
-          ? 'آدرس فروشگاه به زودی اضافه خواهد شد.'
-          : 'Store address will be added soon.',
+          ? 'خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴'
+          : 'Jomhouri St., Aladdin Passage, 6th Floor, No. 614',
     },
   ];
 

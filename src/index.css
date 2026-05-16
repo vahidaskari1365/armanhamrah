@@ -339,3 +339,13 @@ body.has-admin-toolbar .fixed.top-0:not([class*="z-[100]"]) {
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
 }
+
+.not-home-page .text-muted-foreground,
+.not-home-page .text-sm {
+  @apply text-foreground font-bold;
+}
+
+[dir="rtl"] .not-home-page .text-muted-foreground,
+[dir="rtl"] .not-home-page .text-sm {
+  font-weight: 900;
+}
