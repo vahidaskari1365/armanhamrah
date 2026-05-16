@@ -349,3 +349,37 @@ body.has-admin-toolbar .fixed.top-0:not([class*="z-[100]"]) {
 [dir="rtl"] .not-home-page .text-sm {
   font-weight: 900;
 }
+
+/* Footer Styles */
+footer,
+footer p,
+footer span,
+footer a,
+footer h4,
+footer h5,
+footer li,
+footer div {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+[dir="rtl"] footer,
+[dir="rtl"] footer p,
+[dir="rtl"] footer span,
+[dir="rtl"] footer a,
+[dir="rtl"] footer h4,
+[dir="rtl"] footer h5,
+[dir="rtl"] footer li,
+[dir="rtl"] footer div {
+  font-weight: 900 !important;
+}
+
+footer svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+footer {
+  background-color: #ffffff !important;
+}
+
