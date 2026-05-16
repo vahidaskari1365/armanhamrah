@@ -29,7 +29,7 @@ const AppSection = () => {
                 defaultValue={t('app.title')}
               />
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg text-foreground mb-8 leading-relaxed">
               <EditableText
                 contentKey="app-description"
                 page="home"

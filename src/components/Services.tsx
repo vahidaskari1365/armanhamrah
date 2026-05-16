@@ -95,7 +95,7 @@ const Services = () => {
                       as="span"
                     />
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-foreground leading-relaxed">
                     <EditableText
                       contentKey={`${service.contentKey}-desc`}
                       page="home"
@@ -125,7 +125,7 @@ const Services = () => {
                       as="span"
                     />
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-foreground leading-relaxed">
                     <EditableText
                       contentKey={`${service.contentKey}-desc`}
                       page="home"

@@ -46,7 +46,7 @@ const WarrantyPageContent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
+              <Link to="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary mb-6">
                 <ArrowRight size={20} />
                 {language === 'fa' ? 'بازگشت به صفحه اصلی' : 'Back to Home'}
               </Link>
@@ -59,7 +59,7 @@ const WarrantyPageContent = () => {
                   as="span"
                 />
               </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">
+              <p className="text-lg text-foreground max-w-2xl">
                 <EditableText
                   contentKey={language === 'fa' ? 'warranty-description' : 'warranty-description-en'}
                   page="warranty"
@@ -106,7 +106,7 @@ const WarrantyPageContent = () => {
                     <h3 className="text-xl font-bold text-foreground mb-3">
                       {section.title[language]}
                     </h3>
-                    <p className="text-muted-foreground text-sm flex-grow">
+                    <p className="text-foreground text-sm flex-grow">
                       {section.description[language]}
                     </p>
                     <div className="mt-6">

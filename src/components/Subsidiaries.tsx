@@ -45,7 +45,7 @@ const Subsidiaries = () => {
                   />
                 )}
               </div>
-              <span className="px-3 py-1 rounded-full text-xs font-bold text-foreground/70 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/30 transition-all duration-300 whitespace-nowrap text-center">
+              <span className="px-3 py-1 rounded-full text-xs font-bold text-foreground group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/30 transition-all duration-300 whitespace-nowrap text-center">
                 {t(company.name)}
               </span>
             </div>

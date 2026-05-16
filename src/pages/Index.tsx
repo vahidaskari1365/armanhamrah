@@ -15,7 +15,7 @@ const Index = () => {
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": language === 'fa' ? "آرمان همراه" : "Arman Hamrah",
+    "name": language === 'fa' ? "آرمان همراه ارتباطات آریا" : "Arman Hamrah Ertebatat Aria",
     "image": "https://armanhamrah.com/og-image.jpg",
     "url": "https://armanhamrah.com",
     "telephone": "+9821-12345678",
