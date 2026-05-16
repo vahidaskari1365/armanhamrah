@@ -194,8 +194,8 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} {language === 'fa' ? 'آرمان همراه ارتباطات آریا. تمامی حقوق محفوظ است.' : 'Arman Hamrah Aria Communications. All rights reserved.'}
+          <p className="text-sm text-foreground">
+            © {new Date().getFullYear()} {language === 'fa' ? 'آرمان همراه ارتباطات آریا. تمامی حقوق محفوظ است.' : 'Arman Hamrah Ertebatat Aria. All rights reserved.'}
           </p>
         </div>
       </div>
