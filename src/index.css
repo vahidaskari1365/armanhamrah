@@ -372,6 +372,7 @@ footer div {
 [dir="rtl"] footer li,
 [dir="rtl"] footer div {
   font-weight: 900 !important;
+  font-family: 'Titr', 'Vazirmatn', sans-serif !important;
 }
 
 footer svg {
