@@ -21,6 +21,7 @@ export interface Product {
   id: string;
   name: string;
   description?: string;
+  price?: string;
   slug: string;
   image: string;
   brand_id: string;
@@ -220,11 +221,20 @@ const ProductsPageContent = () => {
                                             src={product.image}
                                             alt={product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                                        loading="lazy" decoding="async" />
+                                            loading="lazy" 
+                                            decoding="async"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = '/placeholder.svg';
+                                            }}
+                                        />
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1">
                                         {t(product.name)}
                                     </h3>
+                                    <p className="text-primary font-bold mb-3 text-sm">
+                                        {product.price ? product.price : t('products.contact_for_price')}
+                                    </p>
                                     <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
                                         {t('products.view', 'View Details')}
                                     </span>
