@@ -25,7 +25,7 @@ const fallbackTranslationsData = {
     'warranty.backLink': 'بازگشت به صفحه گارانتی',
 
     // Brands & Countries
-    'Apple': 'اپل', 'Samsung': 'سامسونگ', 'Xiaomi': 'شیائومی', 'Poco': 'پوکو', 'Nokia': 'نوکیا',
+    'Apple': 'اپل', 'Samsung': 'سامسونگ', 'Xiaomi': 'شیائومی', 'Poco': 'پوکو', 'Nokia': 'نوکیا', 'Anker': 'انکر',
     'country.uae': 'امارات متحده عربی', 'country.iraq': 'عراق', 'country.afghanistan': 'افغانستان', 'country.turkmenistan': 'ترکمنستان', 'country.azerbaijan': 'آذربایجان', 'country.armenia': 'ارمنستان', 'country.qatar': 'قطر', 'country.kuwait': 'کویت',
 
     // Categories
@@ -34,6 +34,7 @@ const fallbackTranslationsData = {
     'category.tablet': 'تبلت',
     'category.accessories': 'لوازم جانبی',
     'category.feature_phone': 'گوشی ساده',
+    'category.laptop': 'لپ‌تاپ',
 
     // Navigation
     'nav.home': 'صفحه اصلی', 'nav.warranty': 'گارانتی', 'nav.products': 'محصولات', 'nav.export': 'صادرات', 'nav.representatives': 'نمایندگان', 'nav.contact': 'تماس با ما', 'nav.myArman': 'ورود / ثبت نام', 'nav.profile': 'پروفایل', 'nav.logout': 'خروج',
@@ -122,6 +123,43 @@ const fallbackTranslationsData = {
     "Poco C75": "پوکو C75",
     "Poco C71": "پوکو C71",
     "Nokia 105 4G": "نوکیا 105 4G",
+    "Galaxy Watch 8 (40mm)": "گلکسی واچ ۸ (۴۰ میلی‌متر)",
+    "Galaxy Watch 8 (44mm)": "گلکسی واچ ۸ (۴۴ میلی‌متر)",
+    "Galaxy Watch Ultra": "گلکسی واچ اولترا",
+    "Galaxy Watch 7 (40mm)": "گلکسی واچ ۷ (۴۰ میلی‌متر)",
+    "Galaxy Watch 7 (44mm)": "گلکسی واچ ۷ (۴۴ میلی‌متر)",
+    "Galaxy Watch 6 Classic (47mm)": "گلکسی واچ ۶ کلاسیک (۴۷ میلی‌متر)",
+    "Galaxy Watch 6 Classic (43mm)": "گلکسی واچ ۶ کلاسیک (۴۳ میلی‌متر)",
+    "Galaxy Watch 6 (44mm)": "گلکسی واچ ۶ (۴۴ میلی‌متر)",
+    "Apple Watch SE 3": "اپل واچ SE 3",
+    "Apple Watch Series 11 (42mm)": "اپل واچ سری ۱۱ (۴۲ میلی‌متر)",
+    "Apple Watch Series 11 (46mm)": "اپل واچ سری ۱۱ (۴۶ میلی‌متر)",
+    "Apple Watch Ultra 3 (Black Titanium)": "اپل واچ اولترا ۳ (تیتانیوم مشکی)",
+    "Apple Watch Ultra 3 (Ocean)": "اپل واچ اولترا ۳ (اوشن)",
+    "Apple Watch Ultra 3 (Alpine)": "اپل واچ اولترا ۳ (آلپاین)",
+    "Apple Watch Series 7 45mm": "اپل واچ سری ۷ ۴۵ میلی‌متر",
+    "MacBook Air M4 (2025)": "مک‌بوک ایر M4 (۲۰۲۵)",
+    "MacBook Air M5 (2026)": "مک‌بوک ایر M5 (۲۰۲۶)",
+    "MacBook Neo (A18 Pro)": "مک‌بوک نئو (A18 Pro)",
+    "AirPods 4 (with ANC)": "ایرپادز ۴ (با حذف نویز فعال)",
+    "AirPods 4 (without ANC)": "ایرپادز ۴ (بدون حذف نویز فعال)",
+    "AirPods Pro 3": "ایرپادز پرو ۳",
+    "AirPods Max 2024": "ایرپادز مکس ۲۰۲۴",
+    "Anker R60i NC": "انکر R60i NC",
+    "Anker R50i": "انکر R50i",
+    "Anker P40i": "انکر P40i",
+    "Galaxy Buds3": "گلکسی بادز ۳",
+    "Galaxy Buds3 Pro": "گلکسی بادز ۳ پرو",
+    "Xiaomi P16ZM": "شیائومی P16ZM",
+    "Xiaomi PB2020MI": "شیائومی PB2020MI",
+    "Xiaomi PB2030MI": "شیائومی PB2030MI",
+    "Redmi 20000mAh": "پاوربانک ردمی ۲۰۰۰۰ میلی‌آمپر",
+    "Anker A1257": "انکر A1257",
+    "Anker Zolo A110E": "انکر زولو A110E",
+    "Anker A1647H11": "انکر A1647H11",
+    "Anker A1287": "انکر A1287",
+    "Anker A1647": "انکر A1647",
+    "Xiaomi PB2050MI": "شیائومی PB2050MI",
 
     // Product Descriptions
     "product.redmi_a5.description": "ردمی A5 با طراحی مدرن و باتری قدرتمند، یک گوشی هوشمند اقتصادی و کارآمد برای استفاده روزمره است.",
@@ -529,7 +567,7 @@ const fallbackTranslationsData = {
     'warranty.backLink': 'Back to Warranty Page',
 
     // Brands & Countries
-    'Apple': 'Apple', 'Samsung': 'Samsung', 'Xiaomi': 'Xiaomi', 'Poco': 'Poco', 'Nokia': 'Nokia',
+    'Apple': 'Apple', 'Samsung': 'Samsung', 'Xiaomi': 'Xiaomi', 'Poco': 'Poco', 'Nokia': 'Nokia', 'Anker': 'Anker',
     'country.uae': 'UAE', 'country.iraq': 'Iraq', 'country.afghanistan': 'Afghanistan', 'country.turkmenistan': 'Turkmenistan', 'country.azerbaijan': 'Azerbaijan', 'country.armenia': 'Armenia', 'country.qatar': 'Qatar', 'country.kuwait': 'Kuwait',
 
     // Categories
@@ -538,6 +576,7 @@ const fallbackTranslationsData = {
     'category.tablet': 'Tablet',
     'category.accessories': 'Accessories',
     'category.feature_phone': 'Feature Phone',
+    'category.laptop': 'Laptop',
 
     // Navigation
     'nav.home': 'Home', 'nav.warranty': 'Warranty', 'nav.products': 'Products', 'nav.export': 'Export', 'nav.representatives': 'Reps', 'nav.contact': 'Contact', 'nav.myArman': 'Login / Sign Up', 'nav.profile': 'Profile', 'nav.logout': 'Logout',
@@ -626,6 +665,43 @@ const fallbackTranslationsData = {
     "Poco C75": "Poco C75",
     "Poco C71": "Poco C71",
     "Nokia 105 4G": "Nokia 105 4G",
+    "Galaxy Watch 8 (40mm)": "Galaxy Watch 8 (40mm)",
+    "Galaxy Watch 8 (44mm)": "Galaxy Watch 8 (44mm)",
+    "Galaxy Watch Ultra": "Galaxy Watch Ultra",
+    "Galaxy Watch 7 (40mm)": "Galaxy Watch 7 (40mm)",
+    "Galaxy Watch 7 (44mm)": "Galaxy Watch 7 (44mm)",
+    "Galaxy Watch 6 Classic (47mm)": "Galaxy Watch 6 Classic (47mm)",
+    "Galaxy Watch 6 Classic (43mm)": "Galaxy Watch 6 Classic (43mm)",
+    "Galaxy Watch 6 (44mm)": "Galaxy Watch 6 (44mm)",
+    "Apple Watch SE 3": "Apple Watch SE 3",
+    "Apple Watch Series 11 (42mm)": "Apple Watch Series 11 (42mm)",
+    "Apple Watch Series 11 (46mm)": "Apple Watch Series 11 (46mm)",
+    "Apple Watch Ultra 3 (Black Titanium)": "Apple Watch Ultra 3 (Black Titanium)",
+    "Apple Watch Ultra 3 (Ocean)": "Apple Watch Ultra 3 (Ocean)",
+    "Apple Watch Ultra 3 (Alpine)": "Apple Watch Ultra 3 (Alpine)",
+    "Apple Watch Series 7 45mm": "Apple Watch Series 7 45mm",
+    "MacBook Air M4 (2025)": "MacBook Air M4 (2025)",
+    "MacBook Air M5 (2026)": "MacBook Air M5 (2026)",
+    "MacBook Neo (A18 Pro)": "MacBook Neo (A18 Pro)",
+    "AirPods 4 (with ANC)": "AirPods 4 (with ANC)",
+    "AirPods 4 (without ANC)": "AirPods 4 (without ANC)",
+    "AirPods Pro 3": "AirPods Pro 3",
+    "AirPods Max 2024": "AirPods Max 2024",
+    "Anker R60i NC": "Anker R60i NC",
+    "Anker R50i": "Anker R50i",
+    "Anker P40i": "Anker P40i",
+    "Galaxy Buds3": "Galaxy Buds3",
+    "Galaxy Buds3 Pro": "Galaxy Buds3 Pro",
+    "Xiaomi P16ZM": "Xiaomi P16ZM",
+    "Xiaomi PB2020MI": "Xiaomi PB2020MI",
+    "Xiaomi PB2030MI": "Xiaomi PB2030MI",
+    "Redmi 20000mAh": "Redmi 20000mAh PowerBank",
+    "Anker A1257": "Anker A1257",
+    "Anker Zolo A110E": "Anker Zolo A110E",
+    "Anker A1647H11": "Anker A1647H11",
+    "Anker A1287": "Anker A1287",
+    "Anker A1647": "Anker A1647",
+    "Xiaomi PB2050MI": "Xiaomi PB2050MI",
 
     // Product Descriptions
     "product.redmi_a5.description": "The Redmi A5, with its modern design and powerful battery, is an economical and efficient smartphone for daily use.",
@@ -1014,8 +1090,8 @@ const transformFallback = () => {
     for (const key in fallbackTranslationsData.fa) {
         if (Object.prototype.hasOwnProperty.call(fallbackTranslationsData.fa, key)) {
             newTranslations[key] = {
-                fa: (fallbackTranslationsData.fa as any)[key],
-                en: (fallbackTranslationsData.en as any)[key] || '',
+                fa: (fallbackTranslationsData.fa as Record<string, string>)[key],
+                en: (fallbackTranslationsData.en as Record<string, string>)[key] || '',
             };
         }
     }
