@@ -567,7 +567,40 @@ const fallbackTranslationsData = {
     // Theme
     'theme.light': 'روشن',
     'theme.dark': 'تاریک',
-  },
+  
+    'product.iphone_17_pro.description': 'آیفون ۱۷ پرو با تراشه A19 Pro و سیستم دوربین پیشرفته زیر صفحه‌نمایش، مرزهای تکنولوژی را جابجا می‌کند.',
+    'product.iphone_16_pro.description': 'آیفون ۱۶ پرو با دکمه جدید Camera Control و تراشه A18 Bionic برای عملکردی بی‌نظیر.',
+    'product.s25_ultra.description': 'سامسونگ گلکسی S25 اولترا با بدنه تیتانیومی و هوش مصنوعی پیشرفته، تجربه گوشی‌های هوشمند را دگرگون می‌کند.',
+    'product.s24_ultra.description': 'گلکسی S24 اولترا، پرچمدار قدرتمند سامسونگ با قلم S Pen و دوربین ۲۰۰ مگاپیکسلی.',
+    'product.s25_fe.description': 'گلکسی S25 FE، ترکیبی از ویژگی‌های پرچمدار با قیمتی مناسب‌تر برای طرفداران سامسونگ.',
+    'product.a56.description': 'سامسونگ گلکسی A56 با طراحی مدرن و عملکردی فراتر از یک میان‌رده.',
+    'product.a36.description': 'گلکسی A36 با صفحه‌نمایش با کیفیت و باتری قدرتمند، گزینه‌ای ایده‌آل برای استفاده روزمره.',
+    'product.a26.description': 'گلکسی A26 با دوربین سه‌گانه و پشتیبانی از شبکه 5G.',
+    'product.a17.description': 'میان‌رده‌ای خوش‌ساخت از سامسونگ با صفحه‌نمایش بزرگ و باتری با دوام.',
+    'product.a07.description': 'گوشی اقتصادی جدید سامسونگ با طراحی زیبا و کارایی مناسب.',
+    'product.a06.description': 'گلکسی A06، انتخابی عالی برای کاربرانی که به دنبال کیفیت سامسونگ با بودجه کم هستند.',
+    'product.xiaomi_15t.description': 'شیائومی 15T با تراشه قدرتمند و شارژ سریع ۱۲۰ واتی، سرعت و قدرت را به ارمغان می‌آورد.',
+    'product.redmi_note_14_pro.description': 'ردمی نوت ۱۴ پرو با دوربین ۲۰۰ مگاپیکسلی و صفحه‌نمایش منحنی، استانداردی جدید برای میان‌رده‌ها.',
+    'product.redmi_note_14.description': 'ردمی نوت ۱۴ با عملکرد متعادل و ارزش خرید بالا.',
+    'product.redmi_15.description': 'گوشی جدید سری ردمی با طراحی تخت و باتری حجیم.',
+    'product.redmi_15c.description': 'نسخه اقتصادی سری ردمی ۱۵ با امکانات پایه و قیمت رقابتی.',
+    'product.redmi_a3.description': 'ردمی A3 با طراحی شیشه‌ای در پشت و قیمتی بسیار مقرون‌به‌صرفه.',
+    'product.redmi_a5.description': 'نسل جدید سری A ردمی با صفحه‌نمایش بزرگتر و شارژدهی عالی.',
+    'product.poco_m7.description': 'پوکو M7 با تمرکز بر عملکرد گیمینگ در رده میان‌رده.',
+    'product.poco_m6.description': 'گوشی هوشمند پوکو M6 با طراحی خاص و سخت‌افزار قدرتمند.',
+    'product.poco_c85.description': 'سری جدید پوکو C با طراحی مدرن و باتری ۵۱۶۰ میلی‌آمپر ساعتی.',
+    'product.poco_c75.description': 'گوشی اقتصادی پوکو با تمرکز بر دوام و کارایی روزمره.',
+    'product.poco_c71.description': 'پوکو C71، ارزان‌ترین گوشی خانواده پوکو با سیستم‌عامل سبک.',
+    'product.nokia_105_4g.description': 'نوکیا ۱۰۵ جدید با پشتیبانی از شبکه 4G و کیفیت ساخت کلاسیک نوکیا.',
+    'product.tab_a9_plus.description': 'تبلت سامسونگ گلکسی Tab A9+ با صفحه‌نمایش ۱۱ اینچی ۹۰ هرتز، مناسب برای مولتی‌مدیا.',
+    'product.tab_a9.description': 'تبلت کامپکت ۸.۷ اینچی سامسونگ، ایده‌آل برای مطالعه و حمل آسان.',
+    'product.apple_watch_11_46.description': 'اپل واچ سری ۱۱ با صفحه‌نمایش بزرگتر و سنسورهای جدید سلامتی.',
+    'product.apple_watch_11_42.description': 'نسخه ۴۲ میلی‌متری اپل واچ ۱۱ با طراحی ظریف‌تر و تمام ویژگی‌های جدید.',
+    'product.apple_watch_ultra_3_black.description': 'اپل واچ اولترا ۳ با بدنه تیتانیوم مشکی و بیشترین دوام باتری.',
+    'product.apple_watch_se_44.description': 'بهترین ارزش خرید در ساعت‌های هوشمند اپل با تمام ویژگی‌های ضروری.',
+    'product.airpods_pro_2.description': 'ایرفونز اپل مدل AirPods Pro 2 با حذف نویز فعال دو برابر قوی‌تر.',
+    'products.price': 'قیمت:',
+    'products.contact_for_price': 'تماس بگیرید',},
   en: {
     // General
     'all': 'All',
@@ -1099,6 +1132,40 @@ const fallbackTranslationsData = {
     // Theme
     'theme.light': 'Light',
     'theme.dark': 'Dark',
+    'product.iphone_17_pro.description': 'iPhone 17 Pro with A19 Pro chip and advanced under-display camera system pushes the boundaries of technology.',
+    'product.iphone_16_pro.description': 'iPhone 16 Pro with the new Camera Control button and A18 Bionic chip for unparalleled performance.',
+    'product.s25_ultra.description': 'Samsung Galaxy S25 Ultra with titanium body and advanced AI transforms the smartphone experience.',
+    'product.s24_ultra.description': 'Galaxy S24 Ultra, Samsung\'s powerful flagship with S Pen and 200MP camera.',
+    'product.s25_fe.description': 'Galaxy S25 FE, combining flagship features at a more affordable price for Samsung fans.',
+    'product.a56.description': 'Samsung Galaxy A56 with modern design and performance beyond a mid-range phone.',
+    'product.a36.description': 'Galaxy A36 with high-quality display and powerful battery, an ideal choice for daily use.',
+    'product.a26.description': 'Galaxy A26 with triple camera and 5G support.',
+    'product.a17.description': 'A well-built mid-range phone from Samsung with a large screen and durable battery.',
+    'product.a07.description': 'Samsung\'s new budget phone with beautiful design and decent performance.',
+    'product.a06.description': 'Galaxy A06, an excellent choice for users looking for Samsung quality on a small budget.',
+    'product.xiaomi_15t.description': 'Xiaomi 15T with powerful chip and 120W fast charging brings speed and power.',
+    'product.redmi_note_14_pro.description': 'Redmi Note 14 Pro with 200MP camera and curved display, a new standard for mid-range phones.',
+    'product.redmi_note_14.description': 'Redmi Note 14 with balanced performance and high value for money.',
+    'product.redmi_15.description': 'New Redmi series phone with flat design and huge battery.',
+    'product.redmi_15c.description': 'Economic version of the Redmi 15 series with basic features and competitive price.',
+    'product.redmi_a3.description': 'Redmi A3 with glass back design and a very affordable price.',
+    'product.redmi_a5.description': 'New generation of Redmi A series with a larger screen and excellent battery life.',
+    'product.poco_m7.description': 'Poco M7 focusing on gaming performance in the mid-range category.',
+    'product.poco_m6.description': 'Poco M6 smartphone with special design and powerful hardware.',
+    'product.poco_c85.description': 'New Poco C series with modern design and 5160mAh battery.',
+    'product.poco_c75.description': 'Economic Poco phone focusing on durability and daily performance.',
+    'product.poco_c71.description': 'Poco C71, the most affordable Poco family phone with a lightweight OS.',
+    'product.nokia_105_4g.description': 'New Nokia 105 with 4G support and classic Nokia build quality.',
+    'product.tab_a9_plus.description': 'Samsung Galaxy Tab A9+ with 11-inch 90Hz display, perfect for multimedia.',
+    'product.tab_a9.description': 'Compact 8.7-inch Samsung tablet, ideal for reading and easy portability.',
+    'product.apple_watch_11_46.description': 'Apple Watch Series 11 with larger display and new health sensors.',
+    'product.apple_watch_11_42.description': '42mm version of Apple Watch 11 with a sleeker design and all new features.',
+    'product.apple_watch_ultra_3_black.description': 'Apple Watch Ultra 3 with black titanium body and maximum battery life.',
+    'product.apple_watch_se_44.description': 'The best value in Apple smartwatches with all the essential features.',
+    'product.airpods_pro_2.description': 'Apple AirPods Pro 2 with two times stronger Active Noise Cancellation.',
+    'products.price': 'Price:',
+    'products.contact_for_price': 'Contact Us',
+
   },
 };
 
@@ -1180,6 +1247,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   useEffect(() => {
     document.documentElement.dir = direction;
     document.documentElement.lang = language;
+  
   }, [direction, language]);
 
   return (

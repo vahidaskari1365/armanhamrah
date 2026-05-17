@@ -59,6 +59,10 @@ const ProductDetailPageContent = () => {
                                src={product.image}
                                alt={t(product.name)}
                                className="w-full h-auto object-contain max-h-[500px] rounded-lg"
+                               onError={(e) => {
+                                   const target = e.target as HTMLImageElement;
+                                   target.src = '/placeholder.svg';
+                               }}
                            />
                         </div>
                     </motion.div>
@@ -75,6 +79,13 @@ const ProductDetailPageContent = () => {
                                 {t(product.name)}
                             </h1>
                             <span className="text-lg text-slate-500 dark:text-slate-400">{t(product.category_id.replace('category.', ''))}</span>
+
+                            <div className="mt-4 flex items-center gap-2">
+                                <span className="text-slate-500 dark:text-slate-400 font-medium">{t('products.price')}</span>
+                                <span className="text-2xl font-bold text-primary">
+                                    {product.price ? product.price : t('products.contact_for_price')}
+                                </span>
+                            </div>
 
                             {product.description && (
                                 <p className="leading-relaxed text-slate-600 dark:text-slate-300 mt-8 text-lg">{t(product.description)}</p>
@@ -133,6 +144,7 @@ const ProductDetailPage = () => {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
         "priceCurrency": "IRR",
+        "price": product.price ? product.price.replace(/[^\d]/g, '') : undefined,
         "url": `https://armanhamrah.com/product/${product.slug}`
       }
     } : undefined;
