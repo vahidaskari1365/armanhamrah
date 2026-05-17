@@ -138,9 +138,9 @@ const fallbackTranslationsData = {
     "Apple Watch Ultra 3 (Ocean)": "ساعت هوشمند اپل مدل Apple Watch Ultra 3 با بند اوشن",
     "Apple Watch Ultra 3 (Alpine)": "ساعت هوشمند اپل مدل Apple Watch Ultra 3 با بند آلپاین",
     "Apple Watch Series 7 45mm": "ساعت هوشمند 45 میلی‌متری اپل مدل Apple Watch Series 7",
-    "MacBook Air M4 (2025)": "مک‌بوک ایر M4 (۲۰۲۵)",
-    "MacBook Air M5 (2026)": "مک‌بوک ایر M5 (۲۰۲۶)",
-    "MacBook Neo (A18 Pro)": "مک‌بوک نئو (A18 Pro)",
+    
+    
+    
     "AirPods 4 (with ANC)": "هدفون بی‌سیم اپل مدل AirPods 4 (با قابلیت حذف نویز فعال)",
     "AirPods 4 (without ANC)": "هدفون بی‌سیم اپل مدل AirPods 4 (بدون قابلیت حذف نویز فعال)",
     "AirPods Pro 3": "هدفون بی‌سیم اپل مدل AirPods Pro 3",
@@ -428,6 +428,16 @@ const fallbackTranslationsData = {
      "spec.value.dim_nokia_105": "۱۲۱ × ۵۰ × ۱۴.۱ میلی‌متر",
      "spec.value.micro_usb_charge": "Micro USB",
      "spec.value.features_nokia_105": "رادیو FM، چراغ قوه LED، بلوتوث ۵.۰",
+     "spec.value.s10_sip": "S10 SiP",
+     "spec.value.w1000_chip": "Exynos W1000",
+     "spec.value.h3_chip": "Apple H3",
+     "spec.value.display_series10": "OLED Retina همیشه روشن",
+     "spec.value.display_galaxy_watch8": "Super AMOLED",
+     "spec.value.watch_ultra_battery": "تا ۱۰۰ ساعت",
+     "spec.value.titanium_black": "تیتانیوم مشکی",
+     "spec.value.60w_fast_charge": "شارژ سریع ۶۰ وات",
+     "spec.value.usb_c": "USB-C",
+     "spec.value.s11_sip": "S11 SiP",
 
     // Export Main Page
     'export.title_main': 'صادرات آرمان', 'export.subtitle_main': 'تجارت بین‌المللی با کیفیت و اطمینان', 'export.description_main': 'ما در آرمان با تکیه بر تجربه و شبکه گسترده خود، محصولات با کیفیت ایرانی و بین‌المللی را به بازارهای جهانی عرضه می‌کنیم.',
@@ -680,9 +690,9 @@ const fallbackTranslationsData = {
     "Apple Watch Ultra 3 (Ocean)": "Apple Watch Ultra 3 (Ocean)",
     "Apple Watch Ultra 3 (Alpine)": "Apple Watch Ultra 3 (Alpine)",
     "Apple Watch Series 7 45mm": "Apple Watch Series 7 45mm",
-    "MacBook Air M4 (2025)": "MacBook Air M4 (2025)",
-    "MacBook Air M5 (2026)": "MacBook Air M5 (2026)",
-    "MacBook Neo (A18 Pro)": "MacBook Neo (A18 Pro)",
+    
+    
+    
     "AirPods 4 (with ANC)": "AirPods 4 (with ANC)",
     "AirPods 4 (without ANC)": "AirPods 4 (without ANC)",
     "AirPods Pro 3": "AirPods Pro 3",
@@ -950,6 +960,16 @@ const fallbackTranslationsData = {
      "spec.value.dim_nokia_105": "121 × 50 × 14.1 mm",
      "spec.value.micro_usb_charge": "Micro USB",
      "spec.value.features_nokia_105": "FM Radio, LED Flashlight, Bluetooth 5.0",
+     "spec.value.s10_sip": "S10 SiP",
+     "spec.value.w1000_chip": "Exynos W1000",
+     "spec.value.h3_chip": "Apple H3",
+     "spec.value.display_series10": "Always-on OLED Retina",
+     "spec.value.display_galaxy_watch8": "Super AMOLED",
+     "spec.value.watch_ultra_battery": "Up to 100 hours",
+     "spec.value.titanium_black": "Titanium Black",
+     "spec.value.60w_fast_charge": "60W Fast Charge",
+     "spec.value.usb_c": "USB-C",
+     "spec.value.s11_sip": "S11 SiP",
 
     // Export Main Page
     'export.title_main': 'Arman Export', 'export.subtitle_main': 'International Trade with Quality and Confidence', 'export.description_main': 'At Arman, relying on our experience and extensive network, we supply quality Iranian and international products to global markets.',
