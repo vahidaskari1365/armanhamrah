@@ -274,5 +274,3 @@ const ProductsPage = () => {
 };
 
 export default ProductsPage;
-
-// trigger new commit for vercel
