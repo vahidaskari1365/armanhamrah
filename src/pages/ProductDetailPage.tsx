@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ArrowRight, AlertTriangle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import { catalogProducts } from '@/data/catalogProducts';
+import { products } from '@/data/products';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -16,7 +16,7 @@ const ProductDetailPageContent = () => {
     const { t, language } = useLanguage();
     const lang = language as 'fa' | 'en';
 
-    const product = catalogProducts.find(p => p.slug === slug);
+    const product = products.find(p => p.slug === slug);
 
     if (!product) {
         return (
@@ -138,7 +138,7 @@ const ProductDetailPage = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, language } = useLanguage();
     const lang = language as 'fa' | 'en';
-    const product = catalogProducts.find(p => p.slug === slug);
+    const product = products.find(p => p.slug === slug);
     const productName = product ? (lang === 'fa' ? product.name.fa : product.name.en) : t('products.title', 'Product');
 
     const productJsonLd = product ? {

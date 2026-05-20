@@ -9,12 +9,21 @@ interface ProductImageProps {
 }
 
 const ProductImage = ({ src, alt, className = '', loading = 'lazy' }: ProductImageProps) => {
-  const [currentSrc, setCurrentSrc] = useState<string>(src || PRODUCT_IMAGE_PLACEHOLDER);
+  const getValidSrc = (imagePath: string): string => {
+    if (!imagePath) return PRODUCT_IMAGE_PLACEHOLDER;
+    if (imagePath.startsWith('/images/products/')) {
+      const fullPath = `${window.location.origin}${imagePath}`;
+      return fullPath;
+    }
+    return imagePath;
+  };
+
+  const [currentSrc, setCurrentSrc] = useState<string>(getValidSrc(src));
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     setHasError(false);
-    setCurrentSrc(src || PRODUCT_IMAGE_PLACEHOLDER);
+    setCurrentSrc(getValidSrc(src));
   }, [src]);
 
   const handleError = useCallback(() => {
