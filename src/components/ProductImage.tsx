@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { PRODUCT_IMAGE_PLACEHOLDER } from '@/types/product';
 
 interface ProductImageProps {
@@ -9,11 +9,22 @@ interface ProductImageProps {
 }
 
 const ProductImage = ({ src, alt, className = '', loading = 'lazy' }: ProductImageProps) => {
-  const [currentSrc, setCurrentSrc] = useState(src || PRODUCT_IMAGE_PLACEHOLDER);
+  const [currentSrc, setCurrentSrc] = useState<string>(src || PRODUCT_IMAGE_PLACEHOLDER);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    setHasError(false);
     setCurrentSrc(src || PRODUCT_IMAGE_PLACEHOLDER);
   }, [src]);
+
+  const handleError = useCallback(() => {
+    if (!hasError) {
+      setHasError(true);
+      if (currentSrc !== PRODUCT_IMAGE_PLACEHOLDER) {
+        setCurrentSrc(PRODUCT_IMAGE_PLACEHOLDER);
+      }
+    }
+  }, [hasError, currentSrc]);
 
   return (
     <img
@@ -22,11 +33,7 @@ const ProductImage = ({ src, alt, className = '', loading = 'lazy' }: ProductIma
       className={className}
       loading={loading}
       decoding="async"
-      onError={() => {
-        if (currentSrc !== PRODUCT_IMAGE_PLACEHOLDER) {
-          setCurrentSrc(PRODUCT_IMAGE_PLACEHOLDER);
-        }
-      }}
+      onError={handleError}
     />
   );
 };
