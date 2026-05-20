@@ -1,6 +1,6 @@
 import type { ProductSpecEntry } from '@/types/product';
 
-export interface CatalogProduct {
+export interface Product {
   slug: string;
   name: { fa: string; en: string };
   image: string;
@@ -11,7 +11,7 @@ export interface CatalogProduct {
   specEntries: ProductSpecEntry[];
 }
 
-export const catalogProducts: CatalogProduct[] = [
+export const products: Product[] = [
   // --- MOBILE (APPLE) ---
   {
     slug: "apple-iphone-17-pro",

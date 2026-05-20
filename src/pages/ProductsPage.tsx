@@ -12,15 +12,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
-import { catalogProducts } from '@/data/catalogProducts';
+import { products } from '@/data/products';
 import { matchesSearch } from '@/lib/searchNormalize';
 import ProductImage from '@/components/ProductImage';
-import type { CatalogProduct } from '@/data/catalogProducts';
+import type { Product } from '@/data/products';
 
-export interface Product {
+export interface ProductCard {
   id: string;
   name: string;
-  description?: string;
+  nameFa: string;
+  description?: { fa: string; en: string };
   slug: string;
   image: string;
   brand_id: string;
@@ -28,11 +29,11 @@ export interface Product {
   brand: { name: string };
   category: { name: string };
   price: { fa: string; en: string };
-  specEntries: CatalogProduct['specEntries'];
+  specEntries: Product['specEntries'];
 }
 
-const fetchProducts = async (): Promise<Product[]> => {
-  return catalogProducts.map(p => ({
+const fetchProducts = async (): Promise<ProductCard[]> => {
+  return products.map(p => ({
     id: p.slug,
     name: p.name.en,
     nameFa: p.name.fa,
@@ -45,16 +46,16 @@ const fetchProducts = async (): Promise<Product[]> => {
     price: p.price,
     description: p.description,
     specEntries: p.specEntries,
-  })) as unknown as Product[];
+  }));
 };
 
 const fetchBrands = async () => {
-  const brandNames = [...new Set(catalogProducts.map(p => p.brand_id))].sort();
+  const brandNames = [...new Set(products.map(p => p.brand_id))].sort();
   return brandNames.map(name => ({ id: name, name }));
 };
 
 const fetchCategories = async () => {
-  const categoryKeys = [...new Set(catalogProducts.map(p => p.category_id))].sort();
+  const categoryKeys = [...new Set(products.map(p => p.category_id))].sort();
   return categoryKeys.map(key => ({ id: key, name: key }));
 };
 
@@ -219,7 +220,7 @@ const ProductsPageContent = () => {
                                     <div className="relative mb-4 overflow-hidden rounded-xl p-4 h-48 sm:h-52 flex items-center justify-center shrink-0 bg-muted/20">
                                         <ProductImage
                                             src={product.image}
-                                            alt={language === 'fa' ? (product as unknown as {nameFa: string}).nameFa : product.name}
+                                            alt={language === 'fa' ? product.nameFa : product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                                         />
                                         <span className="absolute top-3 inline-flex items-center px-2.5 py-1 text-xs font-bold rounded-md bg-primary/90 text-primary-foreground shadow-gold">
@@ -227,25 +228,31 @@ const ProductsPageContent = () => {
                                         </span>
                                     </div>
                                     <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow px-2">
-                                        {language === 'fa' ? (product as unknown as {nameFa: string}).nameFa : product.name}
+                                        {language === 'fa' ? product.nameFa : product.name}
                                     </h3>
                                     {product.specEntries && product.specEntries.length > 0 && (
-                                      <div className={`px-3 pb-2 space-y-1 ${language === 'fa' ? 'text-right' : 'text-left'}`}>
-                                        {product.specEntries.slice(0, 4).map((spec, idx) => (
-                                          <div key={idx} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                                            {language === 'fa' ? (
-                                              <>
-                                                <span className="font-medium text-foreground/70">{spec.label.fa}:</span>
-                                                <span className="text-foreground">{spec.value.fa}</span>
-                                              </>
-                                            ) : (
-                                              <>
-                                                <span className="font-medium text-foreground/70">{spec.label.en}:</span>
-                                                <span className="text-foreground">{spec.value.en}</span>
-                                              </>
-                                            )}
-                                          </div>
-                                        ))}
+                                      <div className={`px-3 pb-2 ${language === 'fa' ? 'text-right' : 'text-left'}`}>
+                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                                          {product.specEntries.slice(0, 4).map((spec, idx) => (
+                                            <div key={idx} className="flex items-center text-xs text-muted-foreground">
+                                              {language === 'fa' ? (
+                                                <>
+                                                  <svg className={`w-3 h-3 ml-1 shrink-0 text-primary/60 ${language === 'fa' ? 'order-2 rotate-180' : 'order-1'}`} fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
+                                                  </svg>
+                                                  <span className="font-medium text-foreground/60">{spec.value.fa}</span>
+                                                </>
+                                              ) : (
+                                                <>
+                                                  <svg className="w-3 h-3 mr-1 shrink-0 text-primary/60" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
+                                                  </svg>
+                                                  <span className="font-medium text-foreground/60">{spec.value.en}</span>
+                                                </>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
                                       </div>
                                     )}
                                     <span className="mx-3 mb-3 mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
