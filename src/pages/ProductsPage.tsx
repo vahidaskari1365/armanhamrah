@@ -1,3 +1,4 @@
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Loader2, Search, X } from 'lucide-react';
@@ -12,53 +13,69 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
-import { products } from '@/data/products';
+import { productsData } from '@/data/products';
 import { matchesSearch } from '@/lib/searchNormalize';
-import ProductImage from '@/components/ProductImage';
-import type { Product } from '@/data/products';
 
-export interface ProductCard {
+// Define interfaces for our data structures
+export interface Product {
   id: string;
   name: string;
-  nameFa: string;
-  description?: { fa: string; en: string };
+  description?: string;
+  price?: string;
   slug: string;
   image: string;
   brand_id: string;
   category_id: string;
   brand: { name: string };
   category: { name: string };
-  price: { fa: string; en: string };
-  specEntries: Product['specEntries'];
+  specs: Record<string, string>;
 }
+export interface Brand { id: string; name: string; }
+export interface Category { id: string; name: string; }
 
-const fetchProducts = async (): Promise<ProductCard[]> => {
-  return products.map(p => ({
-    id: p.slug,
-    name: p.name.en,
-    nameFa: p.name.fa,
-    slug: p.slug,
-    image: p.image,
-    brand_id: p.brand_id,
-    category_id: p.category_id,
-    brand: { name: p.brand_id },
-    category: { name: p.category_id },
-    price: p.price,
-    description: p.description,
-    specEntries: p.specEntries,
-  }));
+// --- LOCAL DATA FETCHING FUNCTIONS ---
+
+const fetchProducts = async (): Promise<Product[]> => {
+    const mappedProducts = productsData.map(p => ({
+        ...p,
+        id: p.slug,
+        brand: { name: p.brand_id },
+        category: { name: p.category_id } // Keep the full key like 'category.mobile'
+    }));
+    return mappedProducts as unknown as Product[];
 };
 
-const fetchBrands = async () => {
-  const brandNames = [...new Set(products.map(p => p.brand_id))].sort();
-  return brandNames.map(name => ({ id: name, name }));
+const fetchBrands = async (): Promise<Brand[]> => {
+    const brandNames = [...new Set(productsData.map(p => p.brand_id))].sort();
+    return brandNames.map(name => ({ id: name, name }));
 };
 
-const fetchCategories = async () => {
-  const categoryKeys = [...new Set(products.map(p => p.category_id))].sort();
-  return categoryKeys.map(key => ({ id: key, name: key }));
+const fetchCategories = async (): Promise<Category[]> => {
+    // Use the full category keys, the translation function will handle them
+    const categoryKeys = [...new Set(productsData.map(p => p.category_id))].sort();
+    return categoryKeys.map(key => ({ id: key, name: key }));
 };
 
+const CARD_SPEC_PRIORITY = [
+  'spec.chip',
+  'spec.chip_model',
+  'spec.battery',
+  'spec.ram',
+  'spec.display',
+  'spec.display_type',
+] as const;
+
+const getCardSpecs = (specs: Record<string, string>) => {
+  const entries = Object.entries(specs);
+  const prioritized = CARD_SPEC_PRIORITY
+    .map((priorityKey) => entries.find(([key]) => key === priorityKey))
+    .filter((entry): entry is [string, string] => Boolean(entry));
+
+  const selectedKeys = new Set(prioritized.map(([key]) => key));
+  const fallback = entries.filter(([key]) => !selectedKeys.has(key));
+
+  return [...prioritized, ...fallback].slice(0, 4);
+};
 
 const ProductsPageContent = () => {
   const { t, language } = useLanguage();
@@ -70,8 +87,8 @@ const ProductsPageContent = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({ queryKey: ['products'], queryFn: fetchProducts });
-  const { data: brands, isLoading: isLoadingBrands } = useQuery<{id: string; name: string}[]>({ queryKey: ['brands'], queryFn: fetchBrands });
-  const { data: categories, isLoading: isLoadingCategories } = useQuery<{id: string; name: string}[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+  const { data: brands, isLoading: isLoadingBrands } = useQuery<Brand[]>({ queryKey: ['brands'], queryFn: fetchBrands });
+  const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
@@ -79,15 +96,16 @@ const ProductsPageContent = () => {
       const brandMatch = selectedBrand === 'all' || product.brand.name === selectedBrand;
       const categoryMatch = selectedCategory === 'all' || product.category.name === selectedCategory;
       const q = debouncedSearchTerm.trim();
-      if (q === '') return brandMatch && categoryMatch;
       const haystack = [
         product.name,
+        t(product.name),
         product.brand.name,
         t(product.brand.name),
         t(product.category.name),
         product.slug,
       ].join(' ');
-      return brandMatch && categoryMatch && matchesSearch(haystack, q);
+      const searchMatch = q === '' || matchesSearch(haystack, q);
+      return brandMatch && categoryMatch && searchMatch;
     });
   }, [products, selectedBrand, selectedCategory, debouncedSearchTerm, t]);
 
@@ -148,6 +166,7 @@ const ProductsPageContent = () => {
                     )}
                 </div>
 
+                {/* Active filters bar */}
                 {hasActiveFilters && (
                   <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
                     <span className="text-sm text-foreground font-medium">
@@ -211,55 +230,50 @@ const ProductsPageContent = () => {
                         ) : (
                             <AnimatePresence>
                             <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                                {filteredProducts.map((product) => (
+                                {filteredProducts.map((product) => {
+                                  const cardSpecs = getCardSpecs(product.specs);
+
+                                  return (
                                 <Link 
                                     key={product.slug} 
                                     to={`/product/${product.slug}`} 
                                     className="card-premium text-center block transition-all duration-300 group h-full flex flex-col"
                                 >
-                                    <div className="relative mb-4 overflow-hidden rounded-xl p-4 h-48 sm:h-52 flex items-center justify-center shrink-0 bg-muted/20">
-                                        <ProductImage
+                                    <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4 h-48 flex items-center justify-center shrink-0">
+                                        <img
                                             src={product.image}
-                                            alt={language === 'fa' ? product.nameFa : product.name}
+                                            alt={product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                                            loading="lazy" 
+                                            decoding="async"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = '/placeholder.svg';
+                                            }}
                                         />
-                                        <span className="absolute top-3 inline-flex items-center px-2.5 py-1 text-xs font-bold rounded-md bg-primary/90 text-primary-foreground shadow-gold">
-                                          {language === 'fa' ? product.price.fa : product.price.en}
-                                        </span>
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow px-2">
-                                        {language === 'fa' ? product.nameFa : product.name}
+                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 px-2">
+                                        {t(product.name)}
                                     </h3>
-                                    {product.specEntries && product.specEntries.length > 0 && (
-                                      <div className={`px-3 pb-2 ${language === 'fa' ? 'text-right' : 'text-left'}`}>
-                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                          {product.specEntries.slice(0, 4).map((spec, idx) => (
-                                            <div key={idx} className="flex items-center text-xs text-muted-foreground">
-                                              {language === 'fa' ? (
-                                                <>
-                                                  <svg className={`w-3 h-3 ml-1 shrink-0 text-primary/60 ${language === 'fa' ? 'order-2 rotate-180' : 'order-1'}`} fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
-                                                  </svg>
-                                                  <span className="font-medium text-foreground/60">{spec.value.fa}</span>
-                                                </>
-                                              ) : (
-                                                <>
-                                                  <svg className="w-3 h-3 mr-1 shrink-0 text-primary/60" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
-                                                  </svg>
-                                                  <span className="font-medium text-foreground/60">{spec.value.en}</span>
-                                                </>
-                                              )}
-                                            </div>
-                                          ))}
-                                        </div>
+                                    {cardSpecs.length > 0 && (
+                                      <div className="px-3 mb-3 text-xs md:text-sm text-start space-y-1">
+                                        {cardSpecs.map(([specKey, specValue]) => (
+                                          <div key={specKey} className="flex items-center justify-between gap-2 text-muted-foreground">
+                                            <span className="truncate">{t(specKey)}</span>
+                                            <span className="font-medium text-foreground truncate">{t(specValue)}</span>
+                                          </div>
+                                        ))}
                                       </div>
                                     )}
-                                    <span className="mx-3 mb-3 mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
+                                    <p className="text-primary font-bold mb-3 text-sm">
+                                        {product.price ? product.price : t('products.contact_for_price')}
+                                    </p>
+                                    <span className="inline-block mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
                                         {t('products.view', 'View Details')}
                                     </span>
                                 </Link>
-                                ))}
+                                  );
+                                })}
                             </motion.div>
                             </AnimatePresence>
                         )}
