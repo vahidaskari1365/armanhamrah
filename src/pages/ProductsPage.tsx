@@ -15,13 +15,14 @@ import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
 import { productsData } from '@/data/products';
 import { matchesSearch } from '@/lib/searchNormalize';
+import ProductImage from '@/components/ProductImage';
+import type { ProductSpecEntry } from '@/types/product';
 
 // Define interfaces for our data structures
 export interface Product {
   id: string;
   name: string;
   description?: string;
-  price?: string;
   slug: string;
   image: string;
   brand_id: string;
@@ -29,6 +30,8 @@ export interface Product {
   brand: { name: string };
   category: { name: string };
   specs: Record<string, string>;
+  specEntries?: ProductSpecEntry[];
+  tags?: string[];
 }
 export interface Brand { id: string; name: string; }
 export interface Category { id: string; name: string; }
@@ -83,6 +86,7 @@ const ProductsPageContent = () => {
         t(product.brand.name),
         t(product.category.name),
         product.slug,
+        ...(product.tags ?? []),
       ].join(' ');
       const searchMatch = q === '' || matchesSearch(haystack, q);
       return brandMatch && categoryMatch && searchMatch;
@@ -214,28 +218,22 @@ const ProductsPageContent = () => {
                                 <Link 
                                     key={product.slug} 
                                     to={`/product/${product.slug}`} 
-                                    className="card-premium text-center block transition-all duration-300 group"
+                                    className="card-premium text-center block transition-all duration-300 group h-full flex flex-col"
                                 >
-                                    <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4 h-48 flex items-center justify-center">
-                                        <img
+                                    <div className="relative mb-4 overflow-hidden rounded-xl p-4 h-48 sm:h-52 flex items-center justify-center shrink-0 bg-muted/20">
+                                        <ProductImage
                                             src={product.image}
-                                            alt={product.name}
+                                            alt={t(product.name)}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                                            loading="lazy" 
-                                            decoding="async"
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.src = '/placeholder.svg';
-                                            }}
                                         />
+                                        <span className="absolute bottom-3 inline-flex items-center px-3 py-1.5 text-xs font-bold rounded-md bg-primary text-primary-foreground shadow-gold">
+                                          {t('products.specs', 'مشخصات')}
+                                        </span>
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow">
                                         {t(product.name)}
                                     </h3>
-                                    <p className="text-primary font-bold mb-3 text-sm">
-                                        {product.price ? product.price : t('products.contact_for_price')}
-                                    </p>
-                                    <span className="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
+                                    <span className="inline-block mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
                                         {t('products.view', 'View Details')}
                                     </span>
                                 </Link>
