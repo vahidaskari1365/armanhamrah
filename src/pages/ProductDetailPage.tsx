@@ -1,27 +1,22 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ArrowRight, AlertTriangle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import { productsData } from '@/data/products';
+import { catalogProducts } from '@/data/catalogProducts';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import ProductImage from '@/components/ProductImage';
 import { useLanguage } from '@/contexts/LanguageContext';
-import {
-  getSpecEntryText,
-  resolveLegacySpecKey,
-  resolveLegacySpecValue,
-} from '@/lib/productSpecs';
+import { getSpecEntryText } from '@/lib/productSpecs';
 
 const ProductDetailPageContent = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t, language } = useLanguage();
     const lang = language as 'fa' | 'en';
 
-    const product = productsData.find(p => p.slug === slug);
+    const product = catalogProducts.find(p => p.slug === slug);
 
     if (!product) {
         return (
@@ -37,9 +32,9 @@ const ProductDetailPageContent = () => {
     }
 
     const specEntries = product.specEntries;
-    const legacySpecs = product.specs && Object.keys(product.specs).length > 0 ? product.specs : null;
-    const hasSpecs = (specEntries && specEntries.length > 0) || legacySpecs;
-    const descriptionText = product.description ? t(product.description, product.description) : '';
+    const hasSpecs = specEntries && specEntries.length > 0;
+    const productName = lang === 'fa' ? product.name.fa : product.name.en;
+    const productDescription = lang === 'fa' ? product.description.fa : product.description.en;
 
     return (
         <main className="pt-28 md:pt-36 relative z-10 pb-20 overflow-hidden">
@@ -66,7 +61,7 @@ const ProductDetailPageContent = () => {
                         <div className="bg-card rounded-2xl p-6 md:p-8 shadow-2xl border border-border/40 min-h-[360px] md:min-h-[460px] flex items-center justify-center">
                            <ProductImage
                                src={product.image}
-                               alt={t(product.name, product.name)}
+                               alt={productName}
                                className="w-full h-full object-contain max-h-[560px] rounded-lg mx-auto"
                            />
                         </div>
@@ -81,26 +76,17 @@ const ProductDetailPageContent = () => {
                         <div>
                             <span className="text-primary font-semibold tracking-wider">{t(product.brand_id)}</span>
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold my-3 text-slate-900 dark:text-white leading-tight">
-                                {t(product.name, product.name)}
+                                {productName}
                             </h1>
                             <span className="text-lg text-slate-500 dark:text-slate-400">{t(product.category_id)}</span>
 
-                            {product.tags && product.tags.length > 0 && (
-                                <motion.div layout className="flex flex-wrap gap-2 mt-4">
-                                    {product.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </motion.div>
-                            )}
+                            <div className="mt-4 inline-flex items-center px-4 py-2 rounded-lg bg-primary/10 text-primary font-bold">
+                                {lang === 'fa' ? product.price.fa : product.price.en}
+                            </div>
 
-                            {descriptionText && (
+                            {productDescription && (
                                 <p className="leading-8 text-slate-600 dark:text-slate-300 mt-6 text-base md:text-lg whitespace-pre-line">
-                                  {descriptionText}
+                                  {productDescription}
                                 </p>
                             )}
                         </div>
@@ -118,12 +104,6 @@ const ProductDetailPageContent = () => {
                                             </div>
                                         );
                                     })}
-                                    {legacySpecs && Object.entries(legacySpecs).map(([key, value]) => (
-                                        <div key={key} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 py-4">
-                                            <span className="font-medium text-slate-500 dark:text-gray-400">{resolveLegacySpecKey(key, t)}</span>
-                                            <span className="font-semibold sm:text-right text-slate-800 dark:text-white">{resolveLegacySpecValue(value, t)}</span>
-                                        </div>
-                                    ))}
                                 </div>
                             ) : (
                                 <p className="text-slate-500 dark:text-slate-400">{t('products.specs_soon', 'Specifications will be added soon.')}</p>
@@ -140,7 +120,7 @@ const ProductDetailPageContent = () => {
                                  : 'Contact us for more information and availability.'}
                              </p>
                              <Link
-                                to={`/contact?product=${encodeURIComponent(t(product.name))}`}
+                                to={`/contact?product=${encodeURIComponent(productName)}`}
                                 className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold py-3 px-8 rounded-lg text-base md:text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
                              >
                                  <Phone size={20}/>
@@ -156,14 +136,15 @@ const ProductDetailPageContent = () => {
 
 const ProductDetailPage = () => {
     const { slug } = useParams<{ slug: string }>();
-    const { t } = useLanguage();
-    const product = productsData.find(p => p.slug === slug);
-    const title = product ? t(product.name) : t('products.title', 'Product');
+    const { t, language } = useLanguage();
+    const lang = language as 'fa' | 'en';
+    const product = catalogProducts.find(p => p.slug === slug);
+    const productName = product ? (lang === 'fa' ? product.name.fa : product.name.en) : t('products.title', 'Product');
 
     const productJsonLd = product ? {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": title,
+      "name": productName,
       "image": product.image?.startsWith('http') ? product.image : `https://armanhamrah.com${product.image}`,
       "brand": { "@type": "Brand", "name": product.brand_id },
       "category": product.category_id,
@@ -173,8 +154,8 @@ const ProductDetailPage = () => {
     return (
       <HelmetProvider>
         <SEO 
-          title={`${title} | Arman Hamrah`}
-          description={product?.description ? t(product.description) : `Details for ${title}`}
+          title={`${productName} | Arman Hamrah`}
+          description={product ? (lang === 'fa' ? product.description.fa : product.description.en) : `Details for ${productName}`}
           type="product"
           url={product ? `https://armanhamrah.com/product/${product.slug}` : undefined}
           image={product?.image?.startsWith('http') ? product.image : (product ? `https://armanhamrah.com${product.image}` : undefined)}

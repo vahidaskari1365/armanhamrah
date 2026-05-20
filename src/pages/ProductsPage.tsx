@@ -1,4 +1,3 @@
-
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Loader2, Search, X } from 'lucide-react';
@@ -13,12 +12,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Input } from '@/components/ui/input';
 import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
-import { productsData } from '@/data/products';
+import { catalogProducts } from '@/data/catalogProducts';
 import { matchesSearch } from '@/lib/searchNormalize';
 import ProductImage from '@/components/ProductImage';
-import type { ProductSpecEntry } from '@/types/product';
+import type { CatalogProduct } from '@/data/catalogProducts';
 
-// Define interfaces for our data structures
 export interface Product {
   id: string;
   name: string;
@@ -29,34 +27,35 @@ export interface Product {
   category_id: string;
   brand: { name: string };
   category: { name: string };
-  specs: Record<string, string>;
-  specEntries?: ProductSpecEntry[];
-  tags?: string[];
+  price: { fa: string; en: string };
+  specEntries: CatalogProduct['specEntries'];
 }
-export interface Brand { id: string; name: string; }
-export interface Category { id: string; name: string; }
-
-// --- LOCAL DATA FETCHING FUNCTIONS ---
 
 const fetchProducts = async (): Promise<Product[]> => {
-    const mappedProducts = productsData.map(p => ({
-        ...p,
-        id: p.slug,
-        brand: { name: p.brand_id },
-        category: { name: p.category_id } // Keep the full key like 'category.mobile'
-    }));
-    return mappedProducts as unknown as Product[];
+  return catalogProducts.map(p => ({
+    id: p.slug,
+    name: p.name.en,
+    nameFa: p.name.fa,
+    slug: p.slug,
+    image: p.image,
+    brand_id: p.brand_id,
+    category_id: p.category_id,
+    brand: { name: p.brand_id },
+    category: { name: p.category_id },
+    price: p.price,
+    description: p.description,
+    specEntries: p.specEntries,
+  })) as unknown as Product[];
 };
 
-const fetchBrands = async (): Promise<Brand[]> => {
-    const brandNames = [...new Set(productsData.map(p => p.brand_id))].sort();
-    return brandNames.map(name => ({ id: name, name }));
+const fetchBrands = async () => {
+  const brandNames = [...new Set(catalogProducts.map(p => p.brand_id))].sort();
+  return brandNames.map(name => ({ id: name, name }));
 };
 
-const fetchCategories = async (): Promise<Category[]> => {
-    // Use the full category keys, the translation function will handle them
-    const categoryKeys = [...new Set(productsData.map(p => p.category_id))].sort();
-    return categoryKeys.map(key => ({ id: key, name: key }));
+const fetchCategories = async () => {
+  const categoryKeys = [...new Set(catalogProducts.map(p => p.category_id))].sort();
+  return categoryKeys.map(key => ({ id: key, name: key }));
 };
 
 
@@ -70,8 +69,8 @@ const ProductsPageContent = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({ queryKey: ['products'], queryFn: fetchProducts });
-  const { data: brands, isLoading: isLoadingBrands } = useQuery<Brand[]>({ queryKey: ['brands'], queryFn: fetchBrands });
-  const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+  const { data: brands, isLoading: isLoadingBrands } = useQuery<{id: string; name: string}[]>({ queryKey: ['brands'], queryFn: fetchBrands });
+  const { data: categories, isLoading: isLoadingCategories } = useQuery<{id: string; name: string}[]>({ queryKey: ['categories'], queryFn: fetchCategories });
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
@@ -79,17 +78,15 @@ const ProductsPageContent = () => {
       const brandMatch = selectedBrand === 'all' || product.brand.name === selectedBrand;
       const categoryMatch = selectedCategory === 'all' || product.category.name === selectedCategory;
       const q = debouncedSearchTerm.trim();
+      if (q === '') return brandMatch && categoryMatch;
       const haystack = [
         product.name,
-        t(product.name),
         product.brand.name,
         t(product.brand.name),
         t(product.category.name),
         product.slug,
-        ...(product.tags ?? []),
       ].join(' ');
-      const searchMatch = q === '' || matchesSearch(haystack, q);
-      return brandMatch && categoryMatch && searchMatch;
+      return brandMatch && categoryMatch && matchesSearch(haystack, q);
     });
   }, [products, selectedBrand, selectedCategory, debouncedSearchTerm, t]);
 
@@ -150,7 +147,6 @@ const ProductsPageContent = () => {
                     )}
                 </div>
 
-                {/* Active filters bar */}
                 {hasActiveFilters && (
                   <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
                     <span className="text-sm text-foreground font-medium">
@@ -223,17 +219,36 @@ const ProductsPageContent = () => {
                                     <div className="relative mb-4 overflow-hidden rounded-xl p-4 h-48 sm:h-52 flex items-center justify-center shrink-0 bg-muted/20">
                                         <ProductImage
                                             src={product.image}
-                                            alt={t(product.name)}
+                                            alt={language === 'fa' ? (product as unknown as {nameFa: string}).nameFa : product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                                         />
-                                        <span className="absolute bottom-3 inline-flex items-center px-3 py-1.5 text-xs font-bold rounded-md bg-primary text-primary-foreground shadow-gold">
-                                          {t('products.specs', 'مشخصات')}
+                                        <span className="absolute top-3 inline-flex items-center px-2.5 py-1 text-xs font-bold rounded-md bg-primary/90 text-primary-foreground shadow-gold">
+                                          {language === 'fa' ? product.price.fa : product.price.en}
                                         </span>
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow">
-                                        {t(product.name)}
+                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow px-2">
+                                        {language === 'fa' ? (product as unknown as {nameFa: string}).nameFa : product.name}
                                     </h3>
-                                    <span className="inline-block mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
+                                    {product.specEntries && product.specEntries.length > 0 && (
+                                      <div className={`px-3 pb-2 space-y-1 ${language === 'fa' ? 'text-right' : 'text-left'}`}>
+                                        {product.specEntries.slice(0, 4).map((spec, idx) => (
+                                          <div key={idx} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                            {language === 'fa' ? (
+                                              <>
+                                                <span className="font-medium text-foreground/70">{spec.label.fa}:</span>
+                                                <span className="text-foreground">{spec.value.fa}</span>
+                                              </>
+                                            ) : (
+                                              <>
+                                                <span className="font-medium text-foreground/70">{spec.label.en}:</span>
+                                                <span className="text-foreground">{spec.value.en}</span>
+                                              </>
+                                            )}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                    <span className="mx-3 mb-3 mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
                                         {t('products.view', 'View Details')}
                                     </span>
                                 </Link>
@@ -274,5 +289,3 @@ const ProductsPage = () => {
 };
 
 export default ProductsPage;
-
-// trigger new commit for vercel
