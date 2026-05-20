@@ -11,9 +11,9 @@ interface ProductImageProps {
 const ProductImage = ({ src, alt, className = '', loading = 'lazy' }: ProductImageProps) => {
   const getValidSrc = (imagePath: string): string => {
     if (!imagePath) return PRODUCT_IMAGE_PLACEHOLDER;
+    // For local images in /images/products/, use absolute path from public folder
     if (imagePath.startsWith('/images/products/')) {
-      const fullPath = `${window.location.origin}${imagePath}`;
-      return fullPath;
+      return imagePath;
     }
     return imagePath;
   };
