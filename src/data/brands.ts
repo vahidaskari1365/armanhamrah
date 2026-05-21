@@ -34,6 +34,6 @@ export const brandData: BrandInfo[] = [
   {
     id: "Anker",
     name: "Anker",
-    logo: "/images/brands/Anker-logo.png",
+    logo: "/images/brands/Anke-logo.png",
   },
 ];
