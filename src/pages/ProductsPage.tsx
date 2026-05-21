@@ -15,14 +15,13 @@ import { useDebounce } from '@/hooks/use-debounce';
 import BackgroundImage from '../assets/radical-logo.jpeg';
 import { productsData } from '@/data/products';
 import { matchesSearch } from '@/lib/searchNormalize';
-import ProductImage from '@/components/ProductImage';
-import type { ProductSpecEntry } from '@/types/product';
 
 // Define interfaces for our data structures
 export interface Product {
   id: string;
   name: string;
   description?: string;
+  price?: string;
   slug: string;
   image: string;
   brand_id: string;
@@ -30,8 +29,6 @@ export interface Product {
   brand: { name: string };
   category: { name: string };
   specs: Record<string, string>;
-  specEntries?: ProductSpecEntry[];
-  tags?: string[];
 }
 export interface Brand { id: string; name: string; }
 export interface Category { id: string; name: string; }
@@ -59,6 +56,26 @@ const fetchCategories = async (): Promise<Category[]> => {
     return categoryKeys.map(key => ({ id: key, name: key }));
 };
 
+const CARD_SPEC_PRIORITY = [
+  'spec.chip',
+  'spec.chip_model',
+  'spec.battery',
+  'spec.ram',
+  'spec.display',
+  'spec.display_type',
+] as const;
+
+const getCardSpecs = (specs: Record<string, string>) => {
+  const entries = Object.entries(specs);
+  const prioritized = CARD_SPEC_PRIORITY
+    .map((priorityKey) => entries.find(([key]) => key === priorityKey))
+    .filter((entry): entry is [string, string] => Boolean(entry));
+
+  const selectedKeys = new Set(prioritized.map(([key]) => key));
+  const fallback = entries.filter(([key]) => !selectedKeys.has(key));
+
+  return [...prioritized, ...fallback].slice(0, 4);
+};
 
 const ProductsPageContent = () => {
   const { t, language } = useLanguage();
@@ -86,7 +103,6 @@ const ProductsPageContent = () => {
         t(product.brand.name),
         t(product.category.name),
         product.slug,
-        ...(product.tags ?? []),
       ].join(' ');
       const searchMatch = q === '' || matchesSearch(haystack, q);
       return brandMatch && categoryMatch && searchMatch;
@@ -214,30 +230,50 @@ const ProductsPageContent = () => {
                         ) : (
                             <AnimatePresence>
                             <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                                {filteredProducts.map((product) => (
+                                {filteredProducts.map((product) => {
+                                  const cardSpecs = getCardSpecs(product.specs);
+
+                                  return (
                                 <Link 
                                     key={product.slug} 
                                     to={`/product/${product.slug}`} 
                                     className="card-premium text-center block transition-all duration-300 group h-full flex flex-col"
                                 >
-                                    <div className="relative mb-4 overflow-hidden rounded-xl p-4 h-48 sm:h-52 flex items-center justify-center shrink-0 bg-muted/20">
-                                        <ProductImage
+                                    <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4 h-48 flex items-center justify-center shrink-0">
+                                        <img
                                             src={product.image}
-                                            alt={t(product.name)}
+                                            alt={product.name}
                                             className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                                            loading="lazy" 
+                                            decoding="async"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = '/placeholder.svg';
+                                            }}
                                         />
-                                        <span className="absolute bottom-3 inline-flex items-center px-3 py-1.5 text-xs font-bold rounded-md bg-primary text-primary-foreground shadow-gold">
-                                          {t('products.specs', 'مشخصات')}
-                                        </span>
                                     </div>
-                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 flex-grow">
+                                    <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 px-2">
                                         {t(product.name)}
                                     </h3>
+                                    {cardSpecs.length > 0 && (
+                                      <div className="px-3 mb-3 text-xs md:text-sm text-start space-y-1">
+                                        {cardSpecs.map(([specKey, specValue]) => (
+                                          <div key={specKey} className="flex items-center justify-between gap-2 text-muted-foreground">
+                                            <span className="truncate">{t(specKey)}</span>
+                                            <span className="font-medium text-foreground truncate">{t(specValue)}</span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                    <p className="text-primary font-bold mb-3 text-sm">
+                                        {product.price ? product.price : t('products.contact_for_price')}
+                                    </p>
                                     <span className="inline-block mt-auto px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground shadow-gold">
                                         {t('products.view', 'View Details')}
                                     </span>
                                 </Link>
-                                ))}
+                                  );
+                                })}
                             </motion.div>
                             </AnimatePresence>
                         )}
