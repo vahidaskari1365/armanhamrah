@@ -613,7 +613,15 @@ const fallbackTranslationsData = {
     'product.apple_watch_se_44.description': '📏 ابعاد و وزن: 44mm، حدود ۳۳ گرم\n🧱 جنس بدنه: آلومینیوم\n🔗 پشت سرامیکی + کریستال سافایر\n📺 نمایشگر: Retina LTPO OLED، روشنایی بالا\n🔋 باتری: حدود ۲۹۶mAh، شارژدهی تا ۱۸ ساعت\n⚙️ چیپ: Apple S9، حافظه داخلی ۳۲GB\n📡 اتصال: Bluetooth 5.3، WiFi، NFC، GPS، نسخه Cellular در برخی مدل‌ها\n❤️ سنسورها: ضربان قلب، تشخیص سقوط، تشخیص تصادف، قطب‌نما، ژیروسکوپ\n💧 مقاومت: مقاوم در آب تا ۵۰ متر\n✨ ویژگی‌ها: Apple Pay، Fitness Tracking، اعلان تماس و پیام، پشتیبانی Siri'
     'product.samsung_galaxy_watch8_40.description': '⌚ Galaxy Watch 8 (40mm / 44mm)\n📏 ابعاد: 40mm و 44mm نسخه استاندارد\n📺 نمایشگر: Super AMOLED\n🔋 باتری: حدود 1.5 تا 2 روز استفاده معمولی\n⚙️ سخت‌افزار: Wear OS One UI Watch، RAM: حسب مدل، Exynos نسل قبل\n❤️ سنسورها: ضربان قلب، SpO2، خواب، GPS\n💧 مقاومت: 5ATM + IP68\n📡 اتصال: Bluetooth، WiFi\n✨ قابلیت‌ها: پایش استرس، پایش خواب حرفه‌ای، پایش فعالیت ورزشی، اعلان تماس و پیام',
     'product.samsung_galaxy_watch8_44.description': '⌚ Galaxy Watch 8 (40mm / 44mm)\n📏 ابعاد: 40mm و 44mm نسخه استاندارد\n📺 نمایشگر: Super AMOLED\n🔋 باتری: حدود 1.5 تا 2 روز استفاده معمولی\n⚙️ سخت‌افزار: Wear OS One UI Watch، RAM: حسب مدل، Exynos نسل قبل\n❤️ سنسورها: ضربان قلب، SpO2، خواب، GPS\n💧 مقاومت: 5ATM + IP68\n📡 اتصال: Bluetooth، WiFi\n✨ قابلیت‌ها: پایش استرس، پایش خواب حرفه‌ای، پایش فعالیت ورزشی، اعلان تماس و پیام'
-    'product.airpods_pro_2.description': '🎧 نوع: True Wireless Earbuds\n🔇 نویز کنسلینگ: ANC فعال + Transparency Mode\n🔋 باتری: تا 6 ساعت پخش، تا 30 ساعت با کیس\n⚙️ چیپ: H2\n🔊 ویژگی‌ها: Spatial Audio، Adaptive Audio\n🔌 شارژ: USB-C\n💧 مقاومت: IP54\n📡 اتصال: Bluetooth 5.3'
+    'product.airpods_pro_2.description': '🎧 نوع: True Wireless Earbuds\n🔇 نویز کنسلینگ: ANC فعال + Transparency Mode\n🔋 باتری: تا 6 ساعت پخش، تا 30 ساعت با کیس\n⚙️ چیپ: H2\n🔊 ویژگی‌ها: Spatial Audio، Adaptive Audio\n🔌 شارژ: USB-C\n💧 مقاومت: IP54\n📡 اتصال: Bluetooth 5.3',
+    'product.apple_airpods4.description': '🎧 Apple AirPods 4\n📦 نسخه بدون ANC: طراحی سبک، صدای شفاف، باتری تا 5 ساعت، کیس USB-C\n🔇 نسخه ANC: نویز کنسلینگ فعال + Adaptive EQ + Spatial Audio + شارژدهی بیشتر',
+    'product.apple_airpods_pro3.description': '🎧 Apple AirPods Pro 3\n🔇 ویژگی‌ها: ANC نسل جدید، کیفیت صدای بهتر\n⚙️ چیپ: H3\n🔌 شارژ: USB-C\n📡 Spatial Audio: پیشرفته\n🔋 باتری: تا 6 ساعت پخش، تا 30 ساعت با کیس',
+    'product.apple_airpods_max.description': '🎧 AirPods Max 2024\n🧱 جنس: آلومینیوم + استیل\n🎵 صدا: Hi-Fi Audio + Spatial Audio\n🔇 نویز کنسلینگ: ANC حرفه‌ای\n🔋 باتری: تا 20 ساعت\n📡 اتصال: Bluetooth 5.3 + USB-C',
+    'product.anker_r60i_nc.description': '🎧 Anker R60i NC\n🔇 ANC: نویز کنسلینگ فعال\n🔋 باتری: تا 10 ساعت پخش، تا 45 ساعت با کیس\n💧 مقاومت: IPX5\n📡 اتصال: Bluetooth 5.3\n✨ ویژگی‌ها: Bass قوی، اپلیکیشن Soundcore',
+    'product.soundcore_r50i.description': '🎧 Soundcore R50i A3949\n🎵 ویژگی‌ها: ENC برای مکالمه، درایور قدرتمند\n🔋 باتری: تا 10 ساعت پخش، تا 30 ساعت با کیس\n📡 اتصال: Bluetooth 5.3',
+    'product.soundcore_p40i.description': '🎧 Soundcore P40i (ANC)\n🔇 نویز کنسلینگ: ANC هوشمند\n🔋 باتری: تا 12 ساعت پخش، تا 60 ساعت با کیس\n💧 مقاومت: IPX5\n✨ قابلیت‌ها: اپلیکیشن اختصاصی، BassUp Technology',
+    'product.samsung_galaxy_buds3.description': '🎧 Samsung Galaxy Buds3\n🔇 ANC: دارد\n🔋 باتری: تا 6 ساعت پخش، تا 24 ساعت با کیس\n📡 اتصال: Bluetooth 5.4\n✨ ویژگی‌ها: صدای Hi-Fi، حالت Ambient',
+    'product.samsung_galaxy_buds3_pro.description': '🎧 Samsung Galaxy Buds3 Pro\n🔇 ANC: نویز کنسلینگ حرفه‌ای\n🎵 صدا: Hi-Res Audio\n🔋 باتری: تا 7 ساعت پخش، تا 30 ساعت با کیس\n💧 مقاومت: IP57\n✨ قابلیت‌ها: صدای 360 درجه، Galaxy AI Features',
     'products.price': 'قیمت:',
     'products.contact_for_price': 'تماس بگیرید',},
   en: {
@@ -1193,6 +1201,21 @@ const fallbackTranslationsData = {
     'product.samsung_galaxy_watch8_40.description': 'Samsung next-generation smartwatch with focus on health, sports and AI. Features Wear OS with One UI Watch interface, always-on AMOLED display, dual-frequency GPS and IP68 + 5ATM water resistance (up to 50 meters). Equipped with heart rate, SpO2, ECG and advanced sleep tracking sensors. Battery lasts about 1.5 to 2 days with magnetic wireless charging.',
     'product.samsung_galaxy_watch8_44.description': 'Samsung next-generation smartwatch with focus on health, sports and AI. Features Wear OS with One UI Watch interface, always-on AMOLED display, dual-frequency GPS and IP68 + 5ATM water resistance (up to 50 meters). Equipped with heart rate, SpO2, ECG and advanced sleep tracking sensors. Battery lasts about 1.5 to 2 days with magnetic wireless charging.',
     'product.airpods_pro_2.description': 'Apple AirPods Pro 2 with two times stronger Active Noise Cancellation.',
+    'product.apple_airpods4.description': 'Apple AirPods 4 available in two versions: with or without ANC. Features USB-C charging and quality audio.',
+    'product.apple_airpods_pro3.description': 'Apple AirPods Pro 3 with next-generation ANC, improved sound quality, H3 chip and advanced Spatial Audio.',
+    'product.apple_airpods_max.description': 'Apple AirPods Max 2024 with aluminum and steel design, Hi-Fi audio, professional ANC and up to 20 hours battery life.',
+    'product.anker_r60i_nc.description': 'Anker R60i NC with active noise cancellation, strong bass, up to 10 hours playback time and IPX5 water resistance.',
+    'product.soundcore_r50i.description': 'Soundcore R50i A3949 with noise cancellation for calls, powerful drivers, up to 10 hours battery and Bluetooth 5.3.',
+    'product.soundcore_p40i.description': 'Soundcore P40i with smart ANC, up to 12 hours battery, 60 hours total with case, IPX5 waterproof rating.',
+    'product.samsung_galaxy_buds3.description': 'Samsung Galaxy Buds3 with ANC, up to 6 hours playback, Hi-Fi audio and ambient mode.',
+    'product.samsung_galaxy_buds3_pro.description': 'Samsung Galaxy Buds3 Pro with professional ANC, Hi-Res Audio, up to 7 hours battery and 360-degree sound with Galaxy AI features.',
+    'product.samsung_galaxy_watch7_40.description': 'Samsung Galaxy Watch 7 40mm with Super AMOLED display, advanced health sensors, 1-2 days battery life and 5ATM + IP68 water resistance.',
+    'product.samsung_galaxy_watch7_44.description': 'Samsung Galaxy Watch 7 44mm with Super AMOLED display, advanced health sensors, 1-2 days battery life and 5ATM + IP68 water resistance.',
+    'product.samsung_galaxy_watch6.description': 'Samsung Galaxy Watch 6 with Super AMOLED display, ECG, blood pressure monitoring, advanced sleep tracking and 1-2 days battery life.',
+    'product.samsung_galaxy_watch6_classic.description': 'Samsung Galaxy Watch 6 Classic with stainless steel body and rotating bezel, Super AMOLED display, ECG, advanced health features.',
+    'product.samsung_galaxy_watch_ultra_2025.description': 'Samsung Galaxy Watch Ultra 2025 with titanium body, extreme durability, 2-3 days battery, MIL-STD-810H standard, dual-frequency GPS.',
+    'product.apple_watch_se3_44.description': 'Apple Watch SE 44mm with aluminum body, S9 chip, essential health features, all-day battery and water resistance up to 50 meters.',
+    'product.apple_watch_series7_45.description': 'Apple Watch Series 7 45mm with fast charging, ECG, blood oxygen monitoring, all-day battery and WR50 water resistance.',
     'products.price': 'Price:',
     'products.contact_for_price': 'Contact Us',
 
