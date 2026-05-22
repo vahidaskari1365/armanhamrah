@@ -439,6 +439,19 @@ const fallbackTranslationsData = {
      "spec.value.usb_c": "USB-C",
      "spec.value.s11_sip": "S11 SiP",
 
+    // Samsung Galaxy Watch 8 Specs
+    "spec.value.wear_os_one_ui_watch": "Wear OS با One UI Watch",
+    "spec.value.amoled_always_on": "صفحه‌نمایش AMOLED همیشه روشن",
+    "spec.value.dual_frequency_gps": "GPS دو فرکانسه",
+    "spec.value.heart_rate_spo2_ecg_sleep": "ضربان قلب، SpO2، ECG، سنجش خواب",
+    "spec.value.ip68_5atm_50m": "IP68 + 5ATM (مقاوم تا 50 متر)",
+    "spec.value.1_5_2_days": "حدود 1.5 تا 2 روز",
+    "spec.value.wireless_magnetic": "شارژ بی‌سیم مغناطیسی",
+    "spec.value.bluetooth_wifi_lte": "Bluetooth + WiFi + LTE",
+    "spec.value.stress_sleep_activity_notifications": "پایش استرس، خواب، فعالیت ورزشی، اعلان‌ها",
+    "spec.value.40mm": "40 میلی‌متر",
+    "spec.value.44mm": "44 میلی‌متر",
+
     // Export Main Page
     'export.title_main': 'صادرات آرمان', 'export.subtitle_main': 'تجارت بین‌المللی با کیفیت و اطمینان', 'export.description_main': 'ما در آرمان با تکیه بر تجربه و شبکه گسترده خود، محصولات با کیفیت ایرانی و بین‌المللی را به بازارهای جهانی عرضه می‌کنیم.',
     'export.features.title': 'ویژگی‌های خدمات صادراتی ما', 'export.features.international.title': 'شبکه بین‌المللی', 'export.features.international.description': 'دسترسی به بازارهای متنوع در سراسر جهان.', 'export.features.transportation.title': 'حمل و نقل امن', 'export.features.transportation.description': 'تضمین سلامت کالا تا رسیدن به مقصد.', 'export.features.original.title': 'تضمین اصالت کالا', 'export.features.original.description': 'ارائه مدارک و گواهی‌های معتبر بین‌المللی.', 'export.features.documentation.title': 'تسهیل امور گمرکی', 'export.features.documentation.description': 'انجام کلیه فرآیندهای گمرکی توسط تیم متخصص ما.',
@@ -598,6 +611,8 @@ const fallbackTranslationsData = {
     'product.apple_watch_11_42.description': 'نسخه ۴۲ میلی‌متری اپل واچ ۱۱ با طراحی ظریف‌تر و تمام ویژگی‌های جدید.',
     'product.apple_watch_ultra_3_black.description': 'اپل واچ اولترا ۳ با بدنه تیتانیوم مشکی و بیشترین دوام باتری.',
     'product.apple_watch_se_44.description': 'بهترین ارزش خرید در ساعت‌های هوشمند اپل با تمام ویژگی‌های ضروری.',
+    'product.samsung_galaxy_watch8_40.description': 'ساعت هوشمند نسل جدید سامسونگ با تمرکز روی سلامت، ورزش و هوش مصنوعی. دارای سیستم‌عامل Wear OS با رابط One UI Watch، نمایشگر AMOLED همیشه روشن، GPS دو فرکانسه و مقاومت IP68 + 5ATM (مقاوم در آب تا 50 متر). مجهز به سنسورهای ضربان قلب، SpO2، ECG و سنجش خواب پیشرفته. باتری حدود 1.5 تا 2 روز و شارژ بی‌سیم مغناطیسی.',
+    'product.samsung_galaxy_watch8_44.description': 'ساعت هوشمند نسل جدید سامسونگ با تمرکز روی سلامت، ورزش و هوش مصنوعی. دارای سیستم‌عامل Wear OS با رابط One UI Watch، نمایشگر AMOLED همیشه روشن، GPS دو فرکانسه و مقاومت IP68 + 5ATM (مقاوم در آب تا 50 متر). مجهز به سنسورهای ضربان قلب، SpO2، ECG و سنجش خواب پیشرفته. باتری حدود 1.5 تا 2 روز و شارژ بی‌سیم مغناطیسی.',
     'product.airpods_pro_2.description': 'ایرفونز اپل مدل AirPods Pro 2 با حذف نویز فعال دو برابر قوی‌تر.',
     'products.price': 'قیمت:',
     'products.contact_for_price': 'تماس بگیرید',},
@@ -1004,6 +1019,19 @@ const fallbackTranslationsData = {
      "spec.value.usb_c": "USB-C",
      "spec.value.s11_sip": "S11 SiP",
 
+    // Samsung Galaxy Watch 8 Specs (English)
+    "spec.value.wear_os_one_ui_watch": "Wear OS with One UI Watch",
+    "spec.value.amoled_always_on": "Always-on AMOLED Display",
+    "spec.value.dual_frequency_gps": "Dual-frequency GPS",
+    "spec.value.heart_rate_spo2_ecg_sleep": "Heart Rate, SpO2, ECG, Sleep Tracking",
+    "spec.value.ip68_5atm_50m": "IP68 + 5ATM (Water resistant up to 50 meters)",
+    "spec.value.1_5_2_days": "Approximately 1.5 to 2 days",
+    "spec.value.wireless_magnetic": "Wireless Magnetic Charging",
+    "spec.value.bluetooth_wifi_lte": "Bluetooth + WiFi + LTE",
+    "spec.value.stress_sleep_activity_notifications": "Stress Monitoring, Sleep Tracking, Activity Tracking, Notifications",
+    "spec.value.40mm": "40 mm",
+    "spec.value.44mm": "44 mm",
+
     // Export Main Page
     'export.title_main': 'Arman Export', 'export.subtitle_main': 'International Trade with Quality and Confidence', 'export.description_main': 'At Arman, relying on our experience and extensive network, we supply quality Iranian and international products to global markets.',
     'export.features.title': 'Features of Our Export Services', 'export.features.international.title': 'International Network', 'export.features.international.description': 'Access to diverse markets worldwide.', 'export.features.transportation.title': 'Secure Transportation', 'export.features.transportation.description': 'Ensuring the safety of goods until destination.', 'export.features.original.title': 'Authenticity Guarantee', 'export.features.original.description': 'Providing valid international documents.', 'export.features.documentation.title': 'Customs Facilitation', 'export.features.documentation.description': 'Handling all customs procedures by our expert team.',
@@ -1162,6 +1190,8 @@ const fallbackTranslationsData = {
     'product.apple_watch_11_42.description': '42mm version of Apple Watch 11 with a sleeker design and all new features.',
     'product.apple_watch_ultra_3_black.description': 'Apple Watch Ultra 3 with black titanium body and maximum battery life.',
     'product.apple_watch_se_44.description': 'The best value in Apple smartwatches with all the essential features.',
+    'product.samsung_galaxy_watch8_40.description': 'Samsung next-generation smartwatch with focus on health, sports and AI. Features Wear OS with One UI Watch interface, always-on AMOLED display, dual-frequency GPS and IP68 + 5ATM water resistance (up to 50 meters). Equipped with heart rate, SpO2, ECG and advanced sleep tracking sensors. Battery lasts about 1.5 to 2 days with magnetic wireless charging.',
+    'product.samsung_galaxy_watch8_44.description': 'Samsung next-generation smartwatch with focus on health, sports and AI. Features Wear OS with One UI Watch interface, always-on AMOLED display, dual-frequency GPS and IP68 + 5ATM water resistance (up to 50 meters). Equipped with heart rate, SpO2, ECG and advanced sleep tracking sensors. Battery lasts about 1.5 to 2 days with magnetic wireless charging.',
     'product.airpods_pro_2.description': 'Apple AirPods Pro 2 with two times stronger Active Noise Cancellation.',
     'products.price': 'Price:',
     'products.contact_for_price': 'Contact Us',

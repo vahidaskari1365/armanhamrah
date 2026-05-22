@@ -108,9 +108,9 @@ const ProductDetailPageContent = () => {
                             )}
                         </div>
 
-                         <div className="bg-gradient-to-tr from-primary/10 via-transparent to-transparent border border-primary/30 rounded-2xl p-8 text-center mt-6 dark:from-primary/20">
+                         <div className="bg-gradient-to-tr from-primary/10 via-transparent to-transparent dark:from-primary/30 dark:via-primary/10 dark:to-transparent border border-primary/30 dark:border-primary/50 rounded-2xl p-8 text-center mt-6">
                              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">به این محصول علاقه‌مندید؟</h3>
-                             <p className="text-slate-600 dark:text-slate-300 mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
+                             <p className="text-slate-600 dark:text-slate-200 mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
                              <Link
                                 to={`/contact?product=${encodeURIComponent(t(product.name))}`}
                                 className="inline-flex items-center gap-3 bg-primary text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
