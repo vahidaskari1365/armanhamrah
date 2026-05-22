@@ -113,7 +113,7 @@ const ProductDetailPageContent = () => {
                              <p className="text-slate-700 dark:text-slate-100 mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
                              <Link
                                 to={`/contact?product=${encodeURIComponent(t(product.name))}`}
-                                className="inline-flex items-center gap-3 bg-primary text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                className="inline-flex items-center gap-3 bg-primary dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 dark:hover:bg-slate-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
                              >
                                  <Phone size={20}/>
                                  تماس بگیرید
