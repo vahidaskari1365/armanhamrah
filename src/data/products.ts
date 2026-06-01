@@ -647,6 +647,7 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
     brand_id: "Samsung",
     category_id: "category.smartwatch",
     description: "product.samsung_galaxy_watch8_40.description",
+    extraSpecs: "product.samsung_galaxy_watch8_40.extra_specs",
     specs: {
       "spec.os": "spec.value.wear_os_one_ui_watch",
       "spec.display": "spec.value.amoled_always_on",
