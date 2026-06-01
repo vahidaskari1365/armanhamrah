@@ -30,7 +30,6 @@ export interface Product {
   category: { name: string };
   specs: Record<string, string>;
 }
-export interface ProductWithExtra extends Product { extraSpecs?: string; }
 export interface Brand { id: string; name: string; }
 export interface Category { id: string; name: string; }
 
