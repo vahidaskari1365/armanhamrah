@@ -25,7 +25,6 @@ const ContactPageContent = () => {
     {
       title: language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service',
       phone: language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798',
-      phone2: language === 'fa' ? '۰۲۱-۸۸۳۲۹۲۷۴' : '021-88329274',
       address:
         language === 'fa'
           ? 'تهران، خیابان مطهری، سلیمان خاطر، نبش بانک ملت، ساختمان امیر اتابک، ط۲، واحد ۲۰۴'
@@ -74,9 +73,6 @@ const ContactPageContent = () => {
                       <Phone size={20} className="text-accent" />
                       <div className="flex flex-col">
                         <span dir="ltr">{section.phone}</span>
-                        {section.phone2 && (
-                          <span dir="ltr">{section.phone2}</span>
-                        )}
                       </div>
                     </li>
                   )}
