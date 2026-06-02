@@ -1,5 +1,5 @@
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ArrowRight, AlertTriangle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -13,6 +13,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const ProductDetailPageContent = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t } = useLanguage();
+    const navigate = useNavigate();
 
     const product = productsData.find(p => p.slug === slug);
 
@@ -38,10 +39,10 @@ const ProductDetailPageContent = () => {
                     transition={{ duration: 0.5 }}
                     className="mb-8"
                 >
-                    <Link to="/products" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors">
+                    <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors">
                         <ArrowRight size={20} />
                         {t('products.back_to_list', 'Back to Products')}
-                    </Link>
+                    </button>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
