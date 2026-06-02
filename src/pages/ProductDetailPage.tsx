@@ -108,12 +108,6 @@ const ProductDetailPageContent = () => {
                             )}
                         </div>
 
-                        {product.extraSpecs && (
-                            <div className="border-t border-slate-200 dark:border-border pt-8">
-                                <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">{t('products.extra_specs', 'مشخصات فنی اضافی')}</h2>
-                                <p className="leading-relaxed whitespace-pre-line text-slate-600 dark:text-slate-300 text-lg">{t(product.extraSpecs)}</p>
-                            </div>
-                        )}
 
                          <div className="bg-gradient-to-tr from-primary/5 via-primary/5 to-transparent dark:from-primary/40 dark:via-primary/25 dark:to-primary/10 border border-primary/20 dark:border-primary/60 rounded-2xl p-8 text-center mt-6">
                              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">به این محصول علاقه‌مندید؟</h3>
