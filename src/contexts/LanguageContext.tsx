@@ -1057,6 +1057,7 @@ const fallbackTranslationsData = {
      "spec.value.s11_sip": "S11 SiP",
 
     // Samsung Galaxy Watch 8 Specs (English)
+    // Apple AirPods 4 Specs (English)
     "spec.value.wear_os_one_ui_watch": "Wear OS with One UI Watch",
     "spec.value.amoled_always_on": "Always-on AMOLED Display",
     "spec.value.dual_frequency_gps": "Dual-frequency GPS",
