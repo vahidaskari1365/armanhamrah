@@ -39,7 +39,13 @@ const ProductDetailPageContent = () => {
                     transition={{ duration: 0.5 }}
                     className="mb-8"
                 >
-                    <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors">
+                    <button
+                        onClick={() => {
+                            const saved = sessionStorage.getItem('products:location');
+                            navigate(saved || '/products');
+                        }}
+                        className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors"
+                    >
                         <ArrowRight size={20} />
                         {t('products.back_to_list', 'Back to Products')}
                     </button>

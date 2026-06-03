@@ -1,8 +1,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { Loader2, Search, X } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -81,6 +81,7 @@ const getCardSpecs = (specs: Record<string, string>) => {
 const ProductsPageContent = () => {
   const { t, language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const [selectedBrand, setSelectedBrand] = useState<string>(() => searchParams.get('brand') || 'all');
   const [selectedCategory, setSelectedCategory] = useState<string>(() => searchParams.get('category') || 'all');
@@ -90,6 +91,27 @@ const ProductsPageContent = () => {
   const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({ queryKey: ['products'], queryFn: fetchProducts });
   const { data: brands, isLoading: isLoadingBrands } = useQuery<Brand[]>({ queryKey: ['brands'], queryFn: fetchBrands });
   const { data: categories, isLoading: isLoadingCategories } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+
+  // Persist the products list location so the detail page can return here.
+  useEffect(() => {
+    sessionStorage.setItem('products:location', location.pathname + location.search);
+  }, [location.pathname, location.search]);
+
+  // Continuously save the scroll position while browsing the list.
+  useEffect(() => {
+    const onScroll = () => sessionStorage.setItem('products:scroll', String(window.scrollY));
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Restore the scroll position once the product list has rendered.
+  useEffect(() => {
+    if (isLoadingProducts) return;
+    const saved = sessionStorage.getItem('products:scroll');
+    if (saved) {
+      requestAnimationFrame(() => window.scrollTo(0, parseInt(saved, 10)));
+    }
+  }, [isLoadingProducts]);
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
