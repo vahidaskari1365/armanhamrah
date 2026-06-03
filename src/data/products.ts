@@ -896,12 +896,6 @@ export const productsData: Omit<Product, 'id' | 'brand' | 'category'>[] = [
     category_id: "category.accessories",
     description: "product.apple_airpods4.description",
     specs: {
-      "spec.type": "spec.value.true_wireless",
-      "spec.design": "spec.value.lightweight",
-      "spec.sound": "spec.value.clear_sound",
-      "spec.battery": "spec.value.5hours",
-      "spec.charging": "spec.value.usb_c",
-      "spec.anc_variant": "spec.value.available",
       "spec.airpods4.design": "spec.airpods4.design.value",
       "spec.airpods4.chip": "spec.airpods4.chip.value",
       "spec.airpods4.anc": "spec.airpods4.anc.value",
