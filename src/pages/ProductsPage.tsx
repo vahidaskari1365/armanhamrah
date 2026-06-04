@@ -1,6 +1,6 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams, Link, useLocation, useNavigationType } from 'react-router-dom';
 import { Loader2, Search, X } from 'lucide-react';
 import { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -82,6 +82,12 @@ const ProductsPageContent = () => {
   const { t, language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const navigationType = useNavigationType();
+
+  const locationState = (location.state as {
+    restoreProductsScroll?: boolean;
+    productsScrollY?: number;
+  } | null) ?? null;
 
   const [selectedBrand, setSelectedBrand] = useState<string>(() => searchParams.get('brand') || 'all');
   const [selectedCategory, setSelectedCategory] = useState<string>(() => searchParams.get('category') || 'all');
@@ -107,11 +113,33 @@ const ProductsPageContent = () => {
   // Restore the scroll position once the product list has rendered.
   useEffect(() => {
     if (isLoadingProducts) return;
-    const saved = sessionStorage.getItem('products:scroll');
-    if (saved) {
-      requestAnimationFrame(() => window.scrollTo(0, parseInt(saved, 10)));
+    const shouldRestoreScroll = navigationType === 'POP' || locationState?.restoreProductsScroll;
+    const savedScroll = locationState?.productsScrollY ?? Number(sessionStorage.getItem('products:scroll') || 0);
+
+    if (!shouldRestoreScroll || savedScroll <= 0) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      return;
     }
-  }, [isLoadingProducts]);
+
+    let frame = 0;
+    let animationFrame = 0;
+
+    const restoreScroll = () => {
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const targetScroll = Math.min(savedScroll, maxScroll);
+
+      window.scrollTo({ top: targetScroll, left: 0, behavior: 'auto' });
+
+      if ((maxScroll < savedScroll || Math.abs(window.scrollY - targetScroll) > 2) && frame < 12) {
+        frame += 1;
+        animationFrame = window.requestAnimationFrame(restoreScroll);
+      }
+    };
+
+    animationFrame = window.requestAnimationFrame(restoreScroll);
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [isLoadingProducts, location.key, locationState?.productsScrollY, locationState?.restoreProductsScroll, navigationType]);
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
@@ -260,6 +288,14 @@ const ProductsPageContent = () => {
                                 <Link 
                                     key={product.slug} 
                                     to={`/product/${product.slug}`} 
+                                    state={{
+                                      fromProductsLocation: location.pathname + location.search,
+                                      productsScrollY: window.scrollY,
+                                    }}
+                                    onClick={() => {
+                                      sessionStorage.setItem('products:location', location.pathname + location.search);
+                                      sessionStorage.setItem('products:scroll', String(window.scrollY));
+                                    }}
                                     className="card-premium text-center block transition-all duration-300 group h-full flex flex-col"
                                 >
                                     <div className="relative mb-4 overflow-hidden rounded-xl bg-secondary/50 p-4 h-48 flex items-center justify-center shrink-0">
