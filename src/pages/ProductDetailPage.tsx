@@ -48,7 +48,7 @@ const ProductDetailPageContent = () => {
                     <button
                         onClick={() => {
                             const savedLocation = locationState?.fromProductsLocation || sessionStorage.getItem('products:location') || '/products';
-                            const savedScroll = locationState?.productsScrollY ?? Number(sessionStorage.getItem('products:scroll') || 0);
+                            const savedScroll = Number(sessionStorage.getItem('products:scroll') || locationState?.productsScrollY || 0);
 
                             navigate(savedLocation, {
                                 state: {

@@ -288,10 +288,6 @@ const ProductsPageContent = () => {
                                 <Link 
                                     key={product.slug} 
                                     to={`/product/${product.slug}`} 
-                                    state={{
-                                      fromProductsLocation: location.pathname + location.search,
-                                      productsScrollY: window.scrollY,
-                                    }}
                                     onClick={() => {
                                       sessionStorage.setItem('products:location', location.pathname + location.search);
                                       sessionStorage.setItem('products:scroll', String(window.scrollY));
