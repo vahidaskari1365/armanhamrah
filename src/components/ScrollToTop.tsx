@@ -6,6 +6,15 @@ const ScrollToTop = () => {
   const navigationType = useNavigationType();
 
   useEffect(() => {
+    if (pathname === '/products') {
+      window.history.scrollRestoration = 'manual';
+      return () => {
+        window.history.scrollRestoration = 'auto';
+      };
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     // The products list manages its own scroll restoration.
     if (pathname === '/products') return;
     // Don't scroll to top on back/forward navigation so the

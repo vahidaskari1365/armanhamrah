@@ -1,5 +1,5 @@
 
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ArrowRight, AlertTriangle, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -14,6 +14,12 @@ const ProductDetailPageContent = () => {
     const { slug } = useParams<{ slug: string }>();
     const { t } = useLanguage();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const locationState = (location.state as {
+        fromProductsLocation?: string;
+        productsScrollY?: number;
+    } | null) ?? null;
 
     const product = productsData.find(p => p.slug === slug);
 
@@ -41,8 +47,15 @@ const ProductDetailPageContent = () => {
                 >
                     <button
                         onClick={() => {
-                            const saved = sessionStorage.getItem('products:location');
-                            navigate(saved || '/products');
+                            const savedLocation = locationState?.fromProductsLocation || sessionStorage.getItem('products:location') || '/products';
+                            const savedScroll = Number(sessionStorage.getItem('products:scroll') || locationState?.productsScrollY || 0);
+
+                            navigate(savedLocation, {
+                                state: {
+                                    restoreProductsScroll: true,
+                                    productsScrollY: savedScroll,
+                                },
+                            });
                         }}
                         className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors"
                     >
