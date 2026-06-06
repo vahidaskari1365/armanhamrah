@@ -132,17 +132,13 @@ const ProductDetailPageContent = () => {
                          <div className="bg-gradient-to-tr from-primary/5 via-primary/5 to-transparent dark:from-primary/40 dark:via-primary/25 dark:to-primary/10 border border-primary/20 dark:border-primary/60 rounded-2xl p-8 text-center mt-6">
                              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">به این محصول علاقه‌مندید؟</h3>
                              <p className="text-slate-700 dark:text-slate-100 mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
-                             <Link
-                                to={`/contact?product=${encodeURIComponent(t(product.name))}`}
-                                className="inline-flex items-center gap-3 bg-primary dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 dark:hover:bg-slate-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                             >
-                                 <Phone size={20}/>
-                                 تماس بگیرید
-                             </Link>
-                             <div className="mt-4 flex flex-col items-center gap-1" dir="ltr">
-                                 <a href="tel:02166745916" className="text-slate-800 dark:text-slate-100 font-semibold hover:text-primary transition-colors">۰۲۱-۶۶۷۴۵۹۱۶</a>
-                                 <a href="tel:09931635153" className="text-slate-800 dark:text-slate-100 font-semibold hover:text-primary transition-colors">۰۹۹۳۱۶۳۵۱۵۳</a>
-                             </div>
+                             <a
+                                 href="tel:09931635153"
+                                 className="inline-flex items-center gap-3 bg-primary dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 dark:hover:bg-slate-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                              >
+                                  <Phone size={20}/>
+                                  تماس بگیرید
+                              </a>
                         </div>
                     </motion.div>
                 </div>
