@@ -33,7 +33,7 @@ const ContactPageContent = () => {
     },
     {
       title: language === 'fa' ? 'فروشگاه' : 'Store',
-      phone: language === 'fa' ? '(به زودی)' : '(Coming Soon)',
+      phone: language === 'fa' ? '۰۲۱-۶۶۷۴۵۹۱۶ / ۰۹۹۳۱۶۳۵۱۵۳' : '021-66745916 / 09931635153',
       address:
         language === 'fa'
           ? 'خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴'

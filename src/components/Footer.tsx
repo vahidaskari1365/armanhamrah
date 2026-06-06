@@ -121,7 +121,10 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
-                <span dir="ltr">{language === 'fa' ? '(به زودی)' : '(Coming Soon)'}</span>
+                <div dir="ltr" className="flex flex-col gap-1">
+                  <a href="tel:02166745916" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۶۶۷۴۵۹۱۶' : '021-66745916'}</a>
+                  <a href="tel:09931635153" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۹۹۳۱۶۳۵۱۵۳' : '09931635153'}</a>
+                </div>
               </li>
               <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
