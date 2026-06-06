@@ -153,14 +153,23 @@ const ProductDetailPage = () => {
     const product = productsData.find(p => p.slug === slug);
     const title = product ? t(product.name) : t('products.title', 'Product');
 
+    const specProperties = product?.specs
+      ? Object.entries(product.specs).map(([key, value]) => ({
+          "@type": "PropertyValue",
+          "name": t(key),
+          "value": t(String(value)),
+        }))
+      : [];
+
     const productJsonLd = product ? {
       "@context": "https://schema.org",
       "@type": "Product",
       "name": title,
       "image": product.image?.startsWith('http') ? product.image : `https://armanhamrah.com${product.image}`,
-      "brand": { "@type": "Brand", "name": product.brand_id },
+      "brand": { "@type": "Brand", "name": t(product.brand_id) },
       "category": product.category_id,
       "url": `https://armanhamrah.com/product/${product.slug}`,
+      ...(specProperties.length > 0 ? { "additionalProperty": specProperties } : {}),
       "offers": {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
