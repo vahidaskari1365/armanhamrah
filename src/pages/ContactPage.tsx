@@ -30,6 +30,15 @@ const contactInfo = [
     ],
   },
   {
+    icon: Phone,
+    title: { fa: 'تلفن فروشگاه', en: 'Store Phone' },
+    contentKey: 'phone-store',
+    phones: [
+      { number: '021-66745916', href: 'tel:02166745916' },
+      { number: '09931635153', href: 'tel:09931635153' },
+    ],
+  },
+  {
     icon: Mail,
     title: { fa: 'ایمیل', en: 'Email' },
     contentKey: 'email',

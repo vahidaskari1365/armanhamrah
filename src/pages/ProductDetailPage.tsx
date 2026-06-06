@@ -139,6 +139,10 @@ const ProductDetailPageContent = () => {
                                  <Phone size={20}/>
                                  تماس بگیرید
                              </Link>
+                             <div className="mt-4 flex flex-col items-center gap-1" dir="ltr">
+                                 <a href="tel:02166745916" className="text-slate-800 dark:text-slate-100 font-semibold hover:text-primary transition-colors">۰۲۱-۶۶۷۴۵۹۱۶</a>
+                                 <a href="tel:09931635153" className="text-slate-800 dark:text-slate-100 font-semibold hover:text-primary transition-colors">۰۹۹۳۱۶۳۵۱۵۳</a>
+                             </div>
                         </div>
                     </motion.div>
                 </div>
