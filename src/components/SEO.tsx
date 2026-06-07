@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SEOProps {
@@ -12,6 +13,7 @@ interface SEOProps {
 
 const SEO = ({ title, description, image, url, type = 'website', jsonLd }: SEOProps) => {
   const { language } = useLanguage();
+  const location = useLocation();
   
   const defaultTitle = language === 'fa' 
     ? 'آرمان همراه | هوشمندترین گارانتی و خدمات پس از فروش در ایران'
@@ -24,7 +26,8 @@ const SEO = ({ title, description, image, url, type = 'website', jsonLd }: SEOPr
   const siteUrl = 'https://armanhamrah.com';
   const defaultImage = `${siteUrl}/og-image.jpg`;
   const finalImage = image || defaultImage;
-  const finalUrl = url || siteUrl;
+  const currentPath = location.pathname === '/' ? '' : location.pathname;
+  const finalUrl = url || `${siteUrl}${currentPath}`;
   const finalTitle = title || defaultTitle;
   const finalDescription = description || defaultDescription;
   const siteName = language === 'fa' ? 'آرمان همراه' : 'Arman Hamrah';
