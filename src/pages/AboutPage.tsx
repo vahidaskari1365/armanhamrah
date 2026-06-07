@@ -50,6 +50,7 @@ const AboutPage = () => {
       </main>
       <Footer />
     </div>
+    </HelmetProvider>
   );
 };
 
