@@ -40,7 +40,14 @@ const Header = () => {
               </nav>
             </SheetContent>
           </Sheet>
-           <Link to="/" className="text-2xl font-bold text-primary">
+           <Link
+             to="/"
+             className="text-4xl font-extrabold text-primary tracking-tight"
+             style={{
+               textShadow:
+                 '1px 1px 0px rgba(0,0,0,0.18), 2px 2px 0px rgba(0,0,0,0.12), 3px 3px 0px rgba(0,0,0,0.07)',
+             }}
+           >
              <Editable contentKey="site_logo_text" as="span" />
            </Link>
         </div>
