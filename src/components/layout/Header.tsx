@@ -40,15 +40,16 @@ const Header = () => {
               </nav>
             </SheetContent>
           </Sheet>
-           <Link
-             to="/"
-             className="text-4xl font-extrabold text-primary tracking-tight"
-             style={{
-               textShadow:
-                 '1px 1px 0px rgba(0,0,0,0.18), 2px 2px 0px rgba(0,0,0,0.12), 3px 3px 0px rgba(0,0,0,0.07)',
-             }}
-           >
-             <Editable contentKey="site_logo_text" as="span" />
+           <Link to="/" className="flex items-center">
+             <img
+               src="/images/logo.png"
+               alt="آرمان حمراه آریا"
+               className="h-14 md:h-16 w-auto object-contain"
+               style={{
+                 filter:
+                   'drop-shadow(2px 2px 0px rgba(0,0,0,0.35)) drop-shadow(4px 4px 0px rgba(0,0,0,0.18)) drop-shadow(0px 0px 6px rgba(0,0,0,0.10))',
+               }}
+             />
            </Link>
         </div>
 
