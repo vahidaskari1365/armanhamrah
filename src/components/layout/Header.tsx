@@ -43,12 +43,8 @@ const Header = () => {
            <Link to="/" className="flex items-center">
              <img
                src="/images/logo.png"
-               alt="آرمان حمراه آریا"
-               className="h-14 md:h-16 w-auto object-contain"
-               style={{
-                 filter:
-                   'drop-shadow(2px 2px 0px rgba(0,0,0,0.35)) drop-shadow(4px 4px 0px rgba(0,0,0,0.18)) drop-shadow(0px 0px 6px rgba(0,0,0,0.10))',
-               }}
+               alt="آرمان همراه آریا"
+               className="h-20 md:h-24 w-auto object-contain"
              />
            </Link>
         </div>
