@@ -33,7 +33,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="آرمان همراه ارتباطات آریا"
-                className="h-full w-auto object-contain dark:brightness-0 dark:invert"
+                className="h-full w-auto object-contain"
                 loading="lazy"
                 decoding="async"
               />
