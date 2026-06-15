@@ -38,7 +38,7 @@ const Footer = () => {
               <img 
                 src={logo} 
                 alt="آرمان همراه ارتباطات آریا" 
-                className="h-14 w-auto object-contain rounded"
+                className="h-20 w-auto object-contain rounded"
               loading="lazy" decoding="async" />
             </div>
             <EditableText
