@@ -21,11 +21,6 @@ import WarrantyConditionsPage from "./pages/warranty/Conditions";
 import WarrantyAccessoriesPage from "./pages/warranty/Accessories";
 import WarrantyRepairsPage from "./pages/warranty/Repairs";
 import RepresentativesPage from "./pages/RepresentativesPage";
-import AdminAuth from "./pages/AdminAuth";
-import AdminResetPassword from "./pages/AdminResetPassword";
-import AuthPage from "./pages/AuthPage";
-import AdminDashboard from "./pages/AdminDashboard";
-import ProfilePage from "./pages/ProfilePage";
 import IronSteelPage from "./pages/export/IronSteelPage";
 import CopperRodPage from "./pages/export/CopperRodPage";
 import BitumenPage from "./pages/export/BitumenPage";
@@ -68,11 +63,6 @@ const AppContent = () => {
         <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
         <Route path="/warranty/repairs" element={<WarrantyRepairsPage />} />
         <Route path="/representatives" element={<RepresentativesPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/admin/auth" element={<AdminAuth />} />
-        <Route path="/admin/reset-password" element={<AdminResetPassword />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

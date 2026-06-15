@@ -1,18 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
-import { useAuth } from '@/contexts/AuthContext';
-import { Menu, X, Moon, Sun, User, LogOut } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/arman-aria-logo.png';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
-  const { user, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -25,42 +19,6 @@ const Navbar = () => {
     { key: 'nav.about', href: '/about' },
     { key: 'nav.contact', href: '/contact' },
   ];
-  
-  const getInitials = (email: string | undefined) => {
-      if (!email) return '?';
-      return email.charAt(0).toUpperCase();
-  };
-
-  const renderProfileDropdown = () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <motion.button 
-          className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-          whileHover={{ scale: 1.05 }} 
-          whileTap={{ scale: 0.95 }}
-        >
-          <Avatar className="w-8 h-8">
-            <AvatarImage src={user?.user_metadata?.avatar_url} />
-            <AvatarFallback>{getInitials(user?.email)}</AvatarFallback>
-          </Avatar>
-        </motion.button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align={language === 'fa' ? "end" : "start"}>
-        <DropdownMenuLabel className="truncate font-normal text-muted-foreground">
-          {user?.email}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => alert('Coming soon!')} className="cursor-pointer">
-            <User className="w-4 h-4 ltr:mr-2 rtl:ml-2"/>
-            {t('nav.profile')}
-        </DropdownMenuItem>
-        <DropdownMenuItem onSelect={signOut} className="cursor-pointer text-red-500 focus:text-red-500 focus:bg-red-500/10">
-          <LogOut className="w-4 h-4 ltr:mr-2 rtl:ml-2"/>
-          {t('nav.logout')}
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
 
   return (
     <motion.nav
@@ -112,28 +70,6 @@ const Navbar = () => {
             </motion.button>
 
             <motion.button
-              onClick={toggleTheme}
-              className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-
-            {user ? (
-              <div className="hidden sm:flex">{renderProfileDropdown()}</div>
-            ) : (
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link
-                  to="/auth"
-                  className="hidden sm:flex btn-gold text-sm px-6 py-3"
-                >
-                  {t('nav.myArman')}
-                </Link>
-              </motion.div>
-            )}
-
-            <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground"
               whileTap={{ scale: 0.95 }}
@@ -166,25 +102,6 @@ const Navbar = () => {
                   {t(item.key)}
                 </Link>
               ))}
-              <DropdownMenuSeparator />
-              {user ? (
-                <div className="flex items-center justify-between py-2">
-                    <span className="font-medium text-muted-foreground truncate">
-                        {user.email}
-                    </span>
-                    <button onClick={() => { signOut(); setIsOpen(false); }} className="btn-secondary text-red-500 text-sm">
-                        {t('nav.logout')}
-                    </button>
-                </div>
-              ) : (
-                <Link
-                  to="/auth"
-                  onClick={() => setIsOpen(false)}
-                  className="btn-gold text-sm px-6 py-3 text-center"
-                >
-                  {t('nav.myArman')}
-                </Link>
-              )}
             </div>
           </motion.div>
         )}

@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useTheme } from '@/contexts/ThemeContext';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/arman-aria-logo.png';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -54,12 +52,6 @@ const Navbar = () => {
             <motion.button onClick={toggleLanguage} className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <span className="text-xs font-bold">{language === 'fa' ? 'EN' : 'FA'}</span>
             </motion.button>
-            <motion.button onClick={toggleTheme} className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link to="/auth" className="hidden sm:flex btn-gold text-sm px-6 py-3">{t('nav.myArman')}</Link>
-            </motion.div>
             <motion.button onClick={() => setIsOpen(!isOpen)} className="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground" whileTap={{ scale: 0.95 }}>
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </motion.button>
@@ -74,7 +66,6 @@ const Navbar = () => {
                   {t(item.key)}
                 </Link>
               ))}
-              <Link to="/auth" onClick={() => setIsOpen(false)} className="btn-gold text-sm px-6 py-3 text-center">{t('nav.myArman')}</Link>
             </div>
           </motion.div>
         )}
