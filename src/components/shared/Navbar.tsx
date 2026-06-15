@@ -27,13 +27,13 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-[100] glass"
     >
       <div className="container-custom">
-        <div className="flex items-stretch justify-between" style={{ height: '72px' }}>
-          <motion.div whileHover={{ scale: 1.02 }} className="flex-1 min-w-0 flex items-stretch">
-            <Link to="/" className="flex items-stretch w-full">
+        <div className="flex items-center justify-between h-24">
+          <motion.div whileHover={{ scale: 1.02 }}>
+            <Link to="/" className="flex items-center">
               <img
                 src={logo}
                 alt="آرمان همراه ارتباطات آریا"
-                className="h-full w-auto object-contain dark:brightness-0 dark:invert"
+                className="h-24 w-auto object-contain dark:brightness-0 dark:invert"
                 loading="lazy"
                 decoding="async"
               />
