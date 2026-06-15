@@ -123,16 +123,6 @@ const Hero = () => {
             >
               {t('hero.cta')}
             </motion.a>
-            <motion.a
-              href="https://my.armanhamrah.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-gold"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('hero.cta2')}
-            </motion.a>
           </motion.div>
         </div>
 
