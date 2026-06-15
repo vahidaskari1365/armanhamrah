@@ -27,13 +27,13 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-[100] glass"
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between" style={{ height: '150px' }}>
           <motion.div whileHover={{ scale: 1.02 }}>
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center h-full">
               <img
                 src={logo}
                 alt="آرمان همراه ارتباطات آریا"
-                className="h-24 w-auto object-contain dark:brightness-0 dark:invert"
+                className="h-full w-auto object-contain dark:brightness-0 dark:invert"
                 loading="lazy"
                 decoding="async"
               />
