@@ -72,11 +72,11 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex-shrink-0">
-            <motion.div whileHover={{ scale: 1.02 }}>
+            <motion.div whileHover={{ scale: 1.02 }} className="bg-white rounded-lg p-1">
               <img 
                 src={logo} 
                 alt="آرمان همراه ارتباطات آریا" 
-                className="h-16 w-auto object-contain rounded"
+                className="h-16 w-auto object-contain"
               loading="lazy" decoding="async" />
             </motion.div>
           </Link>

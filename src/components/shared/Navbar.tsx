@@ -28,7 +28,7 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between" style={{ height: '150px' }}>
-          <motion.div whileHover={{ scale: 1.02 }}>
+          <motion.div whileHover={{ scale: 1.02 }} className="bg-white rounded-lg p-1 h-full">
             <Link to="/" className="flex items-center h-full">
               <img
                 src={logo}
