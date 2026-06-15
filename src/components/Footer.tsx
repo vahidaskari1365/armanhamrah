@@ -35,13 +35,11 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white rounded-lg p-1">
-                <img 
-                  src={logo} 
-                  alt="آرمان همراه ارتباطات آریا" 
-                  className="h-20 w-auto object-contain"
-                loading="lazy" decoding="async" />
-              </div>
+              <img 
+                src={logo} 
+                alt="آرمان همراه ارتباطات آریا" 
+                className="h-24 w-auto object-contain"
+              loading="lazy" decoding="async" />
             </div>
             <EditableText
               contentKey="footer-description"

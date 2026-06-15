@@ -28,12 +28,12 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between" style={{ height: '150px' }}>
-          <motion.div whileHover={{ scale: 1.02 }} className="bg-white rounded-lg p-1 h-full">
+          <motion.div whileHover={{ scale: 1.02 }}>
             <Link to="/" className="flex items-center h-full">
               <img
                 src={logo}
                 alt="آرمان همراه ارتباطات آریا"
-                className="h-full w-auto object-contain"
+                className="h-24 w-auto object-contain"
                 loading="lazy"
                 decoding="async"
               />
