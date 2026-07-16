@@ -18,6 +18,8 @@ import RepairLongContentMobile from "@/components/repairs/RepairLongContentMobil
 import RepairLongContentPS5 from "@/components/repairs/RepairLongContentPS5";
 import RepairLongContentAudio from "@/components/repairs/RepairLongContentAudio";
 import RepairLongContentWatch from "@/components/repairs/RepairLongContentWatch";
+import RepairLongContentSpeaker from "@/components/repairs/RepairLongContentSpeaker";
+import TechnicalSEO from "@/components/repairs/TechnicalSEO";
 
 const repairCategories = [
   {
@@ -269,6 +271,12 @@ const WarrantyRepairsPageContent = () => {
 
         {/* LONG CONTENT 1500+ words - Smartwatch - Step 5 */}
         <RepairLongContentWatch />
+
+        {/* LONG CONTENT 1500+ words - Speaker & Band - Step 6 final */}
+        <RepairLongContentSpeaker />
+
+        {/* Technical SEO final box */}
+        <TechnicalSEO />
 
         {/* Out of warranty rules - Rewritten original content */}
         <section className="section-padding bg-amber-50 dark:bg-amber-950/20 border-y border-amber-200 dark:border-amber-900/50">
