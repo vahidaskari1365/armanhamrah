@@ -17,6 +17,7 @@ import {
 import RepairLongContentMobile from "@/components/repairs/RepairLongContentMobile";
 import RepairLongContentPS5 from "@/components/repairs/RepairLongContentPS5";
 import RepairLongContentAudio from "@/components/repairs/RepairLongContentAudio";
+import RepairLongContentWatch from "@/components/repairs/RepairLongContentWatch";
 
 const repairCategories = [
   {
@@ -265,6 +266,9 @@ const WarrantyRepairsPageContent = () => {
 
         {/* LONG CONTENT 1500+ words - AirPods & Headphone - Step 4 */}
         <RepairLongContentAudio />
+
+        {/* LONG CONTENT 1500+ words - Smartwatch - Step 5 */}
+        <RepairLongContentWatch />
 
         {/* Out of warranty rules - Rewritten original content */}
         <section className="section-padding bg-amber-50 dark:bg-amber-950/20 border-y border-amber-200 dark:border-amber-900/50">
