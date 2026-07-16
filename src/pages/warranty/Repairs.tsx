@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import RepairLongContentMobile from "@/components/repairs/RepairLongContentMobile";
 import RepairLongContentPS5 from "@/components/repairs/RepairLongContentPS5";
+import RepairLongContentAudio from "@/components/repairs/RepairLongContentAudio";
 
 const repairCategories = [
   {
@@ -261,6 +262,9 @@ const WarrantyRepairsPageContent = () => {
 
         {/* LONG CONTENT 1500+ words - PS5 repairs - Step 3 */}
         <RepairLongContentPS5 />
+
+        {/* LONG CONTENT 1500+ words - AirPods & Headphone - Step 4 */}
+        <RepairLongContentAudio />
 
         {/* Out of warranty rules - Rewritten original content */}
         <section className="section-padding bg-amber-50 dark:bg-amber-950/20 border-y border-amber-200 dark:border-amber-900/50">
