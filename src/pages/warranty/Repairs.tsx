@@ -14,6 +14,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import RepairLongContentMobile from "@/components/repairs/RepairLongContentMobile";
 
 const repairCategories = [
   {
@@ -253,6 +254,9 @@ const WarrantyRepairsPageContent = () => {
             </div>
           </div>
         </section>
+
+        {/* LONG CONTENT 1500+ words - Mobile repairs - Step 2 */}
+        <RepairLongContentMobile />
 
         {/* Out of warranty rules - Rewritten original content */}
         <section className="section-padding bg-amber-50 dark:bg-amber-950/20 border-y border-amber-200 dark:border-amber-900/50">
