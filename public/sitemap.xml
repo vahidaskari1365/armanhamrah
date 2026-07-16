@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://armanhamrah.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://armanhamrah.com/warranty</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://armanhamrah.com/warranty/repairs</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/warranty/repairs</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://armanhamrah.com/repair</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://armanhamrah.com/repair/mobile</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/ps5</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/airpods</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/headphone</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/smartwatch</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/watch</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/speaker</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
+  <url><loc>https://armanhamrah.com/repair/speaker-band</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://armanhamrah.com/warranty/accessories</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://armanhamrah.com/warranty/conditions</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://armanhamrah.com/products</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
@@ -10,11 +19,4 @@
   <url><loc>https://armanhamrah.com/representatives</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://armanhamrah.com/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://armanhamrah.com/export</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://armanhamrah.com/export/iron-steel</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/copper-rod</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/bitumen</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/oil</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/piping-equipment</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/petrochemical-downstream</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://armanhamrah.com/export/general-industrial-supplies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
