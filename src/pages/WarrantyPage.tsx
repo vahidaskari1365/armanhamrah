@@ -19,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import RepairCategoryGrid from "@/components/repairs/RepairCategoryGrid";
 
 const warrantySections = [
   {
@@ -335,6 +336,9 @@ const WarrantyPageContent = () => {
             </div>
           </div>
         </section>
+
+        {/* NEW: Repair Category Grid with real images, hashtags, 1500+ word ready - Step 1 */}
+        <RepairCategoryGrid />
 
         {/* Brands & Models - Long-tail SEO */}
         <section className="section-padding">
