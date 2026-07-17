@@ -483,24 +483,21 @@ const WarrantyPageContent = () => {
         </section>
 
         {/* Final CTA - SXO */}
-        <section className="section-padding bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
+        <section className="section-padding bg-gradient-to-br from-zinc-900 to-black text-white">
           <div className="container-custom text-center max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">دستگاهت خراب شده؟ همین الان تعمیرش کن!</h2>
-            <p className="text-lg opacity-90 mb-8 leading-8">
-              فرقی نمی‌کند <strong>گوشی، PS5، ایرپاد، ساعت هوشمند یا اسپیکر</strong> باشد - متخصصان آرمان همراه در کمتر از ۲۴ ساعت دستگاه شما را مثل روز اول تحویل می‌دهند. عیب‌یابی رایگان + گارانتی کتبی
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">دستگاهت خراب شده؟ همین الان تعمیرش کن!</h2>
+            <p className="text-lg text-white mb-8 leading-8">
+              فرقی نمی‌کند <strong className="text-white">گوشی، PS5، ایرپاد، ساعت هوشمند یا اسپیکر</strong> باشد - متخصصان آرمان همراه در کمتر از ۲۴ ساعت دستگاه شما را مثل روز اول تحویل می‌دهند. عیب‌یابی رایگان + گارانتی کتبی
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/warranty/repairs" className="px-8 py-4 bg-white text-primary rounded-xl font-black text-lg hover:bg-white/90 transition-colors shadow-xl flex items-center gap-2">
-                <Wrench size={20} /> ثبت درخواست تعمیر آنلاین
-              </Link>
-              <a href="tel:+9821" className="px-8 py-4 bg-black/20 backdrop-blur text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-black/30 transition-colors flex items-center gap-2">
+              <a href="tel:+9821" className="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 transition-colors shadow-xl flex items-center gap-2">
                 <Phone size={20} /> مشاوره رایگان تعمیرات
               </a>
             </div>
-            <div className="mt-8 flex justify-center gap-6 text-sm opacity-80">
-              <span className="flex items-center gap-1.5"><CheckCircle2 size={16} /> عیب‌یابی رایگان</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 size={16} /> گارانتی ۳ ماهه</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 size={16} /> قطعه اورجینال</span>
+            <div className="mt-8 flex justify-center gap-6 text-sm text-white">
+              <span className="flex items-center gap-1.5 text-white"><CheckCircle2 size={16} className="text-white" /> عیب‌یابی رایگان</span>
+              <span className="flex items-center gap-1.5 text-white"><CheckCircle2 size={16} className="text-white" /> گارانتی ۳ ماهه</span>
+              <span className="flex items-center gap-1.5 text-white"><CheckCircle2 size={16} className="text-white" /> قطعه اورجینال</span>
             </div>
           </div>
         </section>
