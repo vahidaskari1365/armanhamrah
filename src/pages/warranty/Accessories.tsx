@@ -106,7 +106,7 @@ const WarrantyAccessoriesPageContent = () => {
             </div>
 
             <h2 className="text-2xl font-black text-foreground mb-6 flex items-center gap-2">
-              <Shield className="text-primary" /> ۹ بند کلیدی گارانتی لوازم جانبی - بازنویسی یکتا
+              <Shield className="text-primary" /> ۹ بند کلیدی گارانتی لوازم جانبی
             </h2>
 
             <div className="space-y-4">
@@ -132,10 +132,10 @@ const WarrantyAccessoriesPageContent = () => {
               </div>
             </div>
 
-            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
-              <h3 className="font-black text-lg mb-2">برای تعمیرات فاقد گارانتی لوازم جانبی چه کنیم؟</h3>
-              <p className="text-sm leading-8 opacity-90">
-                اگر اسپیکر، ایرپاد، ساعت یا هدفون شما آبخورده یا ضربه‌خورده و گارانتی آن باطل شده، نگران نباشید. ما در بخش <Link to="/warranty/repairs" className="underline font-bold">تعمیرات فاقد گارانتی</Link> تمامی این دستگاه‌ها را با هزینه مصوب و گارانتی ۳ ماهه قطعه تعمیر می‌کنیم. کافیست به پاساژ علاءالدین مراجعه یا دستگاه را پست کنید.
+            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-zinc-900 to-black text-white border border-white/10">
+              <h3 className="font-black text-lg mb-2 text-white">برای تعمیرات فاقد گارانتی لوازم جانبی چه کنیم؟</h3>
+              <p className="text-sm leading-8 text-white">
+                اگر اسپیکر، ایرپاد، ساعت یا هدفون شما آبخورده یا ضربه‌خورده و گارانتی آن باطل شده، نگران نباشید. ما در بخش <Link to="/warranty/repairs" className="underline font-bold text-white">تعمیرات فاقد گارانتی</Link> تمامی این دستگاه‌ها را با هزینه مصوب و گارانتی ۳ ماهه قطعه تعمیر می‌کنیم. کافیست به آدرس: تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ مراجعه یا دستگاه را با پست ارسال کنید.
               </p>
             </div>
           </div>

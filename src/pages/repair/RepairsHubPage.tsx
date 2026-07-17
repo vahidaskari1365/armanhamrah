@@ -74,7 +74,7 @@ const RepairsHubPageContent = () => {
             <div className="mt-12 max-w-3xl mx-auto card-premium p-6 rounded-2xl">
               <h3 className="font-black flex items-center gap-2 text-foreground"><MapPin size={18} className="text-primary" /> بیا پیش ما</h3>
               <p className="text-sm leading-7 text-muted-foreground mt-2">
-                تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - شنبه تا پنجشنبه ۱۰ تا ۲۰ - عیب‌یابی رایگان + گارانتی کتبی
+                تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - شنبه تا پنجشنبه ۹ تا ۱۷ - عیب‌یابی رایگان + گارانتی کتبی
               </p>
             </div>
           </div>

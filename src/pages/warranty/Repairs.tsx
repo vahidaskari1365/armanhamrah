@@ -165,7 +165,7 @@ const WarrantyRepairsPageContent = () => {
               <h3 className="font-black text-foreground mb-3 flex items-center gap-2"><MapPin size={18} className="text-primary" /> بیا پیش ما برای تعمیرات فاقد گارانتی</h3>
               <p className="text-sm text-muted-foreground leading-7">
                 <strong className="text-foreground">آدرس:</strong> تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴<br/>
-                <strong className="text-foreground">ساعات کاری:</strong> شنبه تا پنجشنبه ۱۰ تا ۲۰ - عیب‌یابی رایگان، مشاوره تخصصی، گارانتی کتبی<br/>
+                <strong className="text-foreground">ساعات کاری:</strong> شنبه تا پنجشنبه ۹ تا ۱۷ - عیب‌یابی رایگان، مشاوره تخصصی، گارانتی کتبی<br/>
                 <strong className="text-foreground">شهرستان:</strong> ارسال با تیپاکس با ضربه‌گیر و کد پذیرش روی بسته
               </p>
             </div>
@@ -185,17 +185,6 @@ const WarrantyRepairsPageContent = () => {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="section-padding bg-zinc-900 text-white">
-          <div className="container-custom text-center max-w-2xl">
-            <h2 className="text-2xl font-black mb-3">دستگاه فاقد گارانتی دارید؟ همین الان ثبت کنید</h2>
-            <p className="text-zinc-300 text-sm leading-7 mb-6">عیب‌یابی رایگان، اعلام هزینه شفاف قبل تعمیر، قطعه اورجینال و گارانتی کتبی</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-sm">ثبت درخواست تعمیر</Link>
-              <a href="tel:+9821" className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 font-bold text-sm">مشاوره: ۰۲۱-XXXX</a>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
