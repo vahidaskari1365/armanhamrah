@@ -18,7 +18,7 @@ const ContactPageContent = () => {
       email: 'info@armanhamrah.com',
       address:
         language === 'fa'
-          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
+          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴'
           : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304',
       postalCode: language === 'fa' ? '۱۵۷۵۹۴۵۳۴۱' : '1575945341',
     },
