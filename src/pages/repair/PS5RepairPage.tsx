@@ -52,7 +52,7 @@ const PS5RepairPageContent = () => {
             </Accordion>
             <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10">
               <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-purple-400" /> بیا پیش ما برای PS5</h3>
-              <p className="text-sm leading-7 text-zinc-300 mt-2">علاءالدین طبقه ۶ پلاک ۶۱۴ - سرویس فن ۱ ساعته، HDMI همان روز، برد ۲۴-۴۸ ساعت - عیب‌یابی رایگان.</p>
+              <p className="text-sm leading-7 text-zinc-300 mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴ - سرویس فن ۱ ساعته، HDMI همان روز، برد ۲۴-۴۸ ساعت - عیب‌یابی رایگان.</p>
             </div>
           </div>
         </section>

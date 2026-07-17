@@ -81,7 +81,7 @@ const RepairsHubPageContent = () => {
 
             <div className="mt-12 p-6 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30">
               <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-amber-600" /> بیا پیش ما - آدرس هاب تعمیرات آرمان همراه</h3>
-              <p className="text-sm leading-7 text-muted-foreground mt-2">تهران، جمهوری، پاساژ علاءالدین، طبقه ۶، پلاک ۶۱۴ - شرکت آرمان همراه ارتباطات آریا - شنبه تا پنجشنبه ۱۰ تا ۲۰ - عیب‌یابی رایگان + گارانتی کتبی + قطعه اورجینال + مشاوره تخصصی</p>
+              <p className="text-sm leading-7 text-muted-foreground mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴ - شرکت آرمان همراه ارتباطات آریا - شنبه تا پنجشنبه ۱۰ تا ۲۰ - عیب‌یابی رایگان + گارانتی کتبی + قطعه اورجینال + مشاوره تخصصی</p>
             </div>
           </div>
         </section>

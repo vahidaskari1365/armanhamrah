@@ -37,7 +37,7 @@ const AirPodsRepairPageContent = () => {
           <div className="container-custom max-w-4xl">
             <div className="p-6 rounded-2xl bg-card border">
               <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-green-600" /> بیا پیش ما برای ایرپاد</h3>
-              <p className="text-sm leading-7 text-muted-foreground mt-2">علاءالدین طبقه ۶ پلاک ۶۱۴ - تعمیر باتری ۲۴ ساعته، کیس همان روز - اگر یک لنگه گم شده ست می‌کنیم، نیاز به خرید جفت نو نیست.</p>
+              <p className="text-sm leading-7 text-muted-foreground mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴ - تعمیر باتری ۲۴ ساعته، کیس همان روز - اگر یک لنگه گم شده ست می‌کنیم، نیاز به خرید جفت نو نیست.</p>
             </div>
           </div>
         </section>

@@ -509,7 +509,7 @@ const WarrantyPageContent = () => {
                   <MapPin className="text-primary" /> آدرس مرکز تخصصی تعمیرات
                 </h3>
                 <div className="space-y-4 text-sm leading-7 text-muted-foreground">
-                  <p><strong className="text-foreground">مرکز اصلی:</strong> تهران، خیابان جمهوری، پاساژ علاءالدین، طبقه ۶، پلاک ۶۱۴ - شرکت آرمان همراه ارتباطات آریا</p>
+                  <p><strong className="text-foreground">مرکز اصلی:</strong> تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴ - شرکت آرمان همراه ارتباطات آریا</p>
                   <p><strong className="text-foreground">ساعات کاری:</strong> شنبه تا پنجشنبه ۱۰ تا ۲۰ - جمعه‌ها ۱۱ تا ۱۸</p>
                   <p><strong className="text-foreground">پذیرش شهرستان:</strong> ارسال با پست و تیپاکس از سراسر ایران</p>
                   <div className="grid grid-cols-2 gap-3 mt-6">
@@ -618,7 +618,7 @@ const WarrantyPage = () => {
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴",
+      "streetAddress": "تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴",
       "addressLocality": "تهران",
       "addressRegion": "تهران",
       "postalCode": "11369",
