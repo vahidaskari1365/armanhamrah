@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import pageBg from '@/assets/page-bg.jpeg';
-import RepairLongContentAudio from '@/components/repairs/RepairLongContentAudio';
+import RepairLongContentHeadphone from '@/components/repairs/RepairLongContentHeadphone';
 import { ChevronLeft, Headphones, MapPin } from 'lucide-react';
 
 const HeadphoneRepairPageContent = () => {
@@ -29,7 +29,18 @@ const HeadphoneRepairPageContent = () => {
             </div>
           </div>
         </section>
-        <RepairLongContentAudio />
+        <section className="section-padding">
+          <div className="container-custom max-w-5xl">
+            <div className="card-premium p-6 rounded-2xl">
+              <Link to="/repair" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-4 text-sm">
+                <ChevronLeft size={16} /> بازگشت به هاب تعمیرات
+              </Link>
+              <h2 className="text-xl font-black text-foreground mb-2">تعمیر تخصصی هدفون بلوتوثی</h2>
+              <p className="text-sm text-muted-foreground leading-7">خدمات فوق تخصصی تعمیر انواع هدفون گلکسی بادز ۳ پرو، بادز ۳، انکر R60i NC، R50i، P40i با قطعات اصلی و گارانتی کتبی.</p>
+            </div>
+          </div>
+        </section>
+        <RepairLongContentHeadphone />
       </main>
       <Footer />
     </div>

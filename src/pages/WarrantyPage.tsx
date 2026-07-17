@@ -176,7 +176,7 @@ const WarrantyPageContent = () => {
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-600 text-sm font-bold border border-green-500/20">
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                  مرکز تخصصی تعمیرات در تهران - پاساژ علاءالدین
+                  مرکز تخصصی تعمیرات در تهران
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">
                   <Award size={14} /> گارانتی ۱۸ ماهه + ۳ سال تامین قطعه
@@ -550,28 +550,6 @@ const WarrantyPageContent = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-
-            {/* SEO Keywords Cloud */}
-            <div className="mt-12 p-6 rounded-2xl bg-secondary/50 border">
-              <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
-                <Sparkles size={18} className="text-primary" /> جستجوهای پرطرفدار تعمیرات
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  'تعمیرات موبایل', 'تعمیر گوشی سامسونگ', 'تعمیر آیفون', 'تعمیرات شیائومی',
-                  'تعمیر PS5', 'تعمیر دسته PS5', 'تعمیر پلی استیشن 5',
-                  'تعمیر ایرپاد پرو', 'تعمیر ایرپاد', 'تعمیر هدفون بلوتوثی', 'تعمیر گلکسی بادز',
-                  'تعمیر ساعت هوشمند', 'تعمیر اپل واچ', 'تعمیر گلکسی واچ', 'تعمیر واچ اولترا',
-                  'تعمیر اسپیکر', 'تعمیر باند', 'تعمیر اسپیکر بلوتوثی', 'تعمیر ساندبار',
-                  'تعمیرات پوکو', 'تعمیرات نوکیا', 'تعمیر پاوربانک انکر', 'تعمیرات تهران علاءالدین',
-                  'تعمیر برد موبایل', 'تعویض ال سی دی', 'تعویض باتری', 'تعمیر آبخوردگی'
-                ].map((kw, i) => (
-                  <Link key={i} to="/warranty/repairs" className="px-3 py-1.5 rounded-full bg-card border text-xs font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
-                    {kw}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 

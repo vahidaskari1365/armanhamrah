@@ -1,121 +1,56 @@
-import { CheckCircle2, MapPin, Phone, Wrench, Hash, Clock, Shield, Smartphone, Star, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CheckCircle2, MapPin, Wrench, Smartphone, Shield, Clock } from 'lucide-react';
 
 const RepairLongContentMobile = () => {
   return (
-    <section id="mobile" className="section-padding bg-background scroll-mt-24">
-      <div className="container-custom">
-        <div className="max-w-5xl mx-auto">
-          {/* Header with image */}
-          <div className="grid lg:grid-cols-5 gap-8 items-start mb-10">
-            <div className="lg:col-span-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 text-xs font-bold mb-4 border border-blue-500/20">
-                <Smartphone size={14} /> دسته ۱: تعمیرات موبایل • ۱۵۰۰+ کلمه تخصصی + عکس واقعی
-              </div>
-              <h2 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4">
-                تعمیرات تخصصی انواع گوشی موبایل آیفون، سامسونگ، شیائومی، پوکو، نوکیا
-                <span className="block text-lg font-bold text-primary mt-2">با ۱۰ سال سابقه، قطعه اورجینال، میکروسکوپ و گارانتی ۳ ماهه - بیا پیش ما!</span>
-              </h2>
-              <p className="text-sm text-muted-foreground leading-8 mb-4">
-                آیا گوشی‌ات شکسته، آبخورده، باتری باد کرده، آنتن نمی‌ده یا خاموش شده؟ <strong className="text-foreground">مرکز فوق تخصصی تعمیرات موبایل آرمان همراه در پاساژ علاءالدین تهران</strong>، بهترین انتخاب برای <strong>تعمیرات موبایل تهران، تعمیر آیفون ۱۷ پرو و ۱۶ پرو، تعمیر سامسونگ S25 Ultra و S24 Ultra و A56 و A36، تعمیر شیائومی 15T و ردمی نوت ۱۴ پرو، تعمیر پوکو M7 و C85 و نوکیا ۱۰۵ فورجی</strong> است. ما با داشتن مجهزترین لابراتوار برد با میکروسکوپ، هیتر Quick، پروگرامر JC و تستر باتری، گوشی شما را مثل روز اول تحویل می‌دهیم. <strong>عیب‌یابی رایگان، مشاوره تخصصی و گارانتی کتبی ۳ ماهه</strong> ما را از بقیه متمایز می‌کند. بیش از ۵۰۰ هزار دستگاه تعمیر موفق در ۱۰ سال گذشته، اعتماد دیجی‌کالا و تکنولایف را جلب کرده. اگر به دنبال تعمیرات موبایل فوری در تهران هستی، بیا پیش ما - تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴، همه روزه از ۱۰ صبح تا ۸ شب منتظرتیم. حتی اگر شهرستانی هستی، با تیپاکس بفرست، ۲۴ ساعته بررسی و اعلام هزینه می‌کنیم.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['#تعمیرات_موبایل', '#تعمیر_آیفون', '#تعمیر_سامسونگ', '#تعمیر_شیائومی', '#تعمیر_پوکو', '#تعویض_السی_دی', '#تعمیر_برد', '#آرمان_همراه', '#علاءالدین', '#تعمیر_آبخوردگی'].map((h,i)=>(
-                  <span key={i} className="text-[11px] px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-bold">{h}</span>
-                ))}
-              </div>
+    <section className="py-10">
+      <div className="max-w-5xl mx-auto">
+        {/* Intro */}
+        <div className="card-premium p-6 md:p-8 rounded-2xl mb-8">
+          <div className="flex items-start gap-4 mb-6">
+            <div className="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+              <Smartphone size={28} className="text-blue-500" />
             </div>
-            <div className="lg:col-span-2">
-              <div className="rounded-[20px] overflow-hidden border shadow-xl">
-                <img src="/images/repairs/mobile-repair-1.jpg" alt="تعمیرات تخصصی گوشی موبایل آیفون 17 پرو سامسونگ S25 Ultra شیائومی در آرمان همراه" loading="lazy" decoding="async" className="w-full aspect-[4/3] object-cover" />
-                <div className="p-4 bg-card">
-                  <div className="text-xs font-bold text-foreground flex items-center gap-2"><MapPin size={12} className="text-primary" /> بیا پیش ما:</div>
-                  <div className="text-[11px] text-muted-foreground leading-6 mt-1">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - عیب‌یابی رایگان + گارانتی کتبی</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3 mt-3">
-                <img src="/images/repairs/mobile-phone-repair-technician-professio-1.jpg" alt="تعمیر برد موبایل با میکروسکوپ" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
-                <img src="/images/repairs/mobile-repair-2.jpg" alt="تعویض ال سی دی آیفون سامسونگ" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
-              </div>
+            <div>
+              <h2 className="text-2xl font-black text-foreground">تعمیرات تخصصی موبایل</h2>
+              <p className="text-sm text-muted-foreground mt-1">آیفون ۱۷ پرو، ۱۶ پرو، سامسونگ S25 Ultra، S24 Ultra، A56، A36، شیائومی 15T، ردمی نوت ۱۴ پرو، پوکو M7</p>
             </div>
           </div>
 
-          <article className="prose prose-invert max-w-none text-[14px] leading-9 text-muted-foreground">
-            <h3 className="text-xl font-black text-foreground">چرا ۹۸٪ مشتریان تعمیرات موبایل، آرمان همراه را انتخاب می‌کنند؟</h3>
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <img src="/images/repairs/mobile-repair-1.jpg" alt="تعمیر موبایل آیفون سامسونگ" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
+            <img src="/images/repairs/mobile-phone-repair-technician-professio-1.jpg" alt="تعمیر برد موبایل با میکروسکوپ" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
+            <img src="/images/repairs/mobile-repair-2.jpg" alt="تعویض ال سی دی" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
+          </div>
+
+          <div className="prose prose-invert max-w-none text-sm leading-8 text-muted-foreground">
             <p>
-              تعمیر موبایل فقط تعویض ال‌سی‌دی نیست. گوشی امروز مغز دوم شماست. عکس خانوادگی، حساب بانکی، کار، مخاطب همه داخلشه. سپردن آن به تعمیرگاه معمولی با ابزار دم‌دستی، یعنی ریسک از دست دادن اطلاعات و آسیب بیشتر به برد. در آرمان همراه ما ۵ تفاوت بزرگ داریم:
-              <br />
-              <strong>۱. لابراتوار میکروسولدر:</strong> تعمیر برد موبایل نیاز به میکروسکوپ ۳ چشمی، هیتر دقیق Quick 861 و پروگرامر دارد. ما تمام قطعات شورتی را با نقشه شماتیک پیدا می‌کنیم، نه حدس.
-              <br />
-              <strong>۲. قطعه اورجینال سرویس پک:</strong> ال‌سی‌دی‌های بازار ۳ نوع دارد: های کپی، چنج گلس، اورجینال سرویس پک. ما فقط اورجینال سرویس پک با TrueTone و ۱۲۰ هرتز واقعی می‌زنیم. باتری‌ها با ظرفیت واقعی ۵۰۰۰ میلی‌آمپر و هلث ۱۰۰٪.
-              <br />
-              <strong>۳. تکنسین Certified:</strong> تکنسین‌های ما دوره برد و هارد را در دبی دیده‌اند، مدرک JC و Qianli دارند، متخصص ریبال CPU و هارد UFS هستند.
-              <br />
-              <strong>۴. تست ۲۰ مرحله‌ای:</strong> بعد تعمیر، گوشی ۲۰ تست می‌شود: آنتن، وای‌فای، بلوتوث، تاچ، قلم S Pen، فیس آیدی، سنسور مجاورت، میکروفون، اسپیکر مکالمه و...
-              <br />
-              <strong>۵. گارانتی واقعی:</strong> فاکتور رسمی + ۳ ماه گارانتی کتبی قطعه، نه شفاهی. اگر همان قطعه دوباره خراب شود، رایگان تعویض می‌کنیم.
+              گوشی شما شکسته، آبخورده یا خاموش شده؟ مرکز تخصصی تعمیرات موبایل آرمان همراه با مجهزترین لابراتوار میکروسکوپ و ابزار کالیبره، انواع گوشی <strong>آیفون ۱۷ پرو، ۱۶ پرو، سامسونگ S25 Ultra، S24 Ultra، S25 FE، A56، A36، شیائومی 15T، ردمی نوت ۱۴ پرو، پوکو M7 و C85</strong> را با قطعات ۱۰۰٪ اورجینال و گارانتی ۳ ماهه تعمیر می‌کند. عیب‌یابی رایگان.
             </p>
 
-            <h3 className="text-xl font-black text-foreground mt-10">تعمیرات آیفون iPhone 17 Pro و 16 Pro - تخصصی‌ترین مرکز تعمیر آیفون در تهران</h3>
-            <p>
-              آیفون به خصوص مدل‌های ۱۷ پرو و ۱۶ پرو با برد دو طبقه و فیس آیدی، تعمیرش بسیار حساس است. خدمات آیفون ما:
-              <br />
-              <strong>تعویض ال‌سی‌دی اورجینال:</strong> ال‌سی‌دی آیفون ۱۷ پرو Super Retina XDR با ProMotion ۱۲۰ هرتز و روشنایی ۳۰۰۰ نیت را با دستگاه لمینیت و کالیبره TrueTone تعویض می‌کنیم. گلس شکسته اما تاچ سالم؟ تعویض گلس فقط با وکیوم، نصف قیمت.
-              <br />
-              <strong>تعویض باتری اصلی:</strong> باتری آیفون ۱۶ پرو ۴۶۸۵ میلی‌آمپر با هلث ۱۰۰٪ و ظرفیت واقعی. بعد تعویض، هلث باتری و تاریخچه نشان داده می‌شود، نه پیغام باتری غیراصل. رفع مشکل زود خالی شدن، باد کردن، ریستارت ناگهانی.
-              <br />
-              <strong>تعمیر برد و فیس آیدی:</strong> آیفون آبخورده؟ برد شورتی؟ ارور ۴۰۱۳ آیتونز؟ فیس آیدی بعد ضربه از کار افتاده؟ ما با پروگرامر فیس آیدی JC، دات پروژکتور را تعمیر می‌کنیم، نه تعویض کامل ۵ میلیونی.
-              <br />
-              <strong>تعمیر دوربین و بیس باند:</strong> دوربین می‌لرزد؟ آنتن No Service می‌دهد؟ بعد آبخوردگی و ضربه، IC بیس باند و تغذیه دوربین خراب می‌شود. با هیتر دقیق تعویض می‌کنیم و کالیبره.
-              <br />
-              هزینه تعمیر آیفون: تعویض باتری ۱.۵ تا ۲.۵ میلیون، تعویض ال‌سی‌دی ۱۷ پرو ۱۲ تا ۱۸ میلیون، تعمیر برد ۲ تا ۶ میلیون. عیب‌یابی رایگان.
-            </p>
+            <h3 className="text-lg font-bold text-foreground mt-8">چرا آرمان همراه؟</h3>
+            <ul className="space-y-2 mt-3">
+              {[
+                'لابراتوار میکروسولدر: میکروسکوپ ۳ چشمی، هیتر Quick، پروگرامر JC',
+                'قطعه اورجینال سرویس پک با TrueTone و ۱۲۰ هرتز واقعی',
+                'تکنسین Certified دوره دیده در دبی',
+                'تست ۲۰ مرحله‌ای و گارانتی کتبی ۳ ماهه'
+              ].map((t,i)=><li key={i} className="flex gap-2"><CheckCircle2 size={16} className="text-green-500 mt-1 flex-shrink-0" />{t}</li>)}
+            </ul>
 
-            <h3 className="text-xl font-black text-foreground mt-10">تعمیرات سامسونگ Galaxy S25 Ultra، S24 Ultra، A56، A36، A26 - مرکز تخصصی سامسونگ</h3>
-            <p>
-              سامسونگ S25 Ultra با قلم S Pen و دوربین ۲۵۰ مگاپیکسلی و S24 Ultra با تیتانیوم، تعمیرات تخصصی می‌خواهد:
-              <br />
-              <strong>تعویض گلس بدون تعویض ال‌سی‌دی:</strong> گلس S25 Ultra شکسته اما تصویر سالم؟ با دستگاه OCA وکیوم، فقط گلس اورجینال تعویض می‌شود، تاچ و AMOLED اصلی می‌ماند - ۴۰٪ ارزان‌تر. مناسب A56 و A36 هم هست.
-              <br />
-              <strong>تعویض ال‌سی‌دی Dynamic AMOLED 2X:</strong> ال‌سی‌دی سرویس پک سامسونگ با ۱۲۰ هرتز و قلم S Pen کالیبره، اثر انگشت زیر صفحه دقیق. چنج گلس بازار بعد ۳ ماه زرد می‌شود و تاچ می‌پرد.
-              <br />
-              <strong>تعمیر برد و آبخوردگی سامسونگ:</strong> سامسونگ‌ها بعد آبخوردگی، شارژ نمی‌شوند یا ویبره مداوم دارند. با التراسونیک و مواد نانو، برد را رسوب‌زدایی و IC شارژ را تعویض می‌کنیم.
-              <br />
-              <strong>تعمیر قلم S Pen:</strong> قلم S25 Ultra بلوتوث وصل نمی‌شود؟ Air Action کار نمی‌کند؟ قلم را دیس‌اسمبل و بلوتوث و باتری داخلی را تعمیر می‌کنیم.
-              <br />
-              مدل‌های پرتعمیر ما: S25 Ultra، S24 Ultra، S25 FE، A56، A36، A26، A17، A07، A06، زد فولد ۵ و فلیپ ۵. همه با گارانتی ۳ ماهه.
-            </p>
+            <h3 className="text-lg font-bold text-foreground mt-8">تعمیرات آیفون</h3>
+            <p>تعویض ال‌سی‌دی اورجینال Super Retina XDR با کالیبره TrueTone، تعویض باتری اصلی با هلث ۱۰۰٪، تعمیر برد آبخورده و ارور ۴۰۱۳، تعمیر فیس آیدی و دوربین.</p>
 
-            <h3 className="text-xl font-black text-foreground mt-10">تعمیرات شیائومی Xiaomi 15T، Redmi Note 14 Pro، Poco M7، C85 - متخصص مدیاتک و اسنپدراگون</h3>
-            <p>
-              شیائومی و پوکو به دلیل قیمت مناسب، پرفروش‌اند اما برد حساس دارند:
-              <br />
-              <strong>Mi Account و FRP:</strong> گوشی شیائومی قفل Mi Account شده و اکانت را فراموش کردی؟ با فاکتور خرید، به صورت قانونی آنلاک می‌کنیم، نه با ابزار کرک.
-              <br />
-              <strong>تعمیر برد و هارد UFS:</strong> پوکو M7 بعد ضربه هنگ لوگو یا خاموش می‌شود. CPU و هارد UFS لحیم سرد می‌کند. با هیتر و شابلون، ریبال می‌کنیم و اطلاعات در ۸۰٪ موارد می‌ماند.
-              <br />
-              <strong>فلش رام رسمی و بوت لوپ:</strong> ردمی نوت ۱۴ پرو روی لوگو مانده یا Bootloop دارد؟ با Mi Flash Tool، رام رسمی گلوبال فلش و پارتیشن‌ها تعمیر می‌شود.
-              <br />
-              <strong>تعویض باتری ۵۵۰۰ میلی‌آمپری:</strong> باتری شیائومی با ظرفیت واقعی و نگهداری شارژ بالا، نه باتری متفرقه ۳۰۰۰ میلی‌آمپری که ۲ ماهه باد می‌کند.
-              <br />
-              ما روزانه ۳۰-۴۰ گوشی شیائومی و پوکو تعمیر می‌کنیم، مرجع تعمیرگاه‌های دیگر هستیم.
-            </p>
+            <h3 className="text-lg font-bold text-foreground mt-8">تعمیرات سامسونگ</h3>
+            <p>تعویض گلس بدون ال‌سی‌دی با وکیوم OCA (۴۰٪ ارزان‌تر)، تعویض ال‌سی‌دی Dynamic AMOLED 2X سرویس پک با قلم S Pen کالیبره، تعمیر برد و شارژ، تعمیر قلم S Pen.</p>
 
-            <h3 className="text-xl font-black text-foreground mt-10">هزینه و زمان تعمیر موبایل - شفاف و منصفانه + بیا پیش ما!</h3>
-            <p>
-              زمان تعمیر: تعویض باتری و گلس ۱ ساعت حضوری، تعویض ال‌سی‌دی S24 Ultra و ۱۷ پرو ۲ ساعت، تعمیر برد و آبخوردگی ۲۴ تا ۷۲ ساعت. هزینه: تعویض گلس آیفون ۱.۵ تا ۳ میلیون، تعویض ال‌سی‌دی سامسونگ A56 ۲ تا ۳.۵ میلیون، تعویض باتری شیائومی ۸۰۰ تا ۱.۲ میلیون، تعمیر برد آبخورده ۱ تا ۵ میلیون. همه قیمت‌ها قبل تعمیر اعلام، بدون هزینه پنهان. دستگاه شهرستان؟ با تیپاکس بفرست: تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴، کد پستی ۱۱۳۶۹ - حتما با ضربه‌گیر بفرست و کد پذیرش را روی بسته بنویس. بعد رسیدن، فیلم عیب‌یابی برایت واتساپ می‌شود. تعمیر شد، با گارانتی و فاکتور برمی‌گردد.
-              <br />
-              <strong>چرا بیای پیش ما؟</strong> چون ما فقط تعمیرکار نیستیم، عاشق کارمونیم. گوشی‌ات رو مثل گوشی خودمون می‌بینیم. اطلاعاتت حفظ، قطعه اورجینال، گارانتی کتبی. بیش از ۱۲۰ نماینده فعال در سراسر کشور داریم. نمایندگی رسمی اپل، سامسونگ، شیائومی با ۱۸ ماه گارانتی اصلی. بعد اتمام گارانتی هم با هزینه مصوب تعمیر می‌کنیم. عیب‌یابی رایگان، مشاوره رایگان، چای هم داریم! بیا پیش ما، حتی اگر تعمیر نکنی، مشاوره مجانی می‌گیری.
-              <br />
-              هشتگ یادت نره: #تعمیرات_موبایل #تعمیر_آیفون_۱۷_پرو #تعمیر_سامسونگ_S25_Ultra #تعمیر_شیائومی_15T #تعمیر_برد_موبایل #تعویض_السی_دی_اورجینال #تعمیر_آبخوردگی #آرمان_همراه #علاءالدین #تعمیر_گوشی_تهران
-            </p>
-          </article>
+            <h3 className="text-lg font-bold text-foreground mt-8">تعمیرات شیائومی و پوکو</h3>
+            <p>آنلاک Mi Account قانونی با فاکتور، ریبال CPU و هارد UFS بعد ضربه، فلش رام رسمی و رفع بوت لوپ، تعویض باتری ۵۵۰۰mAh با ظرفیت واقعی.</p>
 
-          <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
-            <h3 className="text-xl font-black mb-3 flex items-center gap-2"><Zap size={20} /> جمع‌بندی - بیا پیش ما برای تعمیر موبایل!</h3>
-            <p className="text-sm leading-8 opacity-95">
-              فرقی نمی‌کند آیفون ۱۷ پرو، سامسونگ S25 Ultra، شیائومی 15T، پوکو M7 یا نوکیا ۱۰۵ داشته باشی، شکستن ال‌سی‌دی، خرابی باتری، آبخوردگی، آنتن ندادن یا روشن نشدن - راه حلش آرمان همراه است. با ۱۰ سال تجربه، ۵۰۰ هزار تعمیر موفق، قطعه اورجینال، میکروسکوپ، گارانتی ۳ ماهه و عیب‌یابی رایگان. آدرس: تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴. تلفن: ۰۲۱-XXXX. همین الان تماس بگیر یا <Link to="/warranty/repairs" className="underline font-black">درخواست تعمیر آنلاین</Link> ثبت کن. ما منتظریم!
-            </p>
+            <div className="mt-8 p-4 rounded-xl bg-secondary/50 border">
+              <h4 className="font-bold text-foreground mb-2 flex items-center gap-2"><MapPin size={14} className="text-primary" /> بیا پیش ما برای تعمیر موبایل:</h4>
+              <p className="text-xs leading-7">تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - عیب‌یابی رایگان، مشاوره تخصصی، گارانتی کتبی. شهرستان با تیپاکس.</p>
+            </div>
           </div>
         </div>
       </div>
