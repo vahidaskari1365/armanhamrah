@@ -28,6 +28,7 @@ import AirPodsRepairPage from "./pages/repair/AirPodsRepairPage";
 import HeadphoneRepairPage from "./pages/repair/HeadphoneRepairPage";
 import WatchRepairPage from "./pages/repair/WatchRepairPage";
 import SpeakerRepairPage from "./pages/repair/SpeakerRepairPage";
+import ModelRepairPage from "./pages/repair/ModelRepairPage";
 import IronSteelPage from "./pages/export/IronSteelPage";
 import CopperRodPage from "./pages/export/CopperRodPage";
 import BitumenPage from "./pages/export/BitumenPage";
@@ -78,6 +79,18 @@ const AppContent = () => {
         <Route path="/repair/watch" element={<WatchRepairPage />} />
         <Route path="/repair/speaker" element={<SpeakerRepairPage />} />
         <Route path="/repair/speaker-band" element={<SpeakerRepairPage />} />
+        {/* Brand Model Landing Pages - SEO domination */}
+        <Route path="/repair/iphone-17-pro" element={<ModelRepairPage />} />
+        <Route path="/repair/iphone-16-pro" element={<ModelRepairPage />} />
+        <Route path="/repair/samsung-s25-ultra" element={<ModelRepairPage />} />
+        <Route path="/repair/samsung-s24-ultra" element={<ModelRepairPage />} />
+        <Route path="/repair/ps5-slim" element={<ModelRepairPage />} />
+        <Route path="/repair/airpods-pro-2" element={<ModelRepairPage />} />
+        <Route path="/repair/galaxy-buds3-pro" element={<ModelRepairPage />} />
+        <Route path="/repair/apple-watch-ultra-3" element={<ModelRepairPage />} />
+        <Route path="/repair/galaxy-watch-8" element={<ModelRepairPage />} />
+        <Route path="/repair/jbl-charge-5" element={<ModelRepairPage />} />
+        <Route path="/repair/:model" element={<ModelRepairPage />} />
         <Route path="/representatives" element={<RepresentativesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
