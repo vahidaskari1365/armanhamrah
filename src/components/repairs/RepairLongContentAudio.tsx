@@ -1,4 +1,4 @@
-import { CheckCircle2, MapPin, Headset } from 'lucide-react';
+import { CheckCircle2, Headset } from 'lucide-react';
 
 const RepairLongContentAudio = () => {
   return (
@@ -10,8 +10,8 @@ const RepairLongContentAudio = () => {
               <Headset size={28} className="text-green-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-foreground">تعمیر تخصصی ایرپاد</h2>
-              <p className="text-sm text-muted-foreground mt-1">ایرپاد پرو ۲، ایرپاد ۴، ایرپاد مکس، کیس شارژ</p>
+              <h2 className="text-2xl font-black text-foreground warranty-title">تعمیر تخصصی ایرپاد</h2>
+              <p className="text-sm text-muted-foreground mt-1 warranty-text">ایرپاد پرو ۲، ایرپاد ۴، ایرپاد مکس، کیس شارژ</p>
             </div>
           </div>
 
@@ -21,10 +21,10 @@ const RepairLongContentAudio = () => {
             <img src="/images/repairs/buds-repair-1.webp" alt="تعمیر بادز" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
           </div>
 
-          <div className="prose prose-invert max-w-none text-sm leading-8 text-muted-foreground">
+          <div className="prose prose-invert max-w-none text-sm leading-8 text-muted-foreground warranty-text">
             <p>ایرپاد یک گوش کار نمی‌کند؟ باتری زود خالی؟ کیس شارژ نمی‌کند؟ فکر می‌کنی قابل تعمیر نیست؟ ما با باتری Varta آلمان و چسب B7000 و پرس ۳ ساعته تعمیر می‌کنیم.</p>
 
-            <h3 className="text-lg font-bold text-foreground mt-8">خدمات ایرپاد</h3>
+            <h3 className="text-lg font-bold text-foreground mt-8 warranty-title">خدمات ایرپاد</h3>
             <ul className="space-y-2 mt-3">
               {[
                 'تعویض باتری ۴۵mAh Varta اصلی - ۶ ساعت پخش با ANC',
@@ -33,8 +33,6 @@ const RepairLongContentAudio = () => {
                 'تعمیر میکروفون و ANC - میکروفون بیرونی'
               ].map((t,i)=><li key={i} className="flex gap-2"><CheckCircle2 size={16} className="text-green-500 mt-1" />{t}</li>)}
             </ul>
-
-            <div className="mt-8 p-4 rounded-xl bg-secondary/50 border">
           </div>
         </div>
       </div>
