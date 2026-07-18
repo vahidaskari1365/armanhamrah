@@ -1,4 +1,4 @@
-import { CheckCircle2, MapPin, Speaker } from 'lucide-react';
+import { CheckCircle2, Speaker } from 'lucide-react';
 
 const RepairLongContentSpeaker = () => {
   return (
@@ -10,8 +10,8 @@ const RepairLongContentSpeaker = () => {
               <Speaker size={28} className="text-amber-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-foreground">تعمیر اسپیکر و باند</h2>
-              <p className="text-sm text-muted-foreground mt-1">JBL Charge 5، Flip 6، سونی، هارمن کاردن، پارتی باکس، ساندبار</p>
+              <h2 className="text-2xl font-black text-foreground warranty-title">تعمیر اسپیکر و باند</h2>
+              <p className="text-sm text-muted-foreground mt-1 warranty-text">JBL Charge 5، Flip 6، سونی، هارمن کاردن، پارتی باکس، ساندبار</p>
             </div>
           </div>
 
@@ -20,10 +20,10 @@ const RepairLongContentSpeaker = () => {
             <img src="/images/repairs/bluetooth-speaker-repair-technician-2.jpg" alt="آمپلی‌فایر" loading="lazy" className="rounded-xl border aspect-[4/3] object-cover" />
           </div>
 
-          <div className="prose prose-invert max-w-none text-sm leading-8 text-muted-foreground">
+          <div className="prose prose-invert max-w-none text-sm leading-8 text-muted-foreground warranty-text">
             <p>روشن نمی‌شود؟ شارژ نگه نمی‌دارد؟ خش خش می‌کند؟ بلوتوث وصل نمی‌شود؟ با اسیلوسکوپ و تستر درایور تعمیر می‌کنیم.</p>
 
-            <h3 className="text-lg font-bold text-foreground mt-8">خدمات اسپیکر و باند</h3>
+            <h3 className="text-lg font-bold text-foreground mt-8 warranty-title">خدمات اسپیکر و باند</h3>
             <ul className="space-y-2 mt-3">
               {[
                 'تعمیر برد آمپلی‌فایر TPA3116 سوخته',
@@ -32,8 +32,6 @@ const RepairLongContentSpeaker = () => {
                 'تعمیر بلوتوث CSR8645 و پورت USB-C'
               ].map((t,i)=><li key={i} className="flex gap-2"><CheckCircle2 size={16} className="text-green-500 mt-1" />{t}</li>)}
             </ul>
-
-            <div className="mt-8 p-4 rounded-xl bg-secondary/50 border">
           </div>
         </div>
       </div>
