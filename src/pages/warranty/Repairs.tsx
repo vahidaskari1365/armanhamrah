@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Shield, CheckCircle2, Clock, Phone, Wrench, AlertTriangle, MapPin, Smartphone, Gamepad2, Headphones, Watch, Speaker, Headset } from 'lucide-react';
+import { ChevronLeft, Shield, CheckCircle2, Clock, Wrench, AlertTriangle, Smartphone, Gamepad2, Headphones, Watch, Speaker, Headset } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
@@ -35,7 +35,7 @@ const outOfWarrantyRules = [
 
 const faqs = [
   { q: 'هزینه تعمیرات فاقد گارانتی چقدر است؟', a: 'تعمیرات سبک زیر ۱ میلیون، تعویض ال‌سی‌دی آیفون و S25 Ultra بین ۵ تا ۲۰ میلیون، برد و آبخوردگی ۱ تا ۵ میلیون و PS5 بین ۱.۵ تا ۸ میلیون. عیب‌یابی رایگان است.' },
-  { q: 'آیا تعمیر گوشی آبخورده امکان‌پذیر است؟', a: 'بله اگر سریع خاموش کنید و به شارژ نزنید و بیاورید پیش ما، با التراسونیک برد را رسوب‌زدایی می‌کنیم. ۷۰-۸۰٪ شانس تعمیر دارد.' },
+  { q: 'آیا تعمیر گوشی آبخورده امکان‌پذیر است؟', a: 'بله اگر سریع خاموش کنید و به شارژ نزنید و بیاورید، با التراسونیک برد را رسوب‌زدایی می‌کنیم. ۷۰-۸۰٪ شانس تعمیر دارد.' },
   { q: 'مدت زمان تعمیر چقدر است؟', a: 'باتری و ال‌سی‌دی ساده ۱ تا ۳ ساعت، برد ۲۴ تا ۷۲ ساعت، PS5 و دسته ۲۴ تا ۴۸ ساعت، ایرپاد و ساعت ۲۴ ساعت، اسپیکر ۴۸ ساعت.' },
   { q: 'چگونه دستگاه را برای تعمیر ارسال کنم؟', a: 'تهران: حضوری به آدرس مطهری. شهرستان: تماس برای کد پذیرش و ارسال با تیپاکس. حتما با ضربه‌گیر بسته‌بندی کنید.' },
 ];
@@ -49,62 +49,61 @@ const WarrantyRepairsPageContent = () => {
       <Navbar />
       <main className="pt-24">
         <div className="container-custom py-4 flex flex-wrap items-center gap-2 text-sm">
-          <Link to="/" className="text-muted-foreground hover:text-primary">خانه</Link>
+          <Link to="/" className="text-muted-foreground hover:text-primary">{isFa ? 'خانه' : 'Home'}</Link>
           <span className="text-muted-foreground">/</span>
-          <Link to="/warranty" className="text-muted-foreground hover:text-primary">گارانتی و تعمیرات</Link>
+          <Link to="/warranty" className="text-muted-foreground hover:text-primary">{isFa ? 'گارانتی و تعمیرات' : 'Warranty'}</Link>
           <span className="text-muted-foreground">/</span>
-          <span className="text-foreground font-medium">تعمیرات فاقد گارانتی</span>
+          <span className="text-foreground font-medium warranty-title">{isFa ? 'تعمیرات فاقد گارانتی' : 'Out-of-Warranty Repairs'}</span>
         </div>
 
-        {/* Header like Conditions page */}
         <section className="section-padding">
           <div className="container-custom max-w-5xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Link to="/warranty" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8">
-                <ChevronLeft size={20} /> بازگشت به صفحه گارانتی
+                <ChevronLeft size={20} /> {isFa ? 'بازگشت به صفحه گارانتی' : 'Back to Warranty'}
               </Link>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold">فاقد گارانتی - آبخورده، ضربه‌خورده، شکسته</span>
-                <span className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-300 text-xs font-bold flex items-center gap-1"><Clock size={12}/> پاسخگویی ۲۴ ساعته</span>
+                <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold font-titr">{isFa ? 'فاقد گارانتی - آبخورده، ضربه‌خورده، شکسته' : 'Out of warranty - Water & Impact Damage'}</span>
+                <span className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-300 text-xs font-bold flex items-center gap-1 font-titr"><Clock size={12}/> {isFa ? 'پاسخگویی ۲۴ ساعته' : '24/7 Support'}</span>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4">
-                شرایط عمومی تعمیرات دستگاه‌های فاقد گارانتی
-                <span className="block text-lg font-medium text-muted-foreground mt-2">موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند</span>
+              <h1 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4 warranty-title">
+                {isFa ? 'شرایط عمومی تعمیرات دستگاه‌های فاقد گارانتی' : 'General Conditions for Out-of-Warranty Repairs'}
+                <span className="block text-lg font-medium text-muted-foreground mt-2 warranty-text">{isFa ? 'موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند' : 'Mobile, PS5, AirPods, Headphones, Smartwatch, Speaker & Audio'}</span>
               </h1>
 
-              <p className="text-muted-foreground leading-8 max-w-3xl mb-10">
-                اگر دستگاه شما به دلیل <strong>ضربه، آبخوردگی، شکستگی، تعمیر در مراکز غیرمجاز یا اتمام گارانتی</strong> شامل گارانتی ۱۸ ماهه نمی‌شود، نگران نباشید. 
-                مرکز تخصصی تعمیرات آرمان همراه با قطعات اورجینال و گارانتی ۳ ماهه قطعه، دستگاه شما را با هزینه مصوب تعمیر می‌کند. 
-                لطفا قبل از تحویل، شرایط زیر را مطالعه بفرمایید.
+              <p className="text-muted-foreground leading-8 max-w-3xl mb-10 warranty-text">
+                {isFa ? (
+                  <>اگر دستگاه شما به دلیل <strong>ضربه، آبخوردگی، شکستگی، تعمیر در مراکز غیرمجاز یا اتمام گارانتی</strong> شامل گارانتی ۱۸ ماهه نمی‌شود، نگران نباشید. مرکز تخصصی تعمیرات آرمان همراه با قطعات اورجینال و گارانتی ۳ ماهه قطعه، دستگاه شما را با هزینه مصوب تعمیر می‌کند.</>
+                ) : (
+                  <>If your device is out of 18-month warranty due to <strong>impact, water damage, breakage, unauthorized repair or warranty expiration</strong>, don&apos;t worry. Arman Hamrah specialized repair center with original parts and 3-month warranty will repair it at approved cost.</>
+                )}
               </p>
 
-              {/* Quick stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
                 {[
-                  { icon: Wrench, t: 'تعمیر برد با میکروسکوپ', d: 'تخصصی' },
-                  { icon: Shield, t: '۳ ماه گارانتی کتبی', d: 'بدون قید' },
-                  { icon: CheckCircle2, t: 'عیب‌یابی رایگان', d: '۰ تومان' },
-                  { icon: Clock, t: '۷۰٪ تعمیر در ۲۴ ساعت', d: 'سریع' },
+                  { icon: Wrench, t: isFa ? 'تعمیر برد با میکروسکوپ' : 'Board Repair with Microscope', d: isFa ? 'تخصصی' : 'Pro' },
+                  { icon: Shield, t: isFa ? '۳ ماه گارانتی کتبی' : '3-Month Written Warranty', d: isFa ? 'بدون قید' : 'No Condition' },
+                  { icon: CheckCircle2, t: isFa ? 'عیب‌یابی رایگان' : 'Free Diagnosis', d: isFa ? '۰ تومان' : 'Free' },
+                  { icon: Clock, t: isFa ? '۷۰٪ تعمیر در ۲۴ ساعت' : '70% in 24 Hours', d: isFa ? 'سریع' : 'Fast' },
                 ].map((i, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-card border">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <i.icon size={18} className="text-primary" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-foreground">{i.t}</div>
-                      <div className="text-xs text-muted-foreground">{i.d}</div>
+                      <div className="font-bold text-sm text-foreground warranty-title">{i.t}</div>
+                      <div className="text-xs text-muted-foreground warranty-text">{i.d}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Categories - clean grid linking to dedicated landings */}
             <div className="mb-16">
-              <h2 className="text-2xl font-black text-foreground mb-6">دسته‌بندی تعمیرات فاقد گارانتی</h2>
-              <p className="text-sm text-muted-foreground mb-6 leading-7">برای مشاهده جزئیات کامل، عکس واقعی، مدل‌های تحت پوشش و ثبت سفارش، وارد صفحه تخصصی هر دسته شوید:</p>
+              <h2 className="text-2xl font-black text-foreground mb-6 warranty-title">{isFa ? 'دسته‌بندی تعمیرات فاقد گارانتی' : 'Out-of-Warranty Repair Categories'}</h2>
+              <p className="text-sm text-muted-foreground mb-6 leading-7 warranty-text">{isFa ? 'برای مشاهده جزئیات کامل، عکس واقعی، مدل‌های تحت پوشش و ثبت سفارش، وارد صفحه تخصصی هر دسته شوید:' : 'For full details, real photos, covered models and ordering, enter the specialized page of each category:'}</p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {repairCategoriesData.map((cat) => {
                   const Icon = iconMap[cat.icon] || Smartphone;
@@ -114,11 +113,11 @@ const WarrantyRepairsPageContent = () => {
                         <img src={cat.image} alt={cat.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         <div className="absolute top-3 right-3 w-9 h-9 rounded-lg bg-card/90 flex items-center justify-center"><Icon size={16} className="text-primary" /></div>
-                        <div className="absolute bottom-3 left-3 right-3 text-white font-bold text-sm leading-5">{cat.title}</div>
+                        <div className="absolute bottom-3 left-3 right-3 text-white font-bold text-sm leading-5 warranty-title">{isFa ? cat.title : cat.titleEn}</div>
                       </div>
                       <div className="p-4">
-                        <div className="text-xs text-muted-foreground leading-6 line-clamp-2 mb-3">{cat.shortDesc}</div>
-                        <div className="text-xs font-bold text-primary group-hover:gap-2 flex items-center gap-1 transition-all">مشاهده صفحه تخصصی <span>→</span></div>
+                        <div className="text-xs text-muted-foreground leading-6 line-clamp-2 mb-3 warranty-text">{isFa ? cat.shortDesc : cat.titleEn}</div>
+                        <div className="text-xs font-bold text-primary flex items-center gap-1 font-titr">{isFa ? 'مشاهده صفحه تخصصی' : 'View Details'} <span>→</span></div>
                       </div>
                     </Link>
                   );
@@ -126,44 +125,48 @@ const WarrantyRepairsPageContent = () => {
               </div>
             </div>
 
-            {/* Rules */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
                   <AlertTriangle size={20} className="text-white" />
                 </div>
-                <h2 className="text-xl font-black text-foreground">قوانین پذیرش دستگاه فاقد گارانتی</h2>
+                <h2 className="text-xl font-black text-foreground warranty-title">{isFa ? 'قوانین پذیرش دستگاه فاقد گارانتی' : 'Out-of-Warranty Acceptance Rules'}</h2>
               </div>
               <div className="space-y-4">
                 {outOfWarrantyRules.map((rule, i)=>(
                   <div key={i} className="card-premium p-6 rounded-xl">
-                    <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                    <h3 className="font-bold text-foreground mb-2 flex items-center gap-2 warranty-title">
                       <span className="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-black">{i+1}</span>
-                      {rule.title}
+                      {isFa ? rule.title : `Rule ${i+1}`}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-7 pr-8">{rule.desc}</p>
+                    <p className="text-sm text-muted-foreground leading-7 pr-8 warranty-text">{rule.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Important notes */}
             <div className="card-premium p-6 rounded-xl mb-12">
-              <h3 className="font-bold text-foreground mb-4">نکات مهم قبل از تحویل:</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground leading-7 list-disc pr-5">
-                <li>چنانچه دستگاه علاوه بر ایراد اعلامی، ایرادات دیگری داشته باشد، حتما با تماس تلفنی هماهنگ می‌گردد.</li>
-                <li>ایرادات تا سقف ۵۰۰ هزار تومان بدون هماهنگی و بالاتر با تایید شما تعمیر می‌شود.</li>
-                <li>فرم رضایت‌نامه با امضاء، اثر انگشت و کد ملی تکمیل گردد.</li>
+              <h3 className="font-bold text-foreground mb-4 warranty-title">{isFa ? 'نکات مهم قبل از تحویل:' : 'Important notes before delivery:'}</h3>
+              <ul className="space-y-3 text-sm text-muted-foreground leading-7 list-disc pr-5 warranty-text">
+                <li>{isFa ? 'چنانچه دستگاه علاوه بر ایراد اعلامی، ایرادات دیگری داشته باشد، حتما با تماس تلفنی هماهنگ می‌گردد.' : 'If device has other issues besides reported one, we will call you.'}</li>
+                <li>{isFa ? 'ایرادات تا سقف ۵۰۰ هزار تومان بدون هماهنگی و بالاتر با تایید شما تعمیر می‌شود.' : 'Issues up to 500k IRR without coordination, higher with your approval.'}</li>
+                <li>{isFa ? 'فرم رضایت‌نامه با امضاء، اثر انگشت و کد ملی تکمیل گردد.' : 'Consent form with signature, fingerprint and national ID must be completed.'}</li>
               </ul>
-              <div className="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/20 text-sm leading-7">
-                <strong className="text-primary">💡 توصیه:</strong> دستگاه آبخورده را روشن نکنید و به شارژ نزنید. در حالت خاموش سریعا به مرکز بیاورید.
-              </div>
             </div>
 
-            {/* Address CTA */}
-            
+            <div>
+              <h2 className="text-xl font-black text-foreground mb-6 warranty-title">{isFa ? 'پرسش‌های متداول' : 'FAQ'}</h2>
+              <Accordion type="single" collapsible className="bg-card border rounded-2xl px-6">
+                {faqs.map((f,i)=>(
+                  <AccordionItem key={i} value={`f-${i}`} className="border-b last:border-0">
+                    <AccordionTrigger className="text-right font-bold text-foreground text-sm warranty-title">{f.q}</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-7 text-sm warranty-text">{f.a}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
         </section>
-
       </main>
       <Footer />
     </div>
