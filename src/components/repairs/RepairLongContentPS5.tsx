@@ -32,9 +32,6 @@ const RepairLongContentPS5 = () => {
             </ul>
 
             <div className="mt-8 p-4 rounded-xl bg-zinc-900 text-zinc-300 border border-white/10">
-              <h4 className="font-bold text-white mb-2 flex items-center gap-2"><MapPin size={14} className="text-purple-400" /> بیا پیش ما برای PS5:</h4>
-              <p className="text-xs leading-7">تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - سرویس فن ۱ ساعته، HDMI همان روز، گارانتی ۹۰ روزه.</p>
-            </div>
           </div>
         </div>
       </div>

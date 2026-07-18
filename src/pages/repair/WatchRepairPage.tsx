@@ -41,8 +41,6 @@ const WatchRepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیر ساعت هوشمند اپل واچ اولترا 3 سری 11 گلکسی واچ 8 | تعویض گلس باتری | تهران" description="تخصصی‌ترین مرکز تعمیر ساعت هوشمند تهران - تعمیر اپل واچ اولترا 3 بلک تیتانیوم و سری 11 46mm، گلکسی واچ 8 44mm و واچ 7 و اولترا - تعویض گلس، باتری، سنسور ECG و برد با اتاق تمیز و گارانتی 3 ماهه - بیا پیش ما علاءالدین" />
-          <WatchRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

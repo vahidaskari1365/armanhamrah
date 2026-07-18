@@ -51,9 +51,6 @@ const PS5RepairPageContent = () => {
               ))}
             </Accordion>
             <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10">
-              <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-purple-400" /> بیا پیش ما برای PS5</h3>
-              <p className="text-sm leading-7 text-zinc-300 mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - سرویس فن ۱ ساعته، HDMI همان روز، برد ۲۴-۴۸ ساعت - عیب‌یابی رایگان.</p>
-            </div>
           </div>
         </section>
       </main>
@@ -72,8 +69,6 @@ const PS5RepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیر PS5 اسلیم و فت و دسته DualSense تخصصی | HDMI، برد، اورهیت، دریفت | گارانتی 90 روزه تهران" description="تخصصی‌ترین مرکز تعمیر PS5 تهران علاءالدین - تعمیر HDMI تصویر ندادن، برد روشن نشدن، فن اورهیت، دسته دریفت، درایو، SSD با قطعه اصلی و گارانتی 90 روزه - بیا پیش ما عیب‌یابی رایگان" jsonLd={[breadcrumb]} />
-          <PS5RepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

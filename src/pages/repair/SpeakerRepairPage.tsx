@@ -41,8 +41,6 @@ const SpeakerRepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیر اسپیکر بلوتوثی JBL سونی هارمن باند پارتی باکس ساندبار | آمپلی‌فایر باتری | تهران" description="مرکز تخصصی تعمیر اسپیکر و باند تهران - تعمیر JBL Charge 5 Flip 6 Xtreme سونی SRS هارمن کاردن پارتی باکس ساندبار باند اکتیو با تعمیر آمپلی‌فایر، باتری، درایور و برد بلوتوث با اسیلوسکوپ و گارانتی 2 ماهه - بیا پیش ما علاءالدین" />
-          <SpeakerRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

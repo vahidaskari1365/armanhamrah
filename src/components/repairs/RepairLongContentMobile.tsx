@@ -48,8 +48,7 @@ const RepairLongContentMobile = () => {
             <p>آنلاک Mi Account قانونی با فاکتور، ریبال CPU و هارد UFS بعد ضربه، فلش رام رسمی و رفع بوت لوپ، تعویض باتری ۵۵۰۰mAh با ظرفیت واقعی.</p>
 
             <div className="mt-8 p-4 rounded-xl bg-secondary/50 border">
-              <h4 className="font-bold text-foreground mb-2 flex items-center gap-2"><MapPin size={14} className="text-primary" /> بیا پیش ما برای تعمیر موبایل:</h4>
-              <p className="text-xs leading-7">تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - عیب‌یابی رایگان، مشاوره تخصصی، گارانتی کتبی. شهرستان با تیپاکس.</p>
+              
             </div>
           </div>
         </div>

@@ -36,9 +36,6 @@ const AirPodsRepairPageContent = () => {
         <section className="section-padding">
           <div className="container-custom max-w-4xl">
             <div className="p-6 rounded-2xl bg-card border">
-              <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-green-600" /> بیا پیش ما برای ایرپاد</h3>
-              <p className="text-sm leading-7 text-muted-foreground mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - تعمیر باتری ۲۴ ساعته، کیس همان روز - اگر یک لنگه گم شده ست می‌کنیم، نیاز به خرید جفت نو نیست.</p>
-            </div>
           </div>
         </section>
       </main>
@@ -52,8 +49,6 @@ const AirPodsRepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیر ایرپاد پرو ۲، ایرپاد ۴، ایرپاد مکس | تعویض باتری Varta و کیس | گارانتی تهران" description="تخصصی‌ترین مرکز تعمیر ایرپاد پرو ۲ و ایرپاد ۴ و مکس تهران - تعویض باتری Varta آلمان، تعمیر کیس MagSafe، رفع یک گوش، میکروفون و ANC با چسب B7000 و گارانتی ۲ ماهه - بیا پیش ما علاءالدین" />
-          <AirPodsRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

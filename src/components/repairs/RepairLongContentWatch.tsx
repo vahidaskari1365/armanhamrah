@@ -34,9 +34,6 @@ const RepairLongContentWatch = () => {
             </ul>
 
             <div className="mt-8 p-4 rounded-xl bg-secondary/50 border">
-              <h4 className="font-bold text-foreground mb-2 flex items-center gap-2"><MapPin size={14} className="text-orange-600" /> بیا پیش ما برای ساعت:</h4>
-              <p className="text-xs leading-7">تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - اتاق تمیز و چسب IP.</p>
-            </div>
           </div>
         </div>
       </div>

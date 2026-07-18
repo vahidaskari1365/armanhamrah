@@ -96,17 +96,7 @@ const RepairCategoryGrid = () => {
                   </div>
 
                   <div className="mt-auto space-y-3">
-                    <div className="p-3 rounded-xl bg-secondary/50 border">
-                      <div className="text-[11px] font-bold text-foreground flex items-center gap-1.5 mb-1 warranty-title">
-                        <MapPin size={12} className="text-primary" /> {t('بیا پیش ما:', 'Come to us:')}
-                      </div>
-                      <div className="text-[11px] text-muted-foreground leading-6 warranty-text">
-                        {t(
-                          'تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پ ۱۳۰، ط ۳، واحد ۲۰۴',
-                          'Tehran, Motahari St., After Mofatteh, Soleyman Khater St., Amir Atabak Bldg, No.130, 3rd Fl, Unit 204'
-                        )}
-                      </div>
-                    </div>
+                    
                     <Link
                       to={`/repair/${cat.id}`}
                       className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors font-titr"

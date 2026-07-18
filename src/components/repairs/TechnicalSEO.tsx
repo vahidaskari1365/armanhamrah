@@ -17,7 +17,6 @@ const TechnicalSEO = () => {
             {
               icon: Gauge,
               title: 'Core Web Vitals & SXO',
-              items: ['تمام عکس‌ها lazy + async + width/height برای CLS صفر', 'فرمت WebP با fallback JPG - حجم ۷۰٪ کمتر', 'چیدمان ریسپانسیو Tailwind، Hover lift، سایه برای تجربه کاربری', 'CTA دوتایی و باکس بیا پیش ما زرد برای نرخ کلیک بالا', 'فونت IranSans + line-height 8 برای خوانایی فارسی']
             },
             {
               icon: Image,
@@ -37,7 +36,6 @@ const TechnicalSEO = () => {
             {
               icon: Search,
               title: 'Content SEO - 1500+ کلمه',
-              items: ['هر دسته ۱۵۰۰+ کلمه یونیک بازنویسی شده - نه کپی', 'H1 فقط یکی، H2/H3 سلسله‌مراتبی پر از کیورد', 'کلمه کلیدی در ۱۰۰ کلمه اول + آخر + Alt', 'LSI: تعویض ال‌سی‌دی، باتری، برد، آبخوردگی، HDMI، دریفت', 'CTA بیا پیش ما با MapPin در هر بخش برای لوکال سئو']
             },
             {
               icon: Smartphone,
@@ -62,8 +60,6 @@ const TechnicalSEO = () => {
         <div className="mt-10 p-6 rounded-2xl bg-primary text-primary-foreground">
           <h3 className="font-black text-lg mb-2">🚀 نتیجه نهایی برای سئو تعمیرات - آماده انفجار گوگل!</h3>
           <p className="text-sm leading-8 opacity-90">
-            الان با ۶ دسته بندی، ۸۰ عکس واقعی، ۶ محتوای ۱۵۰۰+ کلمه‌ای یونیک (جمعا ۹۰۰۰+ کلمه)، ۶۰ هشتگ پرجستجو، ۲۰+ اسکیما، سئو تکنیکال کامل و CTA بیا پیش ما در هر بخش، <strong>برای تمام سرچ‌های تعمیرات موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند</strong> در تهران و ایران، صفحه گارانتی آرمان همراه میاد بالا. عیب‌یابی رایگان، گارانتی کتبی و قطعه اورجینال برگ برنده ماست.
-          </p>
         </div>
       </div>
     </section>

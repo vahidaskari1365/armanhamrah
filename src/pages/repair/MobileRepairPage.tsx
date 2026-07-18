@@ -60,9 +60,6 @@ const MobileRepairPageContent = () => {
               ))}
             </Accordion>
             <div className="mt-8 p-6 rounded-2xl bg-card border">
-              <h3 className="font-black flex items-center gap-2"><MapPin size={18} className="text-primary" /> بیا پیش ما برای تعمیر موبایل</h3>
-              <p className="text-sm leading-7 text-muted-foreground mt-2">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - اگر شهرستانی هستی با تیپاکس بفرست، فیلم عیب‌یابی واتساپ میشه. عیب‌یابی رایگان، حتی اگر تعمیر نکنی مشاوره مجانی.</p>
-            </div>
           </div>
         </section>
       </main>
@@ -85,8 +82,6 @@ const MobileRepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیرات تخصصی موبایل آیفون ۱۷ پرو، سامسونگ S25 Ultra، شیائومی 15T | تعویض ال‌سی‌دی، باتری، برد | آرمان همراه تهران" description="بهترین مرکز تعمیرات موبایل تهران علاءالدین - تعمیر آیفون 17 پرو و 16 پرو، سامسونگ S25 Ultra و A56، شیائومی 15T و ردمی نوت 14 پرو و پوکو M7 با قطعه اورجینال، میکروسکوپ، گارانتی 3 ماهه و عیب‌یابی رایگان - بیا پیش ما" jsonLd={[faqSchema, breadcrumb, service]} />
-          <MobileRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

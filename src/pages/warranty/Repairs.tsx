@@ -161,28 +161,7 @@ const WarrantyRepairsPageContent = () => {
             </div>
 
             {/* Address CTA */}
-            <div className="card-premium p-6 rounded-xl mb-12 bg-gradient-to-br from-primary/5 to-background">
-              <h3 className="font-black text-foreground mb-3 flex items-center gap-2"><MapPin size={18} className="text-primary" /> بیا پیش ما برای تعمیرات فاقد گارانتی</h3>
-              <p className="text-sm text-muted-foreground leading-7">
-                <strong className="text-foreground">آدرس:</strong> تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴<br/>
-                <strong className="text-foreground">ساعات کاری:</strong> شنبه تا پنجشنبه ۹ تا ۱۷ - عیب‌یابی رایگان، مشاوره تخصصی، گارانتی کتبی<br/>
-                <strong className="text-foreground">شهرستان:</strong> ارسال با تیپاکس با ضربه‌گیر و کد پذیرش روی بسته
-              </p>
-            </div>
-
-            {/* FAQ */}
-            <div>
-              <h2 className="text-xl font-black text-foreground mb-6">پرسش‌های متداول</h2>
-              <Accordion type="single" collapsible className="bg-card border rounded-2xl px-6">
-                {faqs.map((f,i)=>(
-                  <AccordionItem key={i} value={`f-${i}`} className="border-b last:border-0">
-                    <AccordionTrigger className="text-right font-bold text-foreground text-sm">{f.q}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-7 text-sm">{f.a}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
+            
         </section>
 
       </main>

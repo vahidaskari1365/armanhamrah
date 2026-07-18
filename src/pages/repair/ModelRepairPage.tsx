@@ -48,9 +48,6 @@ const ModelRepairPageContent = () => {
               <div className="rounded-[20px] overflow-hidden border border-white/10 shadow-2xl">
                 <img src={data.image} alt={data.title + ' - آرمان همراه'} loading="lazy" className="w-full aspect-[4/3] object-cover bg-white" />
                 <div className="p-4 bg-zinc-900">
-                  <div className="text-xs font-bold text-white flex items-center gap-2"><MapPin size={12} className="text-primary" /> بیا پیش ما برای {data.model}:</div>
-                  <div className="text-[11px] text-zinc-400 mt-1 leading-6">تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴ - عیب‌یابی رایگان + قطعه اورجینال + گارانتی کتبی - همین الان ثبت کن</div>
-                </div>
               </div>
             </div>
           </div>
@@ -84,9 +81,6 @@ const ModelRepairPageContent = () => {
             </div>
 
             <div className="mt-10 p-6 rounded-2xl bg-primary text-primary-foreground">
-              <h3 className="font-black text-lg mb-2">🚀 {data.model} خرابه؟ بیا پیش ما همین الان!</h3>
-              <p className="text-sm leading-8 opacity-90">ما تخصصی‌ترین مرکز تعمیر {data.model} در تهرانیم. عیب‌یابی رایگان، قیمت شفاف قبل تعمیر، قطعه اورجینال، گارانتی ۳ ماهه کتبی. آدرس: تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴. تلفن: ۰۲۱-XXXX. <Link to="/contact" className="underline font-black">ثبت درخواست تعمیر آنلاین</Link></p>
-              <div className="mt-4 flex flex-wrap gap-3">
                 <Link to="/repair" className="px-6 py-3 rounded-xl bg-white text-primary font-black text-sm flex items-center gap-2">همه مدل‌ها <ArrowRight size={14} /></Link>
                 <a href="tel:+9821" className="px-6 py-3 rounded-xl bg-black/20 border border-white/20 font-bold text-sm">تماس فوری</a>
               </div>

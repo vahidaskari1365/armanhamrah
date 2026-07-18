@@ -52,8 +52,6 @@ const HeadphoneRepairPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <SEO title="تعمیر هدفون بلوتوثی گلکسی بادز 3 پرو انکر R60i NC سونی JBL | باتری و میکروفون" description="مرکز تخصصی تعمیر هدفون تهران - تعمیر گلکسی بادز 3 پرو و بادز 3، انکر R60i NC R50i P40i، سونی، JBL با تعویض باتری، اسپیکر، میکروفون و بلوتوث - گارانتی 2 ماهه علاءالدین - بیا پیش ما" />
-          <HeadphoneRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>
