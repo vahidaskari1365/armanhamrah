@@ -262,8 +262,17 @@ body.has-admin-toolbar .admin-toolbar-offset {
   padding-top: 48px;
 }
 
-body.has-admin-toolbar .fixed.top-0:not([class*="z-[100]"]) {
-  top: 48px;
+body.has-admin-toolbar nav.fixed {
+  top: 48px !important;
+}
+
+/* Ensure admin toolbar itself stays at top 0 */
+body.has-admin-toolbar div.fixed.top-0 {
+  top: 0;
+}
+
+body.has-admin-toolbar nav.fixed.top-0 {
+  top: 48px !important;
 }
 
 @layer components {
@@ -384,3 +393,34 @@ footer {
   background-color: #ffffff !important;
 }
 
+/* Titr font for warranty titles - moved outside @layer to avoid postcss parsing issue with [attr] */
+.font-titr {
+  font-family: 'Vazirmatn', sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em;
+}
+html[dir="rtl"] .font-titr {
+  font-family: 'Vazirmatn', sans-serif !important;
+  font-weight: 900 !important;
+}
+html[dir="ltr"] .font-titr {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important;
+}
+.warranty-title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+html[dir="ltr"] .warranty-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+.warranty-text {
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 500;
+}
+html[dir="ltr"] .warranty-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+}

@@ -48,13 +48,17 @@ const AdminToolbar = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  // Add class to body for offset
+  // Add class to body for offset - only when admin
   React.useEffect(() => {
-    document.body.classList.add('has-admin-toolbar');
+    if (isAdmin && !isLoading) {
+      document.body.classList.add('has-admin-toolbar');
+    } else {
+      document.body.classList.remove('has-admin-toolbar');
+    }
     return () => {
       document.body.classList.remove('has-admin-toolbar');
     };
-  }, []);
+  }, [isAdmin, isLoading]);
 
   if (isLoading || !isAdmin) return null;
 

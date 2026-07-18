@@ -1,8 +1,25 @@
 User-agent: *
 Allow: /
+
+# Priority crawl for warranty and repairs - SEO optimized for mobile, PS5, AirPods, smartwatch, speaker repairs
+Allow: /warranty
+Allow: /warranty/conditions
+Allow: /warranty/accessories
+Allow: /warranty/repairs
+Allow: /products
+Allow: /representatives
+
 Disallow: /admin
 Disallow: /admin/
 Disallow: /auth
 Disallow: /profile
+Disallow: /api/
 
+# Sitemap
 Sitemap: https://armanhamrah.com/sitemap.xml
+
+# Host
+Host: https://armanhamrah.com
+
+# Crawl-delay for bots
+Crawl-delay: 1

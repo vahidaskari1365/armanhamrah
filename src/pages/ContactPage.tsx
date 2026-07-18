@@ -62,7 +62,7 @@ const addressInfo = {
   icon: MapPin,
   title: { fa: 'آدرس دفتر مرکزی', en: 'Head Office Address' },
   value: { 
-    fa: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴',
+    fa: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴',
     en: 'Unit 304, 3rd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN'
   },
   postalCode: '1575945341',
