@@ -262,8 +262,17 @@ body.has-admin-toolbar .admin-toolbar-offset {
   padding-top: 48px;
 }
 
-body.has-admin-toolbar .fixed.top-0 {
-  top: 48px;
+body.has-admin-toolbar nav.fixed {
+  top: 48px !important;
+}
+
+/* Ensure admin toolbar itself stays at top 0 */
+body.has-admin-toolbar div.fixed.top-0 {
+  top: 0;
+}
+
+body.has-admin-toolbar nav.fixed.top-0 {
+  top: 48px !important;
 }
 
 @layer components {
