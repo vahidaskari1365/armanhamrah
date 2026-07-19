@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Headphones, Watch, Speaker, Shield, Bluetooth, Volume2 } from 'lucide-react';
+import { ChevronLeft, Headphones, Watch, Speaker, Shield } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
@@ -37,17 +37,22 @@ const WarrantyAccessoriesPageContent = () => {
           <span className="text-foreground font-bold warranty-title">{isFa ? 'گارانتی لوازم جانبی' : 'Accessory Warranty'}</span>
         </div>
 
-        <section className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-12">
+        <section className="bg-gradient-to-br from-primary/10 to-background py-12 border-b">
           <div className="container-custom">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <Link to="/warranty" className="inline-flex items-center gap-2 text-indigo-200 hover:text-white mb-6 font-titr">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Link to="/warranty" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6 font-titr">
                 <ChevronLeft size={20} /> {t('warranty.backLink')}
               </Link>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4 font-titr">
+                <Shield size={14} /> {isFa ? 'گارانتی ۱۸ ماهه لوازم جانبی و گجت‌ها' : '18-Month Accessory & Gadget Warranty'}
+              </div>
               <h1 className="text-3xl md:text-5xl font-black leading-tight mb-4 warranty-title">
                 {t('warranty.accessories.title')}
-                <span className="block text-xl font-medium text-indigo-100 mt-2 warranty-text">{isFa ? 'ساعت هوشمند، اسپیکر، باند، هدفون، ایرپاد، هدست، پاوربانک انکر و شیائومی' : 'Smartwatch, Speaker, Headphone, AirPods, PowerBank Anker & Xiaomi'}</span>
+                <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-3 warranty-text">
+                  {isFa ? 'ساعت هوشمند، اسپیکر، باند، هدفون، ایرپاد، هدست، پاوربانک انکر و شیائومی' : 'Smartwatch, Speaker, Headphone, AirPods, PowerBank Anker & Xiaomi'}
+                </span>
               </h1>
-              <p className="text-indigo-100 leading-8 max-w-4xl warranty-text" dangerouslySetInnerHTML={{ __html: t('warranty.accessories.main') }} />
+              <p className="text-muted-foreground leading-8 max-w-4xl warranty-text" dangerouslySetInnerHTML={{ __html: t('warranty.accessories.main') }} />
             </motion.div>
           </div>
         </section>
@@ -78,7 +83,7 @@ const WarrantyAccessoriesPageContent = () => {
               {accessoryKeys.map((key, i) => (
                 <motion.div key={key} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-card border rounded-xl p-6">
                   <h3 className="font-bold text-foreground mb-3 flex gap-2 warranty-title">
-                    <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-black flex-shrink-0">{i + 1}</span>
+                    <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-black flex-shrink-0 font-titr">{i + 1}</span>
                     <span className="warranty-title">{isFa ? `بند ${i+1}` : `Clause ${i+1}`}</span>
                   </h3>
                   <p className="text-sm text-muted-foreground leading-8 pr-9 warranty-text" dangerouslySetInnerHTML={{ __html: t(key) }} />
