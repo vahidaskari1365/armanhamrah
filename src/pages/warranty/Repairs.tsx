@@ -56,54 +56,60 @@ const WarrantyRepairsPageContent = () => {
           <span className="text-foreground font-medium warranty-title">{isFa ? 'تعمیرات فاقد گارانتی' : 'Out-of-Warranty Repairs'}</span>
         </div>
 
-        <section className="section-padding">
+        {/* Header - same style as Conditions and Accessories */}
+        <section className="bg-gradient-to-br from-primary/10 to-background py-12 border-b">
           <div className="container-custom max-w-5xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <Link to="/warranty" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8">
+              <Link to="/warranty" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6 font-titr">
                 <ChevronLeft size={20} /> {isFa ? 'بازگشت به صفحه گارانتی' : 'Back to Warranty'}
               </Link>
 
               <div className="flex flex-wrap gap-2 mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold font-titr">
+                  <Shield size={14} /> {isFa ? 'گارانتی ۳ ماهه قطعه و عیب‌یابی رایگان' : '3-Month Part Warranty & Free Diagnosis'}
+                </span>
                 <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold font-titr">{isFa ? 'فاقد گارانتی - آبخورده، ضربه‌خورده، شکسته' : 'Out of warranty - Water & Impact Damage'}</span>
-                <span className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-300 text-xs font-bold flex items-center gap-1 font-titr"><Clock size={12}/> {isFa ? 'پاسخگویی ۲۴ ساعته' : '24/7 Support'}</span>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4 warranty-title">
+              <h1 className="text-3xl md:text-5xl font-black text-foreground leading-tight mb-4 warranty-title">
                 {isFa ? 'شرایط عمومی تعمیرات دستگاه‌های فاقد گارانتی' : 'General Conditions for Out-of-Warranty Repairs'}
-                <span className="block text-lg font-medium text-muted-foreground mt-2 warranty-text">{isFa ? 'موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند' : 'Mobile, PS5, AirPods, Headphones, Smartwatch, Speaker & Audio'}</span>
+                <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-3 warranty-text">{isFa ? 'موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند' : 'Mobile, PS5, AirPods, Headphones, Smartwatch, Speaker & Audio'}</span>
               </h1>
 
-              <p className="text-muted-foreground leading-8 max-w-3xl mb-10 warranty-text">
+              <p className="text-muted-foreground leading-8 max-w-3xl warranty-text">
                 {isFa ? (
                   <>اگر دستگاه شما به دلیل <strong>ضربه، آبخوردگی، شکستگی، تعمیر در مراکز غیرمجاز یا اتمام گارانتی</strong> شامل گارانتی ۱۸ ماهه نمی‌شود، نگران نباشید. مرکز تخصصی تعمیرات آرمان همراه با قطعات اورجینال و گارانتی ۳ ماهه قطعه، دستگاه شما را با هزینه مصوب تعمیر می‌کند.</>
                 ) : (
                   <>If your device is out of 18-month warranty due to <strong>impact, water damage, breakage, unauthorized repair or warranty expiration</strong>, don&apos;t worry. Arman Hamrah specialized repair center with original parts and 3-month warranty will repair it at approved cost.</>
                 )}
               </p>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                {[
-                  { icon: Wrench, t: isFa ? 'تعمیر برد با میکروسکوپ' : 'Board Repair with Microscope', d: isFa ? 'تخصصی' : 'Pro' },
-                  { icon: Shield, t: isFa ? '۳ ماه گارانتی کتبی' : '3-Month Written Warranty', d: isFa ? 'بدون قید' : 'No Condition' },
-                  { icon: CheckCircle2, t: isFa ? 'عیب‌یابی رایگان' : 'Free Diagnosis', d: isFa ? '۰ تومان' : 'Free' },
-                  { icon: Clock, t: isFa ? '۷۰٪ تعمیر در ۲۴ ساعت' : '70% in 24 Hours', d: isFa ? 'سریع' : 'Fast' },
-                ].map((i, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-card border">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <i.icon size={18} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-sm text-foreground warranty-title">{i.t}</div>
-                      <div className="text-xs text-muted-foreground warranty-text">{i.d}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </motion.div>
+          </div>
+        </section>
+
+        <section className="section-padding">
+          <div className="container-custom max-w-5xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              {[
+                { icon: Wrench, t: isFa ? 'تعمیر برد با میکروسکوپ' : 'Board Repair with Microscope', d: isFa ? 'تخصصی' : 'Pro' },
+                { icon: Shield, t: isFa ? '۳ ماه گارانتی کتبی' : '3-Month Written Warranty', d: isFa ? 'بدون قید' : 'No Condition' },
+                { icon: CheckCircle2, t: isFa ? 'عیب‌یابی رایگان' : 'Free Diagnosis', d: isFa ? '۰ تومان' : 'Free' },
+                { icon: Clock, t: isFa ? '۷۰٪ تعمیر در ۲۴ ساعت' : '70% in 24 Hours', d: isFa ? 'سریع' : 'Fast' },
+              ].map((i, idx) => (
+                <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-card border">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <i.icon size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm text-foreground warranty-title">{i.t}</div>
+                    <div className="text-xs text-muted-foreground warranty-text">{i.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             <div className="mb-16">
               <h2 className="text-2xl font-black text-foreground mb-6 warranty-title">{isFa ? 'دسته‌بندی تعمیرات فاقد گارانتی' : 'Out-of-Warranty Repair Categories'}</h2>
-              <p className="text-sm text-muted-foreground mb-6 leading-7 warranty-text">{isFa ? 'برای مشاهده جزئیات کامل، عکس واقعی، مدل‌های تحت پوشش و ثبت سفارش، وارد صفحه تخصصی هر دسته شوید:' : 'For full details, real photos, covered models and ordering, enter the specialized page of each category:'}</p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {repairCategoriesData.map((cat) => {
                   const Icon = iconMap[cat.icon] || Smartphone;
@@ -136,7 +142,7 @@ const WarrantyRepairsPageContent = () => {
                 {outOfWarrantyRules.map((rule, i)=>(
                   <div key={i} className="card-premium p-6 rounded-xl">
                     <h3 className="font-bold text-foreground mb-2 flex items-center gap-2 warranty-title">
-                      <span className="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-black">{i+1}</span>
+                      <span className="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-black font-titr">{i+1}</span>
                       {isFa ? rule.title : `Rule ${i+1}`}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-7 pr-8 warranty-text">{rule.desc}</p>
