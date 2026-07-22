@@ -1,121 +1,348 @@
-import { Link } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
-import { ThemeProvider } from '@/contexts/ThemeContext';
-import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import FAQSchema from '@/components/FAQSchema';
+import { motion } from 'framer-motion';
 import pageBg from '@/assets/page-bg.jpeg';
-import RepairLongContentMobile from '@/components/repairs/RepairLongContentMobile';
-import { ChevronLeft, Smartphone } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
-const faqsFa = [
-  { q: 'هزینه تعمیر موبایل آیفون و سامسونگ چقدر است؟', a: 'تعویض باتری ۱ تا ۲.۵ میلیون، تعویض گلس ۱.۵ تا ۳، ال‌سی‌دی A56 ۲ تا ۳.۵، ال‌سی‌دی آیفون ۱۷ پرو ۱۲ تا ۱۸ میلیون، برد آبخورده ۱ تا ۵ میلیون. عیب‌یابی رایگان.' },
-  { q: 'تعمیر موبایل آبخورده امکان‌پذیر است؟', a: 'بله اگر سریع خاموش کنید و به شارژ نزنید و بیاورید پیش ما، ۷۰-۸۰٪ شانس تعمیر با التراسونیک وجود دارد.' },
-  { q: 'بهترین مرکز تعمیرات موبایل تهران کجاست؟', a: 'آرمان همراه - مجهزترین لابراتوار میکروسولدر، قطعه اورجینال، ۱۰ سال سابقه و ۵۰۰ هزار تعمیر موفق.' }
-];
-
-const faqsEn = [
-  { q: 'How much does iPhone and Samsung repair cost?', a: 'Battery 1-2.5M, glass 1.5-3M, A56 LCD 2-3.5M, iPhone 17 Pro LCD 12-18M, water damage board 1-5M. Free diagnosis.' },
-  { q: 'Is water damaged mobile repairable?', a: 'Yes if you quickly turn off and bring to us, 70-80% chance with ultrasonic cleaning.' },
-  { q: 'Best mobile repair center in Tehran?', a: 'Arman Hamrah - most equipped microsoldering lab, original parts, 10 years, 500k repairs.' }
-];
-
-const MobileRepairPageContent = () => {
-  const { language } = useLanguage();
-  const isFa = language === 'fa';
-  const faqs = isFa ? faqsFa : faqsEn;
-
-  return (
-    <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir={isFa ? 'rtl' : 'ltr'}>
-      <Navbar />
-      <main className="pt-24">
-        <div className="container-custom py-4 text-sm text-muted-foreground flex gap-2">
-          <Link to="/" className="hover:text-primary">{isFa ? 'خانه' : 'Home'}</Link><span>/</span>
-          <Link to="/repair" className="hover:text-primary">{isFa ? 'تعمیرات' : 'Repairs'}</Link><span>/</span>
-          <span className="text-foreground font-bold warranty-title">{isFa ? 'تعمیرات موبایل' : 'Mobile Repairs'}</span>
-        </div>
-
-        <section className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white py-12">
-          <div className="container-custom">
-            <Link to="/repair" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-6">
-              <ChevronLeft size={20} /> {isFa ? 'بازگشت به هاب تعمیرات' : 'Back to Repair Hub'}
-            </Link>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center">
-                <Smartphone size={28} className="text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl md:text-4xl font-black leading-tight warranty-title">
-                  {isFa ? 'تعمیرات تخصصی انواع گوشی موبایل آیفون، سامسونگ، شیائومی، پوکو' : 'Professional Mobile Repair - iPhone, Samsung, Xiaomi, Poco'}
-                </h1>
-                <p className="text-white/80 text-sm mt-1 warranty-text">
-                  {isFa ? 'آیفون ۱۷ پرو، ۱۶ پرو، S25 Ultra، S24 Ultra، A56، A36، 15T، ردمی نوت ۱۴ پرو، پوکو M7 - عیب‌یابی رایگان + گارانتی ۳ ماهه' : 'iPhone 17 Pro, 16 Pro, S25 Ultra, S24 Ultra, A56, A36, 15T, Redmi Note 14 Pro, Poco M7 - Free diagnosis + 3-month warranty'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <RepairLongContentMobile />
-
-        <section className="section-padding bg-secondary/30">
-          <div className="container-custom max-w-4xl">
-            <h2 className="text-2xl font-black text-foreground mb-6 warranty-title">
-              {isFa ? 'سوالات متداول تعمیرات موبایل' : 'Mobile Repair FAQ'}
-            </h2>
-            <Accordion type="single" collapsible className="bg-card border rounded-2xl px-6">
-              {faqs.map((f,i)=>(
-                <AccordionItem key={i} value={`f-${i}`} className="border-b last:border-0">
-                  <AccordionTrigger className="text-right font-bold warranty-title">{f.q}</AccordionTrigger>
-                  <AccordionContent className="leading-8 text-sm text-muted-foreground warranty-text">{f.a}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const MobileRepairPage = () => {
-  const faqSchema = {
+  const { t, language } = useLanguage();
+
+  const structuredData = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "هزینه تعمیر موبایل", "acceptedAnswer": { "@type": "Answer", "text": "۱ تا ۱۸ میلیون بسته به مدل" } }
-    ]
-  };
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://armanhamrah.com/" },
-      { "@type": "ListItem", "position": 2, "name": "تعمیرات", "item": "https://armanhamrah.com/repair" },
-      { "@type": "ListItem", "position": 3, "name": "تعمیرات موبایل", "item": "https://armanhamrah.com/repair/mobile" }
-    ]
+    "@type": "LocalBusiness",
+    "name": language === 'fa' 
+      ? "تعمیرات موبایل آرمان همراه - علاءالدین تهران" 
+      : "Mobile Repair Center - Arman Hamrah Aladdin Tehran",
+    "description": language === 'fa'
+      ? "تعمیر گوشی در تهران | تعمیرات موبایل در پاساژ علاءالدین | تعویض ال سی دی | باتری | برد با قطعات اورجینال"
+      : "Mobile repair in Tehran | Aladdin Passage repair | LCD replacement | Battery | Board with original parts",
+    "url": "https://armanhamrah.com/repair/mobile",
+    "telephone": "+982166745916",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک 614",
+      "addressLocality": "تهران",
+      "addressCountry": "IR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "35.6892",
+      "longitude": "51.3890"
+    },
+    "openingHours": "Sa-Th 09:00-18:00",
+    "priceRange": "$$",
+    "serviceType": language === 'fa' 
+      ? "تعمیرات تخصصی موبایل" 
+      : "Professional Mobile Repair"
   };
 
   return (
     <HelmetProvider>
-      <ThemeProvider>
-        <LanguageProvider>
-          <SEO 
-            title="تعمیرات تخصصی موبایل آیفون ۱۷ پرو، سامسونگ S25 Ultra، شیائومی 15T | آرمان همراه"
-            description="بهترین مرکز تعمیرات موبایل تهران - تعمیر آیفون 17 پرو، سامسونگ S25 Ultra، شیائومی با قطعه اورجینال و گارانتی 3 ماهه"
-            jsonLd={[faqSchema, breadcrumb]}
-          />
-          <MobileRepairPageContent />
-        </LanguageProvider>
-      </ThemeProvider>
+      <SEO 
+        title={language === 'fa' 
+          ? "تعمیرات موبایل تهران | تعمیر گوشی در پاساژ علاءالدین با گارانتی - آرمان همراه"
+          : "Tehran Mobile Repair | iPhone Samsung Xiaomi Repair at Aladdin Passage"}
+        description={language === 'fa'
+          ? "تعمیر موبایل در تهران | مرکز تخصصی تعمیرات گوشی در پاساژ علاءالدین | تعویض ال سی دی آیفون، سامسونگ، شیائومی | تعمیر برد | باتری اصل با گارانتی 3 ماهه"
+          : "Mobile repair in Tehran | Expert phone repair at Aladdin Passage | iPhone, Samsung, Xiaomi LCD replacement | Board repair | Original battery with 3-month warranty'}
+        keywords={language === 'fa'
+          ? "تعمیرات موبایل تهران, تعمیر گوشی علاءالدین, تعمیر موبایل جمهوری, تعویض ال سی دی تهران, تعمیر آیفون تهران, تعمیر سامسونگ تهران, تعمیر شیائومی تهران, مرکز تعمیرات موبایل"
+          : "mobile repair tehran, phone repair aladdin, iphone repair tehran, samsung repair tehran, xiaomi repair tehran, lcd replacement tehran"}
+        url="https://armanhamrah.com/repair/mobile"
+        jsonLd={structuredData}
+      />
+      <FAQSchema />
+      <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
+        <Navbar />
+        <main className="min-h-screen section-padding pt-32">
+          <div className="container-custom">
+            
+            {/* Hero Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-12"
+            >
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {language === 'fa' ? 'تعمیرات موبایل تهران' : 'Tehran Mobile Repair'}
+              </h1>
+              <p className="text-lg text-primary font-semibold mb-4">
+                {language === 'fa' ? '📍 پاساژ علاءالدین' : '📍 Aladdin Passage'}
+              </p>
+              <div className="w-24 h-1 mx-auto rounded-full bg-primary mb-6" />
+              <p className="text-lg text-foreground max-w-3xl mx-auto">
+                {language === 'fa'
+                  ? 'مرکز تخصصی تعمیرات موبایل در تهران | آیفون | سامسونگ | شیائومی | تعویض ال سی دی | باتری | برد | گارانتی 3 ماهه'
+                  : 'Expert mobile repair center in Tehran | iPhone | Samsung | Xiaomi | LCD | Battery | Board | 3-month warranty'}
+              </p>
+            </motion.div>
+
+            {/* Brands */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-wrap justify-center gap-8 mb-12"
+            >
+              {['Apple', 'Samsung', 'Xiaomi', 'Huawei', 'OnePlus', 'Poco', 'Nokia'].map((brand) => (
+                <div key={brand} className="px-6 py-3 bg-card rounded-xl">
+                  <span className="font-bold text-foreground">{brand}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Services Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              
+              {/* iPhone */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">🍎</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعمیر آیفون' : 'iPhone Repair'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'تعمیر تخصصی تمام مدل‌های آیفون از 11 تا 17 پرو مکس'
+                    : 'Professional repair for all iPhone models from 11 to 17 Pro Max'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'تعویض ال سی دی' : 'LCD replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعویض باتری' : 'Battery replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعمیر برد' : 'Board repair'}</li>
+                  <li>✅ {language === 'fa' ? 'تعمیر آبخوردگی' : 'Water damage repair'}</li>
+                  <li>✅ {language === 'fa' ? 'تعویض گلس' : 'Glass replacement'}</li>
+                </ul>
+              </motion.div>
+
+              {/* Samsung */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">📱</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعمیر سامسونگ' : 'Samsung Repair'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'تعمیر گلکسی S25 Ultra، S24 Ultra، A56، Z Fold، Z Flip'
+                    : 'Galaxy S25 Ultra, S24 Ultra, A56, Z Fold, Z Flip repair'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'تعویض ال سی دی' : 'LCD replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعمیر قلم S Pen' : 'S Pen repair'}</li>
+                  <li>✅ {language === 'fa' ? 'تعویض باتری' : 'Battery replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعمیر زد فولد' : 'Z Fold repair'}</li>
+                </ul>
+              </motion.div>
+
+              {/* Xiaomi */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">📲</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعمیر شیائومی' : 'Xiaomi Repair'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'تعمیر شیائومی 15T، ردمی نوت 14 پرو، پوکو C85، M7'
+                    : 'Xiaomi 15T, Redmi Note 14 Pro, Poco C85, M7 repair'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'تعویض ال سی دی' : 'LCD replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعویض باتری' : 'Battery replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'تعمیر برد' : 'Board repair'}</li>
+                </ul>
+              </motion.div>
+
+              {/* LCD */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">🖥️</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعویض ال سی دی' : 'LCD Replacement'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'تعویض ال سی دی اورجینال و OEM با گارانتی'
+                    : 'Original and OEM LCD replacement with warranty'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'ال سی دی اورجینال' : 'Original LCD'}</li>
+                  <li>✅ {language === 'fa' ? 'گلس اصلی' : 'Original glass'}</li>
+                  <li>✅ {language === 'fa' ? 'تاچ اورجینال' : 'Original touch'}</li>
+                </ul>
+              </motion.div>
+
+              {/* Battery */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">🔋</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعویض باتری' : 'Battery Replacement'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'باتری اصلی با ظرفیت واقعی و گارانتی 3 ماهه'
+                    : 'Original battery with real capacity and 3-month warranty'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'باتری اورجینال' : 'Original battery'}</li>
+                  <li>✅ {language === 'fa' ? 'تست ظرفیت' : 'Capacity test'}</li>
+                  <li>✅ {language === 'fa' ? 'گارانتی' : 'Warranty'}</li>
+                </ul>
+              </motion.div>
+
+              {/* Board */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="card-premium p-6"
+              >
+                <div className="text-4xl mb-4">🔧</div>
+                <h2 className="text-xl font-bold text-foreground mb-2">
+                  {language === 'fa' ? 'تعمیر برد' : 'Board Repair'}
+                </h2>
+                <p className="text-foreground text-sm mb-4">
+                  {language === 'fa'
+                    ? 'تعمیر تخصصی برد با دستگاه BGA و میکروسکوپ'
+                    : 'Professional board repair with BGA machine and microscope'}
+                </p>
+                <ul className="text-sm text-foreground space-y-1">
+                  <li>✅ {language === 'fa' ? 'BGA Reballing' : 'BGA Reballing'}</li>
+                  <li>✅ {language === 'fa' ? 'IC تعویض' : 'IC replacement'}</li>
+                  <li>✅ {language === 'fa' ? 'میکروسکوپ' : 'Microscope'}</li>
+                </ul>
+              </motion.div>
+
+            </div>
+
+            {/* Popular Models */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="bg-card rounded-2xl p-8 mb-12"
+            >
+              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
+                {language === 'fa' ? 'مدل‌های پرتقاضا' : 'Popular Models'}
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  'iPhone 17 Pro Max',
+                  'iPhone 16 Pro',
+                  'Galaxy S25 Ultra',
+                  'Galaxy S24 Ultra',
+                  'Xiaomi 15T',
+                  'Redmi Note 14 Pro',
+                  'Galaxy A56',
+                  'Poco M7'
+                ].map((model) => (
+                  <div key={model} className="text-center p-3 bg-secondary rounded-xl">
+                    <span className="text-sm text-foreground">{model}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Why Aladdin */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="bg-gradient-to-r from-primary/10 to-orange-500/10 rounded-2xl p-8 mb-12"
+            >
+              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
+                {language === 'fa' ? 'چرا تعمیرات علاءالدین؟' : 'Why Aladdin Repair?'}
+              </h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl mb-2">📍</div>
+                  <h3 className="font-bold text-foreground mb-2">
+                    {language === 'fa' ? 'موقعیت مرکزی' : 'Central Location'}
+                  </h3>
+                  <p className="text-sm text-foreground">
+                    {language === 'fa'
+                      ? 'پاساژ علاءالدین در خیابان جمهوری'
+                      : 'Aladdin Passage on Jomhouri Street'}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🛡️</div>
+                  <h3 className="font-bold text-foreground mb-2">
+                    {language === 'fa' ? 'گارانتی' : 'Warranty'}
+                  </h3>
+                  <p className="text-sm text-foreground">
+                    {language === 'fa'
+                      ? 'گارانتی 3 ماهه روی تمام تعمیرات'
+                      : '3-month warranty on all repairs'}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">⚡</div>
+                  <h3 className="font-bold text-foreground mb-2">
+                    {language === 'fa' ? 'تعمیر سریع' : 'Fast Repair'}
+                  </h3>
+                  <p className="text-sm text-foreground">
+                    {language === 'fa'
+                      ? '1 تا 72 ساعت بسته به نوع تعمیر'
+                      : '1 to 72 hours depending on repair type'}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="text-center bg-gradient-to-r from-primary/20 to-orange-500/20 rounded-2xl p-8"
+            >
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                {language === 'fa' ? 'درخواست تعمیر موبایل' : 'Request Mobile Repair'}
+              </h2>
+              <p className="text-foreground mb-6">
+                {language === 'fa'
+                  ? 'عیب‌یابی رایگان | قطعات اورجینال | گارانتی 3 ماهه'
+                  : 'Free diagnosis | Original parts | 3-month warranty'}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:02166745916" className="btn-gold">
+                  📞 {language === 'fa' ? 'تماس: 021-66745916' : 'Call: 021-66745916'}
+                </a>
+                <a href="/contact" className="btn-outline">
+                  {language === 'fa' ? 'فرم درخواست' : 'Request Form'}
+                </a>
+              </div>
+            </motion.div>
+
+          </div>
+        </main>
+        <Footer />
+      </div>
     </HelmetProvider>
   );
 };
