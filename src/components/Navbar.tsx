@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, X } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/arman-aria-logo.png';
 
 const Navbar = () => {
   const { t, language, toggleLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -59,6 +61,16 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
+            <motion.button
+              onClick={toggleTheme}
+              className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              title={theme === 'dark' ? (language === 'fa' ? 'تم روشن' : 'Light Mode') : (language === 'fa' ? 'تم تاریک' : 'Dark Mode')}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </motion.button>
+
             <motion.button
               onClick={toggleLanguage}
               className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
