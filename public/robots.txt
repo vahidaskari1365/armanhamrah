@@ -1,45 +1,4 @@
 User-agent: *
 Allow: /
 
-# SEO - Repair Services
-Allow: /repair
-Allow: /repair/mobile
-Allow: /repair/ps5
-Allow: /repair/airpods
-Allow: /repair/headphone
-Allow: /repair/smartwatch
-Allow: /repair/speaker
-Allow: /repair/iphone-17-pro
-Allow: /repair/iphone-16-pro
-Allow: /repair/samsung-s25-ultra
-Allow: /repair/samsung-s24-ultra
-Allow: /repair/ps5-slim
-Allow: /repair/airpods-pro-2
-Allow: /repair/galaxy-buds3-pro
-Allow: /repair/apple-watch-ultra-3
-Allow: /repair/galaxy-watch-8
-Allow: /repair/jbl-charge-5
-
-# Other pages
-Allow: /warranty
-Allow: /warranty/conditions
-Allow: /warranty/accessories
-Allow: /warranty/repairs
-Allow: /products
-Allow: /representatives
-Allow: /contact
-Allow: /about
-
-# Disallowed
-Disallow: /admin
-Disallow: /admin/
-Disallow: /auth
-Disallow: /profile
-Disallow: /api/
-Disallow: /api/*
-
-# Sitemap
 Sitemap: https://armanhamrah.com/sitemap.xml
-
-# Host
-Host: https://armanhamrah.com

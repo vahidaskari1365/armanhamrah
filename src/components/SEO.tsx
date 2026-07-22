@@ -17,12 +17,12 @@ const SEO = ({ title, description, image, url, type = 'website', keywords, jsonL
   const location = useLocation();
   
   const defaultTitle = language === 'fa' 
-    ? 'آرمان همراه | مرکز تخصصی تعمیرات موبایل، PS5، ایرپاد، ساعت هوشمند، اسپیکر و باند | گارانتی ۱۸ ماهه'
-    : 'Arman Hamrah | Repair Center for Mobile, PS5, AirPods, Smartwatch, Speaker | 18 Month Warranty';
+    ? 'آرمان همراه | مرکز تخصصی تعمیرات ایرپاد، PS5 و گوشی همراه در تهران'
+    : 'Arman Hamrah | Pro Repair Center for AirPods, PS5 & Mobiles';
     
   const defaultDescription = language === 'fa'
-    ? 'مرکز فوق تخصصی تعمیرات انواع گوشی موبایل آیفون ۱۷ پرو، سامسونگ S25 Ultra، شیائومی، PS5 و دسته DualSense، ایرپاد پرو ۲، هدفون بلوتوثی، ساعت هوشمند اپل واچ و گلکسی واچ، اسپیکر و باند با قطعات اورجینال، عیب‌یابی رایگان و گارانتی ۳ ماهه - آرمان همراه تهران علاءالدین'
-    : 'Professional repair center for iPhone, Samsung, Xiaomi mobiles, PS5 and DualSense, AirPods Pro 2, headphones, Apple Watch, Galaxy Watch, speakers and home audio with original parts, free diagnosis and 3-month warranty - Tehran Aladdin';
+    ? 'مرکز فوق تخصصی تعمیرات گوشی همراه، نمایندگی تعمیرات PS5، و تعمیرات ایرپاد با گارانتی ۱۸ ماهه. عیب‌یابی رایگان و قطعات اورجینال در پاساژ علاءالدین تهران.'
+    : 'Professional repair center for Mobile phones, PS5, and AirPods with 18-month warranty. Free diagnosis and original parts in Tehran.';
 
   const siteUrl = 'https://armanhamrah.com';
   const defaultImage = `${siteUrl}/og-image.jpg`;
@@ -33,9 +33,10 @@ const SEO = ({ title, description, image, url, type = 'website', keywords, jsonL
   const finalDescription = description || defaultDescription;
   const siteName = language === 'fa' ? 'آرمان همراه - مرکز تخصصی تعمیرات' : 'Arman Hamrah Repair Center';
 
-  const megaKeywordsFa = `تعمیرات موبایل, تعمیر گوشی, تعمیرات تخصصی موبایل, تعمیر گوشی آیفون, تعمیر آیفون ۱۷ پرو, تعمیر آیفون ۱۶ پرو, تعمیرات سامسونگ, تعمیر سامسونگ S25 Ultra, تعمیر S24 Ultra, تعمیر گلکسی A56, تعمیر گلکسی A36, تعمیرات شیائومی, تعمیر شیائومی 15T, تعمیر ردمی نوت ۱۴ پرو, تعمیرات پوکو, تعمیر پوکو M7, تعمیرات نوکیا, تعمیر PS5, تعمیر پلی استیشن 5, تعمیر PS5 اسلیم, تعمیر PS5 فت, تعمیر دسته PS5, تعمیر DualSense, تعمیر ایرپاد, تعمیر ایرپاد پرو 2, تعمیر ایرپاد 4, تعمیر ایرپاد مکس, تعمیر هدفون, تعمیر هدفون بلوتوثی, تعمیر گلکسی بادز 3 پرو, تعمیر انکر R60i, تعمیر انکر R50i, تعمیر ساعت هوشمند, تعمیر اپل واچ, تعمیر اپل واچ اولترا 3, تعمیر اپل واچ سری 11, تعمیر گلکسی واچ 8, تعمیر گلکسی واچ 7, تعمیر واچ اولترا, تعمیر اسپیکر, تعمیر اسپیکر بلوتوثی, تعمیر باند, تعمیر باند خانگی, تعمیر پارتی باکس, تعمیر ساندبار, تعمیر پاوربانک, تعمیرات تهران, مرکز تعمیرات علاءالدین, تعمیر برد موبایل, تعویض ال سی دی, تعویض باتری, تعمیر آبخوردگی, گارانتی آرمان همراه, گارانتی ۱۸ ماهه`;
+  // Focused, high-impact keywords
+  const megaKeywordsFa = `تعمیرات ایرپاد, تعمیرات ps5, تعمیرات گوشی همراه, تعمیر ایرپاد پرو, نمایندگی تعمیرات پلی استیشن 5, تعمیر دسته ps5, تعمیر موبایل تهران, تعمیرات گوشی سامسونگ, تعمیر آیفون, گارانتی آرمان همراه`;
 
-  const megaKeywordsEn = `mobile repair Tehran, iPhone repair, Samsung Galaxy repair, Xiaomi repair, PS5 repair, DualSense repair, AirPods Pro repair, headphone repair, Galaxy Buds repair, smartwatch repair, Apple Watch repair, Galaxy Watch repair, speaker repair, bluetooth speaker repair, powerbank repair, Arman Hamrah warranty, Aladdin passage repair center`;
+  const megaKeywordsEn = `mobile repair Tehran, PS5 repair, AirPods repair, iPhone repair, Samsung Galaxy repair, smartwatch repair, Arman Hamrah warranty`;
 
   const finalKeywords = keywords || (language === 'fa' ? megaKeywordsFa : megaKeywordsEn);
 

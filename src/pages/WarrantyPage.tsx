@@ -198,9 +198,9 @@ const WarrantyPageContent = () => {
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold mb-4 font-titr">
                 <Sparkles size={14} /> {t('خدمات گارانتی و تعمیرات', 'Warranty & Repair Services')}
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 warranty-title">
+              <h1 className="text-3xl md:text-4xl font-black text-foreground mb-4 warranty-title">
                 {t('هوشمندترین گارانتی و مرکز تعمیرات تخصصی در ایران', 'The Smartest Warranty & Repair Center in Iran')}
-              </h2>
+              </h1>
               <p className="text-muted-foreground max-w-3xl mx-auto leading-7 warranty-text">
                 {t(
                   'از سال ۱۳۹۴ تا کنون، شرکت گارانتی آرمان همراه با پوشش ۱۸ ماهه و خدمات پس از فروش حرفه‌ای، همراه مطمئن شما برای تعمیرات گوشی، PS5، ایرپاد، ساعت و اسپیکر بوده است.',
@@ -355,52 +355,27 @@ const WarrantyPageContent = () => {
 
         {/* Why Us */}
         <section className="section-padding bg-secondary/30">
-          <div className="container-custom">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-black text-foreground mb-6 warranty-title">{t('چرا تعمیرات آرمان همراه انتخاب اول ایران است؟', 'Why is Arman Hamrah the first choice in Iran?')}</h2>
-                <div className="space-y-5">
-                  {[
-                    { title: t('۱۰ سال تجربه تخصصی و ۵۰۰ هزار تعمیر موفق', '10 years experience & 500k successful repairs'), desc: t('از سال ۱۳۹۴، اعتماد دیجی کالا و تکنولایف', 'Since 2015, trusted by Digikala and Technoblog'), icon: Star },
-                    { title: t('قطعات ۱۰۰٪ اورجینال با گارانتی کتبی', '100% Original Parts with Written Warranty'), desc: t('مستقیم از اپل، سامسونگ، شیائومی', 'Direct from Apple, Samsung, Xiaomi'), icon: Shield },
-                    { title: t('مجهزترین لابراتوار تعمیرات', 'Most Equipped Repair Lab'), desc: t('میکروسکوپ، هیتر دقیق، پروگرامر برد', 'Microscope, precise heater, board programmer'), icon: Cpu },
-                    { title: t('تکنسین‌های آموزش دیده', 'Certified Technicians'), desc: t('دوره دیده در دبی و استانبول', 'Trained in Dubai and Istanbul'), icon: Settings },
-                    { title: t('عیب‌یابی رایگان', 'Free Diagnosis'), desc: t('بدون هزینه اضافی پنهان', 'No hidden extra costs'), icon: CheckCircle2 },
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <item.icon size={20} className="text-primary" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-foreground warranty-title">{item.title}</div>
-                        <div className="text-sm text-muted-foreground mt-1 leading-6 warranty-text">{item.desc}</div>
-                      </div>
+          <div className="container-custom max-w-4xl mx-auto">
+            <div>
+              <h2 className="text-3xl font-black text-foreground mb-6 warranty-title text-center">{t('چرا تعمیرات آرمان همراه انتخاب اول ایران است؟', 'Why is Arman Hamrah the first choice in Iran?')}</h2>
+              <div className="space-y-5">
+                {[
+                  { title: t('۱۰ سال تجربه تخصصی و ۵۰۰ هزار تعمیر موفق', '10 years experience & 500k successful repairs'), desc: t('از سال ۱۳۹۴، اعتماد دیجی کالا و تکنولایف', 'Since 2015, trusted by Digikala and Technoblog'), icon: Star },
+                  { title: t('قطعات ۱۰۰٪ اورجینال با گارانتی کتبی', '100% Original Parts with Written Warranty'), desc: t('مستقیم از اپل، سامسونگ، شیائومی', 'Direct from Apple, Samsung, Xiaomi'), icon: Shield },
+                  { title: t('مجهزترین لابراتوار تعمیرات', 'Most Equipped Repair Lab'), desc: t('میکروسکوپ، هیتر دقیق، پروگرامر برد', 'Microscope, precise heater, board programmer'), icon: Cpu },
+                  { title: t('تکنسین‌های آموزش دیده', 'Certified Technicians'), desc: t('دوره دیده در دبی و استانبول', 'Trained in Dubai and Istanbul'), icon: Settings },
+                  { title: t('عیب‌یابی رایگان', 'Free Diagnosis'), desc: t('بدون هزینه اضافی پنهان', 'No hidden extra costs'), icon: CheckCircle2 },
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={20} className="text-primary" />
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-card border rounded-2xl p-8">
-                <h3 className="font-black text-xl text-foreground mb-6 flex items-center gap-2 warranty-title">
-                  <MapPin className="text-primary" /> {t('آدرس مرکز تخصصی تعمیرات', 'Professional Repair Center Address')}
-                </h3>
-                <div className="space-y-4 text-sm leading-7 text-muted-foreground warranty-text">
-                  <p><strong className="text-foreground warranty-title">{t('مرکز اصلی:', 'Main Center:')}</strong> {t('تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پ ۱۳۰، ط ۳، واحد ۲۰۴', 'Tehran, Motahari St., after Mofatteh, Soleyman Khater St., Amir Atabak Bldg, No.130, 3rd Fl, Unit 204')}</p>
-                  <p><strong className="text-foreground warranty-title">{t('ساعات کاری:', 'Working Hours:')}</strong> {t('شنبه تا پنجشنبه ۹ تا ۱۷', 'Sat-Thu 9AM-5PM')}</p>
-                  <p><strong className="text-foreground warranty-title">{t('پذیرش شهرستان:', 'Other Cities:')}</strong> {t('ارسال با پست و تیپاکس از سراسر ایران', 'Send by post/Tipax from all over Iran')}</p>
-                  <div className="grid grid-cols-2 gap-3 mt-6">
-                    <div className="p-3 rounded-xl bg-secondary text-center">
-                      <div className="text-2xl font-black text-primary warranty-title">+۱۲۰</div>
-                      <div className="text-xs warranty-text">{t('نماینده فعال', 'Active Agents')}</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-secondary text-center">
-                      <div className="text-2xl font-black text-primary warranty-title">۹۸٪</div>
-                      <div className="text-xs warranty-text">{t('رضایت مشتری', 'Satisfaction')}</div>
+                    <div>
+                      <div className="font-bold text-foreground warranty-title">{item.title}</div>
+                      <div className="text-sm text-muted-foreground mt-1 leading-6 warranty-text">{item.desc}</div>
                     </div>
                   </div>
-                  <Link to="/representatives" className="mt-4 block text-center py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors warranty-title">
-                    {t('مشاهده نمایندگان سراسر کشور', 'View All Representatives')}
-                  </Link>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -451,6 +426,24 @@ const WarrantyPageContent = () => {
           </div>
         </section>
 
+        {/* SEO Content Section */}
+        {isFa && (
+          <section className="py-12 bg-background border-t border-border">
+            <div className="container-custom max-w-4xl text-right">
+              <h2 className="text-2xl font-bold text-foreground mb-4 warranty-title">قطب تخصصی تعمیرات ایرپاد، تعمیرات ps5 و تعمیرات گوشی همراه</h2>
+              <p className="text-muted-foreground leading-8 text-sm warranty-text text-justify mb-4">
+                یافتن مجموعه‌ای مطمئن برای حل مشکلات سخت‌افزاری و نرم‌افزاری دستگاه‌های هوشمند همواره یک دغدغه اساسی است. مجموعه آرمان همراه با در اختیار داشتن تکنسین‌های مجرب، به‌عنوان مرجع حرفه‌ای <strong>تعمیرات ایرپاد</strong> در مدل‌های مختلف شناخته می‌شود؛ از برطرف کردن نویز و ضعف باتری تا احیای کامل میکروفون و کیس شارژ. رویکرد ما در برخورد با گجت‌های پوشیدنی، حفظ ظرافت و استفاده از قطعات اصیل است.
+              </p>
+              <p className="text-muted-foreground leading-8 text-sm warranty-text text-justify mb-4">
+                در بخش کنسول‌های بازی، <strong>تعمیرات ps5</strong> با حساسیت بسیار بالایی انجام می‌پذیرد. فرقی نمی‌کند کنسول شما دچار افت فریم، خرابی پورت تصویر (HDMI) یا نقص در دکمه‌های دسته دوال‌سنس شده باشد؛ کارشناسان ما با بهره‌گیری از تجهیزات پیشرفته، دستگاه شما را در کمترین زمان ممکن عیب‌یابی کرده و با تضمین کیفیت به شما تحویل می‌دهند.
+              </p>
+              <p className="text-muted-foreground leading-8 text-sm warranty-text text-justify">
+                همچنین، در دپارتمان <strong>تعمیرات گوشی همراه</strong>، کلیه خدمات از قبیل رفع ایرادات مدار شارژ، ترمیم هارد، تعویض ال‌سی‌دی و باتری تلفن‌های هوشمند (اعم از آیفون، سامسونگ و شیائومی) به شکل اصولی و استاندارد صورت می‌گیرد. هدف ما در آرمان همراه این است که با ارائه خدماتی شفاف، مقرون‌به‌صرفه و گارانتی‌دار، تجربه‌ای آسوده‌خاطر را برای مراجعه‌کنندگان رقم بزنیم.
+              </p>
+            </div>
+          </section>
+        )}
+
       </main>
       <Footer />
     </div>
@@ -461,15 +454,42 @@ const WarrantyPage = () => {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "ElectronicsStore", "ComputerRepairShop"],
-    "name": "آرمان همراه - مرکز تخصصی تعمیرات موبایل، PS5، ایرپاد، ساعت هوشمند، اسپیکر",
+    "name": "آرمان همراه - مرکز تخصصی تعمیرات ایرپاد، PS5 و گوشی همراه",
     "url": "https://armanhamrah.com/warranty",
     "logo": "https://armanhamrah.com/logo.jpeg",
+    "description": "ارائه خدمات فوق تخصصی تعمیرات ایرپاد، تعمیرات ps5 و تعمیرات گوشی همراه با گارانتی ۱۸ ماهه.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "تهران، خیابان مطهری، بعد از مفتح، ابتدای سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴",
+      "streetAddress": "تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد 304",
       "addressLocality": "تهران",
       "addressCountry": "IR"
-    }
+    },
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "تعمیرات ایرپاد",
+          "description": "تعمیرات تخصصی ایرپاد شامل باتری، میکروفون، اسپیکر و کیس شارژ"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "تعمیرات ps5",
+          "description": "تعمیرات فوق تخصصی پلی استیشن 5 شامل برد، پورت HDMI، درایو و دسته"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "تعمیرات گوشی همراه",
+          "description": "تعمیرات تخصصی گوشی همراه سامسونگ، اپل و شیائومی با قطعات اورجینال"
+        }
+      }
+    ]
   };
 
   return (
@@ -477,8 +497,8 @@ const WarrantyPage = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO 
-            title="تعمیرات تخصصی موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند | گارانتی ۱۸ ماهه آرمان همراه"
-            description="مرکز تخصصی تعمیرات انواع گوشی آیفون، سامسونگ، شیائومی، PS5، ایرپاد پرو ۲، هدفون، اپل واچ، گلکسی واچ، اسپیکر و باند با قطعات اورجینال، عیب‌یابی رایگان و گارانتی ۳ ماهه"
+            title="تعمیرات ایرپاد، تعمیرات ps5 و تعمیرات گوشی همراه | آرمان همراه"
+            description="مرکز فوق تخصصی تعمیرات گوشی همراه آیفون و سامسونگ، نمایندگی تعمیرات PS5، و تعمیرات تخصصی ایرپاد با قطعات اورجینال، عیب‌یابی رایگان و گارانتی در تهران."
             jsonLd={[localBusinessSchema]}
           />
           <WarrantyPageContent />

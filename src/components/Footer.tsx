@@ -96,8 +96,8 @@ const Footer = () => {
                 <div className="text-sm">
                   <span>
                     {language === 'fa' 
-                      ? 'تهران، خیابان مطهری، سلیمان خاطر، نبش بانک ملت، ساختمان امیر اتابک، ط۲، واحد ۲۰۴'
-                      : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 204'
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد 304'
+                      : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 304'
                     }
                   </span>
                   <p className="text-xs text-foreground/70 mt-1" dir="ltr">
@@ -164,7 +164,7 @@ const Footer = () => {
                 <div className="text-sm">
                   <span>
                     {language === 'fa' 
-                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۲۰۴'
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد 304'
                       : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
                     }
                   </span>
