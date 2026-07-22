@@ -36,6 +36,7 @@ import OilPage from "./pages/export/OilPage";
 import PipingEquipmentPage from "./pages/export/PipingEquipmentPage";
 import PetrochemicalDownstreamPage from "./pages/export/PetrochemicalDownstreamPage";
 import GeneralIndustrialSuppliesPage from "./pages/export/GeneralIndustrialSuppliesPage";
+import FAQPage from "./pages/FAQPage";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -79,6 +80,7 @@ const AppContent = () => {
         <Route path="/repair/watch" element={<WatchRepairPage />} />
         <Route path="/repair/speaker" element={<SpeakerRepairPage />} />
         <Route path="/repair/speaker-band" element={<SpeakerRepairPage />} />
+        <Route path="/faq" element={<FAQPage />} />
         {/* Brand Model Landing Pages - SEO domination */}
         <Route path="/repair/iphone-17-pro" element={<ModelRepairPage />} />
         <Route path="/repair/iphone-16-pro" element={<ModelRepairPage />} />

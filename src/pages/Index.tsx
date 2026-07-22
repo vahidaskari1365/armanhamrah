@@ -5,6 +5,7 @@ import Brands from '@/components/Brands';
 import Services from '@/components/Services';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import FAQSchema from '@/components/FAQSchema';
 import Subsidiaries from '@/components/Subsidiaries';
 import pageBg from '@/assets/page-bg.jpeg';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -47,6 +48,7 @@ const Index = () => {
   return (
     <HelmetProvider>
       <SEO jsonLd={localBusinessJsonLd} />
+      <FAQSchema />
       <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
         <Navbar />
         <main>
