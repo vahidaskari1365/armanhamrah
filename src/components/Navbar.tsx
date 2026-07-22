@@ -34,7 +34,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="آرمان همراه ارتباطات آریا" 
-                className="h-20 w-auto object-contain"
+                className="h-20 w-auto object-contain dark:bg-white dark:rounded-2xl dark:p-2"
               loading="lazy" decoding="async" />
             </motion.div>
           </Link>
