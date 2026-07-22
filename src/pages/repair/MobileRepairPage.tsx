@@ -14,16 +14,16 @@ const MobileRepairPage = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": language === 'fa' 
-      ? "تعمیرات موبایل آرمان همراه - علاءالدین تهران" 
-      : "Mobile Repair Center - Arman Hamrah Aladdin Tehran",
+      ? "تعمیرات موبایل آرمان همراه - تهران" 
+      : "Mobile Repair Center - Arman Hamrah Tehran",
     "description": language === 'fa'
-      ? "تعمیر گوشی در تهران | تعمیرات موبایل در پاساژ علاءالدین | تعویض ال سی دی | باتری | برد با قطعات اورجینال"
-      : "Mobile repair in Tehran | Aladdin Passage repair | LCD replacement | Battery | Board with original parts",
+      ? "تعمیر گوشی در تهران | تعمیرات موبایل | تعویض ال سی دی | باتری | برد با قطعات اورجینال"
+      : "Mobile repair in Tehran | LCD replacement | Battery | Board with original parts",
     "url": "https://armanhamrah.com/repair/mobile",
     "telephone": "+982166745916",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک 614",
+      "streetAddress": "خیابان جمهوری، طبقه ششم، پلاک 614",
       "addressLocality": "تهران",
       "addressCountry": "IR"
     },
@@ -43,14 +43,14 @@ const MobileRepairPage = () => {
     <HelmetProvider>
       <SEO 
         title={language === 'fa' 
-          ? "تعمیرات موبایل تهران | تعمیر گوشی در پاساژ علاءالدین با گارانتی - آرمان همراه"
-          : "Tehran Mobile Repair | iPhone Samsung Xiaomi Repair at Aladdin Passage"}
+          ? "تعمیرات موبایل تهران | تعمیر گوشی با گارانتی - آرمان همراه"
+          : "Tehran Mobile Repair | iPhone Samsung Xiaomi Repair"}
         description={language === 'fa'
-          ? "تعمیر موبایل در تهران | مرکز تخصصی تعمیرات گوشی در پاساژ علاءالدین | تعویض ال سی دی آیفون، سامسونگ، شیائومی | تعمیر برد | باتری اصل با گارانتی 3 ماهه"
-          : "Mobile repair in Tehran | Expert phone repair at Aladdin Passage | iPhone, Samsung, Xiaomi LCD replacement | Board repair | Original battery with 3-month warranty'}
+          ? "تعمیر موبایل در تهران | مرکز تخصصی تعمیرات گوشی | تعویض ال سی دی آیفون، سامسونگ، شیائومی | تعمیر برد | باتری اصل با گارانتی 3 ماهه"
+          : "Mobile repair in Tehran | Expert phone repair | iPhone, Samsung, Xiaomi LCD replacement | Board repair | Original battery with 3-month warranty"}
         keywords={language === 'fa'
-          ? "تعمیرات موبایل تهران, تعمیر گوشی علاءالدین, تعمیر موبایل جمهوری, تعویض ال سی دی تهران, تعمیر آیفون تهران, تعمیر سامسونگ تهران, تعمیر شیائومی تهران, مرکز تعمیرات موبایل"
-          : "mobile repair tehran, phone repair aladdin, iphone repair tehran, samsung repair tehran, xiaomi repair tehran, lcd replacement tehran"}
+          ? "تعمیرات موبایل تهران, تعمیر گوشی, تعمیر موبایل جمهوری, تعویض ال سی دی تهران, تعمیر آیفون تهران, تعمیر سامسونگ تهران, تعمیر شیائومی تهران, مرکز تعمیرات موبایل"
+          : "mobile repair tehran, phone repair, iphone repair tehran, samsung repair tehran, xiaomi repair tehran, lcd replacement tehran"}
         url="https://armanhamrah.com/repair/mobile"
         jsonLd={structuredData}
       />
@@ -70,7 +70,7 @@ const MobileRepairPage = () => {
                 {language === 'fa' ? 'تعمیرات موبایل تهران' : 'Tehran Mobile Repair'}
               </h1>
               <p className="text-lg text-primary font-semibold mb-4">
-                {language === 'fa' ? '📍 پاساژ علاءالدین' : '📍 Aladdin Passage'}
+                {language === 'fa' ? '📍 تهران' : '📍 Tehran'}
               </p>
               <div className="w-24 h-1 mx-auto rounded-full bg-primary mb-6" />
               <p className="text-lg text-foreground max-w-3xl mx-auto">
@@ -275,7 +275,7 @@ const MobileRepairPage = () => {
               className="bg-gradient-to-r from-primary/10 to-orange-500/10 rounded-2xl p-8 mb-12"
             >
               <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-                {language === 'fa' ? 'چرا تعمیرات علاءالدین؟' : 'Why Aladdin Repair?'}
+                {language === 'fa' ? 'چرا آرمان همراه؟' : 'Why Arman Hamrah?'}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
@@ -285,8 +285,8 @@ const MobileRepairPage = () => {
                   </h3>
                   <p className="text-sm text-foreground">
                     {language === 'fa'
-                      ? 'پاساژ علاءالدین در خیابان جمهوری'
-                      : 'Aladdin Passage on Jomhouri Street'}
+                      ? 'مرکز تهران، خیابان جمهوری'
+                      : 'Central Tehran, Jomhouri Street'}
                   </p>
                 </div>
                 <div className="text-center">
