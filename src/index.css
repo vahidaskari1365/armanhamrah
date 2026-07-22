@@ -359,7 +359,7 @@ body.has-admin-toolbar nav.fixed.top-0 {
   font-weight: 900;
 }
 
-/* Footer Styles */
+/* Footer Styles - Removed hardcoded colors so it adapts to dark mode */
 footer,
 footer p,
 footer span,
@@ -368,7 +368,6 @@ footer h4,
 footer h5,
 footer li,
 footer div {
-  color: #000000 !important;
   font-weight: 700 !important;
 }
 
@@ -382,15 +381,6 @@ footer div {
 [dir="rtl"] footer div {
   font-weight: 900 !important;
   font-family: 'Titr', 'Vazirmatn', sans-serif !important;
-}
-
-footer svg {
-  color: #000000 !important;
-  stroke: #000000 !important;
-}
-
-footer {
-  background-color: #ffffff !important;
 }
 
 /* Titr font for warranty titles - moved outside @layer to avoid postcss parsing issue with [attr] */
