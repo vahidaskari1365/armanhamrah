@@ -16,8 +16,8 @@ const contactInfo = [
     title: { fa: 'تلفن دفتر مرکزی', en: 'Head Office Phone' },
     contentKey: 'phone-office',
     phones: [
-      { number: '021-88321030', href: 'tel:02188321030' },
-      { number: '021-88321032', href: 'tel:02188321032' },
+      { number: '02158798', href: 'tel:02158798' },
+      { number: '02188329274 داخلی 4', href: 'tel:02188329274' },
     ],
   },
   {
@@ -34,7 +34,7 @@ const contactInfo = [
     title: { fa: 'تلفن فروشگاه', en: 'Store Phone' },
     contentKey: 'phone-store',
     phones: [
-      { number: '021-66745916', href: 'tel:02166745916' },
+      { number: '02158798', href: 'tel:02158798' },
       { number: '09931635153', href: 'tel:09931635153' },
     ],
   },
@@ -61,11 +61,11 @@ const contactInfo = [
 const addressInfo = {
   icon: MapPin,
   title: { fa: 'آدرس دفتر مرکزی', en: 'Head Office Address' },
-  value: { 
-    fa: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴',
-    en: 'Unit 304, 3rd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN'
+  value: {
+    fa: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴',
+    en: 'Unit 204, 2nd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN'
   },
-  postalCode: '1575945341',
+  postalCode: '1575945335',
 };
 
 const socialLinks = [

@@ -23,7 +23,7 @@ const Index = () => {
     "address": {
       "@type": "PostalAddress",
       "streetAddress": language === 'fa'
-        ? "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴"
+        ? "تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴"
         : "Jomhouri St., Aladdin Passage, 6th Floor, No. 614",
       "addressLocality": language === 'fa' ? "تهران" : "Tehran",
       "addressRegion": language === 'fa' ? "تهران" : "Tehran Province",

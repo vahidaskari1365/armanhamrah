@@ -17,11 +17,11 @@ const SEO = ({ title, description, image, url, type = 'website', keywords, jsonL
   const location = useLocation();
   
   const defaultTitle = language === 'fa' 
-    ? 'آرمان همراه | مرکز تخصصی تعمیرات ایرپاد، PS5 و گوشی همراه در تهران'
+    ? 'آرمان همراه | مرکز خدمات پس از فروش تعمیرات ایرپاد، PS5 و گوشی در تهران'
     : 'Arman Hamrah | Pro Repair Center for AirPods, PS5 & Mobiles';
     
   const defaultDescription = language === 'fa'
-    ? 'مرکز فوق تخصصی تعمیرات گوشی همراه، نمایندگی تعمیرات PS5، و تعمیرات ایرپاد با گارانتی ۱۸ ماهه. عیب‌یابی رایگان و قطعات اورجینال در پاساژ علاءالدین تهران.'
+    ? 'مرکز خدمات پس از فروش تخصصی تعمیرات گوشی، PS5 و ایرپاد با گارانتی ۱۸ ماهه. عیب‌یابی رایگان و قطعات اورجینال در تهران، مطهری.'
     : 'Professional repair center for Mobile phones, PS5, and AirPods with 18-month warranty. Free diagnosis and original parts in Tehran.';
 
   const siteUrl = 'https://armanhamrah.com';
@@ -44,7 +44,7 @@ const SEO = ({ title, description, image, url, type = 'website', keywords, jsonL
     "@context": "https://schema.org",
     "@type": ["Organization", "ElectronicsStore", "ComputerRepairShop"],
     "name": language === 'fa' ? "آرمان همراه ارتباطات آریا - مرکز تخصصی تعمیرات موبایل و PS5" : "Arman Hamrah Aria Communications - Repair Center",
-    "alternateName": ["Arman Hamrah", "آرمان همراه", "مرکز تعمیرات موبایل علاءالدین"],
+    "alternateName": ["Arman Hamrah", "آرمان همراه", "مرکز خدمات پس از فروش آرمان همراه"],
     "url": siteUrl,
     "logo": `${siteUrl}/logo.jpeg`,
     "description": finalDescription,
@@ -62,7 +62,7 @@ const SEO = ({ title, description, image, url, type = 'website', keywords, jsonL
       "contactType": "customer service",
       "areaServed": "IR",
       "availableLanguage": ["Persian", "English"],
-      "telephone": "+98-21-XXXX"
+      "telephone": "+98-21-58798"
     },
     "brand": ["Apple", "Samsung", "Xiaomi", "Sony", "Harman Kardon", "Anker", "Poco", "Nokia"],
     "makesOffer": [
