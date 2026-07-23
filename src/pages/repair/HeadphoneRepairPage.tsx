@@ -5,9 +5,14 @@ import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import FAQSchema from '@/components/FAQSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import pageBg from '@/assets/page-bg.jpeg';
 import RepairLongContentHeadphone from '@/components/repairs/RepairLongContentHeadphone';
 import { ChevronLeft, Headphones } from 'lucide-react';
+import HowToSchema from '@/components/HowToSchema';
+import ServiceSchema from '@/components/ServiceSchema';
+import ImageObjectSchema from '@/components/ImageObjectSchema';
 
 const HeadphoneRepairPageContent = () => {
   const { language } = useLanguage();
@@ -46,6 +51,9 @@ const HeadphoneRepairPage = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO title="تعمیر هدفون بلوتوثی گلکسی بادز 3 پرو انکر R60i NC سونی JBL | باتری و میکروفون" description="مرکز تخصصی تعمیر هدفون تهران - تعمیر گلکسی بادز 3 پرو و بادز 3، انکر R60i NC R50i P40i، سونی، JBL با تعویض باتری، اسپیکر، میکروفون و بلوتوث - گارانتی 2 ماهه" />
+          <BreadcrumbSchema />
+          <HowToSchema name={language === 'fa' ? 'فرآیند تعمیر در آرمان همراه' : 'Repair Process at Arman Hamrah'} steps={[{ text: language === 'fa' ? 'پذیرش رایگان و ثبت سفارش با کد پیگیری' : 'Free acceptance and order registration' }, { text: language === 'fa' ? 'عیب‌یابی دقیق با میکروسکوپ' : 'Accurate diagnosis with microscope' }, { text: language === 'fa' ? 'اعلام قیمت شفاف و تایید مشتری' : 'Transparent price announcement' }, { text: language === 'fa' ? 'تعمیر تخصصی و تحویل با گارانتی' : 'Specialized repair and delivery with warranty' }]} />
+          <FAQSchema />
           <HeadphoneRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>

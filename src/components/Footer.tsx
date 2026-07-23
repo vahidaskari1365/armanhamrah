@@ -116,13 +116,13 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
-              {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
+              {language === 'fa' ? 'فروشگاه' : 'Store'}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div dir="ltr" className="flex flex-col gap-1">
-                  <a href="tel:02158798" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</a>
+                  <a href="tel:02166745916" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۲۱-۶۶۷۴۵۹۱۶' : '021-66745916'}</a>
                   <a href="tel:09931635153" className="block hover:text-primary transition-colors">{language === 'fa' ? '۰۹۹۳۱۶۳۵۱۵۳' : '09931635153'}</a>
                 </div>
               </li>
@@ -131,9 +131,8 @@ const Footer = () => {
                 <div className="text-sm">
                   <span>
                     {language === 'fa'
-                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
-                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
-                    }
+                      ? 'تهران، خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴'
+                      : 'Tehran, Jomhouri St., Aladdin Passage, 6th Floor, No. 614'}
                   </span>
                 </div>
               </li>

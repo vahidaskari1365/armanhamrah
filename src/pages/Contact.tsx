@@ -33,11 +33,11 @@ const ContactPageContent = () => {
     },
     {
       title: language === 'fa' ? 'فروشگاه' : 'Store',
-      phone: language === 'fa' ? '۰۲۱-۶۶۷۴۵۹۱۶ / ۰۹۹۳۱۶۳۵۱۵۳' : '02158798 / 09931635153',
+      phone: language === 'fa' ? '۰۲۱-۶۶۷۴۵۹۱۶ / ۰۹۹۳۱۶۳۵۱۵۳' : '021-66745916 / 09931635153',
       address:
         language === 'fa'
-          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
-          : 'Jomhouri St., Aladdin Passage, 6th Floor, No. 614',
+          ? 'تهران، خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴'
+          : 'Tehran, Jomhouri St., Aladdin Passage, 6th Floor, No. 614',
     },
   ];
 

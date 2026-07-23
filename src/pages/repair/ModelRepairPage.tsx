@@ -6,9 +6,14 @@ import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import pageBg from '@/assets/page-bg.jpeg';
 import { ChevronLeft, CheckCircle2, Hash, Clock, Shield, ArrowRight } from 'lucide-react';
 import NotFound from '../NotFound';
+import FAQSchema from '@/components/FAQSchema';
+import HowToSchema from '@/components/HowToSchema';
+import ServiceSchema from '@/components/ServiceSchema';
+import ImageObjectSchema from '@/components/ImageObjectSchema';
 
 const ModelRepairPageContent = () => {
   const { model } = useParams();
@@ -106,6 +111,8 @@ const ModelRepairPage = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO title={data.seoTitle} description={data.seoDesc} keywords={data.keywords.join(', ')} jsonLd={[breadcrumb]} />
+          <BreadcrumbSchema />
+          <FAQSchema />
           <ModelRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>

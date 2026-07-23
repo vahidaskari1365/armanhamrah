@@ -13,6 +13,14 @@
     <meta name="geography" content="Tehran, Iran" />
     <meta name="language" content="fa-IR" />
     <meta name="theme-color" content="#000000" />
+    <meta name="geo.position" content="35.6892;51.3890" />
+    <meta name="geo.placename" content="Tehran, Iran" />
+    <meta name="geo.region" content="IR-07" />
+    <meta name="ICBM" content="35.6892, 51.3890" />
+    <meta name="rating" content="General" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="copyright" content="آرمان همراه ارتباطات آریا" />
+    <meta name="distribution" content="Global" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="آرمان همراه | مرکز تخصصی تعمیرات ایرپاد، PS5 و گوشی همراه در تهران" />
@@ -42,29 +50,78 @@
     <link rel="alternate" hrefLang="en-US" href="https://armanhamrah.com" />
     <link rel="alternate" hrefLang="x-default" href="https://armanhamrah.com" />
 
-    <!-- Structured Data - Organization + LocalBusiness Repair -->
+    <!-- Structured Data - Organization + LocalBusiness + WebSite + Service -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": ["Organization", "LocalBusiness", "ElectronicsStore", "ComputerRepairShop"],
       "name": "آرمان همراه ارتباطات آریا - مرکز تخصصی تعمیرات",
-      "alternateName": ["Arman Hamrah", "آرمان همراه", "مرکز تعمیرات علاءالدین"],
+      "alternateName": ["Arman Hamrah", "آرمان همراه", "مرکز تعمیرات علاءالدین", "مرکز خدمات پس از فروش آرمان همراه"],
       "url": "https://armanhamrah.com",
       "logo": "https://armanhamrah.com/logo.jpeg",
       "image": "https://armanhamrah.com/og-image.jpg",
-      "description": "مرکز تخصصی تعمیرات گوشی همراه، تعمیرات PS5، و تعمیرات ایرپاد با گارانتی ۱۸ ماهه",
+      "description": "مرکز فوق تخصصی خدمات پس از فروش تعمیرات موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند با قطعات اورجینال و گارانتی کتبی در تهران.",
       "telephone": "+98-21-58798",
+      "email": "info@armanhamrah.com",
       "priceRange": "$$",
       "foundingDate": "2014",
+      "foundingLocation": { "@type": "Place", "name": "Tehran, Iran" },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴",
         "addressLocality": "تهران",
         "addressRegion": "تهران",
+        "postalCode": "1575945335",
         "addressCountry": "IR"
       },
       "geo": { "@type": "GeoCoordinates", "latitude": "35.6892", "longitude": "51.3890" },
-      "knowsAbout": ["تعمیرات ایرپاد", "تعمیرات ps5", "تعمیرات گوشی همراه", "تعمیر موبایل", "تعمیر پلی استیشن 5"]
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00", "validFrom": "2014-01-01", "validThrough": "2026-12-31" }
+      ],
+      "areaServed": { "@type": "City", "name": "Tehran", "containedInPlace": { "@type": "Country", "name": "Iran" } },
+      "sameAs": [
+        "https://www.instagram.com/armanholdingco/",
+        "https://t.me/armanhamrah",
+        "https://www.linkedin.com/in/arman-corp-a443813a2/"
+      ],
+      "knowsAbout": [
+        "تعمیرات موبایل تهران", "تعمیر آیفون", "تعمیر سامسونگ", "تعمیر شیائومی", "تعمیر PS5", "تعمیر دسته PS5", "تعمیر ایرپاد", "تعمیر هدفون", "تعمیر ساعت هوشمند", "تعمیر اپل واچ", "تعمیر گلکسی واچ", "تعمیر اسپیکر", "تعمیر باند"
+      ],
+      "brand": ["Apple", "Samsung", "Xiaomi", "Sony", "Harman Kardon", "Anker", "Poco", "Nokia", "Huawei", "OnePlus"],
+      "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 35.6892, "longitude": 51.3890 }, "geoRadius": 50000 },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "IR",
+        "availableLanguage": ["Persian", "English"],
+        "telephone": "+98-21-58798"
+      },
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تعمیرات تخصصی گوشی موبایل" }, "areaServed": "Tehran", "priceCurrency": "IRR", "priceSpecification": { "@type": "PriceSpecification", "price": "بسته به مدل" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تعمیر PS5 و دسته DualSense" }, "areaServed": "Tehran", "priceCurrency": "IRR", "priceSpecification": { "@type": "PriceSpecification", "price": "بسته به مدل" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تعمیر ایرپاد و هدفون بلوتوثی" }, "areaServed": "Tehran", "priceCurrency": "IRR", "priceSpecification": { "@type": "PriceSpecification", "price": "بسته به مدل" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تعمیر ساعت هوشمند" }, "areaServed": "Tehran", "priceCurrency": "IRR", "priceSpecification": { "@type": "PriceSpecification", "price": "بسته به مدل" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "تعمیر اسپیکر و باند" }, "areaServed": "Tehran", "priceCurrency": "IRR", "priceSpecification": { "@type": "PriceSpecification", "price": "بسته به مدل" } }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "آرمان همراه - مرکز تخصصی تعمیرات",
+      "alternateName": ["Arman Hamrah Repair Center"],
+      "url": "https://armanhamrah.com",
+      "description": "مرکز فوق تخصصی خدمات پس از فروش تعمیرات موبایل، PS5 و ایرپاد با گارانتی ۱۸ ماهه",
+      "inLanguage": ["fa-IR", "en-US"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://armanhamrah.com/products?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
   </head>

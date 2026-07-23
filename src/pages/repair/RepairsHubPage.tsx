@@ -7,6 +7,11 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import FAQSchema from '@/components/FAQSchema';
+import HowToSchema from '@/components/HowToSchema';
+import ServiceSchema from '@/components/ServiceSchema';
+import ImageObjectSchema from '@/components/ImageObjectSchema';
 import pageBg from '@/assets/page-bg.jpeg';
 import { repairCategoriesData } from '@/data/repairCategoriesData';
 
@@ -94,6 +99,11 @@ const RepairsHubPage = () => {
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
+          <BreadcrumbSchema />
+          <FAQSchema />
+          <HowToSchema name="فرآیند تعمیر در آرمان همراه" steps={[{ text: 'پذیرش رایگان و ثبت سفارش با کد پیگیری' }, { text: 'عیب‌یابی دقیق با میکروسکوپ و تستر پیشرفته' }, { text: 'اعلام قیمت شفاف و تایید مشتری' }, { text: 'تعمیر تخصصی با ابزار دقیق و تحویل با گارانتی کتبی' }]} />
+          <ImageObjectSchema url="https://armanhamrah.com/images/repairs/airpods-repair-1.jpg" caption="مرکز تخصصی تعمیرات آرمان همراه" width={1200} height={630} />
+          <ServiceSchema name="مرکز تخصصی تعمیرات آرمان همراه" description="مرکز فوق تخصصی خدمات پس از فروش تعمیرات موبایل، PS5 و ایرپاد با گارانتی ۳ ماهه" serviceType="تعمیرات تخصصی" provider="آرمان همراه ارتباطات آریا" offers={[{ name: "تعمیر با گارانتی", price: "بسته به مدل", priceCurrency: "IRR" }, { name: "عیب‌یابی رایگان", price: "رایگان", priceCurrency: "IRR" }]} />
           <SEO title="مرکز تخصصی تعمیرات موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند | آرمان همراه" description="مرکز تخصصی تعمیرات انواع گوشی آیفون و سامسونگ و شیائومی، PS5 و دسته DualSense، ایرپاد پرو ۲، هدفون بلوتوثی، ساعت هوشمند اپل واچ و گلکسی واچ، اسپیکر JBL و باند با قطعات اورجینال و گارانتی ۳ ماهه" jsonLd={[breadcrumb]} />
           <RepairsHubPageContent />
         </LanguageProvider>
