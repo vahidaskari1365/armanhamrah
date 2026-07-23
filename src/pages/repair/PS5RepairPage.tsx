@@ -298,8 +298,8 @@ const PS5RepairPage = () => {
                   : 'Free diagnosis | 24-48h repair | 90-day warranty'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:02166745916" className="btn-gold">
-                  📞 {language === 'fa' ? 'تماس: 021-66745916' : 'Call: 021-66745916'}
+                <a href="tel:02158798" className="btn-gold">
+                  📞 {language === 'fa' ? 'تماس: 02158798' : 'Call: 02158798'}
                 </a>
                 <a href="/contact" className="btn-outline">
                   {language === 'fa' ? 'فرم درخواست' : 'Request Form'}
