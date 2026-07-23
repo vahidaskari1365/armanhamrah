@@ -3,6 +3,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import FAQSchema from '@/components/FAQSchema';
+import HowToSchema from '@/components/HowToSchema';
+import ServiceSchema from '@/components/ServiceSchema';
+import ImageObjectSchema from '@/components/ImageObjectSchema';
 import { motion } from 'framer-motion';
 import pageBg from '@/assets/page-bg.jpeg';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -54,6 +57,26 @@ const AirPodsRepairPage = () => {
         url="https://armanhamrah.com/repair/airpods"
         jsonLd={structuredData}
       />
+      <HowToSchema 
+        name={language === 'fa' ? 'فرآیند تعمیر در آرمان همراه' : 'Repair Process at Arman Hamrah'}
+        steps={[
+          { text: language === 'fa' ? 'پذیرش رایگان و ثبت سفارش با کد پیگیری' : 'Free acceptance and order registration with tracking code' },
+          { text: language === 'fa' ? 'عیب‌یابی دقیق با میکروسکوپ و تسترهای پیشرفته' : 'Accurate diagnosis with microscope and advanced testers' },
+          { text: language === 'fa' ? 'اعلام قیمت شفاف و تایید مشتری' : 'Transparent price announcement and customer confirmation' },
+          { text: language === 'fa' ? 'تعمیر تخصصی با ابزار دقیق و تحویل با گارانتی' : 'Specialized repair with precise tools and delivery with warranty' }
+        ]}
+      />
+      <ImageObjectSchema url="https://armanhamrah.com/images/repairs/airpods-repair-1.jpg" caption="تعمیر تخصصی ایرپاد پرو 2 در آرمان همراه" width={1200} height={630} />
+      <ServiceSchema 
+        name={language === 'fa' ? 'تعمیرات تخصصی موبایل آرمان همراه' : 'Arman Hamrah Mobile Repair Service'}
+        description={language === 'fa' ? 'مرکز خدمات پس از فروش تخصصی تعمیرات گوشی موبایل با قطعات اورجینال و گارانتی کتبی' : 'After-sales service center for mobile repair with original parts and written warranty'}
+        serviceType="موبایل"
+        provider="آرمان همراه ارتباطات آریا"
+        offers={[
+          { name: "تعمیر ایرپاد با گارانتی 3 ماهه", price: "بسته به مدل", priceCurrency: "IRR" },
+          { name: "عیب‌یابی رایگان", price: "رایگان", priceCurrency: "IRR" }
+        ]}
+      />
       <FAQSchema />
       <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
         <Navbar />
@@ -71,6 +94,7 @@ const AirPodsRepairPage = () => {
               </h1>
               <div className="w-24 h-1 mx-auto rounded-full bg-primary mb-6" />
               <p className="text-lg text-foreground max-w-3xl mx-auto">
+                {language === 'fa' ? '✅ عیب‌یابی رایگان در کمتر از ۱۵ دقیقه با میکروسکوپ و ابزار دقیق. قطعات ۱۰۰٪ اورجینال با گارانتی کتبی. همین حالا تماس بگیرید یا فرم درخواست بفرستید.' : '✅ Free diagnosis in under 15 minutes with microscope and precise tools. 100% original parts with written warranty. Call now or submit a request form.'}
                 {language === 'fa'
                   ? 'مرکز تخصصی تعمیرات ایرپاد در تهران | تعویض باتری | تعمیر کیس شارژ | ایرپاد پرو 2 | ایرپاد 4 | ایرپاد مکس با قطعات اورجینال و گارانتی 3 ماهه'
                   : 'Expert AirPods repair center in Tehran | Battery replacement | Charging case repair | AirPods Pro 2 | AirPods 4 | AirPods Max with original parts'}
@@ -266,6 +290,14 @@ const AirPodsRepairPage = () => {
                 </div>
               </div>
             </motion.div>
+
+
+            {/* Internal Links for AEO */}
+            <div className="mt-8 grid md:grid-cols-3 gap-4 text-center">
+              <a href="/repair/ps5" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر PS5 و دسته DualSense →' : 'PS5 & DualSense Repair →'}</a>
+              <a href="/repair/airpods" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر ایرپاد و هدفون →' : 'AirPods & Headphone Repair →'}</a>
+              <a href="/warranty/repairs" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'شرایط گارانتی تعمیرات →' : 'Repair Warranty Terms →'}</a>
+            </div>
 
             {/* CTA */}
             <motion.div

@@ -4,6 +4,14 @@ const FAQSchema = () => {
   const faqData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "xpath": [
+        "/html/head/title",
+        "//h2[contains(@class, 'font-bold')]/following-sibling::p"
+      ],
+      "cssSelector": [".faq-item h3", ".faq-item p"]
+    },
     "mainEntity": [
       {
         "@type": "Question",
