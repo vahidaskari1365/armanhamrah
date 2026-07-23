@@ -29,15 +29,15 @@ const contactInfo = [
       { number: '021-88329274 داخلی 4', href: 'tel:02188329274' },
     ],
   },
-  {
-    icon: Phone,
-    title: { fa: 'تلفن فروشگاه', en: 'Store Phone' },
-    contentKey: 'phone-store',
-    phones: [
-      { number: '02158798', href: 'tel:02158798' },
-      { number: '09931635153', href: 'tel:09931635153' },
-    ],
-  },
+    {
+      icon: Phone,
+      title: { fa: 'تلفن فروشگاه', en: 'Store Phone' },
+      contentKey: 'phone-store',
+      phones: [
+        { number: '021-66745916', href: 'tel:02166745916' },
+        { number: '09931635153', href: 'tel:09931635153' },
+      ],
+    },
   {
     icon: Mail,
     title: { fa: 'ایمیل', en: 'Email' },

@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import FAQSchema from '@/components/FAQSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import HowToSchema from '@/components/HowToSchema';
 import ServiceSchema from '@/components/ServiceSchema';
 import ImageObjectSchema from '@/components/ImageObjectSchema';
@@ -23,11 +24,12 @@ const AirPodsRepairPage = () => {
       ? "تعمیر تخصصی ایرپاد پرو 2، ایرپاد 4، ایرپاد مکس در تهران با قطعات اورجینال و گارانتی 3 ماهه"
       : "Professional AirPods Pro 2, AirPods 4, AirPods Max repair in Tehran with original parts",
     "url": "https://armanhamrah.com/repair/airpods",
-    "telephone": "+982166745916",
+    "telephone": "+98-21-58798",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم",
+      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴",
       "addressLocality": "تهران",
+      "addressRegion": "تهران",
       "addressCountry": "IR"
     },
     "geo": {
@@ -35,7 +37,9 @@ const AirPodsRepairPage = () => {
       "latitude": "35.6892",
       "longitude": "51.3890"
     },
-    "openingHours": "Sa-Th 09:00-18:00",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00" }
+    ],
     "priceRange": "$$",
     "serviceType": language === 'fa' 
       ? "تعمیرات تخصصی ایرپاد" 
@@ -68,9 +72,9 @@ const AirPodsRepairPage = () => {
       />
       <ImageObjectSchema url="https://armanhamrah.com/images/repairs/airpods-repair-1.jpg" caption="تعمیر تخصصی ایرپاد پرو 2 در آرمان همراه" width={1200} height={630} />
       <ServiceSchema 
-        name={language === 'fa' ? 'تعمیرات تخصصی موبایل آرمان همراه' : 'Arman Hamrah Mobile Repair Service'}
-        description={language === 'fa' ? 'مرکز خدمات پس از فروش تخصصی تعمیرات گوشی موبایل با قطعات اورجینال و گارانتی کتبی' : 'After-sales service center for mobile repair with original parts and written warranty'}
-        serviceType="موبایل"
+        name={language === 'fa' ? 'تعمیرات تخصصی ایرپاد آرمان همراه' : 'Arman Hamrah AirPods Repair Service'}
+        description={language === 'fa' ? 'مرکز تخصصی تعمیرات ایرپاد با قطعات اورجینال و گارانتی 3 ماهه. تعمیر ایرپاد پرو 2، ایرپاد 4، ایرپاد مکس و کیس شارژ در تهران.' : 'Specialized AirPods repair center with original parts and 3-month warranty. AirPods Pro 2, AirPods 4, AirPods Max and charging case repair in Tehran.'}
+        serviceType="تعمیر ایرپاد"
         provider="آرمان همراه ارتباطات آریا"
         offers={[
           { name: "تعمیر ایرپاد با گارانتی 3 ماهه", price: "بسته به مدل", priceCurrency: "IRR" },
@@ -78,6 +82,7 @@ const AirPodsRepairPage = () => {
         ]}
       />
       <FAQSchema />
+      <BreadcrumbSchema />
       <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
         <Navbar />
         <main className="min-h-screen section-padding pt-32">

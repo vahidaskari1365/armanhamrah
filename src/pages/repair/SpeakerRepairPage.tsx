@@ -5,9 +5,14 @@ import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
+import FAQSchema from '@/components/FAQSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import pageBg from '@/assets/page-bg.jpeg';
 import RepairLongContentSpeaker from '@/components/repairs/RepairLongContentSpeaker';
 import { ChevronLeft, Speaker } from 'lucide-react';
+import HowToSchema from '@/components/HowToSchema';
+import ServiceSchema from '@/components/ServiceSchema';
+import ImageObjectSchema from '@/components/ImageObjectSchema';
 
 const SpeakerRepairPageContent = () => {
   const { language } = useLanguage();
@@ -46,6 +51,9 @@ const SpeakerRepairPage = () => {
       <ThemeProvider>
         <LanguageProvider>
           <SEO title="تعمیر اسپیکر بلوتوثی JBL سونی هارمن باند پارتی باکس ساندبار | آمپلی‌فایر باتری | تهران" description="مرکز تخصصی تعمیر اسپیکر و باند تهران - تعمیر JBL Charge 5 Flip 6 Xtreme سونی SRS هارمن کاردن پارتی باکس ساندبار باند اکتیو با تعمیر آمپلی‌فایر، باتری، درایور و برد بلوتوث با اسیلوسکوپ و گارانتی 2 ماهه" />
+          <BreadcrumbSchema />
+          <HowToSchema name={language === 'fa' ? 'فرآیند تعمیر در آرمان همراه' : 'Repair Process at Arman Hamrah'} steps={[{ text: language === 'fa' ? 'پذیرش رایگان و ثبت سفارش با کد پیگیری' : 'Free acceptance and order registration' }, { text: language === 'fa' ? 'عیب‌یابی دقیق با میکروسکوپ' : 'Accurate diagnosis with microscope' }, { text: language === 'fa' ? 'اعلام قیمت شفاف و تایید مشتری' : 'Transparent price announcement' }, { text: language === 'fa' ? 'تعمیر تخصصی و تحویل با گارانتی' : 'Specialized repair and delivery with warranty' }]} />
+          <FAQSchema />
           <SpeakerRepairPageContent />
         </LanguageProvider>
       </ThemeProvider>

@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+Disallow: /*?*
 
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap reference
 Sitemap: https://armanhamrah.com/sitemap.xml
+
+# Reference for LLM / Generative AI
+Allow: /llms.txt

@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import FAQSchema from '@/components/FAQSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import HowToSchema from '@/components/HowToSchema';
 import ServiceSchema from '@/components/ServiceSchema';
 import ImageObjectSchema from '@/components/ImageObjectSchema';
@@ -23,10 +24,10 @@ const MobileRepairPage = () => {
       ? "تعمیر گوشی در تهران | تعمیرات موبایل | تعویض ال سی دی | باتری | برد با قطعات اورجینال"
       : "Mobile repair in Tehran | LCD replacement | Battery | Board with original parts",
     "url": "https://armanhamrah.com/repair/mobile",
-    "telephone": "+982158798",
+    "telephone": "+98-21-58798",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴",
+      "streetAddress": "خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴",
       "addressLocality": "تهران",
       "addressRegion": "تهران",
       "addressCountry": "IR"
@@ -36,7 +37,9 @@ const MobileRepairPage = () => {
       "latitude": "35.6892",
       "longitude": "51.3890"
     },
-    "openingHours": "Sa-Th 09:00-18:00",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "18:00" }
+    ],
     "priceRange": "$$",
     "serviceType": language === 'fa' 
       ? "تعمیرات تخصصی موبایل" 
@@ -79,6 +82,7 @@ const MobileRepairPage = () => {
         ]}
       />
       <FAQSchema />
+      <BreadcrumbSchema />
       <div className="page-background bg-background" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties}>
         <Navbar />
         <main className="min-h-screen section-padding pt-32">
