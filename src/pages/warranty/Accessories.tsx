@@ -90,17 +90,6 @@ const WarrantyAccessoriesPageContent = () => {
                 </motion.div>
               ))}
             </div>
-
-            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-zinc-900 to-black text-white border border-white/10">
-              <h3 className="font-black text-lg mb-2 text-white warranty-title">{isFa ? 'برای تعمیرات فاقد گارانتی لوازم جانبی چه کنیم؟' : 'What to do for out-of-warranty accessories?'}</h3>
-              <p className="text-sm leading-8 text-white warranty-text">
-                {isFa ? (
-                  <>اگر اسپیکر، ایرپاد، ساعت یا هدفون شما آبخورده یا ضربه‌خورده و گارانتی آن باطل شده، نگران نباشید. ما در بخش <Link to="/warranty/repairs" className="underline font-bold text-white">تعمیرات فاقد گارانتی</Link> تمامی این دستگاه‌ها را با هزینه مصوب و گارانتی ۳ ماهه قطعه تعمیر می‌کنیم. کافیست به آدرس: تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴ مراجعه یا دستگاه را با پست ارسال کنید.</>
-                ) : (
-                  <>If your speaker, AirPods, watch or headphones are water or impact damaged and warranty is void, don&apos;t worry. We in <Link to="/warranty/repairs" className="underline font-bold text-white">out-of-warranty repairs</Link> section repair all with approved cost and 3-month warranty. Visit: Tehran, Motahari St., Amir Atabak Bldg, 3rd Fl, Unit 204 or send by post.</>
-                )}
-              </p>
-            </div>
           </div>
         </section>
       </main>
