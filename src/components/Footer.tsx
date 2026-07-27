@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Instagram, MessageCircle, Phone, Mail, MapPin, Linkedin, ShoppingCart } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo.jpeg';
+import logo from '@/assets/arman-aria-logo.png';
 import EditableText from '@/components/admin/EditableText';
 
 const Footer = () => {
@@ -14,12 +14,6 @@ const Footer = () => {
     { key: 'nav.products', href: '/products' },
     { key: 'nav.export', href: '/export' },
     { key: 'nav.contact', href: '/contact' },
-  ];
-
-  const socialLinks = [
-    { icon: Instagram, href: 'https://www.instagram.com/armanholdingco/', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/arman-corp-a443813a2/', label: 'LinkedIn' },
-    { icon: MessageCircle, href: 'https://t.me/armanhamrah', label: 'Telegram' },
   ];
 
   return (
@@ -58,6 +52,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-background/50 border border-border rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">{language === 'fa' ? 'لینک‌های سریع' : 'Quick Links'}</h4>
             <ul className="space-y-3">
@@ -80,6 +75,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-background/50 border border-border rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
@@ -100,8 +96,8 @@ const Footer = () => {
                       : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
                     }
                   </span>
-                  <p className="text-xs text-foreground/70 mt-1" dir="ltr">
-                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'}{language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335'}
+                  <p className="text-xs text-foreground/70 mt-1" dir="rtl">
+                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۳۵' : 'Postal Code: 1575945335'}
                   </p>
                 </div>
               </li>
@@ -114,6 +110,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-background/50 border border-border rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'فروشگاه' : 'Store'}
@@ -145,6 +142,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-background/50 border border-border rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
@@ -152,7 +150,10 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0" />
-                <span dir="ltr">{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</span>
+                <div dir="ltr" className="flex flex-col gap-1">
+                  <span>{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</span>
+                  <span>{language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۲' : '021-88321032'}</span>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
@@ -167,30 +168,13 @@ const Footer = () => {
                       : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
                     }
                   </span>
-                  <p className="text-xs text-foreground/70 mt-1" dir="ltr">
-                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} {language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335'}
+                  <p className="text-xs text-foreground/70 mt-1" dir="rtl">
+                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۳۵' : 'Postal Code: 1575945335'}
                   </p>
                 </div>
               </li>
             </ul>
 
-            {/* Social Links */}
-            <div className="mt-6">
-              <h5 className="text-sm font-semibold text-foreground mb-4">{t('footer.followUs')}</h5>
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    <social.icon size={20} />
-                  </a>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
 
