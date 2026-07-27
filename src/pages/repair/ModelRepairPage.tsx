@@ -52,7 +52,7 @@ const ModelRepairPageContent = () => {
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden border shadow-xl">
-                <img src={data.image} alt={data.title} loading="lazy" className="w-full aspect-[4/3] object-cover bg-white" />
+                <img src={data.image} alt={data.title} loading="lazy" className="w-full aspect-[4/3] object-cover bg-secondary" />
               </div>
             </div>
 

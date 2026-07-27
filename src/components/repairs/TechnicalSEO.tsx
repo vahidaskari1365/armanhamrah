@@ -9,7 +9,7 @@ const TechnicalSEO = () => {
             <Zap size={14} className="text-yellow-400" /> سئو تکنیکال پیاده‌سازی شده - مرحله ۶ نهایی
           </div>
           <h2 className="text-3xl font-black mb-4">سئو فنی و تکنیکال اجرا شده برای انفجار رتبه تعمیرات</h2>
-          <p className="text-zinc-400 max-w-3xl mx-auto leading-7">برای اینکه با تمام کیوردهای تعمیرات بیای بالا، این موارد فنی پیاده شد</p>
+          <p className="text-white/60 max-w-3xl mx-auto leading-7">برای اینکه با تمام کیوردهای تعمیرات بیای بالا، این موارد فنی پیاده شد</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

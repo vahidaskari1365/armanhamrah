@@ -25,7 +25,7 @@ const ProductDetailPageContent = () => {
 
     if (!product) {
         return (
-            <div className="text-center py-20 flex flex-col items-center gap-4 text-slate-800 dark:text-white min-h-screen justify-center">
+            <div className="text-center py-20 flex flex-col items-center gap-4 text-foreground min-h-screen justify-center">
                 <AlertTriangle size={48} className="text-primary" />
                 <h2 className="text-2xl font-bold">{t('products.not_found', 'Product Not Found')}</h2>
                 <Link to="/products" className="mt-4 inline-flex items-center gap-2 text-primary hover:underline">
@@ -57,7 +57,7 @@ const ProductDetailPageContent = () => {
                                 },
                             });
                         }}
-                        className="inline-flex items-center gap-2 text-slate-500 hover:text-primary dark:text-slate-400 transition-colors"
+                        className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                     >
                         <ArrowRight size={20} />
                         {t('products.back_to_list', 'Back to Products')}
@@ -71,7 +71,7 @@ const ProductDetailPageContent = () => {
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         className="lg:sticky top-32"
                     >
-                        <div className="bg-slate-100 dark:bg-gray-800/20 dark:backdrop-blur-md rounded-2xl p-6 shadow-2xl">
+                        <div className="bg-secondary rounded-2xl p-6 shadow-2xl">
                            <motion.img
                                initial={{ scale: 0.95 }}
                                animate={{ scale: 1 }}
@@ -95,46 +95,46 @@ const ProductDetailPageContent = () => {
                     >
                         <div>
                             <span className="text-primary font-semibold tracking-wider">{t(product.brand_id)}</span>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold my-3 text-slate-900 dark:text-white">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold my-3 text-foreground">
                                 {t(product.name)}
                             </h1>
-                            <span className="text-lg text-slate-500 dark:text-slate-400">{t(product.category_id.replace('category.', ''))}</span>
+                            <span className="text-lg text-muted-foreground">{t(product.category_id.replace('category.', ''))}</span>
 
                             <div className="mt-4 flex items-center gap-2">
-                                <span className="text-slate-500 dark:text-slate-400 font-medium">{t('products.price')}</span>
+                                <span className="text-muted-foreground font-medium">{t('products.price')}</span>
                                 <span className="text-2xl font-bold text-primary">
                                     {product.price ? product.price : t('products.contact_for_price')}
                                 </span>
                             </div>
 
                             {product.description && (
-                                <p className="leading-relaxed text-slate-600 dark:text-slate-300 mt-8 text-lg">{t(product.description)}</p>
+                                <p className="leading-relaxed text-muted-foreground mt-8 text-lg">{t(product.description)}</p>
                             )}
                         </div>
                         
-                        <div className="border-t border-slate-200 dark:border-border pt-8">
-                            <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">{t('products.specs', 'Specifications')}</h2>
+                        <div className="border-t border-border pt-8">
+                            <h2 className="text-3xl font-bold mb-6 text-foreground">{t('products.specs', 'Specifications')}</h2>
                             {product.specs && Object.keys(product.specs).length > 0 ? (
-                                <div className="divide-y divide-slate-200 dark:divide-gray-700/50">
+                                <div className="divide-y divide-border">
                                     {Object.entries(product.specs).map(([key, value]) => (
                                         <div key={key} className="flex justify-between items-center py-4">
-                                            <span className="font-medium text-slate-500 dark:text-gray-400">{t(key)}</span>
-                                            <span className="font-semibold text-right text-slate-800 dark:text-white">{t(String(value))}</span>
+                                            <span className="font-medium text-muted-foreground">{t(key)}</span>
+                                            <span className="font-semibold text-right text-foreground">{t(String(value))}</span>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text-slate-500 dark:text-slate-400">{t('products.specs_soon', 'Specifications will be added soon.')}</p>
+                                <p className="text-muted-foreground">{t('products.specs_soon', 'Specifications will be added soon.')}</p>
                             )}
                         </div>
 
 
                          <div className="bg-gradient-to-tr from-primary/5 via-primary/5 to-transparent dark:from-primary/40 dark:via-primary/25 dark:to-primary/10 border border-primary/20 dark:border-primary/60 rounded-2xl p-8 text-center mt-6">
-                             <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">به این محصول علاقه‌مندید؟</h3>
-                             <p className="text-slate-700 dark:text-slate-100 mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
+                             <h3 className="text-2xl font-bold mb-3 text-foreground">به این محصول علاقه‌مندید؟</h3>
+                             <p className="text-muted-foreground mb-6 max-w-sm mx-auto">برای دریافت اطلاعات بیشتر و استعلام قیمت با ما تماس بگیرید.</p>
                              <a
                                  href="tel:09931635153"
-                                 className="inline-flex items-center gap-3 bg-primary dark:bg-slate-100 text-white dark:text-slate-900 font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 dark:hover:bg-slate-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                 className="inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
                               >
                                   <Phone size={20}/>
                                   تماس بگیرید

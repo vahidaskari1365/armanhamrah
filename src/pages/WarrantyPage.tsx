@@ -414,7 +414,7 @@ const WarrantyPageContent = () => {
               )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="tel:+9821" className="px-8 py-4 bg-white text-black rounded-xl font-bold text-lg hover:bg-white/90 transition-colors shadow-xl flex items-center gap-2 font-titr">
+              <a href="tel:+9821" className="px-8 py-4 bg-background text-foreground rounded-xl font-bold text-lg hover:bg-background/90 transition-colors shadow-xl flex items-center gap-2 font-titr">
                 <Phone size={20} /> {t('مشاوره رایگان تعمیرات', 'Free Repair Consultation')}
               </a>
             </div>

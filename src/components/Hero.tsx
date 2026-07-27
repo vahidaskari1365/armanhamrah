@@ -97,7 +97,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-gray-200 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-white/80 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             <EditableText
               contentKey="hero-description"

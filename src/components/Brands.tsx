@@ -42,7 +42,7 @@ const Brands = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
-              className="bg-gray-800/20 backdrop-blur-sm p-4 rounded-xl shadow-lg w-48 h-24 flex justify-center items-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+              className="bg-secondary/50 backdrop-blur-sm p-4 rounded-xl shadow-lg w-48 h-24 flex justify-center items-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
             >
               <Link
                 to={`/products?brand=${encodeURIComponent(brand.name)}`}
