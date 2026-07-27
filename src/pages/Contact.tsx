@@ -95,11 +95,11 @@ const ContactPageContent = () => {
                         {section.postalCode && (
                           <p
                             className="text-xs text-muted-foreground/70 mt-2"
-                            dir="ltr"
+                            dir="rtl"
                           >
                             {language === 'fa'
-                              ? 'کد پستی:'
-                              : 'Postal Code:'}{' '}
+                              ? 'کد پستی: '
+                              : 'Postal Code: '}
                             {section.postalCode}
                           </p>
                         )}

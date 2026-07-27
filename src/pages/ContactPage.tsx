@@ -166,8 +166,8 @@ const ContactPageContent = () => {
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{addressInfo.title[language]}</h3>
                   <p className="text-foreground mb-2">{addressInfo.value[language]}</p>
-                  <p className="text-sm text-foreground/70">
-                    {language === 'fa' ? 'کد پستی:' : 'Postal Code:'} {addressInfo.postalCode}
+                  <p className="text-sm text-foreground/70" dir="rtl">
+                    {language === 'fa' ? 'کد پستی: ' : 'Postal Code: '}{addressInfo.postalCode}
                   </p>
                 </div>
               </div>
