@@ -52,7 +52,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-background/50 border border-border rounded-xl p-6"
+            whileHover={{ y: -8 }}
+            className="card-premium"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">{language === 'fa' ? 'لینک‌های سریع' : 'Quick Links'}</h4>
             <ul className="space-y-3">
@@ -75,7 +76,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-background/50 border border-border rounded-xl p-6"
+            whileHover={{ y: -8 }}
+            className="card-premium"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
@@ -110,7 +112,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-background/50 border border-border rounded-xl p-6"
+            whileHover={{ y: -8 }}
+            className="card-premium"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'فروشگاه' : 'Store'}
@@ -142,7 +145,8 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-background/50 border border-border rounded-xl p-6"
+            whileHover={{ y: -8 }}
+            className="card-premium"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
@@ -157,7 +161,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
-                <span>info@armanhamrah.com</span>
+                <span className="break-all">info@armanhamrah.com</span>
               </li>
               <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
