@@ -53,7 +53,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             whileHover={{ y: -8 }}
-            className="card-premium"
+            className="bg-secondary border border-border rounded-2xl p-6 h-full transition-shadow duration-300 shadow-md hover:shadow-lg"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">{language === 'fa' ? 'لینک‌های سریع' : 'Quick Links'}</h4>
             <ul className="space-y-3">
@@ -77,7 +77,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             whileHover={{ y: -8 }}
-            className="card-premium"
+            className="bg-secondary border border-border rounded-2xl p-6 h-full transition-shadow duration-300 shadow-md hover:shadow-lg"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service'}
@@ -113,7 +113,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ y: -8 }}
-            className="card-premium"
+            className="bg-secondary border border-border rounded-2xl p-6 h-full transition-shadow duration-300 shadow-md hover:shadow-lg"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'فروشگاه' : 'Store'}
@@ -146,7 +146,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
             whileHover={{ y: -8 }}
-            className="card-premium"
+            className="bg-secondary border border-border rounded-2xl p-6 h-full transition-shadow duration-300 shadow-md hover:shadow-lg"
           >
             <h4 className="text-lg font-bold text-foreground mb-6">
               {language === 'fa' ? 'دفتر مرکزی' : 'Headquarters'}
@@ -154,10 +154,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-foreground">
                 <Phone size={18} className="text-primary flex-shrink-0" />
-                <div dir="ltr" className="flex flex-col gap-1">
-                  <span>{language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798'}</span>
-                  <span>{language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۲' : '021-88321032'}</span>
-                </div>
+                <span dir="ltr">{language === 'fa' ? '۰۲۱-۸۸۳۲۱۰۳۰-۲' : '021-88321030-2'}</span>
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
