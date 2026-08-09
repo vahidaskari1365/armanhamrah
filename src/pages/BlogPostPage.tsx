@@ -67,9 +67,10 @@ const BlogPostPageContent = () => {
 
   if (!post) return <NotFound />;
 
-  const related = post.relatedModels
+  const relatedByCategory = post.relatedModels
     .map(m => repairModelsData.find(r => r.slug === m))
-    .filter(Boolean);
+    .filter((r): r is (typeof repairModelsData)[number] => Boolean(r))
+    .filter((r, i, arr) => arr.findIndex(x => x.category === r.category) === i);
 
   return (
     <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
@@ -102,12 +103,12 @@ const BlogPostPageContent = () => {
                   {renderMarkdown(post.content)}
                 </div>
 
-                {related.length > 0 && (
+                {relatedByCategory.length > 0 && (
                   <div className="mt-10 p-6 rounded-2xl bg-secondary/50 border">
                     <h3 className="font-black mb-4 warranty-title">خدمات مرتبط در آرمان همراه</h3>
                     <div className="grid sm:grid-cols-2 gap-3">
-                      {related.map(r => (
-                        <Link key={r.slug} to={`/repair/${r.slug}`} className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-card border text-sm font-bold hover:border-primary/50 transition-colors warranty-title">
+                      {relatedByCategory.map(r => (
+                        <Link key={r.category} to={`/repair/${r.category}`} className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-card border text-sm font-bold hover:border-primary/50 transition-colors warranty-title">
                           {r.title}
                           <ChevronLeft size={16} className="text-primary shrink-0" />
                         </Link>
@@ -118,8 +119,8 @@ const BlogPostPageContent = () => {
 
                 <div className="mt-8 p-6 rounded-2xl bg-card border flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
-                    <h3 className="font-black mb-1 warranty-title">نیاز به عیب‌یابی یا استعلام قیمت دارید؟</h3>
-                    <p className="text-xs text-muted-foreground">عیب‌یابی در آرمان همراه کاملاً رایگان است؛ قبل از هر تعمیری، قیمت دقیق اعلام می‌شود.</p>
+                    <h3 className="font-black mb-1 warranty-title">دستگاه شما خرابی دارد؟</h3>
+                    <p className="text-xs text-muted-foreground">عیب‌یابی در آرمان همراه کاملاً رایگان است؛ کارشناسان ما آماده پاسخگویی و حل مشکل شما هستند.</p>
                   </div>
                   <a href="tel:+982158798" className="btn-gold shrink-0 flex items-center gap-2"><PhoneCall size={16} /> ۰۲۱-۵۸۷۹۸</a>
                 </div>
