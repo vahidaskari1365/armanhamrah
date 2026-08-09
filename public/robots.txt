@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+# Sitemap reference
+Sitemap: https://armanhamrah.com/sitemap.xml
+
+# Reference for LLM / Generative AI
+Allow: /llms.txt
+
+# AI / LLM crawlers (GEO - Generative Engine Optimization)
+User-agent: GPTBot
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+User-agent: ClaudeBot
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+User-agent: PerplexityBot
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+User-agent: Google-Extended
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/

@@ -1,0 +1,28 @@
+{
+  "redirects": [
+    { "source": "/repair/watch", "destination": "/repair/smartwatch", "permanent": true },
+    { "source": "/repair/speaker-band", "destination": "/repair/speaker", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.armanhamrah.com" }], "destination": "https://armanhamrah.com/:path*", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "headers": [
+    {
+      "source": "/admin(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/auth(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}
