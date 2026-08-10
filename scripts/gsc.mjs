@@ -10,7 +10,7 @@ const tokenPath = path.join(root, 'gsc-tokens.json');
 const secret = JSON.parse(fs.readFileSync(secretPath, 'utf8'));
 const { client_id: clientId, client_secret: clientSecret } = secret.installed || secret.web || secret;
 
-const API = 'https://www.googleapis.com/webmaster-tools/v1';
+const API = 'https://www.googleapis.com/webmasters/v3';
 
 async function refreshToken(tok) {
   const r = await fetch('https://oauth2.googleapis.com/token', {
