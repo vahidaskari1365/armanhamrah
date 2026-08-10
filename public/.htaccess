@@ -1,0 +1,19 @@
+# ===== آرمان همراه — سئو: رفع محتوای تکراری و ریدایرکت‌های 301 =====
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# ۱) ریدایرکت www → بدون www (یک نسخه واحد برای گوگل)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# ۲) ریدایرکت صفحات قدیمی PHP → صفحات جدید (انتقال اعتبار)
+RewriteRule ^contact-us\.php$ https://armanhamrah.com/contact/ [R=301,L,NC]
+RewriteRule ^products\.php$ https://armanhamrah.com/products/ [R=301,L,NC]
+RewriteCond %{QUERY_STRING} ^post=([0-9]+)$
+RewriteRule ^post\.php$ https://armanhamrah.com/blog/ [R=301,L,NC]
+
+# ۳) اسلش انتهایی یکسان (فقط برای مسیرهای غیرفایل)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ https://armanhamrah.com/$1/ [R=301,L]
+</IfModule>

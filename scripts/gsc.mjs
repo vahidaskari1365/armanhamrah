@@ -37,7 +37,7 @@ async function getToken() {
 
 async function gsc(pathname, options = {}) {
   const tok = await getToken();
-  const url = `${API}${pathname}`;
+  const url = `${options.base || API}${pathname}`;
   const r = await fetch(url, {
     method: options.method || 'GET',
     headers: {
@@ -50,6 +50,7 @@ async function gsc(pathname, options = {}) {
     const t = await r.text();
     throw new Error(`${r.status}: ${t.slice(0, 400)}`);
   }
+  if (r.status === 204) return {}; // PUT submit returns empty body on success
   return r.json();
 }
 
@@ -127,8 +128,9 @@ if (cmd === 'sites') {
   const site = process.argv[3];
   const pageUrl = process.argv[4];
   if (!site || !pageUrl) { console.error('usage: node scripts/gsc.mjs inspect <siteUrl> <fullUrl>'); process.exit(1); }
-  const d = await gsc(`/sites/${encodeURIComponent(site)}/urlInspection/index/inspect`, {
+  const d = await gsc('/urlInspection/index:inspect', {
     method: 'POST',
+    base: 'https://searchconsole.googleapis.com/v1',
     body: { inspectionUrl: pageUrl, siteUrl: site },
   });
   const r = d.inspectionResult || {};
