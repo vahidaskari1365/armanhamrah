@@ -63,7 +63,8 @@ lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 lines.push('  <url><loc>https://armanhamrah.com/</loc><lastmod>' + today + '</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>');
 
 for (const [loc, freq, prio] of [...staticPages, ...productPages, ...blogPages, ...areaPages]) {
-  lines.push(`  <url><loc>https://armanhamrah.com${loc}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${prio}</priority></url>`);
+  const slash = loc.endsWith('/') ? loc : loc + '/'; // live site serves URLs with trailing slash
+  lines.push(`  <url><loc>https://armanhamrah.com${slash}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${prio}</priority></url>`);
 }
 lines.push('</urlset>');
 lines.push('');
