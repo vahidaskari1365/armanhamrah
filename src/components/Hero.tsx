@@ -34,7 +34,8 @@ const Hero = () => {
             className="w-full h-full object-cover object-center"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
+        {/* Dark scrim behind white hero text — must stay dark in BOTH themes, otherwise white text is unreadable in light mode (white bg + white text) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 dark:from-background/40 dark:via-background/30 dark:to-background" />
       </div>
 
       {/* Fire Glow Effects */}

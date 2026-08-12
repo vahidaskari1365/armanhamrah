@@ -192,7 +192,7 @@ const ProductsPageContent = () => {
       <main className="flex-grow">
         <section className="pt-28 pb-16">
             <div className="container-custom">
-                <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-12">
                   {t('products_page.title', 'Our Products')}
                 </h1>
       

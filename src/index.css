@@ -148,14 +148,14 @@
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 6%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
 
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
@@ -199,7 +199,7 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar: 0 0% 5%;
+    --sidebar: 0 0% 6%;
     --radius: 0rem;
     --shadow-2xs: 1px 1px 0px 0px #ffffff;
     --shadow-xs: 2px 2px 0px 0px #ffffff;
