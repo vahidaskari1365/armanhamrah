@@ -27,3 +27,7 @@ dist-ssr
 gsc-client-secret.json
 gsc-tokens.json
 gsc-auth-url.txt
+
+# GSC scan artifacts
+gsc-*.jsonl
+gsc-*.txt
