@@ -64,9 +64,9 @@ const RepresentativesPageContent = () => {
                     </div>
                   </div>
                   <div className="space-y-3 text-sm">
-                    <a href={`tel:${rep.phone.replace(/-/g, '')}`} className="flex items-center gap-2 text-foreground hover:text-primary transition-colors" dir="ltr">
-                      <Phone className="w-4 h-4" />
-                      {rep.phone}
+                    <a href={`tel:${rep.phone.replace(/-/g, '')}`} className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+                      <Phone className="w-4 h-4 flex-shrink-0" />
+                      <span dir="ltr">{language === 'fa' ? rep.phone.replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]) : rep.phone}</span>
                     </a>
                     <div className="flex items-start gap-2 text-foreground">
                       <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
