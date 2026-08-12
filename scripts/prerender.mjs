@@ -276,7 +276,8 @@ const stripTemplateJsonLd = (html) =>
   html.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
 
 function renderPage({ url, title, description, jsonLd = [] }) {
-  const basePath = url === '/' ? '' : url;
+  // Canonical/og:url must match sitemap URLs (trailing slash) and the server's 301 target
+  const basePath = url === '/' ? '' : `${url.replace(/\/+$/, '')}/`;
   const fullUrl = `${SITE}${basePath}`;
   let html = stripTemplateJsonLd(template)
     .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)

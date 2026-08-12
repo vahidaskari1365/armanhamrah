@@ -28,7 +28,10 @@ const SEO = ({ title, description, image, url, type = 'website', jsonLd }: SEOPr
   const defaultImage = `${siteUrl}/og-image.jpg`;
   const finalImage = image || defaultImage;
   const currentPath = location.pathname === '/' ? '' : location.pathname;
-  const finalUrl = url || `${siteUrl}${currentPath}`;
+  // Canonical must match the sitemap URLs (trailing slash) and the server's 301 target,
+  // otherwise Google sees a canonical loop (no-slash URL 301s back to the slash URL).
+  const normalizedPath = currentPath ? `${currentPath.replace(/\/+$/, '')}/` : '';
+  const finalUrl = url || `${siteUrl}${normalizedPath}`;
   const finalTitle = title || defaultTitle;
   const finalDescription = description || defaultDescription;
   const siteName = language === 'fa' ? 'آرمان همراه - مرکز تخصصی تعمیرات' : 'Arman Hamrah Repair Center';
