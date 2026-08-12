@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Clock, CalendarDays, ChevronLeft, PhoneCall } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
@@ -62,6 +62,7 @@ const renderMarkdown = (content: string) => {
 };
 
 const BlogPostPageContent = () => {
+  const { language } = useLanguage();
   const { slug } = useParams();
   const post = blogPostsData.find(p => p.slug === slug);
 
@@ -77,8 +78,8 @@ const BlogPostPageContent = () => {
       <Navbar />
       <main className="pt-24">
         <div className="container-custom py-4 text-sm text-muted-foreground flex gap-2 flex-wrap">
-          <Link to="/" className="hover:text-primary">خانه</Link><span>/</span>
-          <Link to="/blog" className="hover:text-primary">بلاگ و آموزش</Link><span>/</span>
+          <Link to="/" className="hover:text-primary">{language === 'fa' ? 'خانه' : 'Home'}</Link><span>/</span>
+          <Link to="/blog" className="hover:text-primary">{language === 'fa' ? 'بلاگ و آموزش' : 'Blog & Guides'}</Link><span>/</span>
           <span className="text-foreground font-bold line-clamp-1">{post.title}</span>
         </div>
 

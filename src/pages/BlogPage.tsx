@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Clock, Calendar, ArrowLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
@@ -21,23 +21,34 @@ const categoryLabels: Record<string, string> = {
   guide: 'راهنمای خرید و تعمیر',
 };
 
+const enCategoryLabels: Record<string, string> = {
+  mobile: 'Mobile Repair',
+  ps5: 'PS5 Repair',
+  airpods: 'AirPods Repair',
+  headphone: 'Headphone Repair',
+  smartwatch: 'Smartwatch Repair',
+  speaker: 'Speaker Repair',
+  guide: 'Buying & Repair Guides',
+};
+
 const BlogIndexPage = () => {
+  const { language } = useLanguage();
   return (
     <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       <Navbar />
       <main className="pt-24">
         <div className="container-custom py-4 text-sm text-muted-foreground flex gap-2">
-          <Link to="/" className="hover:text-primary">خانه</Link><span>/</span><span className="text-foreground font-bold">بلاگ و آموزش</span>
+          <Link to="/" className="hover:text-primary">{language === 'fa' ? 'خانه' : 'Home'}</Link><span>/</span><span className="text-foreground font-bold">{language === 'fa' ? 'بلاگ و آموزش' : 'Blog & Guides'}</span>
         </div>
 
         <section className="section-padding">
           <div className="container-custom max-w-6xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4">
-                بلاگ و مقالات تخصصی تعمیرات
+                {language === 'fa' ? 'بلاگ و مقالات تخصصی تعمیرات' : 'Expert Repair Blog & Guides'}
               </h1>
               <p className="text-muted-foreground leading-8">
-                راهنماهای قیمت، آموزش عیب‌یابی خانگی و شناخت دقیق خرابی‌های موبایل، PS5، ایرپاد و ساعت هوشمند — نوشته‌شده توسط تکنسین‌های آرمان همراه.
+                {language === 'fa' ? 'راهنماهای قیمت، آموزش عیب‌یابی خانگی و شناخت دقیق خرابی‌های موبایل، PS5، ایرپاد و ساعت هوشمند — نوشته‌شده توسط تکنسین‌های آرمان همراه.' : 'Pricing guides, home troubleshooting tips and how to identify faults in phones, PS5, AirPods and smartwatches — written by Arman Hamrah technicians.'}
               </p>
               <div className="w-24 h-1 mx-auto rounded-full bg-primary mt-6" />
             </motion.div>
@@ -55,7 +66,7 @@ const BlogIndexPage = () => {
                     <div className="aspect-[16/10] overflow-hidden relative">
                       <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <span className="absolute top-3 right-3 text-[11px] px-3 py-1 rounded-full bg-primary text-primary-foreground font-bold">{categoryLabels[post.category]}</span>
+                      <span className="absolute top-3 right-3 text-[11px] px-3 py-1 rounded-full bg-primary text-primary-foreground font-bold">{language === 'fa' ? categoryLabels[post.category] : enCategoryLabels[post.category]}</span>
                     </div>
                     <div className="p-5">
                       <h2 className="text-base font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 leading-7">{post.title}</h2>
@@ -79,8 +90,8 @@ const BlogIndexPage = () => {
                 تیم فنی آرمان همراه پاسخگوی سوالات شماست؛ عیب‌یابی رایگان است و قبل از هر تعمیری، قیمت دقیق به شما اعلام می‌شود.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="tel:+982158798" className="btn-gold">تماس: ۰۲۱-۵۸۷۹۸</a>
-                <Link to="/contact" className="btn-outline">ارسال درخواست تعمیر</Link>
+                <a href="tel:+982158798" className="btn-gold">{language === 'fa' ? 'تماس: ۰۲۱-۵۸۷۹۸' : 'Contact: 021-58798'}</a>
+                <Link to="/contact" className="btn-outline">{language === 'fa' ? 'ارسال درخواست تعمیر' : 'Send Repair Request'}</Link>
               </div>
             </div>
           </div>

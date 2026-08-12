@@ -5,11 +5,11 @@ import { Clock, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 const blogPosts = [
   {
     title: {
-      fa: 'راهنمای خرید دانشجویان و دانش آموزان',
+      fa: {language === 'fa' ? 'راهنمای خرید دانشجویان و دانش آموزان' : 'Back-to-School Buying Guide'},
       en: 'Student Shopping Guide'
     },
     excerpt: {
-      fa: 'شروع سال تحصیلی جدید همواره با هیجان و اضطراب همراه است که با داشتن آمادگی لازم می‌توانیم از اضطرابمان کم کنیم...',
+      fa: {language === 'fa' ? 'شروع سال تحصیلی جدید همواره با هیجان و اضطراب همراه است که با داشتن آمادگی لازم می‌توانیم از اضطرابمان کم کنیم...' : 'The new school year always brings excitement and anxiety — with proper preparation, we can reduce that anxiety...'},
       en: 'The start of a new school year is always accompanied by excitement and anxiety, which we can reduce with proper preparation...'
     },
     readTime: 5,
@@ -19,11 +19,11 @@ const blogPosts = [
   },
   {
     title: {
-      fa: 'بازی‌های کنسولی را روی سری پرو آیفون 15 اجرا کنید!',
+      fa: {language === 'fa' ? 'بازی‌های کنسولی را روی سری پرو آیفون 15 اجرا کنید!' : 'Play Console Games on the iPhone 15 Pro Series!'},
       en: 'Play Console Games on iPhone 15 Pro Series!'
     },
     excerpt: {
-      fa: 'اپل از پرقدرت‌ترین آیفون‌های تاریخ رونمایی کرد. مدیران اپل مدعی شده اند سری پرو آیفون 15 بهترین کنسول بازی است...',
+      fa: {language === 'fa' ? 'اپل از پرقدرت‌ترین آیفون‌های تاریخ رونمایی کرد. مدیران اپل مدعی شده اند سری پرو آیفون 15 بهترین کنسول بازی است...' : 'Apple unveiled its most powerful iPhones ever. Apple executives claim the iPhone 15 Pro series is the best gaming console...'},
       en: 'Apple unveiled the most powerful iPhones in history. Apple executives claim the iPhone 15 Pro series is the best gaming console...'
     },
     readTime: 2,
@@ -33,11 +33,11 @@ const blogPosts = [
   },
   {
     title: {
-      fa: 'زمان انتشار اندروید 14 و ویژگی های جدید آن',
+      fa: {language === 'fa' ? 'زمان انتشار اندروید 14 و ویژگی های جدید آن' : 'Android 14 Release Date and New Features'},
       en: 'Android 14 Release Date and New Features'
     },
     excerpt: {
-      fa: 'در‌حال‌حاضر، گوگل روی اندروید ۱۴ بزرگ‌ترین به‌روزرسانی این سیستم‌عامل در سال ۲۰۲۳ کار می‌کند...',
+      fa: {language === 'fa' ? 'در‌حال‌حاضر، گوگل روی اندروید ۱۴ بزرگ‌ترین به‌روزرسانی این سیستم‌عامل در سال ۲۰۲۳ کار می‌کند...' : 'Right now, Google is working on Android 14 — the biggest update to this operating system in 2023...'},
       en: 'Google is currently working on Android 14, the biggest update to the operating system in 2023...'
     },
     readTime: 3,

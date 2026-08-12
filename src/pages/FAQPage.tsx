@@ -134,7 +134,7 @@ const FAQPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="tel:02166745916" className="btn-gold">
-                  تماس با فروشگاه: ۰۲۱-۶۶۷۴۵۹۱۶
+                  {language === 'fa' ? 'تماس با فروشگاه: ۰۲۱-۶۶۷۴۵۹۱۶' : 'Contact the store: 021-66745916'}
                 </a>
                 <a href="/contact" className="btn-outline">
                   فرم تماس

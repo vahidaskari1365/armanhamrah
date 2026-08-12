@@ -15,7 +15,7 @@ export const representativesData: Representative[] = [
     province: 'گیلان',
     city: 'رشت',
     phone: '013-33235303',
-    address: 'رشت خیابان لاکانی ، جنب بیمه آسیا موبایل کسری'
+    address: 'رشت، خیابان لاکانی، جنب بیمه آسیا، موبایل کسری'
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const representativesData: Representative[] = [
     province: 'خراسان رضوی',
     city: 'سبزوار',
     phone: '051-44230039',
-    address: 'سبزوار،خیابان کاشفی شمالی نبش کاشفی8،اورژانس موبایل'
+    address: 'سبزوار، خیابان کاشفی شمالی، نبش کاشفی ۸، اورژانس موبایل'
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ export const representativesData: Representative[] = [
     province: 'اصفهان',
     city: 'اصفهان',
     phone: '031-32228180',
-    address: 'خیابان فردوسی مجتمع زاینده رود طبقه اول فروشگاه وحید'
+    address: 'خیابان فردوسی، مجتمع زاینده‌رود، طبقه اول، فروشگاه وحید'
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const representativesData: Representative[] = [
     province: 'آذربایجان شرقی',
     city: 'تبریز',
     phone: '041-36600150',
-    address: 'تبریز اتوبان پاسداران میدان فهمیده مجتمع تجاری لاله پارک،طبقه منفی یک فروشگاه سامسونگ'
+    address: 'تبریز، اتوبان پاسداران، میدان فهمیده، مجتمع تجاری لاله پارک، طبقه منفی یک، فروشگاه سامسونگ'
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const representativesData: Representative[] = [
     province: 'اصفهان',
     city: 'اصفهان',
     phone: '031-32214031',
-    address: 'اصفهان خیابان فردوسی ،روبه روی بانک صادرات فروشگاه ایران زمین'
+    address: 'اصفهان، خیابان فردوسی، روبه‌روی بانک صادرات، فروشگاه ایران زمین'
   },
   {
     id: 6,
@@ -55,7 +55,7 @@ export const representativesData: Representative[] = [
     province: 'فارس',
     city: 'شیراز',
     phone: '071-36290217',
-    address: 'شیراز-خیابان عفیف آباد روبه روی کوچه 1 فروشگاه هایپرفون'
+    address: 'شیراز، خیابان عفیف‌آباد، روبه‌روی کوچه ۱، فروشگاه هایپرفون'
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ export const representativesData: Representative[] = [
     province: 'مازندران',
     city: 'قائم شهر',
     phone: '011-42231256',
-    address: 'قائم شهر خیابان امام خمینی پاساژ نسیم پلاک43 طبقه همکف آقای گرائلی'
+    address: 'قائم‌شهر، خیابان امام خمینی، پاساژ نسیم، پلاک ۴۳، طبقه همکف، آقای گرائلی'
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ export const representativesData: Representative[] = [
     province: 'بوشهر',
     city: 'بوشهر',
     phone: '077-33320708',
-    address: 'بوشهر بلوار بهشت صادق روبروی بانک سپه طبقه همکف آقای عبدالرضا کارگر'
+    address: 'بوشهر، بلوار بهشت صادق، روبه‌روی بانک سپه، طبقه همکف، آقای عبدالرضا کارگر'
   },
   {
     id: 9,
@@ -79,7 +79,7 @@ export const representativesData: Representative[] = [
     province: 'کرمان',
     city: 'کرمان',
     phone: '034-32231911',
-    address: 'کرمان خیابان فردوسی نبش وحشی بافقی فروشگاه آل دیجیتال'
+    address: 'کرمان، خیابان فردوسی، نبش وحشی بافقی، فروشگاه آل دیجیتال'
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ export const representativesData: Representative[] = [
     province: 'آذربایجان غربی',
     city: 'ارومیه',
     phone: '044-3469061',
-    address: 'ارومیه خیابان مدرس نبش کوچه 20متری نوذری آقای نوید قدرتی'
+    address: 'ارومیه، خیابان مدرس، نبش کوچه ۲۰ متری نوذری، آقای نوید قدرتی'
   },
   {
     id: 11,
@@ -95,7 +95,7 @@ export const representativesData: Representative[] = [
     province: 'البرز',
     city: 'کرج',
     phone: '026-32233652',
-    address: 'کرج میدان کرج خیابان شهید دکتر بهشتی کوچه هما پاساژ کمالی گروه فنی سپهرپویا'
+    address: 'کرج، میدان کرج، خیابان شهید دکتر بهشتی، کوچه هما، پاساژ کمالی، گروه فنی سپهر پویا'
   },
   {
     id: 12,
@@ -103,7 +103,7 @@ export const representativesData: Representative[] = [
     province: 'مرکزی',
     city: 'اراک',
     phone: '086-42222522',
-    address: 'ساوه خیابان امام پاساژ رضا طبقه همکف پلاک 60 فروشگاه موبایل حافظ'
+    address: 'ساوه، خیابان امام، پاساژ رضا، طبقه همکف، پلاک ۶۰، فروشگاه موبایل حافظ'
   },
   {
     id: 13,
@@ -111,6 +111,6 @@ export const representativesData: Representative[] = [
     province: 'خراسان رضوی',
     city: 'مشهد',
     phone: '0915-5099431',
-    address: 'مشهد احمدآباد نبش خیابان بهشت مجتمع موبایل مشهد طبقه اول اداری واحد4'
+    address: 'مشهد، احمدآباد، نبش خیابان بهشت، مجتمع موبایل مشهد، طبقه اول اداری، واحد ۴'
   }
 ];

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Smartphone, Gamepad2, Headset, Headphones, Watch, Speaker, ArrowRight, MapPin, Shield, Clock, Award, CheckCircle2, type LucideIcon } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
@@ -20,19 +20,20 @@ import { repairModelsData } from '@/data/repairModelsData';
 const iconMap: Record<string, LucideIcon> = { Smartphone, Gamepad2, Headset, Headphones, Watch, Speaker };
 
 const RepairsHubPageContent = () => {
+  const { language } = useLanguage();
   return (
     <div className="page-background bg-background admin-toolbar-offset" style={{ '--page-bg-image': `url(${pageBg})` } as React.CSSProperties} dir="rtl">
       <Navbar />
       <main className="pt-24">
         <div className="container-custom py-4 text-sm text-muted-foreground flex gap-2">
-          <Link to="/" className="hover:text-primary">خانه</Link><span>/</span><span className="text-foreground font-bold">مرکز تعمیرات تخصصی</span>
+          <Link to="/" className="hover:text-primary">{language === 'fa' ? 'خانه' : 'Home'}</Link><span>/</span><span className="text-foreground font-bold">{language === 'fa' ? 'مرکز تعمیرات تخصصی' : 'Repair Center'}</span>
         </div>
 
         <section className="section-padding">
           <div className="container-custom">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-black text-foreground leading-tight mb-4">
-                مرکز تخصصی تعمیرات موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند
+                {language === 'fa' ? 'مرکز تخصصی تعمیرات موبایل، PS5، ایرپاد، هدفون، ساعت هوشمند، اسپیکر و باند' : 'Specialist repair center for phones, PS5, AirPods, headphones, smartwatches, speakers & sound systems'}
               </h1>
               <p className="text-muted-foreground leading-8">
                 هر دستگاهی که داری، تیم تخصصی تعمیرش رو داریم. دسته مورد نظرت رو انتخاب کن و خدمات، مدل‌های تحت پوشش و نحوه ثبت سفارش رو ببین.
@@ -43,9 +44,9 @@ const RepairsHubPageContent = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
               {[
                 { icon: Shield, t: '۳ ماه گارانتی کتبی' },
-                { icon: Clock, t: 'عیب‌یابی رایگان' },
-                { icon: Award, t: 'قطعه ۱۰۰٪ اورجینال' },
-                { icon: CheckCircle2, t: '۵۰۰k تعمیر موفق' }
+                { icon: Clock, t: language === 'fa' ? 'عیب‌یابی رایگان' : 'Free Diagnosis' },
+                { icon: Award, t: language === 'fa' ? 'قطعه ۱۰۰٪ اورجینال' : '100% Original Parts' },
+                { icon: CheckCircle2, t: language === 'fa' ? '۵۰۰k تعمیر موفق' : '500k Successful Repairs' }
               ].map((i, idx)=>(
                 <div key={idx} className="p-4 rounded-xl bg-card border flex flex-col items-center gap-2 text-center">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"><i.icon size={18} className="text-primary" /></div>
@@ -80,7 +81,7 @@ const RepairsHubPageContent = () => {
 
             <div className="mt-12">
               <h2 className="text-2xl font-black text-center mb-2 warranty-title">مدل‌های پرتعمیر و قیمت روز</h2>
-              <p className="text-center text-sm text-muted-foreground leading-7 mb-8">صفحه تخصصی هر مدل: لیست قیمت تعمیر، عیب‌یابی رایگان و گارانتی ۳ ماهه — روی مدل خودت بزن.</p>
+              <p className="text-center text-sm text-muted-foreground leading-7 mb-8">{language === 'fa' ? 'صفحه تخصصی هر مدل: لیست قیمت تعمیر، عیب‌یابی رایگان و گارانتی ۳ ماهه — روی مدل خودت بزن.' : 'A dedicated page for each model: repair price list, free diagnosis and 3-month warranty — pick your model.'}</p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {repairModelsData.map(model => (
                   <Link key={model.slug} to={`/repair/${model.slug}`} className="group card-premium rounded-xl overflow-hidden hover:shadow-xl transition-all p-0">
@@ -97,7 +98,7 @@ const RepairsHubPageContent = () => {
 
             <div className="mt-12 max-w-3xl mx-auto card-premium p-6 rounded-2xl">
               <h2 className="text-xl font-black text-center mb-4 warranty-title">خدمات در تمام مناطق تهران</h2>
-              <p className="text-center text-sm text-muted-foreground leading-7 mb-5">مرکز ما در خیابان مطهری، در دسترس همه مناطق ۲۲ گانه تهران است — ارسال پیک، عیب‌یابی رایگان و گارانتی کتبی.</p>
+              <p className="text-center text-sm text-muted-foreground leading-7 mb-5">{language === 'fa' ? 'مرکز ما در خیابان مطهری، در دسترس همه مناطق ۲۲ گانه تهران است — ارسال پیک، عیب‌یابی رایگان و گارانتی کتبی.' : 'Our center is on Motahhari St., serving all 22 districts of Tehran — courier pickup, free diagnosis and written warranty.'}</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {tehranAreasData.map(a => (
                   <Link key={a.slug} to={`/repair/areas/${a.slug}`} className="text-xs px-3 py-2 rounded-full bg-card border border-border text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { MapPin, Clock, Shield, PhoneCall, ArrowLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from '@/components/SEO';
@@ -39,6 +39,7 @@ const areaContent = (name: string, neighborhoods: string) => `
 `;
 
 const AreaPageContent = () => {
+  const { language } = useLanguage();
   const { area } = useParams();
   const data = tehranAreasData.find(a => a.slug === area);
 
@@ -51,9 +52,9 @@ const AreaPageContent = () => {
       <Navbar />
       <main className="pt-24">
         <div className="container-custom py-4 text-sm text-muted-foreground flex gap-2 flex-wrap">
-          <Link to="/" className="hover:text-primary">خانه</Link><span>/</span>
-          <Link to="/repair" className="hover:text-primary">مرکز تعمیرات</Link><span>/</span>
-          <span className="text-foreground font-bold">تعمیرات {data.name} تهران</span>
+          <Link to="/" className="hover:text-primary">{language === 'fa' ? 'خانه' : 'Home'}</Link><span>/</span>
+          <Link to="/repair" className="hover:text-primary">{language === 'fa' ? 'مرکز تعمیرات' : 'Repair Center'}</Link><span>/</span>
+          <span className="text-foreground font-bold">{language === 'fa' ? `تعمیرات ${data.name} تهران` : `${data.name} Repairs, Tehran`}</span>
         </div>
 
         <section className="section-padding">
@@ -61,15 +62,15 @@ const AreaPageContent = () => {
             <div className="grid lg:grid-cols-2 gap-8 items-start mb-10">
               <div>
                 <h1 className="text-3xl md:text-4xl font-black leading-tight mb-4 warranty-title">
-                  تعمیر موبایل و PS5 در {data.name} تهران
+                  {language === 'fa' ? `تعمیر موبایل و PS5 در ${data.name} تهران` : `Phone & PS5 Repair in ${data.name}, Tehran`}
                 </h1>
                 <p className="text-muted-foreground leading-8 text-sm mb-6 warranty-text">
-                  خدمت‌رسانی به محله‌های {data.neighborhoods} — عیب‌یابی رایگان، قطعات اورجینال و گارانتی کتبی.
+                  {language === 'fa' ? `خدمت‌رسانی به محله‌های ${data.neighborhoods} — عیب‌یابی رایگان، قطعات اورجینال و گارانتی کتبی.` : `Serving the ${data.neighborhoods} neighborhoods — free diagnosis, original parts and written warranty.`}
                 </p>
                 <div className="grid grid-cols-2 gap-3 max-w-md">
-                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Clock size={16} className="text-primary" /> عیب‌یابی رایگان</div>
-                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Shield size={16} className="text-green-500" /> گارانتی کتبی ۳ ماهه</div>
-                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><MapPin size={16} className="text-primary" /> ارسال پیک</div>
+                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Clock size={16} className="text-primary" /> {language === 'fa' ? 'عیب‌یابی رایگان' : 'Free Diagnosis'}</div>
+                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Shield size={16} className="text-green-500" /> {language === 'fa' ? 'گارانتی کتبی ۳ ماهه' : '3-Month Written Warranty'}</div>
+                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><MapPin size={16} className="text-primary" /> {language === 'fa' ? 'ارسال پیک' : 'Courier Pickup'}</div>
                   <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><PhoneCall size={16} className="text-primary" /> ۰۲۱-۵۸۷۹۸</div>
                 </div>
               </div>
@@ -85,7 +86,7 @@ const AreaPageContent = () => {
             </div>
 
             <div className="mt-10">
-              <h2 className="text-xl font-black text-foreground mb-5 warranty-title">سایر مناطق تهران</h2>
+              <h2 className="text-xl font-black text-foreground mb-5 warranty-title">{language === 'fa' ? 'سایر مناطق تهران' : 'Other Tehran Districts'}</h2>
               <div className="flex flex-wrap gap-2">
                 {tehranAreasData.map(a => (
                   <Link
@@ -105,7 +106,7 @@ const AreaPageContent = () => {
                   <img src={cat.image} alt={cat.imageAlt} loading="lazy" className="w-full h-36 object-cover" />
                   <div className="p-4">
                     <h3 className="text-sm font-bold text-foreground mb-2 warranty-title">{cat.title}</h3>
-                    <span className="text-primary text-xs flex items-center gap-1">مشاهده خدمات <ArrowLeft size={12} /></span>
+                    <span className="text-primary text-xs flex items-center gap-1">{language === 'fa' ? 'مشاهده خدمات' : 'View Services'} <ArrowLeft size={12} /></span>
                   </div>
                 </Link>
               ))}

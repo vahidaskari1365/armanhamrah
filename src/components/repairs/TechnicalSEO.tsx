@@ -1,6 +1,9 @@
 import { CheckCircle2, Zap, Gauge, Image, Link as LinkIcon, Globe, Smartphone, Search } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TechnicalSEO = () => {
+  const { language } = useLanguage();
+  if (language !== 'fa') return null;
   return (
     <section className="section-padding bg-zinc-900 text-white border-y border-white/10">
       <div className="container-custom max-w-5xl">

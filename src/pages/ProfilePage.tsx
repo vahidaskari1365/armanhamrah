@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { User as UserIcon, Save, ArrowRight, LogOut } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -22,6 +22,7 @@ interface Profile {
 }
 
 const ProfileContent = () => {
+  const { language } = useLanguage();
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile>({
     first_name: '',
@@ -97,14 +98,14 @@ const ProfileContent = () => {
 
     if (error) {
       toast({
-        title: 'خطا',
-        description: 'خطا در ذخیره اطلاعات',
+        title: language === 'fa' ? 'خطا' : 'Error',
+        description: language === 'fa' ? 'خطا در ذخیره اطلاعات' : 'Failed to save information',
         variant: 'destructive',
       });
     } else {
       toast({
-        title: 'موفق',
-        description: 'اطلاعات با موفقیت ذخیره شد',
+        title: language === 'fa' ? 'موفق' : 'Success',
+        description: language === 'fa' ? 'اطلاعات با موفقیت ذخیره شد' : 'Information saved successfully',
       });
     }
     setSaving(false);
@@ -192,7 +193,7 @@ const ProfileContent = () => {
             <div className="flex gap-4 pt-4 border-t border-border">
               <Button onClick={handleSaveProfile} disabled={saving} className="btn-gold">
                 <Save className="w-4 h-4 ml-2" />
-                {saving ? 'در حال ذخیره...' : 'ذخیره تغییرات'}
+                {saving ? (language === 'fa' ? 'در حال ذخیره...' : 'Saving...') : (language === 'fa' ? 'ذخیره تغییرات' : 'Save Changes')}
               </Button>
               <Button variant="outline" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 ml-2" />
