@@ -281,9 +281,9 @@ const PS5RepairPage = () => {
 
             {/* Internal Links for AEO */}
             <div className="mt-8 grid md:grid-cols-3 gap-4 text-center">
-              <a href="/repair/ps5" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر PS5 و دسته DualSense →' : 'PS5 & DualSense Repair →'}</a>
-              <a href="/repair/airpods" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر ایرپاد و هدفون →' : 'AirPods & Headphone Repair →'}</a>
-              <a href="/warranty/repairs" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'شرایط گارانتی تعمیرات →' : 'Repair Warranty Terms →'}</a>
+              <a href="/repair/ps5/" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر PS5 و دسته DualSense →' : 'PS5 & DualSense Repair →'}</a>
+              <a href="/repair/airpods/" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'تعمیر ایرپاد و هدفون →' : 'AirPods & Headphone Repair →'}</a>
+              <a href="/warranty/repairs/" className="text-sm text-primary hover:underline font-semibold">{language === 'fa' ? 'شرایط گارانتی تعمیرات →' : 'Repair Warranty Terms →'}</a>
             </div>
 
             {/* CTA */}

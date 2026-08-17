@@ -321,7 +321,7 @@ const WarrantyPageContent = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to="/warranty/repairs" className="mt-6 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary font-bold text-sm hover:bg-primary hover:text-primary-foreground transition-colors warranty-title">
+                  <Link to="/warranty/repairs/" className="mt-6 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary font-bold text-sm hover:bg-primary hover:text-primary-foreground transition-colors warranty-title">
                     <Gamepad2 size={16} /> {t('درخواست تعمیر PS5', 'Request PS5 Repair')}
                   </Link>
                 </div>
