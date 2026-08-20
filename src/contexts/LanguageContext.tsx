@@ -1480,9 +1480,14 @@ const transformFallback = () => {
 };
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => 
-    (typeof window !== 'undefined' && localStorage.getItem('language') as Language) || 'fa'
-  );
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'fa';
+    try {
+      const stored = localStorage.getItem('language');
+      if (stored === 'fa' || stored === 'en') return stored;
+    } catch (e) { /* localStorage might be blocked or corrupted */ }
+    return 'fa';
+  });
   const [translations, setTranslations] = useState<Translations>(transformFallback());
   const [loading, setLoading] = useState(true);
 
@@ -1493,17 +1498,22 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       setLoading(true);
       const baseTranslations = transformFallback();
 
-      const { data, error } = await supabase.from('page_content').select('content_key, content_value');
-      
-      if (error || !data || data.length === 0) {
-        console.warn('Could not fetch translations from DB, using only fallback data.', error);
+      try {
+        const { data, error } = await supabase.from('page_content').select('content_key, content_value');
+        
+        if (error || !data || data.length === 0) {
+          console.warn('Could not fetch translations from DB, using only fallback data.', error);
+          setTranslations(baseTranslations);
+        } else {
+          const dbTranslations: Translations = data.reduce((acc, item) => {
+            acc[item.content_key] = { fa: item.content_value, en: item.content_value };
+            return acc;
+          }, {} as Translations);
+          setTranslations({ ...baseTranslations, ...dbTranslations });
+        }
+      } catch (err) {
+        console.error('Failed to fetch translations, using fallback:', err);
         setTranslations(baseTranslations);
-      } else {
-        const dbTranslations: Translations = data.reduce((acc, item) => {
-          acc[item.content_key] = { fa: item.content_value, en: item.content_value };
-          return acc;
-        }, {} as Translations);
-        setTranslations({ ...baseTranslations, ...dbTranslations });
       }
       setLoading(false);
     };

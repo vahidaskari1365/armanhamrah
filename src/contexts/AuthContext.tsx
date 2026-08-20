@@ -15,10 +15,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Fetch the initial session
+    // Fetch the initial session (with error handling to prevent white screen)
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
+    }).catch((err) => {
+      console.error('Auth session fetch failed, clearing potentially corrupted data:', err);
+      // Clear corrupted auth storage that can cause repeated crashes
+      try { localStorage.removeItem('sb-hlwdnwssvctffotklqjl-auth-token'); } catch(e) {}
+      setSession(null);
+      setUser(null);
     });
 
     // Listen for auth state changes
