@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Shield, CheckCircle2, Clock, Wrench, AlertTriangle, Smartphone, Gamepad2, Headphones, Watch, Speaker, Headset } from 'lucide-react';
+import { ChevronLeft, Shield, CheckCircle2, Clock, Wrench, AlertTriangle, Smartphone, Gamepad2, Headphones, Watch, Speaker, Headset, type LucideIcon } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { repairCategoriesData } from '@/data/repairCategoriesData';
 
-const iconMap: any = { Smartphone, Gamepad2, Headset, Headphones, Watch, Speaker };
+const iconMap: Record<string, LucideIcon> = { Smartphone, Gamepad2, Headset, Headphones, Watch, Speaker };
 
 const outOfWarrantyRules = [
   {
@@ -37,7 +37,7 @@ const faqs = [
   { q: 'هزینه تعمیرات فاقد گارانتی چقدر است؟', a: 'تعمیرات سبک زیر ۱ میلیون، تعویض ال‌سی‌دی آیفون و S25 Ultra بین ۵ تا ۲۰ میلیون، برد و آبخوردگی ۱ تا ۵ میلیون و PS5 بین ۱.۵ تا ۸ میلیون. عیب‌یابی رایگان است.' },
   { q: 'آیا تعمیر گوشی آبخورده امکان‌پذیر است؟', a: 'بله اگر سریع خاموش کنید و به شارژ نزنید و بیاورید، با التراسونیک برد را رسوب‌زدایی می‌کنیم. ۷۰-۸۰٪ شانس تعمیر دارد.' },
   { q: 'مدت زمان تعمیر چقدر است؟', a: 'باتری و ال‌سی‌دی ساده ۱ تا ۳ ساعت، برد ۲۴ تا ۷۲ ساعت، PS5 و دسته ۲۴ تا ۴۸ ساعت، ایرپاد و ساعت ۲۴ ساعت، اسپیکر ۴۸ ساعت.' },
-  { q: 'چگونه دستگاه را برای تعمیر ارسال کنم؟', a: 'تهران: حضوری به آدرس مطهری. شهرستان: تماس برای کد پذیرش و ارسال با تیپاکس. حتما با ضربه‌گیر بسته‌بندی کنید.' },
+  { q: 'چگونه دستگاه را برای تعمیر ارسال کنم؟', a: 'تهران: حضوری به آدرس تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴ مراجعه کنید. کد پستی: ۱۵۷۵۹۴۵۳۳۵. شهرستان: تماس برای کد پذیرش و ارسال با تیپاکس. حتما با ضربه‌گیر بسته‌بندی کنید.' },
 ];
 
 const WarrantyRepairsPageContent = () => {

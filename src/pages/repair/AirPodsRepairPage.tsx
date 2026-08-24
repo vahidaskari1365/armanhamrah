@@ -235,8 +235,8 @@ const AirPodsRepairPage = () => {
               </h2>
               <p className="text-foreground mb-6">
                 {language === 'fa'
-                  ? 'تماس بگیرید یا به مرکز خدمات پس از فروش ما در خیابان مطهری مراجعه کنید'
-                  : 'Call us or visit our after-sales center on Motahari St'}
+                  ? 'تماس بگیرید یا به مرکز خدمات پس از فروش ما به آدرس تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴ مراجعه کنید'
+                  : 'Call us or visit our after-sales center at Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="tel:02158798" className="btn-gold">

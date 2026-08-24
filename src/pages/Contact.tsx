@@ -18,18 +18,18 @@ const ContactPageContent = () => {
       email: 'info@armanhamrah.com',
       address:
         language === 'fa'
-          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
-          : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304',
-      postalCode: language === 'fa' ? '۱۵۷۵۹۴۵۳۴۱' : '1575945341',
+          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
+          : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204',
+      postalCode: '۱۵۷۵۹۴۵۳۳۵',
     },
     {
       title: language === 'fa' ? 'خدمات پس از فروش' : 'After-Sales Service',
       phone: language === 'fa' ? '۰۲۱-۵۸۷۹۸' : '021-58798',
       address:
         language === 'fa'
-          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
-          : 'Tehran, Motahhari St., Soleiman Khater, Amir Atabak Building, Floor 2, Unit 304',
-      postalCode: language === 'fa' ? '۱۵۷۵۹۴۵۳۳۵' : '1575945335',
+          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
+          : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204',
+      postalCode: '۱۵۷۵۹۴۵۳۳۵',
     },
     {
       title: language === 'fa' ? 'فروشگاه' : 'Store',

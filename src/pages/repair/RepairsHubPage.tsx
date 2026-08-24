@@ -98,7 +98,7 @@ const RepairsHubPageContent = () => {
 
             <div className="mt-12 max-w-3xl mx-auto card-premium p-6 rounded-2xl">
               <h2 className="text-xl font-black text-center mb-4 warranty-title">خدمات در تمام مناطق تهران</h2>
-              <p className="text-center text-sm text-muted-foreground leading-7 mb-5">{language === 'fa' ? 'مرکز ما در خیابان مطهری، در دسترس همه مناطق ۲۲ گانه تهران است — ارسال پیک، عیب‌یابی رایگان و گارانتی کتبی.' : 'Our center is on Motahhari St., serving all 22 districts of Tehran — courier pickup, free diagnosis and written warranty.'}</p>
+              <p className="text-center text-sm text-muted-foreground leading-7 mb-5">{language === 'fa' ? 'مرکز ما به آدرس تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴ در دسترس همه مناطق ۲۲ گانه تهران است — ارسال پیک، عیب‌یابی رایگان و گارانتی کتبی.' : 'Our center is at Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204, serving all 22 districts of Tehran — courier pickup, free diagnosis and written warranty.'}</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {tehranAreasData.map(a => (
                   <Link key={a.slug} to={`/repair/areas/${a.slug}`} className="text-xs px-3 py-2 rounded-full bg-card border border-border text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors">

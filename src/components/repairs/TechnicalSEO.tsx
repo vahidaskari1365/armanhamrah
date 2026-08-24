@@ -20,6 +20,7 @@ const TechnicalSEO = () => {
             {
               icon: Gauge,
               title: 'Core Web Vitals & SXO',
+              items: ['بهینه‌سازی LCP و CLS برای صفحات تعمیرات', 'Lazy-load تصاویر و کداسپلیت صفحات سنگین', 'ساختار موبایل‌فرست برای جستجوی محلی', 'ناوبری سریع برای تماس و ثبت درخواست', 'بهبود تجربه کاربری صفحات خدمات']
             },
             {
               icon: Image,
@@ -34,11 +35,12 @@ const TechnicalSEO = () => {
             {
               icon: Globe,
               title: 'Structured Data - AEO/GEO/AIO',
-              items: ['FAQPage با ۱۰+ سوال مستقیم برای AEO', 'Service + OfferCatalog برای هر تعمیر', 'LocalBusiness + ComputerRepairShop با آدرس مطهری', 'ProcessSteps ۴ مرحله تعمیر برای GEO', 'Speakable + BreadcrumbList + AggregateRating 4.9 برای AIO']
+              items: ['FAQPage با ۱۰+ سوال مستقیم برای AEO', 'Service + OfferCatalog برای هر تعمیر', 'LocalBusiness + ComputerRepairShop با آدرس کامل خدمات پس از فروش', 'ProcessSteps ۴ مرحله تعمیر برای GEO', 'Speakable + BreadcrumbList + AggregateRating 4.9 برای AIO']
             },
             {
               icon: Search,
               title: 'Content SEO - 1500+ کلمه',
+              items: ['محتوای طولانی برای هر دسته تعمیرات', 'پرسش‌وپاسخ مستقیم برای نیاز کاربران', 'کیوردهای محلی تهران و مطهری', 'مدل‌های پرتعمیر و قیمت‌گذاری شفاف', 'CTA برای تماس و مراجعه حضوری']
             },
             {
               icon: Smartphone,
@@ -63,6 +65,8 @@ const TechnicalSEO = () => {
         <div className="mt-10 p-6 rounded-2xl bg-primary text-primary-foreground">
           <h3 className="font-black text-lg mb-2">🚀 نتیجه نهایی برای سئو تعمیرات - آماده انفجار گوگل!</h3>
           <p className="text-sm leading-8 opacity-90">
+            تمام داده‌های ساخت‌یافته، لینک‌سازی داخلی، تصاویر و محتوای تخصصی برای صفحات تعمیرات آماده شده است.
+          </p>
         </div>
       </div>
     </section>
