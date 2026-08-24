@@ -13,7 +13,7 @@ import EditableText from '@/components/admin/EditableText';
 const contactInfo = [
   {
     icon: Phone,
-    title: { fa: {language === 'fa' ? 'تلفن دفتر مرکزی' : 'Office Phone'}, en: 'Head Office Phone' },
+    title: { fa: 'تلفن دفتر مرکزی', en: 'Head Office Phone' },
     contentKey: 'phone-office',
     phones: [
       { number: '021-88321030-2', href: 'tel:02188321030' },
@@ -21,7 +21,7 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    title: { fa: {language === 'fa' ? 'تلفن خدمات پس از فروش' : 'After-Sales Phone'}, en: 'After-Sales Phone' },
+    title: { fa: 'تلفن خدمات پس از فروش', en: 'After-Sales Phone' },
     contentKey: 'phone-support',
     phones: [
       { number: '021-58798', href: 'tel:02158798' },
@@ -29,7 +29,7 @@ const contactInfo = [
   },
     {
       icon: Phone,
-      title: { fa: {language === 'fa' ? 'تلفن فروشگاه' : 'Store Phone'}, en: 'Store Phone' },
+      title: { fa: 'تلفن فروشگاه', en: 'Store Phone' },
       contentKey: 'phone-store',
       phones: [
         { number: '021-66745916', href: 'tel:02166745916' },
@@ -38,7 +38,7 @@ const contactInfo = [
     },
   {
     icon: Mail,
-    title: { fa: {language === 'fa' ? 'ایمیل' : 'Email'}, en: 'Email' },
+    title: { fa: 'ایمیل', en: 'Email' },
     contentKey: 'email',
     phones: [
       { number: 'info@armanhamrah.com', href: 'mailto:info@armanhamrah.com' },
@@ -46,24 +46,24 @@ const contactInfo = [
   },
   {
     icon: Clock,
-    title: { fa: {language === 'fa' ? 'ساعات کاری' : 'Working Hours'}, en: 'Working Hours' },
+    title: { fa: 'ساعات کاری', en: 'Working Hours' },
     contentKey: 'hours',
     phones: [
-      { number: {language === 'fa' ? 'شنبه تا پنجشنبه: 9 صبح تا 18' : 'Sat–Thu: 9 AM – 6 PM'}, numberEn: 'Sat-Thu: 9 AM - 6 PM', href: '#' },
+      { number: 'شنبه تا پنجشنبه: ۹ صبح تا ۱۸', numberEn: 'Sat-Thu: 9 AM - 6 PM', href: '#' },
     ],
   },
 ];
 
 const addressInfo = {
   icon: MapPin,
-  title: { fa: {language === 'fa' ? 'آدرس دفتر مرکزی و خدمات پس از فروش' : 'Headquarters & After-Sales Address'}, en: 'Head Office & After-Sales Address' },
+  title: { fa: 'آدرس دفتر مرکزی و خدمات پس از فروش', en: 'Head Office & After-Sales Address' },
   value: {
-    fa: {language === 'fa' ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴' : 'Tehran, Motahhari St., after Mofatteh, Soleyman Khater St., Amir Atabak Bldg., No. 130, 3rd Floor, Unit 304'},
-    en: 'Unit 304, 3rd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN'
+    fa: 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴',
+    en: 'Unit 204, 2nd Floor, Amir Atabak Building, Soleyman Khater St, Motahari St, Tehran, IRAN'
   },
-  postalCode: '1575945341',
+  postalCode: '۱۵۷۵۹۴۵۳۳۵',
   storeAddress: {
-    fa: {language === 'fa' ? 'فروشگاه: تهران، خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴' : 'Store: Tehran, Jomhouri St., Aladdin Passage, 6th Floor, No. 614'},
+    fa: 'فروشگاه: تهران، خیابان جمهوری، پاساژ علاءالدین، طبقه ششم، پلاک ۶۱۴',
     en: 'Store: Jomhouri St, Aladdin Passage, 6th Floor, No. 614, Tehran, IRAN'
   },
 };
@@ -212,7 +212,7 @@ const ContactPageContent = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      {language === 'fa' ? {language === 'fa' ? 'ایمیل' : 'Email'} : 'Email'}
+                      {language === 'fa' ? 'ایمیل' : 'Email'}
                     </label>
                     <input
                       type="email"

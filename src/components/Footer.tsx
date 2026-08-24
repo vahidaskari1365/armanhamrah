@@ -94,12 +94,12 @@ const Footer = () => {
                 <div className="text-sm">
                   <span>
                     {language === 'fa'
-                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
-                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
+                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
                     }
                   </span>
                   <p className="text-xs text-foreground/70 mt-1" dir="rtl">
-                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۳۵' : 'Postal Code: 1575945335'}
+                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۳۵' : 'Postal Code: ۱۵۷۵۹۴۵۳۳۵'}
                   </p>
                 </div>
               </li>
@@ -165,12 +165,12 @@ const Footer = () => {
                 <div className="text-sm">
                   <span>
                     {language === 'fa'
-                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
-                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
+                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
                     }
                   </span>
                   <p className="text-xs text-foreground/70 mt-1" dir="rtl">
-                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۴۱' : 'Postal Code: 1575945341'}
+                    {language === 'fa' ? 'کد پستی: ۱۵۷۵۹۴۵۳۳۵' : 'Postal Code: ۱۵۷۵۹۴۵۳۳۵'}
                   </p>
                 </div>
               </li>
