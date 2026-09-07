@@ -172,6 +172,7 @@ for (const form of forms) {
     const originalValue = await page.locator(form.firstField).inputValue();
     await submit.click();
     await expect(page.locator('form [role="alert"]')).toContainText('ارسال فرم انجام نشد');
+    await expect(page.locator('form [role="alert"] a[href="tel:02158798"][dir="ltr"]')).toHaveText('۰۲۱-۵۸۷۹۸');
     await expect(page.locator(form.firstField)).toHaveValue(originalValue);
     expect(submissions).toEqual([payload]);
 

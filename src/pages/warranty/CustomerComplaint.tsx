@@ -18,7 +18,8 @@ import SEO from "@/components/SEO";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import pageBg from "@/assets/page-bg.jpeg";
-import { submitServiceForm } from "@/lib/serviceForm";
+import { ServiceFormError, submitServiceForm } from "@/lib/serviceForm";
+import SubmitErrorAlert from "@/components/warranty/SubmitErrorAlert";
 
 type LocalizedText = { fa: string; en: string };
 
@@ -90,11 +91,13 @@ const CustomerComplaintPageContent = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [clientError, setClientError] = useState("");
   const [submissionState, setSubmissionState] = useState<"idle" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState<ServiceFormError | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const updateForm = (field: keyof ComplaintFormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
     if (submissionState !== "idle") setSubmissionState("idle");
+    setSubmitError(null);
   };
 
   const toggleCategory = (category: string) => {
@@ -105,11 +108,13 @@ const CustomerComplaintPageContent = () => {
     );
     setClientError("");
     if (submissionState !== "idle") setSubmissionState("idle");
+    setSubmitError(null);
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmissionState("idle");
+    setSubmitError(null);
 
     if (!selectedCategories.length) {
       setClientError(
@@ -143,8 +148,9 @@ const CustomerComplaintPageContent = () => {
       setForm(emptyForm());
       setSelectedCategories([]);
       setSubmissionState("success");
-    } catch {
+    } catch (error) {
       setSubmissionState("error");
+      setSubmitError(error instanceof ServiceFormError ? error : null);
     } finally {
       setIsSubmitting(false);
     }
@@ -485,11 +491,7 @@ const CustomerComplaintPageContent = () => {
                     </div>
                   )}
                   {submissionState === "error" && (
-                    <div role="alert" className="rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm font-bold leading-7 text-destructive warranty-text">
-                      {isFa
-                        ? "ارسال فرم انجام نشد. لطفاً چند لحظه دیگر دوباره تلاش کنید یا با شماره ۰۲۱-۵۸۷۹۸ تماس بگیرید."
-                        : "We could not send the form. Please try again in a moment or call 021-58798."}
-                    </div>
+                    <SubmitErrorAlert language={language} error={submitError} />
                   )}
                 </div>
 

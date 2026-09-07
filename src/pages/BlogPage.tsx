@@ -90,7 +90,7 @@ const BlogIndexPage = () => {
                 تیم فنی آرمان همراه پاسخگوی سوالات شماست؛ عیب‌یابی رایگان است و قبل از هر تعمیری، قیمت دقیق به شما اعلام می‌شود.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="tel:+982158798" className="btn-gold">{language === 'fa' ? 'تماس: ۰۲۱-۵۸۷۹۸' : 'Contact: 021-58798'}</a>
+                <a href="tel:+982158798" className="btn-gold">{language === 'fa' ? <>تماس: <span dir="ltr">۰۲۱-۵۸۷۹۸</span></> : 'Contact: 021-58798'}</a>
                 <Link to="/contact" className="btn-outline">{language === 'fa' ? 'ارسال درخواست تعمیر' : 'Send Repair Request'}</Link>
               </div>
             </div>
