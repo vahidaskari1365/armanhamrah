@@ -35,7 +35,7 @@ const areaContent = (name: string, neighborhoods: string) => `
 - ایرپاد پرو ۲ و ایرپاد ۴، هدفون گلکسی بادز ۳ پرو و انکر
 - ساعت هوشمند اپل واچ اولترا ۳ و سری ۱۱، گلکسی واچ ۸
 
-برای نوبت‌دهی و ارسال پیک با ۰۲۱-۵۸۷۹۸ تماس بگیرید یا از صفحه تماس درخواست ثبت کنید. عیب‌یابی رایگان، قیمت شفاف و گارانتی کتبی — خدمات ما برای اهالی ${name} همیشه در دسترس است.
+برای نوبت‌دهی و ارسال پیک با ⁦۰۲۱-۵۸۷۹۸⁩ تماس بگیرید یا از صفحه تماس درخواست ثبت کنید. عیب‌یابی رایگان، قیمت شفاف و گارانتی کتبی — خدمات ما برای اهالی ${name} همیشه در دسترس است.
 `;
 
 const AreaPageContent = () => {
@@ -71,7 +71,7 @@ const AreaPageContent = () => {
                   <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Clock size={16} className="text-primary" /> {language === 'fa' ? 'عیب‌یابی رایگان' : 'Free Diagnosis'}</div>
                   <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><Shield size={16} className="text-green-500" /> {language === 'fa' ? 'گارانتی کتبی ۳ ماهه' : '3-Month Written Warranty'}</div>
                   <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><MapPin size={16} className="text-primary" /> {language === 'fa' ? 'ارسال پیک' : 'Courier Pickup'}</div>
-                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><PhoneCall size={16} className="text-primary" /> ۰۲۱-۵۸۷۹۸</div>
+                  <div className="px-4 py-3 rounded-xl bg-card border text-sm flex gap-2 items-center warranty-text"><PhoneCall size={16} className="text-primary" /> <span dir="ltr">۰۲۱-۵۸۷۹۸</span></div>
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden border shadow-xl">

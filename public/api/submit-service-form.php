@@ -339,13 +339,16 @@ if (!request_origin_is_allowed($allowedOrigins)) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Headers: Content-Type, Accept');
     http_response_code(204);
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    respond(['success' => false, 'message' => 'Method not allowed.'], 405);
+    // The JSON shape below also works as a lightweight deploy check: it proves
+    // the PHP handler itself is live, as opposed to the host's generic HTML
+    // 404 page when the file was not deployed.
+    respond(['success' => false, 'message' => 'Method not allowed.', 'endpoint' => 'submit-service-form'], 405);
 }
 
 $contentLength = isset($_SERVER['CONTENT_LENGTH']) ? (int) $_SERVER['CONTENT_LENGTH'] : 0;
@@ -394,25 +397,42 @@ try {
 }
 
 $from = getenv('FORM_EMAIL_FROM') ?: 'Arman Hamrah Forms <info@armanhamrah.com>';
+$envelopeSender = getenv('FORM_EMAIL_ENVELOPE') ?: 'info@armanhamrah.com';
+if (!filter_var($envelopeSender, FILTER_VALIDATE_EMAIL)) {
+    $envelopeSender = 'info@armanhamrah.com';
+}
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/html; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',
+    'Date: ' . date(DATE_RFC2822),
+    'Message-ID: <' . bin2hex(random_bytes(12)) . '@armanhamrah.com>',
+    'X-Mailer: ArmanHamrah-ServiceForm/1.1',
+    'Auto-Submitted: auto-generated',
     'From: ' . $from,
 ];
 if ($email['replyTo'] !== '') {
     $headers[] = 'Reply-To: ' . $email['replyTo'];
 }
 
-$sent = @mail(
-    RECIPIENT_EMAIL,
-    encode_subject($email['subject']),
-    email_html($email['title'], $email['fields']),
-    implode("\r\n", $headers)
-);
+$subject = encode_subject($email['subject']);
+$body = email_html($email['title'], $email['fields']);
+$headerString = implode("\r\n", $headers);
+
+// The -f envelope sender aligns Return-Path with the From domain so SPF
+// checks pass on shared hosting. Some hosts disable the additional mail()
+// parameter, so retry once without it before giving up.
+$sent = @mail(RECIPIENT_EMAIL, $subject, $body, $headerString, '-f' . $envelopeSender);
+if (!$sent) {
+    $sent = @mail(RECIPIENT_EMAIL, $subject, $body, $headerString);
+}
 
 if (!$sent) {
-    error_log('Unable to send Arman Hamrah service form email (' . $payload['formType'] . ').');
+    $lastError = error_get_last();
+    error_log(
+        'Unable to send Arman Hamrah service form email (' . $payload['formType'] . ').'
+        . (isset($lastError['message']) ? ' Last PHP error: ' . $lastError['message'] : '')
+    );
     respond(['success' => false, 'message' => 'Unable to send email.'], 502);
 }
 

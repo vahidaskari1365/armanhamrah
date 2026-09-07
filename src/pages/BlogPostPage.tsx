@@ -123,7 +123,7 @@ const BlogPostPageContent = () => {
                     <h3 className="font-black mb-1 warranty-title">دستگاه شما خرابی دارد؟</h3>
                     <p className="text-xs text-muted-foreground">عیب‌یابی در آرمان همراه کاملاً رایگان است؛ کارشناسان ما آماده پاسخگویی و حل مشکل شما هستند.</p>
                   </div>
-                  <a href="tel:+982158798" className="btn-gold shrink-0 flex items-center gap-2"><PhoneCall size={16} /> ۰۲۱-۵۸۷۹۸</a>
+                  <a href="tel:+982158798" className="btn-gold shrink-0 flex items-center gap-2"><PhoneCall size={16} /> <span dir="ltr">۰۲۱-۵۸۷۹۸</span></a>
                 </div>
               </div>
             </article>
