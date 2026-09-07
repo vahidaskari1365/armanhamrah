@@ -76,6 +76,18 @@ const staticPages = {
     title: 'گارانتی تعمیرات | آرمان همراه',
     description: 'گارانتی کتبی تعمیرات موبایل، PS5، ایرپاد و ساعت هوشمند | مدت گارانتی ۳ ماهه تعمیرات و قطعات مصرفی',
   },
+  // These forms also need physical entry pages on the PHP/static host, even
+  // though they are intentionally excluded from search indexing.
+  '/warranty/customer-survey': {
+    title: 'نظرسنجی مشتریان خدمات پس از فروش | آرمان همراه',
+    description: 'فرم نظرسنجی مشتریان خدمات پس از فروش آرمان همراه برای بهبود کیفیت پشتیبانی و تعمیرات.',
+    noIndex: true,
+  },
+  '/warranty/complaints': {
+    title: 'فرم رسیدگی به شکایت مشتریان | آرمان همراه',
+    description: 'فرم ثبت و پیگیری شکایت مشتریان خدمات پس از فروش آرمان همراه.',
+    noIndex: true,
+  },
   '/representatives': {
     title: 'نمایندگی‌ها و همکاران | آرمان همراه',
     description: 'لیست نمایندگان مجاز آرمان همراه و مراکز خدمات پس از فروش همکار',
@@ -275,7 +287,7 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const stripTemplateJsonLd = (html) =>
   html.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
 
-function renderPage({ url, title, description, jsonLd = [] }) {
+function renderPage({ url, title, description, jsonLd = [], noIndex = false }) {
   // Canonical/og:url must match sitemap URLs (trailing slash) and the server's 301 target
   const basePath = url === '/' ? '' : `${url.replace(/\/+$/, '')}/`;
   const fullUrl = `${SITE}${basePath}`;
@@ -288,6 +300,10 @@ function renderPage({ url, title, description, jsonLd = [] }) {
     .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${fullUrl}"`)
     .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${title}"`)
     .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${description}"`);
+
+  if (noIndex) {
+    html = html.replace(/<meta name="robots" content="[^"]*"/, '<meta name="robots" content="noindex, nofollow"');
+  }
 
   const scripts = [orgJsonLd, afterSalesJsonLd, storeJsonLd, websiteJsonLd, ...jsonLd]
     .map(d => `<script type="application/ld+json">${JSON.stringify(d)}</script>`)
@@ -328,6 +344,7 @@ for (const [pathname, meta] of Object.entries(staticPages)) {
     url: pathname,
     title: meta.title,
     description: meta.description,
+    noIndex: meta.noIndex,
     jsonLd: [breadcrumbJsonLd(crumbs), ...(pathname.startsWith('/repair/') ? [faqJsonLd] : [])],
   }));
   count++;

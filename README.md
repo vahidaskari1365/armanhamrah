@@ -71,3 +71,26 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Warranty form regression tests
+
+With Node.js 22 and npm installed:
+
+```sh
+npm ci
+npx playwright install --with-deps chromium
+npm run test:warranty-forms
+```
+
+The tests build the production site and check both customer-service forms on
+mobile and desktop: navigation from Warranty, direct visits and refreshes,
+RTL layout (including horizontal overflow), language/theme changes, required
+fields, and failed/successful submissions. External services and the mail
+endpoint are mocked; no test feedback or email is sent to production.
+
+The build must generate entry HTML for both `/warranty/customer-survey/` and
+`/warranty/complaints/` because the PHP/static host does not provide Vite's SPA
+fallback. These pages retain their `noindex, nofollow` metadata.
+
+To use an existing Chromium installation instead of a downloaded Playwright
+browser, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path.

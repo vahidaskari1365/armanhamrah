@@ -460,8 +460,8 @@ const CustomerComplaintPageContent = () => {
                   />
                 </section>
 
-                {/* Honeypot: invisible to people, checked server-side to reduce automated submissions. */}
-                <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                {/* Keep the anti-spam honeypot out of layout: off-screen positioning causes overflow in RTL. */}
+                <div hidden aria-hidden="true">
                   <label htmlFor="complaint-website">Website</label>
                   <input
                     id="complaint-website"

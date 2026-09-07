@@ -420,8 +420,8 @@ const CustomerSurveyPageContent = () => {
                   />
                 </section>
 
-                {/* Honeypot: hidden from people, checked on the server to reduce automated spam. */}
-                <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                {/* Keep the anti-spam honeypot out of layout: off-screen positioning causes overflow in RTL. */}
+                <div hidden aria-hidden="true">
                   <label htmlFor="survey-website">Website</label>
                   <input
                     id="survey-website"
