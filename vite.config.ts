@@ -10,6 +10,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // Arena previews are served from a dynamic subdomain under e2b.app.
+    allowedHosts: [".e2b.app"],
   },
 
   plugins: [

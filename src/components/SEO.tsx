@@ -10,10 +10,12 @@ interface SEOProps {
   url?: string;
   type?: 'website' | 'article' | 'product';
   keywords?: string;
-  jsonLd?: Record<string, any> | Record<string, any>[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Use for private or transactional pages that should not appear in search results. */
+  noIndex?: boolean;
 }
 
-const SEO = ({ title, description, image, url, type = 'website', jsonLd }: SEOProps) => {
+const SEO = ({ title, description, image, url, type = 'website', jsonLd, noIndex = false }: SEOProps) => {
   const { language } = useLanguage();
   const location = useLocation();
   
@@ -160,7 +162,10 @@ const SEO = ({ title, description, image, url, type = 'website', jsonLd }: SEOPr
       <html lang={language} dir={language === 'fa' ? 'rtl' : 'ltr'} />
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta
+        name="robots"
+        content={noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+      />
       <meta name="author" content="آرمان همراه ارتباطات آریا" />
       <meta name="theme-color" content="#000000" />
       <meta name="geo.position" content="35.6892;51.3890" />

@@ -24,6 +24,8 @@ const WarrantyPage = lazy(() => import("./pages/WarrantyPage"));
 const WarrantyConditionsPage = lazy(() => import("./pages/warranty/Conditions"));
 const WarrantyAccessoriesPage = lazy(() => import("./pages/warranty/Accessories"));
 const WarrantyRepairsPage = lazy(() => import("./pages/warranty/Repairs"));
+const CustomerSurveyPage = lazy(() => import("./pages/warranty/CustomerSurvey"));
+const CustomerComplaintPage = lazy(() => import("./pages/warranty/CustomerComplaint"));
 const RepresentativesPage = lazy(() => import("./pages/RepresentativesPage"));
 const RepairsHubPage = lazy(() => import("./pages/repair/RepairsHubPage"));
 const MobileRepairPage = lazy(() => import("./pages/repair/MobileRepairPage"));
@@ -83,6 +85,8 @@ const AppContent = () => {
           <Route path="/warranty/conditions" element={<WarrantyConditionsPage />} />
           <Route path="/warranty/accessories" element={<WarrantyAccessoriesPage />} />
           <Route path="/warranty/repairs" element={<WarrantyRepairsPage />} />
+          <Route path="/warranty/customer-survey" element={<CustomerSurveyPage />} />
+          <Route path="/warranty/complaints" element={<CustomerComplaintPage />} />
           <Route path="/repair" element={<RepairsHubPage />} />
           <Route path="/repair/mobile" element={<MobileRepairPage />} />
           <Route path="/repair/ps5" element={<PS5RepairPage />} />

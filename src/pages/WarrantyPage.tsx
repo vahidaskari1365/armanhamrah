@@ -444,6 +444,65 @@ const WarrantyPageContent = () => {
           </section>
         )}
 
+        {/* Customer feedback & complaint forms */}
+        <section className="section-padding border-y border-border bg-secondary/30">
+          <div className="container-custom max-w-5xl">
+            <div className="mx-auto mb-10 max-w-3xl text-center">
+              <span className="mb-4 inline-flex rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-bold text-primary font-titr">
+                {t('ارتباط با مشتریان', 'Customer Care')}
+              </span>
+              <h2 className="warranty-title mb-4 text-3xl text-foreground md:text-4xl">
+                {t('صدای شما، مسیر بهتر شدن ماست', 'Your Voice Helps Us Improve')}
+              </h2>
+              <p className="warranty-text text-muted-foreground">
+                {t('برای ثبت تجربه خود از خدمات پس از فروش یا پیگیری یک موضوع، فرم مناسب را انتخاب کنید.', 'Choose the appropriate form to share your after-sales experience or report an issue.')}
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {[
+                {
+                  icon: FileText,
+                  title: t('نظرسنجی مشتری', 'Customer Survey'),
+                  description: t('تجربه خود از پذیرش، تعمیر، اطلاع‌رسانی و نحوه برخورد همکاران ما را با ما در میان بگذارید.', 'Tell us about your experience with acceptance, repair, updates and our team.'),
+                  link: '/warranty/customer-survey',
+                  action: t('تکمیل نظرسنجی', 'Complete Survey'),
+                },
+                {
+                  icon: Shield,
+                  title: t('ثبت شکایت', 'Submit a Complaint'),
+                  description: t('موضوع شکایت خود را با جزئیات ثبت کنید تا واحد رسیدگی به شکایات آن را پیگیری کند.', 'Describe your complaint so our resolution team can follow up.'),
+                  link: '/warranty/complaints',
+                  action: t('ثبت شکایت', 'Submit Complaint'),
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.link}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: index * 0.08 }}
+                >
+                  <Link
+                    to={item.link}
+                    className="group flex h-full flex-col rounded-3xl border border-border bg-card p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+                  >
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground transition-transform duration-300 group-hover:scale-105">
+                      <item.icon size={27} />
+                    </div>
+                    <h3 className="warranty-title mb-3 text-2xl text-foreground">{item.title}</h3>
+                    <p className="warranty-text mb-7 flex-1 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                    <span className="inline-flex items-center gap-2 text-sm font-black text-primary font-titr">
+                      {item.action}
+                      <ArrowRight size={18} className={isFa ? '' : 'rotate-180'} />
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>
