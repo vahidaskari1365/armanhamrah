@@ -158,15 +158,15 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-foreground">
                 <Mail size={18} className="text-primary flex-shrink-0" />
-                <span className="text-[13px]">info@armanhamrah.com</span>
+                <a href="mailto:info@armanhamrah.com" className="text-[13px]">info@armanhamrah.com</a>
               </li>
               <li className="flex items-start gap-3 text-foreground">
                 <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
                 <div className="text-sm">
                   <span>
                     {language === 'fa'
-                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
-                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204'
+                      ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
+                      : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304'
                     }
                   </span>
                   <p className="text-xs text-foreground/70 mt-1" dir="rtl">

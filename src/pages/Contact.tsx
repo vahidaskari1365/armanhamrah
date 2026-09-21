@@ -18,8 +18,8 @@ const ContactPageContent = () => {
       email: 'info@armanhamrah.com',
       address:
         language === 'fa'
-          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۲، واحد ۲۰۴'
-          : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 2, Unit 204',
+          ? 'تهران، خیابان مطهری، بعد از مفتح، ابتدای خیابان سلیمان خاطر، ساختمان امیراتابک، پلاک ۱۳۰، طبقه ۳، واحد ۳۰۴'
+          : 'Tehran, Motahhari St., After Mofateh, Soleiman Khater St., Amir Atabak Building, No. 130, Floor 3, Unit 304',
       postalCode: '۱۵۷۵۹۴۵۳۳۵',
     },
     {
@@ -80,7 +80,7 @@ const ContactPageContent = () => {
                   {section.email && (
                     <li className="flex items-center gap-4">
                       <Mail size={20} className="text-accent" />
-                      <span>{section.email}</span>
+                      <a href={`mailto:${section.email}`}>{section.email}</a>
                     </li>
                   )}
 
